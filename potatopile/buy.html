@@ -26,20 +26,25 @@
     .price-column {width:33%;display:inline-block;}
     .footer {background:#333;padding:2em;text-align: center;}
     .cta {display: inline-block;border:1px solid #1c2;padding:.5em 1em;border-radius:50em;text-decoration:none;color:#1c2;margin:.5em 0 0em;transition: ease-in all 150ms;}
-    .pay {display: inline-block;background:#22b974;padding:.5em 1em;border-radius:0em;text-decoration:none;color:#fff;margin:.5em 0 0em;transition: ease-in all 150ms;}
+    .pay {display: inline-block;background: #23a86a;padding: 1.5em 0em;border-radius: 0em;text-decoration: none;color: #fff;margin: .5em 0 0em;transition: ease-in all 150ms;width: 100%;text-align: center;font-weight: 800;letter-spacing: .05em;cursor:pointer;box-shadow: 2px 2px 30px rgba(255,255,255,0.25);}
+    .pay:hover {background:#129759;}
 
     .cta:hover {background: #1c2;color:white;transition: ease-in all 150ms;}
     .columnList {display:inline-block;width:calc(100% - 27em);text-align:left;padding:0 2em;}
-    .label {padding-top: 1em;margin: 0;line-height: 0;color: rgba(255,255,255,0.75);}
+    .label {padding-top: 1em;margin: 0;line-height: 0;color: rgba(255,255,255,0.9);}
 
     li {padding-bottom:.75em;}
-    input {padding:1em;margin-right:1em;border:1px solid rgba(255,255,255,0.5);background:rgba(255,255,255,.05);color:#fff;text-align:left;font-family:Roboto;font-weight:400;font-size:1em;}
+    input {padding:.5em;margin-right:1em;border:1px solid rgba(255,255,255,0.5);background:rgba(255,255,255,.05);color:#fff;text-align:left;font-family:Roboto;font-weight:400;font-size:1em;width:calc(100% - 1em);max-width:300px;}
+    .imageLeft {display:inline-block;width:40%;padding:4em;vertical-align:top;}
+    .formRight {display:inline-block;width:40%;text-align:left;padding-left:2em;}
 
     @media screen and (max-width: 480px) {
       .mainnav li {display:inline-block;width:85%;padding-bottom:2em;text-align: center;}
       #logo {margin:0 auto;display: block;padding:0}
       .price-column {width: 100%}
       .columnList {display:inline-block;width:100%;text-align:left;padding:0em;}
+      .imageLeft {width:calc(100% - 8em);text-align:center;}
+      .formRight {width:calc(100% - 4em);}
       }
   </style>
 
@@ -56,8 +61,8 @@
         </ul>
     </div>
 
-    <div style="display:inline-block;width:40%;padding:4em;vertical-align:top;"> <img style="width:100%" src="spudbox.png"> </div>
-    <div style="display:inline-block;width:40%;text-align:left;padding-left:2em;">
+    <div class="imageLeft"> <img style="width:100%" src="spudbox.png"> </div>
+    <div class="formRight">
   <h1>How Many Boxes Do You Need?</h1>
   <p style="margin:0 1em 2em 0em;"><a style="color:white;text-decoration:none;border-bottom:1px dotted;font-size:.75em;" href="#">How Many Potatoes Are In A Box?</a></p>
   <p><input style="padding:1em;margin-right:1em;border:1px solid 1px solid rgba(255,255,255,0.5);background:rgba(255,255,255,.05);color:#fff;text-align:center;font-family:Roboto;font-weight:400;font-size:1em;max-width: 70px;" type="number" name="amount">Boxes</p>
@@ -69,7 +74,7 @@
     <p class="label">Street Address:</p>
     <p><input type="text" name="address"></p>
     <p class="label">City:</p>
-    <p><select style="font-family: Roboto;padding: 1em;background: none;border: 1px solid rgba(255,255,255,0.5);width: 62%;color: white;font-size: 18px;">
+    <p><select style="font-family: Roboto;padding: .5em;background: none;border: 1px solid rgba(255,255,255,0.5);width: 100%;max-width:325px;color: white;font-size: 18px;">
         <option value="provo">Provo, UT</option>
         <option value="orem">Orem, UT</option>
       </select></p>
