@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.1 Principles & Elements of Design</title>
+  <style>
+    html, body {margin:0;padding: 0;}
+    body {line-height:1.5em;font-family:Roboto;font-weight:200;color:#444;font-size:1.4em;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;}
+    footer{background: #100;padding:1em;text-align: center;font-size: 18px;font-weight: 400;color:#777;}
+    .content{padding:1em;margin:0 auto;max-width:30em;}
+    .header{background: #222;width: 100%;color: white;border-bottom: 5px solid #333;}
+    .download {background: #c55a11;margin-top: -1em;font-size: .5em;padding: 1em 2em;color: white;text-align: center;}
+    /*.menu {position: absolute;top: 1.7em;left: 70%;font-size: 18px;}*/
+    .menu {display:inline-block;float:right;margin-top:1.25em;}
+    .menu span{padding-right: 2em;}
+    .menu a {color:white;text-decoration: none;transition: ease-in all 150ms;}
+    .menu a:hover {border-bottom:1px dotted #fff;transition: ease-in all 150ms;}
+    .pricing {width:20%;background:#eee;color:#444;padding:.5em;text-align:center;float:left;margin-left:1em;border-radius:3px;}
+    h2 {color:#00BC4E;}
+    h1 {margin: 0em 0em 0.5em 0em;line-height:1.15em;}
+    p {margin-bottom:1.5em;}
+    .download a {color: white;text-decoration: none;border: 1px solid;padding: .5em 1.5em;border-radius: 3px;font-size: 14px;display: inline-block;margin-right: 1em;transition: all 150ms ease-in;}
+    .download a:hover {background:white;color:#c55a11;transition: all 150ms ease-in;}
+    li {margin-bottom:.5em;color:#777;border-left:1px solid #ccc;padding-left:1em;list-style: none;}
+    .button {padding: 1em 3em;background: #00BC4E;color: white;margin: 1em 0;display: inline-block;text-decoration: none;transition: all 150ms ease-in;}
+    .assignment {border:1px solid #00be63;border-radius:3px;background:#fff;font-family:Roboto;padding:1em 2em;border-left:2.5em solid #00be63;display:block;max-width:23em;width:100%;margin:0 auto;box-shadow:0px 5px 30px #ddd;}
+    .assignment h2 {letter-spacing:.05em;text-transform:uppercase;color:#00be63;font-weight:500}
+    .assignment p {color:#777;font-weight: 400;}
+    .submitbutton {text-decoration:none;color:white;background:#00be63;padding:.5em 1em;transition: ease-in all 150ms;border-radius: 3px;}
+    .submitbutton:hover {background:#00ad52;transition: ease-in all 150ms;box-shadow: 0px 2px 15px #ddd;}
+    .assignmentbox {border:1px solid #00be63;padding:1em;font-family:Roboto;color:#777;}
+    .modulen {margin: 1em 0em 0.5em 0em;font-size: 1em;letter-spacing: .03em;text-transform: uppercase;font-weight: 100;color: #00be63;display: block;}
+    .content img {width: 100%;border: 1px solid #ccc;padding: .5em;background: white;}
+    .mistake {padding:1em 2em;background:none;border-radius:5px;color:#c12;border:1px solid #c12;border-left:70px solid #c12;}
+    .note {padding:1em 2em;background:#fafafa;border:1px solid #ccc;border-radius:5px;border-left:70px solid #ccc;}
+  </style>
+</head>
+
+<body>
+  <div class="header">
+  <img src="assets/Logo.png" style="padding: 0.5em 0em 0em 1em;">
+  <div class="menu">
+  <span><a href="module-overview.html">Lessons</a></span><span><a href="extras.html">Extras</a></span><span><a href="#">Support</a></span>
+  </div>
+  </div>
+
+  <div class="content">
+
+    <span class="modulen">Module 1.1</span>
+    <h1 id="typography-readability">Typography &amp; Readability</h1>
+      <p>The first thing people think about when the hear the word 'typography' is fonts.</p>
+      <p><img src="typography/fonts.jpg"></p>
+      <p>So people ask questions like: What fonts should I use? Are there certain fonts that go together? Should I have a custom font? I heard Comic Sans is bad, so I should never use it, right?</p>
+      <p>The truth is typography is more than just fonts. While fonts are a part of it, there is so much more. Things like:</p>
+      <ul>
+      <li>Ligatures</li>
+      <li>Kerning / Letter Spacing [this can make words blend together to say things you didn't mean]</li>
+      <li>Capitalization [All Caps harder to read because everything is the same height]</li>
+      <li>Small Caps</li>
+      <li>Sub and Sup scripts</li>
+      <li>Punctuation Details</li>
+      <li>Line Height</li>
+      <li>Font-Style (italics)</li>
+      <li>Font weights</li>
+      </ul>
+      <h2 id="basic-font-types">Basic Font Types</h2>
+      <p>Fonts can be categorized into a few different groups Serif, Sans Serif, Script, Slab, or Display. Divide between what's more readable. For print, most designers agree that Serifs are the way to go. For digital screens, sans serifs are often seen as better and are more efficient because they have simpler shapes. Decorative fonts, such as scripts are harder to read and shouldn't be used for body copy.</p>
+      <p>Display fonts are more decorative and creative. Sans Serif appear more modern, clean, and crisp. Serifs are more traditional and classical.</p>
+      <h2 id="so-which-font-should-i-use-">So Which Font Should I Use?</h2>
+      <p>So you're saying "Cool story, so basically I should use a basic font to ensure readability and leave it at that?"</p>
+      <p>No!</p>
+      <p>The goal with typography is emotion matching + readability. Match the context of your design.</p>
+      <p>For examaple, the TV show 24 used the Bank Gothic Font. It set the mood of the show. Imagine seeing Comic Sans used in its place. In the same way, a more traditional company may benefit from a serif font.</p>
+      <p>Regardless of your logo, branding, or main headings, you should always choose readability over emotional feel for your main body text font. Typicall, sans serif since they are better on the web.</p>
+      <p>Start off using 2 fonts. David Kadavy once shared the idea of playing only with composition, white space, and alignment before adding colors, fonts, and shapes.</p>
+      <p>Typeface is different from a font in that a typeface has variations of the font. Some refer to it as a font family. Using different weights allows you to create contrast and heirarchy without changing fonts</p>
+      <h2 id="font-characteristics-to-look-for">Font Characteristics to Look For</h2>
+      <p>You want your fonts to be legible and readable for the majority of your designs. The individual glyphs of the font. There are a few things that impact legibility, including</p>
+      <ul>
+      <li>X-Height. A higher x-height is more readable</li>
+      <li>the <em>l1I</em> test. This is a good test to see if the individual letters within a font are different enough so that people can easily distinguish between them. Zero and the letter O are another thing. Every had to read a confirmation code and get stuck on whether it's a 0 or O.</li>
+      </ul>
+      <h2 id="the-little-details-that-matter-most">The Little Details That Matter Most</h2>
+      <p>When it comes to type, there are a number of details most people miss. Details that people gloss over. The positioning of a dollar sign. The length of a dash. The difference between the letter x and a multiplication symbol. The many different type of quotes.</p>
+      <p>Panda Express is a master of the little details. Take a look at their menu. Notice how focused it is on typography. There are no images or textures, and yet the menu looks clean and modern.</p>
+      <p><img src="typography/panda-express-menu-2.jpg"></p>
+      <p>PowerPoint has a robust auto-correct system that will automatically adjust certain typographical details. But it's good to know how to add them manually. Below is a table with keyboard shortcuts, HTML codes, and PowerPoint features:</p>
+      <h2 id="readability">Readability</h2>
+      <ul>
+      <li>The color of the text and backgrounds (white on black is not ideal). Contrast</li>
+      <li>The amount of white space</li>
+      <li>The line length</li>
+      <li>Orphans {balancing multiple line headings}</li>
+      <li>Text-Alignment</li>
+      <li>Hierarchy/headings/scannability</li>
+      <li>One space after a period</li>
+      <li>Short Paragraphs</li>
+      <li>Text block placement (photos, columns and relation to width). Pictures with white space vs Gaussian blur vs shapeholder</li>
+      </ul>
+      <p>An example of poor spacing</p>
+      <p><img src="typography/kerning-spacing.jpg"></p>
+</div>
+  </div>
+
+
+
+
+
+  </div>
+
+</body>
+
+  <footer>
+    Copyright(C) 2017. Design For Content Marketers.
+  </footer>
+
+</html>
