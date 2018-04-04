@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+	<title>Login Test</title>
+
+    <style>
+      body, html {padding:0;margin:0;font-family:DIN,neutra text,Roboto,Sans Serif;-moz-osx-font-smoothing:grayscale;background: linear-gradient(145deg, #214, #ac1234);height:100%;width:100%;}
+      .cat {color:white;border-bottom:1px dotted #555;width:100%;padding:1em 0 2em 0;transition: .5s ease all;text-transform:uppercase;letter-spacing:.1em;font-weight:100;font-size:.75em;}
+      a {color:white;text-decoration:none;}
+      .cat:hover {background:#1c1c1c;border-radius:3px;}
+      .wrapper {max-width: 1020px;margin: auto;display: grid;grid-template-columns: 14.28% 2fr 1fr;padding-top:6em;}
+      .nav {background:#313131;padding:1em;text-align:center;color:white;border-radius:3px 0px 0px 3px;}
+      .main {background:#131313;color:white;padding:1em 2em;}
+      .cat img {width:50%;filter:invert(1);}
+      .details {background:#222;border-radius:0px 3px 3px 0px;color:white;padding:1em 2em;border-left:1px solid #333;}
+      .button {display:inline-block;color:white;text-decoration:none;padding:.5em 1em;border:1px dotted;transition:ease all .15s;}
+      .button:hover {background:rgba(255,255,2555,0.1);border:1px dotted rgba(255,255,2555,0.5)}
+      input[type=text] {background:none;color:white;border:none;border-bottom:1px solid rgba(255,255,255,0.5);text-align:center;font-size:16px;width:6em;font-family:inherit;letter-spacing:.03em;color:#ddd;}
+    </style>
+  </head>
+
+  <body>
+    <div class="wrapper">
+
+    <div class="nav">
+      <div class="cat"> <img src="https://elixirgraphics.com/previews/Write/page1/page7/files/Font_512x512.png"><a href="#">Typography</a></div>
+
+      <div class="cat"><img src="https://cdn3.iconfinder.com/data/icons/print-icons/512/PMS_Color_Card-512.png">
+      <p style="line-height:0;"><a href="#">Color</a></p></div>
+
+      <div class="cat"> <img src="https://image.flaticon.com/icons/png/512/292/292470.png">
+      <p  style="line-height:0;padding-top:10px;"><a href="#">Proportions</a></p></div>
+    </div>
+
+    <div class="main">
+      <h2 style="font-weight:400;">Color Variants</h2>
+      <label style="margin-right:.5em;color:#ddd">Starter Hex:</label><input type="text" placeholder="#aabbcc">
+        <div style="display:block;width:160px;height:100px;background:#aabbcc;margin-top:2em;border-radius:3px;"></div>
+        <div style="display:inline-block;width:50px;height:50px;background:#334455;margin-top:.5em;border-radius:3px;"></div>
+        <div style="display:inline-block;width:50px;height:50px;background:#8899aa;margin-top:.5em;border-radius:3px;"></div>
+        <div style="display:inline-block;width:50px;height:50px;background:#ccddee;margin-top:.5em;border-radius:3px;"></div>
+      <p style="font-size:14px;margin-top:2em;"><a href="https://www.templatemonster.com/blog/style-checkboxes-radio-buttons-css/">https://www.templatemonster.com/blog/style-checkboxes-radio-buttons-css/</a></p>
+    </div>
+
+    <div class="details">
+      <h2 style="font-weight:400;">Settings</h2>
+      <p><input type="checkbox"><label style="margin-right:.5em;color:#ddd;padding-left:.75em;font-size:.9em;;">Enable RGBA</label></p>
+      <p><input type="checkbox"><label style="margin-right:.5em;color:#ddd;padding-left:.75em;font-size:.9em;">Enable Clipping</label></p>
+      <p style="text-align:center;margin-top:5.75em;"><a class="button" href="#">Save Settings</a></p>
+    </div>
+
+    </body>
+    </html>
