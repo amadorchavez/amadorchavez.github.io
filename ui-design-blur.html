@@ -18,14 +18,15 @@
       .button {display:inline-block;color:white;text-decoration:none;padding:.5em 1em;border:1px dotted;transition:ease all .15s;}
       .button:hover {background:rgba(255,255,2555,0.1);border:1px dotted rgba(255,255,2555,0.5);}
       input[type=text] {background:none;color:white;border:none;border-bottom:1px solid rgba(255,255,255,0.5);text-align:center;font-size:16px;width:6em;font-family:inherit;letter-spacing:.03em;color:#ddd;}
+      input[type=text]:focus {border-bottom: 1px solid rgba(255,255,255,0.75);transition: ease all .25s;outline: none;box-shadow:0 2px 2px -2px rgba(255,255,255,0.25)}
 
       .details input[type="checkbox"] {display: none;}
       .container {margin-bottom: .75em;margin-left:2.5em;}
       .container label {position: relative;color:#ddd;font-size:.9em;-moz-user-select: none;-webkit-user-select: none;user-select: none;}
-      .container label:hover {color:#eee;}
+      .container label:hover {color:#eee;cursor: pointer;}
       .container span::before,.container span::after {content: '';position: absolute;top: 0;bottom: 0;margin: auto;}
       .container span.checkbox::before {width: 20px;height: 20px;background-color: rgba(255,255,255,0.05);left: -35px;box-sizing: border-box;border: 1px solid rgba(255,255,255,0.5);transition: ease all .15s;}
-      .container span.checkbox:hover::before {border: 1px solid rgba(255,255,255,0.75);background-color: rgba(255,255,255,0.15);}
+      .container span.checkbox:hover::before {border: 1px solid rgba(255,255,255,0.75);background-color: rgba(255,255,255,0.1);cursor: pointer;}
       .container span.checkbox::after {content: '\f00c';font-family: 'FontAwesome';left: -32px;top: 1px;color: transparent;transition: color .2s;}
       input[type="checkbox"]:checked + label span.checkbox::after {color: rgba(255,255,255,0.75);}
     </style>
