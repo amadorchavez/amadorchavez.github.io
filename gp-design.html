@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+	<title>Grand Prix Race Center</title>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+
+  <style>
+    body {background:linear-gradient(40deg,#ac1234,#214);letter-spacing:.03em;padding:0;margin:0;-moz-osx-font-smoothing:grayscale;}
+    .wrapper {margin: auto;display: grid;grid-template-columns: 240px 240px 240px 240px 240px;padding-top:6em;color:white;text-align:center;font-family:Cadillac Sans;-webkit-font-smoothing:antialiased;}
+    h2 {line-height:1;margin:0;padding-bottom:0.25em;font-weight:400;}
+    p {line-height:1;margin:0;padding:0;}
+    .inactive {opacity:0.5;}
+    .race {display:inline-block;padding:1em;font-family:play;margin-top:-0.5em;}
+    .id {background:white;padding:.5em .75em;border-radius:3px;color:#ac1234;border:1px solid white;font-weight:800;letter-spacing:.1em;}
+    .id-name {padding:.5em 1em;border:1px solid white;border-radius:0px 3px 3px 0px;position:relative;right:.1em;color:white;background:rgba(255,255,255,0.1);}
+    .winner {background:#183;color:#fff;border:1px solid rgba(255,255,255,0.25);}
+    .edit-race {display:none;}
+    .one:hover .edit-race {display:inline-block;padding:1.75em 2em;background:rgba(0,0,0,0.75);color:white;font-family:Play;letter-spacing:.1em;border-radius:3px;position:relative;top:-125px;box-shadow:1px 1px 10px rgba(0,0,0,0.25);}
+    .navbar {display:inline-block;width:100%;background:rgba(90,90,90,0.95);position: fixed;bottom: 0;font-weight:100;letter-spacing:.03em;}
+    .color-class {width:15px;background:#ac1234;display:inline-block;height:15px;border-radius:55px;margin-right:.75em;position:relative;top:2px;}
+    .class-name {display:inline-block;padding:.5em 1em;font-family:Cadillac Sans;cursor:pointer;}
+    .focus:hover {background:rgba(255,255,255,0.85)}
+    .unfocus:hover {background:rgba(255,255,255,0.35)}
+    .focus {background:rgba(255,255,255,0.75);transition: ease all .25s;}
+    .unfocus {background:rgba(255,255,255,0.25);color:white;margin-left:-5px;border-left:1px solid black;transition: ease all .25s;}
+
+  </style>
+  </head>
+
+  <body>
+
+  <div class="wrapper">
+
+    <div class="one inactive">
+      <h2>ROUND 1</h2><p style="margin-bottom:2em;">No Losses</p>
+
+      <div class="race">
+      <span class="id">01</span><span class="id-name">John Doe</span>
+      </div>
+
+      <div class="race">
+      <span class="id">02</span><span class="id-name">John Doe</span>
+      </div>
+
+
+      <div class="race">
+      <span class="id">03</span><span class="id-name">John Doe</span>
+      </div>
+
+      <div class="race">
+      <span class="id winner">01</span><span class="id-name winner">John Doe</span>
+      </div>
+
+      <a href="#"><div class="edit-race">
+      <h2 style="font-weight:100;font-size:16px;">※ Edit Race</h2>
+      </div></a>
+
+
+
+      <div style="display:inline-block;padding:1em;font-family:play;margin-top:2em;">
+      <span style="background:white;padding:.5em .75em;border-radius:3px;color:#ac1234;border:1px solid white;font-weight:800;letter-spacing:.1em;">01</span><span style="padding:.5em 1em;border:1px solid white;border-radius:3px;position:relative;right:.1em;color:white;box-shadow:2px 2px 5px rgba(255,255,255,0.15);">John Doe</span>
+      </div>
+
+      <div style="display:inline-block;padding:1em;font-family:play;margin-top:-0.5em">
+      <span style="background:white;padding:.5em .75em;border-radius:3px;color:#ac1234;border:1px solid white;font-weight:800;letter-spacing:.1em;">01</span><span style="padding:.5em 1em;border:1px solid white;border-radius:3px;position:relative;right:.1em;color:white;box-shadow:2px 2px 5px rgba(255,255,255,0.15);">John Doe</span>
+      </div>
+
+      <div style="display:inline-block;padding:1em;font-family:play;margin-top:-0.5em">
+      <span style="background:white;padding:.5em .75em;border-radius:3px;color:#ac1234;border:1px solid white;font-weight:800;letter-spacing:.1em;">01</span><span style="padding:.5em 1em;border:1px solid white;border-radius:3px;position:relative;right:.1em;color:white;box-shadow:2px 2px 5px rgba(255,255,255,0.15);">John Doe</span>
+      </div>
+
+      <div style="display:inline-block;padding:1em;font-family:play;margin-top:-0.5em">
+      <span style="background:white;padding:.5em .75em;border-radius:3px;color:#ac1234;border:1px solid white;font-weight:800;letter-spacing:.1em;">01</span><span style="padding:.5em 1em;border:1px solid white;border-radius:3px;position:relative;right:.1em;color:white;box-shadow:2px 2px 5px rgba(255,255,255,0.15);">John Doe</span>
+      </div>
+
+    </div>
+
+  <div><h2>ROUND 2</h2><p>1 Loss</p></div>
+
+  <div><h2>ROUND 3</h2></div>
+
+  <div><h2>ROUND 4</h2></div>
+
+  <div><h2>FINAL ROUND</h2><p>Championship</p>
+
+  <h2 style="margin-top:10em;">2 Losses</div>
+
+  </div>
+
+  <div style="display:inline-block;width:300px;height:200px;background:#00B050;position:absolute;right:5px;bottom:55px;border:1px solid rgba(255,255,255,0.5);box-shadow:2px 2px 10px rgba(0,0,0,0.5);text-align:left;color:white;font-family:Cadillac Sans;padding:1em 2em;">
+
+  <p style="font-size:18px;font-weight:100;text-transform:uppercase;padding-bottom:.75em;letter-spacing:.1em">next racers</p>
+  <p style="padding-bottom:.25em;font-size:24px;font-weight:300;text-transform:uppercase;padding-top:0.25em;"><span style="background:white;display:inline-block;height:25px;width:25px;color:#00B050;padding:0 .15em;padding-top:.2em;margin-right:.5em;border-radius:25em;text-align:center;font-weight:500;">1</span>John Doe</p>
+  <p style="padding-bottom:.25em;font-size:24px;font-weight:300;text-transform:uppercase;padding-top:0.25em;"><span style="background:white;display:inline-block;height:25px;width:25px;color:#00B050;padding:0 .15em;padding-top:.2em;margin-right:.5em;border-radius:25em;text-align:center;font-weight:500;">2</span>Jane Doe</p>
+  <p style="padding-bottom:.25em;font-size:24px;font-weight:300;text-transform:uppercase;padding-top:0.25em;"><span style="background:white;display:inline-block;height:25px;width:25px;color:#00B050;padding:0 .15em;padding-top:.2em;margin-right:.5em;border-radius:25em;text-align:center;font-weight:500;">3</span>Josh Doe</p>
+  <p style="font-size:24px;font-weight:300;text-transform:uppercase;padding-top:0.25em;"><span style="background:white;display:inline-block;height:25px;width:25px;color:#00B050;padding:0 .15em;padding-top:.2em;margin-right:.5em;border-radius:25em;text-align:center;font-weight:500;">4</span>Joel Doe</p>
+  </div>
+
+  <div class="navbar">
+  <div class="class-name focus"><span class="color-class"></span>Class 1</div>
+  <div class="class-name unfocus"><span class="color-class" style="background:#183;"></span> Class 2</div>
+  <div class="class-name unfocus"><span class="color-class" span style="background:#29f;"></span> Class 3</div>
+  </div>
+
+  </body>
+  </html>
