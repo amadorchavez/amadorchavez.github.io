@@ -12,12 +12,14 @@
     h2 {line-height:1;margin:0;padding-bottom:0.25em;font-weight:400;}
     p {line-height:1;margin:0;padding:0;}
     .inactive {opacity:0.5;}
-    .race {display:inline-block;padding:1em;font-family:play;margin-top:-0.5em;}
-    .id {background:white;padding:.5em .75em;border-radius:3px;color:#ac1234;border:1px solid white;font-weight:800;letter-spacing:.1em;}
-    .id-name {padding:.5em 1em;border:1px solid white;border-radius:0px 3px 3px 0px;position:relative;right:.1em;color:white;background:rgba(255,255,255,0.1);}
+    .racer {display:inline-block;padding:1em;font-family:play;margin-top:-0.5em;cursor: pointer;}
+    .racer:hover {transform: scale(1.025);}
+    .racer:hover .racerName {background:rgba(255,255,255,0.25);}
+    .racerId {background:white;padding:.5em .75em;border-radius:3px;color:#ac1234;border:1px solid white;font-weight:800;letter-spacing:.1em;}
+    .racerName {padding:.5em 1em;border:1px solid white;border-radius:0px 3px 3px 0px;position:relative;right:.1em;color:white;background:rgba(255,255,255,0.1);}
     .winner {background:#183;color:#fff;border:1px solid rgba(255,255,255,0.25);}
     .edit-race {display:none;}
-    .one:hover .edit-race {display:inline-block;padding:1.75em 2em;background:rgba(0,0,0,0.75);color:white;font-family:Play;letter-spacing:.1em;border-radius:3px;position:relative;top:-125px;box-shadow:1px 1px 10px rgba(0,0,0,0.25);}
+    .race:hover .edit-race {display:inline-block;padding:1.75em 2em;background:rgba(0,0,0,0.85);color:white;font-family:Play;letter-spacing:.1em;border-radius:3px;position:absolute;top:25%;left:11%;width:120px;box-shadow:1px 1px 10px rgba(0,0,0,0.25);}
     .navbar {display:inline-block;width:100%;background:rgba(90,90,90,0.95);position: fixed;bottom: 0;font-weight:100;letter-spacing:.03em;}
     .color-class {width:15px;background:#ac1234;display:inline-block;height:15px;border-radius:55px;margin-right:.75em;position:relative;top:2px;}
     .class-name {display:inline-block;padding:.5em 1em;font-family:Cadillac Sans;cursor:pointer;}
@@ -25,6 +27,7 @@
     .unfocus:hover {background:rgba(255,255,255,0.35)}
     .focus {background:rgba(255,255,255,0.75);transition: ease all .25s;}
     .unfocus {background:rgba(255,255,255,0.25);color:white;margin-left:-5px;border-left:1px solid black;transition: ease all .25s;}
+    .race {position: relative;margin-top:2.25em;}
 
   </style>
   </head>
@@ -33,46 +36,49 @@
 
   <div class="wrapper">
 
-    <div class="one inactive">
+    <div class="one">
       <h2>ROUND 1</h2><p style="margin-bottom:2em;">No Losses</p>
 
-      <div class="race">
-      <span class="id">01</span><span class="id-name">John Doe</span>
+      <div class="race inactive">
+        <div class="racer">
+        <span class="racerId">01</span><span class="racerName">John Doe</span>
+        </div>
+
+        <div class="racer">
+        <span class="racerId">02</span><span class="racerName">John Doe</span>
+        </div>
+
+
+        <div class="racer">
+        <span class="racerId">03</span><span class="racerName">John Doe</span>
+        </div>
+
+        <div class="racer">
+        <span class="racerId winner">01</span><span class="racerName winner">John Doe</span>
+        </div>
+
+        <a href="#"><div class="edit-race">
+        <h2 style="font-weight:100;font-size:16px;"><span style="font-family:fontawesome;" class="far fa-edit"></span> Edit Race</h2>
+        </div></a>
       </div>
 
-      <div class="race">
-      <span class="id">02</span><span class="id-name">John Doe</span>
-      </div>
+      <div class="race active">
+        <div class="racer">
+        <span class="racerId">01</span><span class="racerName">John Doe</span>
+        </div>
+
+        <div class="racer">
+        <span class="racerId">02</span><span class="racerName">John Doe</span>
+        </div>
 
 
-      <div class="race">
-      <span class="id">03</span><span class="id-name">John Doe</span>
-      </div>
+        <div class="racer">
+        <span class="racerId">03</span><span class="racerName">John Doe</span>
+        </div>
 
-      <div class="race">
-      <span class="id winner">01</span><span class="id-name winner">John Doe</span>
-      </div>
-
-      <a href="#"><div class="edit-race">
-      <h2 style="font-weight:100;font-size:16px;">※ Edit Race</h2>
-      </div></a>
-
-
-
-      <div style="display:inline-block;padding:1em;font-family:play;margin-top:2em;">
-      <span style="background:white;padding:.5em .75em;border-radius:3px;color:#ac1234;border:1px solid white;font-weight:800;letter-spacing:.1em;">01</span><span style="padding:.5em 1em;border:1px solid white;border-radius:3px;position:relative;right:.1em;color:white;box-shadow:2px 2px 5px rgba(255,255,255,0.15);">John Doe</span>
-      </div>
-
-      <div style="display:inline-block;padding:1em;font-family:play;margin-top:-0.5em">
-      <span style="background:white;padding:.5em .75em;border-radius:3px;color:#ac1234;border:1px solid white;font-weight:800;letter-spacing:.1em;">01</span><span style="padding:.5em 1em;border:1px solid white;border-radius:3px;position:relative;right:.1em;color:white;box-shadow:2px 2px 5px rgba(255,255,255,0.15);">John Doe</span>
-      </div>
-
-      <div style="display:inline-block;padding:1em;font-family:play;margin-top:-0.5em">
-      <span style="background:white;padding:.5em .75em;border-radius:3px;color:#ac1234;border:1px solid white;font-weight:800;letter-spacing:.1em;">01</span><span style="padding:.5em 1em;border:1px solid white;border-radius:3px;position:relative;right:.1em;color:white;box-shadow:2px 2px 5px rgba(255,255,255,0.15);">John Doe</span>
-      </div>
-
-      <div style="display:inline-block;padding:1em;font-family:play;margin-top:-0.5em">
-      <span style="background:white;padding:.5em .75em;border-radius:3px;color:#ac1234;border:1px solid white;font-weight:800;letter-spacing:.1em;">01</span><span style="padding:.5em 1em;border:1px solid white;border-radius:3px;position:relative;right:.1em;color:white;box-shadow:2px 2px 5px rgba(255,255,255,0.15);">John Doe</span>
+        <div class="racer">
+        <span class="racerId">03</span><span class="racerName">John Doe</span>
+        </div>
       </div>
 
     </div>
