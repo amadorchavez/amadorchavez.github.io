@@ -25,7 +25,7 @@
       .container span::before,.container span::after {content: '';position: absolute;top: 0;bottom: 0;margin: auto;}
       .container span.checkbox::before {width: 25px;height: 25px;background-color: rgba(255,255,255,0.05);left: -35px;box-sizing: border-box;border: 1px solid rgba(255,255,255,0.5);transition: ease all .15s;border-radius:25px;}
       .container span.checkbox:hover::before {border: 1px solid rgba(255,255,255,0.75);background-color: rgba(255,255,255,0.1);cursor: pointer;}
-      .container span.checkbox::after {content: '\f00c';font-family: 'FontAwesome';left: -31px;top: 4px;color: transparent;transition: color .2s;font-size:18px;}
+      .container span.checkbox::after {content: '\f00c';font-family: 'FontAwesome';left: -31px;top: 3px;color: transparent;transition: color .2s;font-size:18px;}
       input[type="checkbox"]:checked + label span.checkbox::after {color: #313131;}
       input[type="checkbox"]:checked + label span.checkbox::before {background:white;}
 
@@ -41,7 +41,7 @@
 </a>
 </div>
 
-<h3>What Options Are You Considering? <i style="color:rgba(255,255,255,0.75)"><br />Check all that apply</i></h3>
+<h3 style="margin-bottom:1.75em;">What Options Are You Considering? <i style="color:rgba(255,255,255,0.75)"><br />Check all that apply</i></h3>
 
 <div class="container">
         <input type="checkbox" name="group2" id="checkbox-1">
