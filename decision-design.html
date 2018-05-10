@@ -29,6 +29,9 @@
       input[type="checkbox"]:checked + label span.checkbox::after {color: #313131;}
       input[type="checkbox"]:checked + label span.checkbox::before {background:white;}
 
+      .face {width: 100%;filter: invert(1);padding: .5em 0;}
+      .option:hover .face {filter: invert(0);}
+
 </style>
 </head>
 <body>
@@ -83,12 +86,12 @@
 <a class="option" href="#">No</a>
 
 <h3>How Are You Feeling?</h3>
-<a class="option" href="#">Rushed</a>
-<a class="option" href="#">Tired</a>
-<a class="option" href="#">Relaxed</a>
-<a class="option" href="#">Energetic</a>
-<a class="option" href="#">Hungry</a>
-<a class="option" href="#">Happy</a>
+<a class="option" href="#"><img src="face.png" class="face">Rushed</a>
+<a class="option" href="#"><img src="face.png" class="face">Tired</a>
+<a class="option" href="#"><img src="face.png" class="face">Relaxed</a>
+<a class="option" href="#"><img src="face.png" class="face">Energetic</a>
+<a class="option" href="#"><img src="face.png" class="face">Hungry</a>
+<a class="option" href="#"><img src="face.png" class="face">Happy</a>
 
 <a class="button" style="margin-top:3em;margin-bottom:5em;" href="#">Get My Decision</a>
 
