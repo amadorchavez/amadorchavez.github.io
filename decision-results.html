@@ -32,73 +32,28 @@
       .face {width: 100%;filter: invert(1);padding: .5em 0;opacity: 0.75;}
       .option:hover .face {filter: invert(0);}
 
+      @keyframes results {
+        0% {transform:scale(1);}
+        100% {transform:scale(1.035) rotate(-1deg);text-shadow:1px 1px 3px rgba(0,0,0,0.5);}
+      }
+
 </style>
 </head>
 <body>
 
-<div style="text-align:center;max-width:520px;margin:0 auto;width:100%;background:#242629">
-  <div style="background: #1852e0;clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);padding: 2em 0;padding-bottom: 4em;-webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%)">
-<h1>The Decision Maker</h1>
-<p>Can't decide what do? We'll fix that.</p>
-<a class="button" href="#">Help me make my decision</a>
-</a>
+<div style="text-align:center;max-width:520px;margin:0 auto;width:100%;background:#242629;padding-bottom:5em;">
+
+<div style="width: 70%;margin: 0 auto;color: white;padding: 2em;border: 5px solid rgba(255,255,255,0.075);box-shadow: 0px 0px 10px rgba(0,0,0,0.25);border-radius: 3px;display: inline-block;background:rgb(24, 82, 224);margin-top:3em;">
+ <p style="text-transform: uppercase;font-weight: 400;letter-spacing: .075em;margin: 0;padding: 0;color: rgba(255,255,255,0.5);">Your Result</p>
+ <p style="font-size: 2em;margin: 0;padding: 0;margin-top: .5em;animation: results 1.75s 1s infinite ease-in-out alternate;">You should eat sushi</p>
 </div>
 
-<h3 style="margin-bottom:1.75em;">What Options Are You Considering? <i style="color:rgba(255,255,255,0.75)"><br />Check all that apply</i></h3>
+<div style="background: rgba(0,0,0,0.35);color: rgba(255,255,255,0.5);padding: 1em 2.5em;text-align: left;width:69%;margin:0 auto;border-radius:3px;margin-bottom:3em;padding-bottom:2em;">
+  <h2 style="margin: 0;margin-top: .25em;color: rgba(255,255,255,0.75);">Why?</h2>
+  <p style="margin: 0;margin-top: 0.75em;">There is a good reason for this decision. Here is one reason. Here is another reason.</p>
+</div>
 
-<div class="container">
-        <input type="checkbox" name="group2" id="checkbox-1">
-        <label for="checkbox-1"><span class="checkbox">Sushi</span></label>
-      </div>
-
-<div class="container">
-        <input type="checkbox" name="group2" id="checkbox-2">
-        <label for="checkbox-2"><span class="checkbox">Pizza</span></label>
-      </div>
-
-<div class="container">
-        <input type="checkbox" name="group2" id="checkbox-3">
-        <label for="checkbox-3"><span class="checkbox">Mexican Food</span></label>
-      </div>
-
-<div class="container">
-        <input type="checkbox" name="group2" id="checkbox-4">
-        <label for="checkbox-4"><span class="checkbox">Fast Food</span></label>
-      </div>
-
-
-<h3>How Old Are You?</h3>
-<input type="number" style="width:75px;"></input>
-
-<h3>Where Are You?</h3>
-<input type="text"></input>
-
-<h3>Are You With People?</h3>
-<a class="option" href="#">Yes</a>
-<a class="option" href="#">No</a>
-
-<h3>Do You Have Food Allergies?</h3>
-<a class="option" href="#">Yes</a>
-<a class="option" href="#">No</a>
-
-<h3>Did You Work Out Today?</h3>
-<a class="option" href="#">Yes</a>
-<a class="option" href="#">No</a>
-
-<h3>How Much Do You Want To Spend?</h3>
-<a class="option" href="#">$</a>
-<a class="option" href="#">$$</a>
-<a class="option" href="#">$$$</a>
-
-<h3>How Are You Feeling?</h3>
-<a class="option" href="#"><img src="face.png" class="face">Rushed</a>
-<a class="option" href="#"><img src="face.png" class="face">Tired</a>
-<a class="option" href="#"><img src="face.png" class="face">Relaxed</a>
-<a class="option" href="#"><img src="face.png" class="face">Energetic</a>
-<a class="option" href="#"><img src="face.png" class="face">Hungry</a>
-<a class="option" href="#"><img src="face.png" class="face">Happy</a>
-
-<a class="button" style="margin-top:3em;margin-bottom:5em;" href="decision-results.html">Get My Decision</a>
+ <a href="#" class="button">Make Another Decision</a>
 
 </div>
 
