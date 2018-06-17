@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.10 Context & Style</title>
+  <style>
+    html, body {margin:0;padding: 0;}
+    body {line-height:1.5em;font-family:Roboto;font-weight:200;color:#444;font-size:1.4em;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;}
+    footer{background: #100;padding:1em;text-align: center;font-size: 18px;font-weight: 400;color:#777;}
+    .content{padding:1em;margin:0 auto;max-width:30em;}
+    .header{background: #222;width: 100%;color: white;border-bottom: 5px solid #333;}
+    .download {background: #c55a11;margin-top: -1em;font-size: .5em;padding: 1em 2em;color: white;text-align: center;}
+    /*.menu {position: absolute;top: 1.7em;left: 70%;font-size: 18px;}*/
+    .menu {display:inline-block;float:right;margin-top:1.25em;}
+    .menu span{padding-right: 2em;}
+    .menu a {color:white;text-decoration: none;transition: ease-in all 150ms;}
+    .menu a:hover {border-bottom:1px dotted #fff;transition: ease-in all 150ms;}
+    .pricing {width:20%;background:#eee;color:#444;padding:.5em;text-align:center;float:left;margin-left:1em;border-radius:3px;}
+    h2 {color:#00BC4E;}
+    h1 {margin: 0em 0em 0.5em 0em;line-height:1.15em;}
+    p {margin-bottom:1.5em;}
+    .download a {color: white;text-decoration: none;border: 1px solid;padding: .5em 1.5em;border-radius: 3px;font-size: 14px;display: inline-block;margin-right: 1em;transition: all 150ms ease-in;}
+    .download a:hover {background:white;color:#c55a11;transition: all 150ms ease-in;}
+    li {margin-bottom:.5em;color:#777;border-left:1px solid #ccc;padding-left:1em;list-style: none;}
+    .button {padding: 1em 3em;background: #00BC4E;color: white;margin: 1em 0;display: inline-block;text-decoration: none;transition: all 150ms ease-in;}
+    .assignment {border:1px solid #00be63;border-radius:3px;background:#fff;font-family:Roboto;padding:1em 2em;border-left:2.5em solid #00be63;display:block;max-width:23em;width:100%;margin:0 auto;box-shadow:0px 5px 30px #ddd;}
+    .assignment h2 {letter-spacing:.05em;text-transform:uppercase;color:#00be63;font-weight:500}
+    .assignment p {color:#777;font-weight: 400;}
+    .submitbutton {text-decoration:none;color:white;background:#00be63;padding:.5em 1em;transition: ease-in all 150ms;border-radius: 3px;}
+    .submitbutton:hover {background:#00ad52;transition: ease-in all 150ms;box-shadow: 0px 2px 15px #ddd;}
+    .assignmentbox {border:1px solid #00be63;padding:1em;font-family:Roboto;color:#777;}
+    .modulen {margin: 1em 0em 0.5em 0em;font-size: 1em;letter-spacing: .03em;text-transform: uppercase;font-weight: 100;color: #00be63;display: block;}
+    .content img {width: 100%;border: 1px solid #ccc;padding: .5em;background: white;}
+    .mistake {padding:1em 2em;background:none;border-radius:5px;color:#c12;border:1px solid #c12;border-left:70px solid #c12;}
+    .note {padding:1em 2em;background:#fafafa;border:1px solid #ccc;border-radius:5px;border-left:70px solid #ccc;}
+  </style>
+</head>
+
+<body>
+  <div class="header">
+  <img src="assets/Logo.png" style="padding: 0.5em 0em 0em 1em;">
+  <div class="menu">
+  <span><a href="module-overview.html">Lessons</a></span><span><a href="extras.html">Extras</a></span><span><a href="#">Support</a></span>
+  </div>
+  </div>
+
+  <div class="content">
+
+    <span class="modulen">Module 1.10</span>
+    <h1 id="using-color-in-design">Using Color In Design</h1>
+<p>Think about your drive to work this morning. More than likely, you probably encountered a stoplight:</p>
+<p><img src="color/stoplight.jpeg"></p>
+<p>How did you know what the light was saying?</p>
+<p>Was it based on the position of the light? Or, was it based on the color? Was it both. If we switched the order of colors, would you still understand it? Or would you be confused?</p>
+<p>Odds are it might be confusing for a few seconds, but that most people would adapt pretty quickly &#151; due to the <strong>power of color</strong>.</p>
+<h2 id="common-color-associations">Common Color Associations</h2>
+<p>As humans, we associate colors with different meanings. For instance, we intuitively know that red signifies 'danger' or 'stop'.</p>
+<p>We also know that green signifies health, nature, and a sense of ease.</p>
+<p>The human brain takes shortcuts and if a person is not paying attention to the actual content, they can make assumptions about whether something is important or not.</p>
+<p>As a designer, you want to be respectful of these common associations. For example, you don't want to have a warning or error message show up in green. Nor do you want a simple notification showing up in red.</p>
+<p><img src="color/mixed-colors.png"></p>
+<p>The key is to be aware of these common conventions - and respect them. Color can communicate things in an instant. Let's look at just a handful of examples.</p>
+<p>Consider entertainment sites. Nearly all of them use some kind of dark background - which makes sense since so many people associate a dark room with movies.</p>
+<p><img src="color/netflix.jpg">
+<img src="color/hulu-slingtv.jpg"></p>
+<p>Or consider financial apps. Look at how many use green as a color.</p>
+<p><img src="color/financial-app-icons.jpg"></p>
+<p>There are plenty of resources on the web that try to explain common emotional associations with color. Here are some commonly accepted associations:</p>
+<ul>
+<li>Blue indicates trust</li>
+<li>Red stimulates emotions and hunger</li>
+<li>White denotes purity.</li>
+</ul>
+<p>These can be a good starting point when considering which colors to use, but never forgo placing yourself in your audience's shoes.</p>
+<div class="note">
+  <h3>Note</h3>
+  <p>Shade, hues, and degree of lightness or darkness can communicate more. Even if you've gone to great lengths to choose an appropriate color scheme, there's still the shade, hue and degree of lightness or darkness of the color that can change its perception</p>
+  <p>For example, orange may be perceived as a color of warmth, friendliness and confidence, but once lightened into more of a peach tone, can give off a feminine, comforting style.  Darkening a color can make it seem more foreboding or unapproachable.</p>
+</div>
+<h2 id="technical-aspects-of-color">Technical Aspects of Color</h2>
+<p>Now I want to talk about the technical aspects of color - which are just as important as the human aspects.</p>
+<p>Colors can be described to computers in a number of ways. Today, I will cover two of the most important color models: HEX and RGB.</p>
+<p>They are both really similar in that they mix different levels of Red, Green, and Blue to create a color.</p>
+<p>The RGB model lets you input three values for each of the colors. The value can range from 0 to 255. 0 means none of the specific color is present. 255 means all of the color is present.</p>
+<p>If you set all of the values to 0, you get black. If you set all of the values to the highest value of 255, you get white. The mighty color wheel can help you understand how different colors are made:</p>
+<p><img src="color/color-wheel.png"></p>
+<p>For example, based on the color wheel you can deduce that if you want to get yellow, you would do equal combinations of red and green, while eliminating blue completely.</p>
+<p>The HEX color model works the same way, but the values are expressed differently. A hex color code is made up of 6 values. The first two values describe the levels of red. The second two describe green. And the last two describe blue. Values range from 00 to ff - with 0 meaning none of the color is included and f meaning all of the color is included. HEX is commonly used in web development, which is why it is crucial to be familiar with. Maintaining consistency with any online assets in important.</p>
+<p>Either of these color models allow you to create any color you want using a mixture of the primary colors. There are color picking tools you can use, but knowing exactly how the system works can let you make subtle tweaks. For example, you might say, I like this color but it needs just a tad bit more red.</p>
+<h2 id="pairing-colors">Pairing Colors</h2>
+<p>When it comes to pairing colors, using the color wheel is key. Colors opposite of each other pair well, as do colors split three ways.</p>
+<p>There are also plenty of color scheme generators. It's important to understand the basics, but it's also important when to know to outsource the work for you.</p>
+<p>As a rule of thumb, you generally want to choose 2-3 colors and tints. Make sure they contrast with each other and match the emotions you are trying to invoke/communicate. They can be vivid and solid for a lively modern brand, or muted for something more traditional. Many brands use one dominant color.</p>
+<p>You can also extract colors from images. This is particulary helpful if you are trying to replicate the feel of something. Here is an example.</p>
+  <img src="color/color-from-image.jpg">
+<div class="mistake">
+  <h3>Common Novice Mistake</h3>
+  <p>Using Pure Hues of colors</p>
+  <p>Randomly choosing the basic colors that you learned in primary school (prism, rainbow) should be avoided. Pure hues look amateur because they are so bright and bring attention to themselves. Think about the window controls on a Mac. The colors are duller and less saturated. They still contrast, but at a lower level.
+</p>
+</div>
+<h2 id="a-word-on-color-varations">A Word On Color Varations</h2>
+<p>The human eye is sensitive to color and can perceive millions of different colors. We can detect subtle color changes. You don't need to have radically different colors. You can use slightly different shades and tints. Or put simply, lighter or darker variations of a starter color.</p>
+<p>Color contrast is also important &#151; you don't want to be too subtle. The background and foreground should have a minimum contrast ratio. Screen brightness, poorly calibirated monitors, and visual impairments can all make very subtle color variations difficult to see. While subtlety is important, your main content should be unsubtle. Things that should be read should have a strong contrast ratio compared to the background. Decoration items can be more subtle.</p>
+<p>A few weeks ago I was working on a website with a friend. My friend was creating a potato delivery service and wanted me to work on the design. I created the design on my MacBook Pro and was pretty proud of what I did. I said to myself ‘dang, this is really good.’ Well, a few days later, I looked at the design on my parent's computer. I couldn't read anything. I had rushed through a design and hadn't considered color contrast levels. Sure, subtle designs will look good on a good screen. But not everyone has nice screens. Not everyone has monitors with the same brightness and contrast settings. That's why color contrast is so important - especially for digital mediums.</p>
+<img src="bright-potato-pile-hp.jpg">
+<img src="normal-potato-pile-macbook.jpg">
+<img src="iphone-before-after-contrast.jpg">
+<div class="mistake">
+  <h3>Common Novice Mistake</h3>
+  <p>Using Pure Black/Grays/Whites. Don't do that. Subtlety is key.</p>
+</div>
+<h2 id="color-for-the-blind">Color For The Blind</h2>
+<p>Color is not a principle, but rather an element. It can help you establish consistency. It can help bring contrast. But color <strong>should not be relied upon by itself</strong>.</p>
+<p>Good designers are empathetic to their audience. They realize that not everybody can see color.</p>
+<p>Think back to the stoplight example we highlighted earlier. The simple, yet mighty, stoplight is an example of a design that uses multiple principles of design to ensure all people can understand and interact with it. Some people do rely on the positioning rather than color.</p>
+<p>There are a number of color blindess simulation tools you can use to ensure decent levels of contrast.</p>
+<h2 id="summary">Summary</h2>
+<p>There are two main things I want you to take away. Firsrt, I want you to think about the psychology and context of color - what are common conventions and associations people have, and how can you leverage them.</p>
+<p>And finally, I want you to think about the technical aspects of color, and the importance of subtlety, shades, and pairings.</p>
+  </div>
+
+
+
+
+
+  </div>
+
+</body>
+
+  <footer>
+    Copyright(C) 2017. Design For Content Marketers.
+  </footer>
+
+</html>
