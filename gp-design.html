@@ -12,22 +12,32 @@
     h2 {line-height:1;margin:0;padding-bottom:0.25em;font-weight:400;}
     p {line-height:1;margin:0;padding:0;}
     .inactive {opacity:0.5;}
-    .racer {display:inline-block;padding:1em;font-family:play;margin-top:-0.5em;cursor: pointer;}
-    .racer:hover {transform: scale(1.025);}
-    .racer:hover .racerName {background:rgba(255,255,255,0.25);}
-    .racerId {background:white;padding:.5em .75em;border-radius:3px;color:#ac1234;border:1px solid white;font-weight:800;letter-spacing:.1em;}
-    .racerName {padding:.5em 1em;border:1px solid white;border-radius:0px 3px 3px 0px;position:relative;right:.1em;color:white;background:rgba(255,255,255,0.1);}
-    .winner {background:#183;color:#fff;border:1px solid rgba(255,255,255,0.25);}
+    .racer {display:inline-block;padding:1em;font-family:play;margin-top:-0.35em;cursor: pointer;margin-top: -0.5em;}
+    /* .racer:hover {transform: scale(1.025);} */
+    .racer:hover .racerName {background:rgba(255,255,255,0.25);border-radius: 3px 3px 15px 3px;}
+    .racer:hover .racerId {border-radius: 15px 5px;}
+    /* .racerId {background:white;padding:.5em .75em;border-radius:3px;color:#ac1234;border:1px solid white;font-weight:800;letter-spacing:.1em;} */
+    /* .racerName {padding:.5em 1em;border:1px solid white;border-radius:0px 3px 3px 0px;position:relative;right:.1em;color:white;background:rgba(255,255,255,0.1);} */
+    .racerName {padding: .5em 1em;padding-left: 1em;border: 1px solid white;border-radius: 3px 15px 3px 3px;position: relative;right: .1em;color: white;background: rgba(255,255,255,0.1);left: -18px;padding-left: 1.5em;z-index: -1;transition: ease all .5s;}
+
+    /* .racerId {background: white;padding: 0.65em .55em;color: #ac1234;border: 1px solid white;font-weight: 800;letter-spacing: .1em;border-radius: 100em;z-index:1;} */
+
+    .racerId {background: white;padding: 0.5em .55em;color: #ac1234;border: 1px solid white;font-weight: 800;letter-spacing: .1em;z-index:1;border-radius:5px 15px 5px 15px;transition: ease all .5s;}
+
+
+    /* .winner {background:#00b743;color:#fff;border:1px solid rgba(255,255,255,0.25);} */
+    .winner {background:#fff;color:#ac1234;border:1px solid #ac1234}
+
     .edit-race {display:none;}
     .race:hover .edit-race {display:inline-block;padding:1.75em 2em;background:rgba(0,0,0,0.85);color:white;font-family:Play;letter-spacing:.1em;border-radius:3px;position:absolute;top:25%;left:11%;width:120px;box-shadow:1px 1px 10px rgba(0,0,0,0.25);}
-    .navbar {display:inline-block;width:100%;background:rgba(90,90,90,0.95);position: fixed;bottom: 0;font-weight:100;letter-spacing:.03em;}
+    .navbar {display:inline-block;width:100%;background:rgba(90,90,90,0.95);position: fixed;bottom: 0;font-weight:100;letter-spacing:.03em;z-index: 3;}
     .color-class {width:15px;background:#ac1234;display:inline-block;height:15px;border-radius:55px;margin-right:.75em;position:relative;top:2px;}
     .class-name {display:inline-block;padding:.5em 1em;font-family:Cadillac Sans;cursor:pointer;}
     .focus:hover {background:rgba(255,255,255,0.85)}
     .unfocus:hover {background:rgba(255,255,255,0.35)}
     .focus {background:rgba(255,255,255,0.75);transition: ease all .25s;}
     .unfocus {background:rgba(255,255,255,0.25);color:white;margin-left:-5px;border-left:1px solid black;transition: ease all .25s;}
-    .race {position: relative;margin-top:2.25em;}
+    .race {position: relative;margin-top:2.25em;z-index: 2;}
 
     #settings {float: right;padding: .35em .75em;margin: 0;line-height: 0;border: none;}
     .navbar:hover .menu {display:inline-block;}
@@ -72,7 +82,7 @@
         </div>
 
         <div class="racer">
-        <span class="racerId winner">01</span><span class="racerName winner">John Doe</span>
+        <span class="racerId winner">04</span><span class="racerName winner">John Doe</span>
         </div>
 
         <a href="#"><div class="edit-race">
