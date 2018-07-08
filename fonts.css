@@ -2,3 +2,8 @@
 font-family: PFDin;
 src: url(PFDin/PFDinDisplayPro-Regular.ttf);
 }
+
+@font-face {
+font-family: Cadillac Sans;
+src: url(PFDin/cadillac/CadillacSansWeb-Book.ttf);
+}
