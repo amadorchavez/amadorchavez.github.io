@@ -5,6 +5,7 @@
 	<title>Grand Prix Race Center</title>
   <link rel="stylesheet" href="fonts.css">
   <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
   <style>
     html,body {background:linear-gradient(40deg,#ac1234,#214);letter-spacing:.03em;padding:0;margin:0;-moz-osx-font-smoothing:grayscale;height:100%;font-family:Cadillac Sans, Roboto;-webkit-font-smoothing:antialiased;}
@@ -147,15 +148,19 @@
   </div>
 
   <div class="modal" id="setupModal">
-    <div style="border:1px solid #ccc;box-shadow:0px 1px 10px rgba(0,0,0,0.15);padding:2em 3.6em;max-width:720px;border-radius:5px;font-family:Cadillac Sans;text-align:left;background:white;margin:5% auto;">
+    <form method="post">
+      <div style="border:1px solid #ccc;box-shadow:0px 1px 10px rgba(0,0,0,0.15);padding:2em 3.6em;max-width:720px;border-radius:5px;font-family:Cadillac Sans;text-align:left;background:white;margin:5% auto;">
     <div class="close">&times;</div>
     <h1 style="font-weight:400;text-transform:uppercase;font-size:.85em;letter-spacing:.1em;color:rgba(0,0,0,0.35);text-align:left;">// Create A New Race<h1>
-    <h2 style="letter-spacing:.1em;font-weight:100;margin-top:2em;margin-bottom:.75em;">Select How Many Classes You Will Be Racing:</h2>
-    <input type="number" class="inputStyle"></input>
-    <h2 style="letter-spacing:.1em;font-weight:100;margin-top:2.5em;margin-bottom:.75em;">Choose Where To Save Race File</h2>
-    <p style="font-weight:100;color:#777;">Race File will be saved at: <span style="border:1px solid #aaa;padding:.35em 1em;">/amadorchavez/documents/race-manager/race1.xml</span><span style="background:#ffcc00;padding:.35em .75em;border:1px solid black;margin-left:.25em;">Change</span></p>
-
-    <p style="text-align: right;margin-top: 3em;border-top: 1px dotted rgba(0,0,0,0.1);padding-top: 2em;"><a href="#" class="button">Create Race</a></p>
+      <label style="display: block;letter-spacing:.1em;font-weight:100;margin-top:2em;margin-bottom:.75em;">Event Name</label>
+      <input type="text" name="event[name]"></input>
+      <h2 style="letter-spacing:.1em;font-weight:100;margin-top:2em;margin-bottom:.75em;">Select How Many Classes You Will Be Racing:</h2>
+      <input type="number" class="inputStyle"></input>
+      <h2 style="letter-spacing:.1em;font-weight:100;margin-top:2.5em;margin-bottom:.75em;">Choose Where To Save Race File</h2>
+      <p style="font-weight:100;color:#777;">Race File will be saved at: <span style="border:1px solid #aaa;padding:.35em 1em;">/amadorchavez/documents/race-manager/race1.xml</span><span style="background:#ffcc00;padding:.35em .75em;border:1px solid black;margin-left:.25em;">Change</span></p>
+      <span style="text-align:right;display:inline-block;margin-top:1em;"><input type="submit" id="eventSubmit" style="cursor:pointer;" class="button" value="Create Race" />
+    </form>
+    <!-- <p style="text-align: right;margin-top: 3em;border-top: 1px dotted rgba(0,0,0,0.1);padding-top: 2em;"><a href="#" class="button">Create Race</a></p> -->
     </div>
 
   </div>
@@ -182,6 +187,28 @@ window.onclick = function(event) {
         modal.classList.remove('modalShow');
     }
 }
+</script>
+
+<script>
+  $('#eventSubmit').on('click', function(e) {
+    e.preventDefault()
+    form = $(this).closest('form').serialize()
+    // $.post('https://racer-1.herokuapp.com/events', $('form').serialize)
+
+    $.ajax({
+      url: 'https://racer-1.herokuapp.com/events/',
+      method: 'POST',
+      dataType: 'json',
+      data: form,
+      success: function(data,status,xhr) {
+        //$("#setupModal").html("My new text");
+      },
+      error: function(err,status,xhr) {
+        debugger
+        // error
+      }
+    })
+  })
 </script>
 
   </body>
