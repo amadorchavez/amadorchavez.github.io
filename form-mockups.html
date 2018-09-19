@@ -47,6 +47,10 @@
 
     .numberID {width:50px;font-size:16px;font-family:Cadillac Sans;text-align:center;padding:.5em;background:#eee;border:1px solid #ccc;}
     .numberID:focus::-moz-placeholder {color:#ac1;opacity:  0;}
+
+    .nameField {width:350px;font-size:16px;font-family:Cadillac Sans;text-align:left;padding:.5em;background:#fff;border:1px solid #ccc;letter-spacing: .025em;transition:ease all .25s;}
+    .nameField:focus {border:1px solid #ff7744;}
+
   </style>
   </head>
 
@@ -149,11 +153,11 @@
     <h3 style="font-weight:100;padding:0;margin:0;color:#aaa;text-transform:uppercase;font-size:1em;">Class 1</h3>
     <h2 style="margin-top:0;font-weight:200;color:black;text-transform:uppercase;letter-spacing:.075em;margin-bottom:0.25em;">Add Racers</h2>
 
-    <input type="tel" placeholder="01" class="numberID"></input><input type="text" placeholder="" style="width:350px;font-size:16px;font-family:Cadillac Sans;text-align:left;padding:.5em;background:#fff;border:1px solid #ccc;font-weight:300;letter-spacing:.05em;"></input>
+    <input type="tel" placeholder="01" class="numberID"></input><input type="text" placeholder="" class="nameField"></input>
     <br />
-    <input type="tel" placeholder="02" class="numberID"></input><input type="text" placeholder="" style="width:350px;font-size:16px;font-family:Cadillac Sans;text-align:left;padding:.5em;background:#fff;border:1px solid #ccc;"></input>
+    <input type="tel" placeholder="02" class="numberID"></input><input type="text" placeholder="" class="nameField"></input>
     <br />
-    <input type="tel" placeholder="03" class="numberID"></input><input type="text" placeholder="" style="width:350px;font-size:16px;font-family:Cadillac Sans;text-align:left;padding:.5em;background:#fff;border:1px solid #ccc;"></input>
+    <input type="tel" placeholder="03" class="numberID"></input><input type="text" placeholder="" class="nameField"></input>
 
     <p><input type="checkbox" id="randomize"></input><label for="randomize" style="position:relative;top:2px;font-weight:300;margin-left:1em;">Randomize Race Order</label>
 
