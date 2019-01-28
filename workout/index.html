@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+	<title>Workout App</title>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    html, body {background:#313131;padding:0;margin:0;color:white;font-family:Blender Pro;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+    input {background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.25);padding:.75em;width:auto;color:white;text-align:center;font-size:24px;transition:ease all .25s;border-radius:3px;letter-spacing:.03em;}
+    input:focus {border:1px solid rgba(255,255,255,0.5);background:none;outline:none;}
+    h3 {margin-top:3em;padding:0 2em;}
+    a {color:white;}
+
+    /* Navigation */
+    .clippedDiv {background: #C8102E;clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);padding: 2em 1.25em;padding-bottom: 4em;-webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);text-align:center;}
+    .navButton {font-size:50px;display:inline-block;font-weight:800;color:white;transition:ease all .35s}
+    .navButton:hover {filter:drop-shadow(2px 2px 5px rgba(0,0,0,0.35));transform:scale(1.05);}
+    .pageTitle {text-transform:uppercase;font-family:Blender Pro;margin:0;padding:0;}
+    .headingContainer {display:inline-block;max-width:300px;margin-left:1.5em;text-align:left;position:relative;top:5px;}
+
+    /* Heading Stylings */
+    .dayContainer {background:rgba(255,255,255,0.025);display:inline-block;max-width:320px;width:100%;border-radius:5px;border:1px dotted rgba(255,255,255,0.25);padding:1em 0;margin-bottom:1em;transition: ease all .5s;}
+    .dayContainer:hover {box-shadow:0px 0px 10px rgba(255,255,255,0.15);}
+    .day {margin:0;padding:0;font-family:Blender Pro;text-transform:uppercase;letter-spacing:.03em;font-size:32px;color:white;}
+    .muscleGroup {margin:0;padding:0;font-family:Blender Pro;text-transform:uppercase;font-size:18px;color:rgba(255,255,255,0.75);}
+    .exerciseLength {margin:0;padding:0;margin-top:1em;}
+    .subHeadRotated {margin-bottom: 2.75em;transform: rotate(-4deg);text-transform: uppercase;font-family: Blender Pro;letter-spacing: .03em;text-align:center;font-weight:100;}
+
+    /* Progess Bar Styling */
+    #progressContainer {max-width:520px;width: 100%;background:#242629;border:1px solid rgba(255,255,255,0.15);position: fixed;bottom:0;}
+    #progress {width: 0%;height: 35px;background-color: #183;transition: cubic-bezier(.43,.78,0,1) all .5s;}
+    #percentVisible {position: absolute;text-align: center;line-height: 35px;overflow: hidden;color: #fff;right: 0;left: 0;top: 0;text-transform:uppercase;}
+    sup {font-size:.75em;padding-left:.15em;position: relative;top:3px;}
+
+    /* Custom Checkboxes */
+    input[type="checkbox"] {display: none;}
+    .container {margin-bottom: 1.25em;margin-left:2.5em;text-align:left;padding-left:3em;}
+    .container label {position: relative;color:#ee1144;font-size:1.25em;-moz-user-select: none;-webkit-user-select: none;user-select: none;}
+    .container label:hover {color:#ff2255;cursor: pointer;}
+    .container span::before,.container span::after {content: '';position: absolute;top: 0;bottom: 0;margin: auto;}
+    .container span.checkbox::before {width: 25px;height: 25px;background-color: rgba(255,255,255,0.05);left: -35px;box-sizing: border-box;border: 1px solid rgba(255, 34, 85,0.5);transition: ease-in all .15s;border-radius:3px;}
+    .container span.checkbox:hover::before {border: 1px solid rgba(255,34,85,0.75);background-color: rgba(255,255,255,0.1);cursor: pointer;}
+    .container span.checkbox::after {content: '\f00c';font-family: 'FontAwesome';left: -31px;top: 3px;color: transparent;transition: color .2s;font-size:18px;}
+    input[type="checkbox"]:checked + label span.checkbox::after {color: #313131;}
+    input[type="checkbox"]:checked + label span.checkbox::before {background:white;border-radius: 50px;transform: scale(1.1);}
+    input[type="checkbox"]:checked + label {color: rgba(255,255,255,0.35);}
+
+    /*Animations*/
+    body {animation: fadein 1s;}
+    @keyframes fadein {from { opacity: 0; } to   { opacity: 1; }}
+
+
+  </style>
+</head>
+<body>
+
+<div style="text-align:center;max-width:520px;margin:0 auto;width:100%;background:#242629;min-height:640px;">
+  <div class="clippedDiv">
+<h1 style="transform:rotate(-3deg);text-transform:uppercase;margin-bottom:0;">Workout Manager</h1>
+<p style="transform:rotate(-3deg);text-transform:uppercase;color:rgba(255,255,255,0.65)">An App by Amador</p>
+</a>
+</div>
+
+
+
+<h2>Week A</h2>
+  <a href="monday-a.html"><div class="dayContainer">
+    <h3 class="day">Monday</h3>
+    <p class="muscleGroup">Chest & Biceps</p>
+    <p class="exerciseLength">6 Exercises</p>
+  </div></a>
+
+  <a href="tuesday-a.html"><div class="dayContainer">
+    <h3 class="day">Tuesday</h3>
+    <p class="muscleGroup">Maintenance</p>
+    <p class="exerciseLength">6 Exercises</p>
+  </div></a>
+
+  <a href="wednesday-a.html"><div class="dayContainer">
+    <h3 class="day">Wednesday</h3>
+    <p class="muscleGroup">Compound Plus</p>
+    <p class="exerciseLength">5 Exercises</p>
+  </div></a>
+
+  <a href="thursday-a.html"><div class="dayContainer">
+    <h3 class="day">Thursday</h3>
+    <p class="muscleGroup">Maintenance</p>
+    <p class="exerciseLength">6 Exercises</p>
+  </div></a>
+
+  <a href="friday-a.html"><div class="dayContainer">
+    <h3 class="day">Friday</h3>
+    <p class="muscleGroup">Triceps</p>
+    <p class="exerciseLength">5 Exercises</p>
+  </div></a>
+
+  <h2>Week B</h2>
+    <a href="monday-b.html"><div class="dayContainer">
+      <h3 class="day">Monday</h3>
+      <p class="muscleGroup">Chest Isolated</p>
+      <p class="exerciseLength">3 Exercises</p>
+    </div></a>
+
+    <a href="tuesday-b.html"><div class="dayContainer">
+      <h3 class="day">Tuesday</h3>
+      <p class="muscleGroup">Maintenance</p>
+      <p class="exerciseLength">6 Exercises</p>
+    </div></a>
+
+    <a href="wednesday-b.html"><div class="dayContainer">
+      <h3 class="day">Wednesday</h3>
+      <p class="muscleGroup">Legs & Back</p>
+      <p class="exerciseLength">5 Exercises</p>
+    </div></a>
+
+    <a href="thursday-b.html"><div class="dayContainer">
+      <h3 class="day">Thursday</h3>
+      <p class="muscleGroup">Maintenance</p>
+      <p class="exerciseLength">6 Exercises</p>
+    </div></a>
+
+    <a href="friday-b.html"><div class="dayContainer">
+      <h3 class="day">Friday</h3>
+      <p class="muscleGroup">Shoulders</p>
+      <p class="exerciseLength">5 Exercises</p>
+    </div></a>
+
+</body>
+
+<script type='text/javascript'>
+window.onload = checkedOne()
+
+  function checkedOne() {
+    var totalChecked = document.querySelectorAll('input[type="checkbox"]:checked').length;
+    var total = document.querySelectorAll('input[type="checkbox"]').length;
+    var percentage = (totalChecked/total)*100;
+      progress.style.width = percentage+"%";
+      if (percentage == 100) {
+        document.getElementById('percentVisible').innerHTML="Done!";
+        progress.style.backgroundColor = "#183";
+      } else if  (percentage < 50) {
+        document.getElementById('percentVisible').innerHTML=Math.round(percentage)+"<sup>%</sup>";
+        progress.style.backgroundColor = "#ac1234";
+      }
+      else {
+      document.getElementById('percentVisible').innerHTML=Math.round(percentage)+"<sup>%</sup>";
+      progress.style.backgroundColor = "rgb(236, 127, 6)";
+    }
+  }
+
+  var dateContainer = new Date();
+  var dayMap = new Array(7);
+  dayMap[0] =  "sunday";
+  dayMap[1] = "monday";
+  dayMap[2] = "tuesday";
+  dayMap[3] = "wednesday";
+  dayMap[4] = "thursday";
+  dayMap[5] = "friday";
+  dayMap[6] = "saturday";
+
+  var today = dayMap[dateContainer.getDay()];
+
+  var dayList = [];
+  (function(){
+      var elements = document.querySelectorAll(".day");
+      for (var i = 0; i < elements.length; i++) {
+          dayList.push(elements[i].innerText.toLowerCase());
+      }
+  })();
+
+  switch (true) {
+      case today == dayMap[0]:
+          console.log("Bam");
+          break;
+      case today == dayMap[1]:
+          console.log("B");
+          break;
+}
+  //Go through list of days. If one of the days in the lists == today, add a class to it.
+</script>
+
+</html>
