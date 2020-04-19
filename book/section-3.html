@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Section 3</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+
+
+
+
+    <style>
+        /*BoilerPlate CSS*/
+        html, body {padding: 0;margin: 0;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;height:100%;}
+        h1, h2, h3, h4, h5, h6 {font-weight: 400;margin: 0;padding: 0;}
+        ::placeholder {color: rgba(20,0,0,1);opacity:1;}
+        *:focus {outline: none;}
+
+        /* Enter New CSS*/
+        body {font-family:lato;font-size:18px;}
+        html {scroll-behavior: smooth;}
+        .siteContainer {display:grid; grid-template-columns: 300px 1fr;}
+
+        h1, h2, h3 {color:#da2525;border-bottom: 1px dotted;margin-bottom: 1em;padding-bottom: .25em;}
+
+        .sidebar {background:#253848;height:calc(100vh - 4em);overflow: hidden;border-right:1px solid #eee;z-index: 9;box-shadow: 0 0 10px rgba(0,0,0,0.25);padding:2em 1em;color:white;}
+        .sidebar h2 {color:white;}
+        .sidebar ul {list-style: none;padding:0;}
+        .sidebar ul li {margin-bottom:.5em;}
+        .sidebar ul li a {padding-left: .5em;border-left:5px solid transparent;}
+        .sidebar a, .sidebar a:visited {color:inherit;text-decoration: none;}
+
+        .content {background:white;height:100vh;scroll-behavior: smooth;overflow-y: scroll;font-size: 18px;color: #333;}
+
+        blockquote {margin-left:0;border-left: 5px solid #da2525;
+    padding-left: 1em;
+    line-height: 1.5em;
+    font-style: italic;}
+
+        h1 {font-weight:800;font-size: 2em;}
+        h2 {font-weight: 600;}
+        h3 {font-weight: 700;}
+        p, li {font-family: Merriweather;line-height: 1.75em;margin-bottom: 1.25em;text-shadow: 0 0 1px rgba(0,0,0,0.25);}
+        .meta {font-size:0.65em;color:rgba(0,0,0,0.5);text-transform: uppercase;font-family: lato;letter-spacing: .25em;border-bottom: 1px dotted;padding-bottom: 1.25em;margin-top: 1em;margin-bottom: 3em;}
+
+
+    </style>
+</head>
+
+<body>
+  <div class="siteContainer">
+
+    <div class="sidebar">
+      <h2>Table of Contents</h2>
+
+      <ul>
+        <li><a href="#what-can-we-do">What Can We Do</a></li>
+        <li style="margin-left:2em;"><a href="#the-proposed-solutions">The Proposed Solutions</a></li>
+          <li style="margin-left:3em;"><a href="#laws">Laws</a></li>
+          <li style="margin-left:3em;"><a href="#a-centralized-neutral-gatekeeper">A Centralized Gatekeeper</a></li>
+          <li style="margin-left:3em;"><a href="#better-tools">Better Tools</a></li>
+          <li style="margin-left:3em;"><a href="#individual-action">Individual Action</a></li>
+        <li><a href="#a-better-solution">A Better Solution</a></li>
+        <li style="margin-left:2em;"><a href="#individual-choice">Individual Choice</a></li>
+        <li style="margin-left:2em;"><a href="#case-study-tom-cruise">Case Study: Tom Cruise</a></li>
+        <li style="margin-left:2em;"><a href="#case-study-merchants-of-doubt">Case Study: Merchants of Doubt</a></li>
+        <li><a href="#taking-action">Taking Action</a></li>
+      </ul>
+
+    </div>
+
+
+    <div class="content">
+      <div style="padding: 3em; max-width:720px;margin:0 auto;">
+        <h1 id="what-can-we-do">What Can We Do?</h1>
+  <p>Let’s recap what we’ve learned so far:</p>
+  <ul>
+  <li>We know transparency reveals corruption. We also know that absolute transparency leads to manipulation.</li>
+  <li>Humanity has tried to solve this dilemma by setting up “gatekeepers” to police transparency and privacy — and limit the negative effects of either of them.</li>
+  <li>Sadly, gatekeepers eventually become corrupt and fall — resulting in a time of “data democratization”, where individuals are seen as independent and can choose what to share and what to keep private.</li>
+  <li>Modern technology has scaled the ability to collect data at astronomical rates, leading to the establishment of either significantly more powerful gatekeepers with significantly more transparency about the majority of individuals, or democratized systems significantly more impacted by manipulation.</li>
+  <li>All of this new data has allowed for improvements to society in the form of better health insights, better products, and more profitability for businesses.</li>
+  <li>Yet, signs of corruption among these gatekeepers have become more apparent in the 21st century</li>
+  <li>But beyond that, we’re seeing that inaccurate data is having devastating consequences and isn’t something that can be relied on.</li>
+  </ul>
+  <h2 id="the-proposed-solutions">The Proposed Solutions</h2>
+  <p>What should be done about the new technological advancements and mounds of data being collected? </p>
+  <p>Experts, pundits, and individuals have pitched several types of solutions, including:</p>
+  <ul>
+  <li>Creating more and better laws. </li>
+  <li>Installing one centralized, ethical gatekeeper to counteract all of the failed gatekeepers</li>
+  <li>Supporting the development of better privacy tools.</li>
+  <li>Placing responsibility onto individuals</li>
+  </ul>
+  <h3 id="laws">Laws</h3>
+  <p>The first proposed solution is to use laws to accomplish privacy and transparency goals. </p>
+  <p>Some want laws that limit what companies can do with data, while other want laws that support law enforcement’s access to data. </p>
+  <p>With laws, we can ban certain technologies like face recognition or encryption. Or, we can limit who can use certain technologies, requiring things like licensing or certification.</p>
+  <p>While this may sound nice in theory, laws are not a panacea. </p>
+  <p>Laws have limits.  </p>
+  <p>They can have unintended consequences. </p>
+  <p>Consider the “No Child Left Behind” Act. The thought was that by incentivizing better test scores, schools and teachers would improve the quality of education provided to students. Yet, the actual result was that teachers optimized their curriculums for the tests and some even cheated due to the fear of losing federal funding.</p>
+  <p>Or, consider the DMCA act and how it prevents farmers from servicing tractors because bypassing manufacturer controls is against the law.</p>
+  <p>Time after time, we see that when we try to control things, we end up overlooking negative impacts. Even something as innocent as trying to make the perfect fruit can lead to disaster. Consider the banana. We have suppressed genetic variants of the banana to support the “Big Mike” variant that has no seeds, higher sugar content, and is remarkably consistent. But by limiting genetic diversity, the banana could face extinction due to funguses that can adapt over time.</p>
+  <p>More relevantly, consider the UK’s proposed law to verify the age and identity of people who watch pornographic materials. This has the noble cause of protecting children from seeing such materials, but it also creates a surveillance system as websites need a way of tracking people to ensure they can only access content approved by the UK.</p>
+  <p>Unintended consequences are a real thing. </p>
+  <p>This doesn’t mean laws are useless.</p>
+  <p>But it underscores the importance of being careful with legislation.</p>
+  <p>Laws should be seen as an avenue for accountability. </p>
+  <p>Another weakness of laws is that not everyone follows the law. As argued in the American gun debate, the people who break laws have significantly more power than those that don’t. </p>
+  <p>Thus, it seems plausible that law abiders lose out, while criminals benefit.</p>
+  <p>But, beyond the breaking of laws, other individuals will find ways around the intent or spirit of the law. They will find a technicality that allows them to get away with the undesired behavior.</p>
+  <p>The final weakness of law is that bad laws can be passed when bad leaders gain power. </p>
+  <p>So instead of treating law as a panacea, we need to treat it as a “lowest common denominator” protection for individual freedoms. </p>
+  <p>Laws should allow an avenue for accountability.</p>
+  <p>When it has been proven that the law has been broken, consequences must be able to be levied. A lawsuit can be filed and a judge or jury can determine whether the law was broken and levy consequences.</p>
+  <p>Here are some potential laws that could be beneficial:</p>
+  <ul>
+  <li>A law that requires informed consent. In other words, a person must be able to know who will have access to their data and when.</li>
+  <li>A law that protects those who expose corruption and illegal actions of gatekeepers.</li>
+  </ul>
+  <h3 id="a-centralized-neutral-gatekeeper">A Centralized, Neutral Gatekeeper</h3>
+  <p>An offshoot of laws is the idea of setting up a centralized gatekeeper. The idea of having a single, neutral gatekeeper is that we get the benefits of transparency (no corruption) with the benefits of privacy (no manipulation).</p>
+  <p>The argument goes that in the 2010s, we’ve seen companies like Google and Facebook fail to moderate their platforms and eliminate hate speech. They have failed to protect against election interference.</p>
+  <p>Thus, they are bad gatekeepers with bad philosophies, only concerned about money than the good of society..</p>
+  <p>The only sensible thing is to get rid of them as gatekeepers and install a central moderator that has the interests of “the people” rather than corporations or individuals.</p>
+  <p>In other words, we must ban the bad gatekeeper and hail the good one.</p>
+  <p>By using laws, we can ensure that the “good” gatekeeper never goes corrupt.</p>
+  <p>Noble? Sure.</p>
+  <p>But it is unrealistic, for all people are corrupt.</p>
+  <h3 id="better-tools">Better Tools</h3>
+  <p>Another approach to solving privacy is to encourage developers to make better tools and software.</p>
+  <p>Many privacy tools are notoriously hard to use and set up. Setting up a VPN or using encrypted email with PGP requires effort. Most people don’t have the patience to follow a detailed tutorial to set these up.</p>
+  <p>When it comes to tools and software, psychology and design matter just as much as the functionality. People rarely change the default settings. People are susceptible to dark patterns. </p>
+  <p>The idea behind better tools, is that if developers focus on user-friendliness, people will be more apt to use them and protect their privacy.</p>
+  <p>Thus, we need to encourage developers to create tools that counteract data collection. </p>
+  <p>This can work. We’ve seen this already with the use of AdBlock technology. Ad blockers were easy to set up and had significant benefits. AdTech companies responded with ways to detect Ad blockers and require visitors to “turn off your ad blocker to access this site.” Ad blockers responded with blocking these block detectors. This battle continues to rage on.</p>
+  <p>If we have can continue to have pro-privacy developers face off against pro-data collection developers, there is the potential for us to retain privacy. </p>
+  <p>The pro-data collection developers will cite reasons such as economic benefit or the potential to reduce bad like car crashes as good reasons for why their software and tools are better. But the pro-privacy developers recognize the potential misuses of data.</p>
+  <p>While this solution makes sense, it does have the weakness that it relies on the goodwill of developers and the existence of developers aware of privacy issues.</p>
+  <h3 id="individual-action">Individual Action</h3>
+  <p>The final solution offered is individual action.</p>
+  <p>Proponents of this solution argue that people should know better. They should  know that their data can be misused. They should be careful about who they give their data to.</p>
+  <p>We can’t always mold society to fit our objectives. But rather than give up hope, the theory is that we should recognize we are not powerless. Unlike with laws or developers, we have full control over our actions.
+  As with the other solutions we’ve examined, there is a lot of benefit with this solution. By taking control, instead of relying on others, people can protect their privacy.</p>
+  <p>However, there are weaknesses with this solution. Many people don’t actually know how to protect their privacy. Thus, the naïve will suffer.</p>
+  <p>The notion of “caveat emptor” is good to an extent. People should take responsibility. But at the same time, not everyone has the same circumstances, and some people are unable to put in the effort necessary to protect themselves.</p>
+  <h1 id="a-better-solution">A Better Solution</h1>
+  <blockquote>“No man is good enough to govern another man without that other’s consent.”
+  <p><strong>- Abraham Lincoln</strong></p></blockquote>
+
+  <p>The solutions proposed all have good elements, but none are perfect.  </p>
+  <p>They all have weaknesses.</p>
+  <p>So instead of trying to select a single solution, what if we combined them? </p>
+  <p>Below is a concept of what this would look like. It is called the Solution Pyramid.</p>
+  <p><img src="pyramid.png"></p>
+  <p>The base of the pyramid is the law. Ideally, the law should offer foundational privacy protections so that corrupt gatekeepers can be held accountable. </p>
+  <p>The middle of the pyramid is developer action. The proliferation of privacy-oriented tools and software allow individuals to obtain better privacy with lower effort.</p>
+  <p>The top of the pyramid is the individual. The individual can help or hurt his or her privacy, but the two bottom layers should provide a baseline level of protection</p>
+  <p>Can a person have privacy if the first two layers do not exist? Potentially, but it is significantly harder and riskier. Citizens of North Korea would live in a society without these first two layers.</p>
+  <p>But as an idealistic goal, the Solutions Pyramid shows how achieving privacy requires the participation of multiple entities.</p>
+  <h2 id="individual-choice">Individual Choice</h2>
+  <p>You will notice the pyramid has no mention of gatekeepers. That is because a centralized authority or gatekeeper will always, eventually become corrupt. </p>
+  <p>Yet gatekeepers are important.</p>
+  <p>Gatekeepers sort through the noise and get rid of misinformation. They act as a shortcut. They do the hard work of investigating all the information out there and ensuring corruption and manipulation are minimized.</p>
+  <p>Our goal shouldn’t be to abolish gatekeepers and rely only on individual actions.</p>
+  <p>Instead, we should support the idea of “elective gatekeepers.”</p>
+  <p>The biggest choice an individual can make that will impact their privacy is who their gatekeeper is.</p>
+  <p>We should be able to choose the gatekeepers we trust, and if we notice corruption, we should be able to leave them freely. </p>
+  <p>Having a coerced gatekeeper is the ultimate danger.</p>
+  <p>When there are competing gatekeepers, it is harder for any single one to dominate.</p>
+  <p>Interestingly, this is how the United States’ form of government works. There are multiple gatekeepers in the forms of federal vs state, as well as the three branches of government (legislative, executive, and judicial). There are multiple parties that battle against each other, arguing that they are the better gatekeeper.</p>
+  <p>If either party became dominant, they could become corrupt. Examples of what the two major US Parties believe are corruption already exist: For Democrats it’s unpaid taxes, while for Republicans it’s illegal immigration. They want transparency around these two items. If either one was successful in mandating absolute transparency around either of these issues, privacy would be hurt.</p>
+  <p>When it comes to gatekeepers, the thing that matters most is trust. You have to decide if you trust a particular organization, company, or software. Or if you decide to forgo a gatekeeper, you have to decide which individuals you can trust. </p>
+  <p>Trust is risky. You can get hurt.</p>
+  <p>That’s why it’s important that when trust is broken, you can hold the gatekeeper accountable and choose another one if you so choose. </p>
+  <p>If you’re really paranoid, you can diversify across many gatekeepers.</p>
+  <p>Data isn’t evil. Neither is technology. But untrustworthy people can use it for evil.</p>
+  <p>Elective gatekeepers do keep the one weakness of individual action: naivety is punished.</p>
+  <p>If people can choose their gatekeepers, it makes sense that the naïve can fall into “echo chambers” that support an alternative view of reality. </p>
+  <p>Some may argue that if we don’t hold “bad” gatekeepers accountable as a society, innocent people will get hurt. But as long as the relationship is consensual, we should respect the freedom of individuals.</p>
+  <p>Freedom is risky. </p>
+  <p>So is control. </p>
+  <p>Which one is worth the risk?</p>
+  <h2 id="case-study-tom-cruise">Case Study: Tom Cruise</h2>
+  <p>He’s probably the biggest movie star in the history of Hollywood, but Tom Cruise also offers a lot of insight as to how we can deal with modern issues of privacy.</p>
+  <p>In the 90s, Tom was a star that everyone wanted to know about. Yet he was notoriously private. Despite this, information and gossip abounded about his life. Paparazzi would monitor his actions. They would make assumptions and publish them.</p>
+  <p>For the most part, Tom ignored them. He took to heart the advice of his friend and mentor, Paul Newman: “You can’t ever pay attention to white noise. You just have to live your life, do your work, and just do the best you can.”</p>
+  <p>However, in egregious cases, Tom would sue those who spread falsehoods that negatively impacted him or his family. For instance, he sued and won against a porn star who claimed he was gay (<a href="https://abcnews.go.com/Entertainment/story?id=105641&amp;page=1">https://abcnews.go.com/Entertainment/story?id=105641&amp;page=1</a> ). </p>
+  <p>He used libel and defamation laws to hold purveyors of bad information accountable.</p>
+  <p>But eventually, Tom tried a different tact. </p>
+  <p>If gossip is a given, why not just give the truth. Wouldn’t that get rid of the gossip?</p>
+  <p>In his fateful 2005 interview with Matt Lauer, he took the first step to being transparent. He said he was being more open about his personal life because “people are already talking about it, so why don’t I just set the record straight.”</p>
+  <p>Needless to say, his transparency backfired and his reputation took a hit.</p>
+  <p>By 2010, he again became guarded in what he said and listed to the advice of Newman.</p>
+  <p>In many ways, the technologies introduced in the first two decades of the 21st century have made us very similar to celebrities, like Tom Cruise. It makes sense to deal with privacy invasions by learning from people who were put into the public eye before we ever were.</p>
+  <p>So what can we learn?</p>
+  <p>Well, in the same way that magazines gossiped and speculated about Tom, companies and data brokers are doing the same thing with us. They are always going to gossip about us based on the information they have. They’re going to take whatever partial data they can find about us and broadcast assumptions to their partners. They’ll ask you for information, which you can decline to give. But they’ll use that lack of information as a data point and rely on others to fill the void, even if it’s inaccurate.</p>
+  <p>Like Tom, we have options. We can choose to either set the record straight — giving the data collectors what they wanted all along — information so they can manipulate you. Or we can take the Newman approach:</p>
+  <ul>
+  <li>Ignore gossip. </li>
+  <li>Avoid giving out information. </li>
+  <li>In the event of blatantly false information, hold the company accountable under the law so they are incentivized to stop gossiping. </li>
+  <li>Don’t ever turn to full transparency.</li>
+  </ul>
+  <h2 id="case-study-merchants-of-doubt">Case Study: Merchants of Doubt</h2>
+  <p>Some may be skeptical that data collection can actually be thwarted. Some claim privacy is dead.</p>
+  <p>Yet, we see that propaganda campaigns by organizations have worked. They successfully fought truth for decades. The only way it was uncovered was be relentless research by truth seekers.</p>
+  <p>In their book, Merchants of Doubt: How a Handful of Scientists Obscured the Truth on Issues from Tobacco Smoke to Global Warming, Naomi Oreskes and Erik M. Conway documented how tobacco companies used misinformation to achieve their goals. They deliberately obfuscated good data with bad data by funding alternative poorly-run counter-studies.</p>
+  <p>While propaganda is distasteful, we see that it shows just how easily data can be poisoned. If we can cause a shift so that data collected by companies is deemed untrustworthy, we can reclaim privacy online.</p>
+  <h1 id="taking-action">Taking Action</h1>
+  <p>This next section will cover specific tools, behaviors, and actions you can use and implement to secure your own privacy.</p>
+  <p>They come with their own trade-offs. Some will find them worth the effort. Others won’t.</p>
+  <p>Each tool or action protects privacy in one of two ways:</p>
+  <ol>
+  <li>Block: data is blocked from ever being collected. This is the Tom Cruise approach.</li>
+  <li>Distort: data is sent but it is purposefully changed to be inaccurate, negatively affecting the reliability of it. For example, you might make yourself look more like a bot, rather than a human.  This is the Merchants of Doubt approach.
+  </ol>
+
+  <p>There are three types of attacks. Each tool or action is effective in varying degrees against these attacks.</p>
+  <ol>
+  <li>Opportunistic: Hackers are able to get to your information because an opportunity presents itself in the form of a security flaw.</li>
+  <li>Targeted: Dedicated enemies, such as hostile governments or corporate spies, are trying to capture information they can use against you.</li>
+  <li>Mass Surveillance: Data collected by third-party providers is shared with others and can expose you to manipulation or opportunistic attacks.</li>
+  </ol>
+  <p>Below is an overview of specific actions:</p>
+  <h3 id="-finance"> Finance</h3>
+  <ul>
+  <li>Buy a home using an LLC
+  o    All home purchases are a matter of public record, and people can easily find out where you live</li>
+  <li>Use Cash
+  o    Both stores and credit card companies can keep track of what you buy and when you buy it when you use credit cards or online transactions</li>
+  <li>Use virtual credit cards and multiple credit card companies.
+  o    Some credit card companies now allow virtual credit cards. This reduces exposure of your data to individual stores, but not to credit card companies. However, using multiple credit card companies means no single entity has universal data about your purchase habits.
+  </li>
+</ul>
+<h3 id="computer">Computer</h3>
+<ul>
+  <li>Customize Mac OS
+  o    Disable FS Events: OS X keeps a log of all file movements by default. It’s best to turn this off.
+  o    Clear download history: OS X keeps a log of all downloaded files by default. It is best to clear this on a regular basis.
+  o    Turn off telemetry: OS X recommends sending data about your devices for troubleshooting purposes. If you want to limit all data exposure, decline this.
+  o    Use Encrypted DMG containers
+      OS X has a built-in way of encrypting specific high-value files.</li>
+  <li>Customize Windows
+  o    Use LTSB. You have more control over telemetry.</li>
+  <li>Using Linux</li>
+  <li>Update Your Software</li>
+  <li>Firewall/Little Snitch</li>
+  <li>File Encryption</li>
+  <li>Have an airgapped system</li>
+  </ul>
+  <h3 id="browser">Browser</h3>
+  <ul>
+  <li>Use a VPN: This means your IP address isn’t exposed to websites</li>
+  <li>Image noise generator: Computers don’t see how humans do. By adding specific types of random noise to images, you can thwart a computer’s ability to run facial recognition. This is useful if you decide you do need to upload photos of yourself to the internet</li>
+  <li>Character Switcher: Different languages have similar looking letters. By randomly switching between them, you harm a computers ability to sync data about you together.</li>
+  <li>Cookie Poisoner</li>
+  <li>Metadata stripping
+  o    Photos: photos can contain information about when it was taken, where it was taken, etc.
+  o    PDFs
+  o    Docs</li>
+  <li>URL parameter stripping: A lot of tracking is done at the URL level.</li>
+  <li>Use Blockers: Things like UBlock or NoScript can be used to block third-party access to your data. For network-wide protection, you may want to consider a Pi-Hole.</li>
+  <li>Use Tor.
+  </li>
+</ul>
+<h3 id="communication">Communication</h3>
+<ul>
+  <li>Encrypted email</li>
+  <li>End-to-end messaging services</li>
+  <li>Multiple phones + SIM removal</li>
+  <li>Noise through auto calls</li>
+  <li>Ultrasonic noise generators</li>
+</ul>
+  <h3 id="lifestyle">Lifestyle</h3>
+  <ul>
+    <li>Use passwords not biometrics</li>
+  <li>Keep things self-hosted
+  o    Offline maps
+  o    Offline voice processing
+  o    If you use a third-party they control access</li>
+  <li>Use public transportation.</li>
+  <li>Use coverings/trees so sateliets can’t see</li>
+  <li>Cover your face</li>
+  <li>Be purposeful with who you trust</li>
+  <li>Use a virtual address (UPS Store) </li>
+  <li>Obscurity </li>
+  </ul>
+
+
+
+
+    </div>
+
+
+</div>
+
+<script>
+
+window.addEventListener("load", () => {
+// Retrieve all help sections
+const sections = Array.from(document.querySelectorAll("h2[id]"));
+
+// Once a scrolling event is detected, iterate all elements
+// whose visibility changed and highlight their navigation entry
+const scrollHandler = entries =>
+entries.forEach(entry => {
+ const section = entry.target;
+ const sectionId = section.id;
+ const sectionLink = document.querySelector(`a[href="#${sectionId}"]`);
+
+ if (entry.intersectionRatio > 0) {
+  sectionLink.classList.add("visible");
+ } else {
+  sectionLink.classList.remove("visible");
+ }
+});
+
+// Creates a new scroll observer
+const observer = new IntersectionObserver(scrollHandler);
+
+//noinspection JSCheckFunctionSignatures
+sections.forEach(section => observer.observe(section));
+});
+
+</script>
+
+
+
+
+</body>
+
+</html>
