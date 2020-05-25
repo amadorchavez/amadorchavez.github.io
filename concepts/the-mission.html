@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+	<title>The Mission</title>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    html {height:100%}
+    body {background:linear-gradient(#ac1234, #214);font-family:Stratum2 Web;letter-spacing:.05em;padding:2em;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;text-transform:uppercase;background: linear-gradient(135deg, #057d96 0%,#0f233d 48%,#300711 69%,#7a0e2e 100%);}
+
+    h2 {padding:0;margin:0;line-height:1.45em;font-weight:500;border-bottom:1px solid rgba(0,0,0,0.25);margin-bottom:.5em;padding-bottom:.25em;color:#222}
+    p {padding:0;margin:0;margin-top:1.75em;line-height:1.45em;}
+    .card {background: rgba(255,255,255,0.85);color: #313131;box-shadow: 0 0 1px rgba(57,70,78,.15),0 20px 55px -8px rgba(57,70,78,.25);transition:cubic-bezier(.68,-0.55,.27,1.55) all .35s;padding: 14px;border-radius: 3px;line-height: 1.45em;font-size: 13px;position: relative;top: 6px;width: 300px;padding:2em;}
+    .card:hover {transform: scale(1.1) translate(0px,-3px);box-shadow: 0px 10px 10px rgba(0,0,0,0.25);background:rgba(255,255,255,0.95);}
+    .accept {padding:.5em 1em;display:inline-block;border:1px solid #313131;text-decoration:none;color:black;text-transform:uppercase;border-radius:3px;transition:ease all .25s;}
+    .accept:hover {background:#313131;color:#fff;transform:scale(1.1);animation:pulse .5s cubic-bezier(.68,-0.55,.27,1.55);}
+    .button {text-align:right;transition:ease all .25s;transition: max-height ease .5s;overflow: hidden;max-height: 0;}
+    .card:hover .button {max-height:320px;overflow: visible;}
+
+    ::-moz-selection {background-color: #ac1234;color: #ffffff;}
+    ::selection {background-color: #ac1234;color: #ffffff;}
+
+    @keyframes pulse {
+    0% {outline:1px solid rgba(31,31,31,0.5); outline-offset:0px;}
+    100% {outline:1px solid rgba(31,31,31,0); outline-offset:5px;}
+    }
+
+  </style>
+  </head>
+
+  <body>
+    <div class="card">
+    <h2>Your Mission</h2>
+    <p>This is the end Mr. Hunt.</p>
+    <p>The end you always feared is coming. It's coming...and the blood will be on your hands.</p>
+    <p>The fallout of all your good intentions.</p>
+    <p class="button"><a class="accept" href="#">I Accept</a>
+    </div>
+    </body>
+    </html>

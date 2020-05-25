@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+	<title>App UI Test</title>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <style>
+      html, body {background:#313131;padding:0;margin:0;color:white;font-family:PFDin;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+      .button {display:inline-block;padding:1em 2em;background:#ac1;color:#313131;text-decoration:none;border-radius:3px;transition:ease all .5s;text-transform: capitalize;box-shadow: 2px 2px 5px rgba(0,0,0,0.25);}
+      .button:hover {background:#fff;}
+      .option {display:inline-block;padding:1em 2em;background:none;color:rgba(255,255,255,0.75);text-decoration:none;border-radius:3px;transition:ease all .35s;border:1px solid rgba(255,255,255,0.75);margin-right:.75em;margin-bottom:0.75em;letter-spacing:.03em;width: 33%;max-width: 70px;}
+      .option:hover {background:rgba(255,255,255,0.9);color:#313131;}
+      input {background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.25);padding:.75em;width:auto;color:white;text-align:center;font-size:24px;transition:ease all .25s;border-radius:3px;letter-spacing:.03em;}
+      input:focus {border:1px solid rgba(255,255,255,0.5);background:none;outline:none;}
+      h3 {margin-top:3em;padding:0 2em;}
+
+      input[type="checkbox"] {display: none;}
+      .container {margin-bottom: 1.25em;margin-left:2.5em;text-align:left;padding-left:3em;}
+      .container label {position: relative;color:#ddd;font-size:1.25em;-moz-user-select: none;-webkit-user-select: none;user-select: none;}
+      .container label:hover {color:#eee;cursor: pointer;}
+      .container span::before,.container span::after {content: '';position: absolute;top: 0;bottom: 0;margin: auto;}
+      .container span.checkbox::before {width: 25px;height: 25px;background-color: rgba(255,255,255,0.05);left: -35px;box-sizing: border-box;border: 1px solid rgba(255,255,255,0.5);transition: ease-in all .15s;border-radius:3px;}
+      .container span.checkbox:hover::before {border: 1px solid rgba(255,255,255,0.75);background-color: rgba(255,255,255,0.1);cursor: pointer;}
+      .container span.checkbox::after {content: '\f00c';font-family: 'FontAwesome';left: -31px;top: 3px;color: transparent;transition: color .2s;font-size:18px;}
+      input[type="checkbox"]:checked + label span.checkbox::after {color: #313131;}
+      input[type="checkbox"]:checked + label span.checkbox::before {background:white;border-radius: 50px;transform: scale(1.1);}
+
+      .face {width: 100%;filter: invert(1);padding: .5em 0;opacity: 0.75;}
+      .option:hover .face {filter: invert(0);}
+
+</style>
+</head>
+<body>
+
+<div style="text-align:center;max-width:520px;margin:0 auto;width:100%;background:#242629">
+  <div style="background: #1852e0;clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);padding: 2em 0;padding-bottom: 4em;-webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%)">
+<h1>The Decision Maker</h1>
+<p>Can't decide what do? We'll fix that.</p>
+<a class="button" href="#">Help me make my decision</a>
+</a>
+</div>
+
+<h3 style="margin-bottom:1.75em;">What Options Are You Considering? <i style="color:rgba(255,255,255,0.75)"><br />Check all that apply</i></h3>
+
+<div class="container">
+        <input type="checkbox" name="group2" id="checkbox-1">
+        <label for="checkbox-1"><span class="checkbox">Sushi</span></label>
+      </div>
+
+<div class="container">
+        <input type="checkbox" name="group2" id="checkbox-2">
+        <label for="checkbox-2"><span class="checkbox">Pizza</span></label>
+      </div>
+
+<div class="container">
+        <input type="checkbox" name="group2" id="checkbox-3">
+        <label for="checkbox-3"><span class="checkbox">Mexican Food</span></label>
+      </div>
+
+<div class="container">
+        <input type="checkbox" name="group2" id="checkbox-4">
+        <label for="checkbox-4"><span class="checkbox">Fast Food</span></label>
+      </div>
+
+
+<h3>How Old Are You?</h3>
+<input type="number" style="width:75px;"></input>
+
+<h3>Where Are You?</h3>
+<input type="text"></input>
+
+<h3>Are You With People?</h3>
+<a class="option" href="#">Yes</a>
+<a class="option" href="#">No</a>
+
+<h3>Do You Have Food Allergies?</h3>
+<a class="option" href="#">Yes</a>
+<a class="option" href="#">No</a>
+
+<h3>Did You Work Out Today?</h3>
+<a class="option" href="#">Yes</a>
+<a class="option" href="#">No</a>
+
+<h3>How Much Do You Want To Spend?</h3>
+<a class="option" href="#">$</a>
+<a class="option" href="#">$$</a>
+<a class="option" href="#">$$$</a>
+
+<h3>How Are You Feeling?</h3>
+<a class="option" href="#"><img src="face.png" class="face">Rushed</a>
+<a class="option" href="#"><img src="face.png" class="face">Tired</a>
+<a class="option" href="#"><img src="face.png" class="face">Relaxed</a>
+<a class="option" href="#"><img src="face.png" class="face">Energetic</a>
+<a class="option" href="#"><img src="face.png" class="face">Hungry</a>
+<a class="option" href="#"><img src="face.png" class="face">Happy</a>
+
+<a class="button" style="margin-top:3em;margin-bottom:5em;" href="decision-results.html">Get My Decision</a>
+
+</div>
+
+
+</body>
+</html>

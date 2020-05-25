@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <style>
+  body {padding:0;margin:0;font-family:Cadillac Sans;-moz-osx-font-smoothing:grayscale;}
+  input {font-family: Cadillac Sans;font-weight:300;letter-spacing:.03em;}
+  label {display:block;margin:1em 0;}
+  input[type=number] {width:5em;padding:1em;text-align:center;-moz-appearance:textfield;}
+  p input[type=number] {margin-right:1em;width:3em;padding:.25em;text-align:center;-moz-appearance:textfield;}
+  input[type=submit] {display: inline-block;background:#ffaa00;color:white;border:none;padding:1em 2em;cursor:pointer;transition: ease-in all .5s;border-radius:5px;font-size:1.2em;}
+  input[type=submit]:hover {background:red;}
+
+</style>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <div style="padding:1em;">
+  <form method="post" >
+    <label>Event Name</label>
+    <input type="text" name="event[name]"></input>
+
+    <label>How Many Racing Classes Will There Be</label>
+      <input type="number">
+    <label>How Many Lanes Will You Be Racing</label>
+      <input type="number">
+    <span style="display:block;margin-top:1em;">Class 1</span>
+    <label>Add Your Racers</label>
+      <p><input type="number" value="1" name=""><input type="text"></p>
+      <p><input type="number" value="2"><input type="text"></p>
+      <p><input type="number" value="3"><input type="text"></p>
+      <p><input type="number" value="4"><input type="text"></p>
+      <p><input type="number" value="5"><input type="text"></p>
+      <p><input type="number" value="6"><input type="text"></p>
+    <input type="submit" id="eventSubmit" value="Submit" />
+  </form>
+</div>
+
+<script>
+  $('#eventSubmit').on('click', function(e) {
+    e.preventDefault()
+    form = $(this).closest('form').serialize()
+    // $.post('https://racer-1.herokuapp.com/events', $('form').serialize)
+
+    $.ajax({
+      url: 'https://racer-1.herokuapp.com/events/',
+      method: 'POST',
+      dataType: 'json',
+      data: form,
+      success: function(data) {
+        // hi
+      },
+      error: function(err) {
+        // error
+      }
+    })
+  })
+</script>
+</body>
+
+</html>

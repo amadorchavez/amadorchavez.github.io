@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Disabling Siri on OS X</title>
+  <style>
+    html, body {margin:0;padding: 0;}
+    body {line-height:1.5em;font-family:Roboto, Arial;font-weight:200;color:#444;font-size:1.4em;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;}
+    .keypress {display:inline-block;background:#f7f7ff;padding:.25em 0.5em;border:1px solid #ddf;font-family:courier;border-radius:5px;color:223;}
+    h3 {color:#00BC4E;font-weight: 400;}
+    h1 {margin: 1em 0em 0.5em 0em;line-height:1.15em;font-weight: 600;}
+    p {margin-bottom:1.5em;}
+    .content {padding:1em;margin:0 auto;max-width:30em;}
+    img {width:100%;border:1px solid #eee; border-radius:5px;}
+    li {padding-bottom:1em;}
+    a {color:#00BC4E;border-bottom:1px dotted #00BC4E;text-decoration: none;transition: ease-in all 150ms;}
+    a:hover {color:#11cd5f;transition: ease-in all 150ms;}
+  </style>
+</head>
+
+<body>
+
+
+<div class="content">
+<h1>Disabling Siri on OS X High Sierra</h1>
+<p style="font-style:italic;">This has been adapted from <a href="https://apple.stackexchange.com/questions/258816/how-to-completely-disable-siri-on-sierra">https://apple.stackexchange.com/questions/258816/how-to-completely-disable-siri-on-sierra</a></p>
+<p>Even if you disable Siri in <strong>System Preferences</strong>, the service will still load. You can see proof of this by opening <strong>Activity Monitor</strong>.
+<p><img src="ams.png"></p>
+<p>To disable Siri completely, you will need to adjust a system preference file. This will require you to disable System Integrity Protection (SIP) for a few minutes, after which you can re-enable it.</p>
+
+<h3>Disable SIP</h3>
+<ol>
+<li>Reboot in Recovery mode by restarting your Mac and holding <span class="keypress">Command + R</span>. <i>It can take more time to boot as usual, that's OK, just be patient.</i></li>
+<li>In the top menu go to <strong>Utilities</strong> and select <strong>Terminal</strong>.</li>
+<li>Type <span class="keypress">csrutil disable</span> and press <span class="keypress">Enter</span></li>
+<li>Type <span class="keypress">reboot</span> and press <span class="keypress">Enter</span> to reboot again.</li>
+</ol>
+
+<h3>Editing com.apple.Siri.plist</h3>
+<ol>
+<li>Open Terminal.app</li>
+<li>Type <span class="keypress">sudo nano /System/Library/LaunchAgents/com.apple.Siri.plist</span> to open the file in nano editor with root privileges.</li>
+<li>Find the following lines:<br />
+    <span class="keypress">&lt;key>Disabled&lt;/key></br>
+    &lt;false/></span></li>
+<li>and change them to: <br />
+    <span class="keypress">&lt;key>Disabled&lt;/key><br />
+    &lt;true/></span></li>
+<li>Press <span class="keypress">Control+X</span> then <span class="keypress">y</span> and then <span class="keypress">Enter</span> to save the file and exit nano.</li>
+</ol>
+<h3>Re-enable System Integrity Check</h3>
+<ol>
+<li>Reboot in Recovery mode by restarting your Mac and holding <span class="keypress">Command + R</span></li>
+<li>In top menu go to <strong>Utilities > Terminal</strong></li>
+<li>Type <span class="keypress">csrutil enable</span> and press Enter</li>
+<li>Type <span class="keypress">reboot</span> and press Enter to reboot again.</li>
+</ol>
+<p>Now if you check Activity Monitor, you should see no traces of Siri there.</p>
+
+<h3>More Privacy Settings</h3>
+<p>Further information on securing your Mac and turning off services can be found here: <a href="https://github.com/drduh/macOS-Security-and-Privacy-Guide#services">https://github.com/drduh/macOS-Security-and-Privacy-Guide#services</a>
+</div>
