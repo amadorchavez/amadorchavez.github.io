@@ -16,21 +16,22 @@
 
         /* Enter New CSS*/
         body {background:white;color:black;font-family:Josefin Sans;}
-        .contentContainer {padding:1em;max-width:960px;margin:0 auto;}
+        .contentContainer {padding:1em;max-width:1280px;margin:0 auto;display:grid; grid-template-columns: 1fr 2fr;}
         h2 {text-transform:uppercase;letter-spacing: .1em;margin-bottom:1em;margin-top:2em;border-top:1px solid #ccc;padding-top:1em;}
         .healthStats {border-collapse: collapse;}
         .healthStats td {padding:0.15em .5em;}
         .healthStats p {margin:0;padding:0;font-size:18px;}
-        .container {height:25px;width:150px;background:#ddd;border-radius:5px;}
+        .container {height:25px;width:100px;background:#ddd;border-radius:5px;}
         .percentage {width:20%;height:100%;background:#c12;border-radius:5px;}
         .shieldStat {fill:#333;}
+        .healthStats input[type=text] {width:22px;text-align: center;padding:0;font-size:18px;border:none;border-bottom:1px dotted;font-family:Josefin Sans;}
 
-        .modifierContainer {border:1px solid;display:inline-block;border-radius:5px;margin:0.25em;}
+        .modifierContainer {border:1px solid;display:flex;border-radius:5px;margin:0.25em;width:220px;justify-content: space-between;align-items: baseline;}
         .green {color:#183;background:#183;}
         .blue {color:#1144ae;background:#1144ae;}
         .gray {color:#aaa;background:#aaa;}
-        .modAttribute {display:inline-block;padding:.25em 1em;color:white;border-radius:5px;text-transform: uppercase;font-weight:600;}
-        .modValue {display:inline-block;padding:.25em;background:white;border-radius:5px;font-weight: 600;font-size: 1.5em;}
+        .modAttribute {padding:.25em 1em;color:white;border-radius:5px;text-transform: uppercase;font-weight:600;}
+        .modValue {padding:.25em;background:white;border-radius:5px;font-weight: 600;font-size: 1.5em;width:30px;text-align:center;}
         .modAttribute small {opacity:0.65;font-weight:400;}
 
         .moves {border-collapse: collapse;}
@@ -51,6 +52,7 @@
 <body>
   <div class="contentContainer">
 
+  <div>
   <h2>Global Health Stats</h2>
 
   <table class="healthStats">
@@ -72,9 +74,9 @@
     <tr>
       <td><p>Barak</p></td>
       <td><div class="container">
-        <div class="percentage"></div>
+        <div id="bHealthBar" class="percentage"></div>
       </div></td>
-      <td><p><span>18</span>/20</p></td>
+      <td><p><input id="bCurrentHealth" onchange="updateHealth()" type="text" value="18"></span>/<input id="bMaxHealth" type="text" value="20"></p></td>
     </tr>
     <tr>
       <td><p>Andronicus</p></td>
@@ -119,20 +121,20 @@
     <div class="modValue">+2</div>
   </div>
   <div class="modifierContainer blue">
-    <div class="modAttribute"><small>16</small> Constitution</div>
+    <div class="modAttribute"><small>13</small> Constitution</div>
     <div class="modValue">+1</div>
   </div>
 
   <div class="modifierContainer gray">
-    <div class="modAttribute"><small>16</small> Intelligence</div>
+    <div class="modAttribute"><small>9</small> Intelligence</div>
     <div class="modValue">+0</div>
   </div>
   <div class="modifierContainer gray">
-    <div class="modAttribute"><small>16</small> Wisdom</div>
+    <div class="modAttribute"><small>9</small> Wisdom</div>
     <div class="modValue">+0</div>
   </div>
   <div class="modifierContainer gray">
-    <div class="modAttribute"><small>16</small> Charisma</div>
+    <div class="modAttribute"><small>12</small> Charisma</div>
     <div class="modValue">+0</div>
   </div>
 
@@ -168,8 +170,8 @@
     <p>Roll Result</p>
     <input type="text" id="rollValue" value="">
   </div>
+</div>
 
-  </div>
 
   <h2>Inventory</h2>
   <textarea onkeyup="saveInventory(this)" data-id="inventory" style="width:100%;height:300px;padding:1em;font-family:Josefin Sans;font-size:18px;border-radius:5px;border:1px dotted;line-height:1.5em;"></textarea>
@@ -181,6 +183,13 @@
   <a href="https://www.reddit.com/r/DungeonWorld/comments/9ebw9u/whats_the_best_way_to_play_online/">https://www.reddit.com/r/DungeonWorld/comments/9ebw9u/whats_the_best_way_to_play_online/</a>
   <a href="https://medium.com/@hcigamesgroup/dungeon-worlds-dice-system-is-the-core-of-good-game-design-and-user-experience-8b9db8dcef49">https://medium.com/@hcigamesgroup/dungeon-worlds-dice-system-is-the-core-of-good-game-design-and-user-experience-8b9db8dcef49</a>
   <a href="https://roll20.net/">https://roll20.net/</a> -->
+
+</div>
+
+<div style="padding:2em;">
+  <label style="margin-right:1em;" for="wbSource">Whiteboard URL:</label><input onkeyup="loadWB()" style="border:1px solid #ccc;padding:.5em;width:400px;" type="text" id="wbSource"><button onclick="loadWB()">Update</button>
+  <iframe noreferer style="width:100%;margin-top:1em;display:block;border:1px solid #ccc;height:80vh;" id="wbFrame" src=""></iframe>
+</div>
 
 </div>
 </body>
@@ -204,6 +213,22 @@
     }
     item.value = sectionValue;
   });
+  }
+
+  function loadWB() {
+    const wbCanvas = document.getElementById("wbFrame")
+    const sourceInput = document.getElementById("wbSource")
+    let wbSource = sourceInput.value
+    wbCanvas.src = wbSource
+  }
+
+  function updateHealth() {
+    const current = document.getElementById("bCurrentHealth").value
+    const max = document.getElementById("bMaxHealth").value
+    const healthBar = document.getElementById("bHealthBar")
+    let percentage = (Number(current)/Number(max))*100 +"%"
+    healthBar.style.width = percentage;
+    console.log(percentage)
   }
 
 
