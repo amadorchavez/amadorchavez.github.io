@@ -72,11 +72,12 @@
       </td>
     </tr>
     <tr>
-      <td><p>Barak</p></td>
+      <td><p><input style="width:80px;text-align:left;" type="text" value="Barak" data-id="cName" onblur="saveInventory(this)"></p></td>
       <td><div class="container">
         <div id="bHealthBar" class="percentage"></div>
       </div></td>
-      <td><p><input id="bCurrentHealth" onchange="updateHealth()" type="text" value="18"></span>/<input id="bMaxHealth" type="text" value="20"></p></td>
+      <td><p><input id="bCurrentHealth" onkeyup="updateHealth();saveInventory(this)" type="text" value="18" data-id="healthLevel" ></span>/<input id="bMaxHealth" type="text" value="20" onkeyup="saveInventory(this)" data-id="maxHealth"></p></td>
+      <td><button onclick="removeHealth()">-</button> <button onclick="addHealth()">+</button></td>
     </tr>
     <tr>
       <td><p>Andronicus</p></td>
@@ -102,8 +103,8 @@
   </table>
 
   <h2>Personal Stats: <span class="highlight">Andronicus</span></h2>
-  <p>Level: <input class="stat" type="text" value="3">
-  <p>Experience:  <input class="stat" id="experience" type="text" value="5"> <button onclick="removeExperience()">-</button> <button onclick="addExperience()">+</button> <button disabled>Level Up</button> </p>
+  <p>Level: <input class="stat" onblur="saveInventory(this)" data-id="currentLevel" type="text" value="3">
+  <p>Experience:  <input class="stat" id="experience" onblur="saveInventory(this)" data-id="currentXP" type="text" value="5"> <button onclick="removeExperience()">-</button> <button onclick="addExperience()">+</button> <button disabled>Level Up</button> </p>
   <p>Alignment: <select>
     <option value="good">Good</option>
     <option value="neutral">Neutral</option>
@@ -196,7 +197,7 @@
 
 <script>
   appData = window.localStorage
-  window.onload = loadData()
+  window.onload = loadData(); updateHealth()
 
   function saveInventory(item) {
     let id = item.getAttribute("data-id")
@@ -213,6 +214,15 @@
     }
     item.value = sectionValue;
   });
+  document.querySelectorAll("input").forEach((item)=>{
+  let id = item.getAttribute("data-id");
+  let sectionValue = appData.getItem(id);
+  if(sectionValue == null || sectionValue == ""){
+    return;
+  }
+  item.value = sectionValue;
+});
+
   }
 
   function loadWB() {
@@ -229,6 +239,21 @@
     let percentage = (Number(current)/Number(max))*100 +"%"
     healthBar.style.width = percentage;
     console.log(percentage)
+  }
+
+  function addHealth() {
+    const currentHealth = document.getElementById("bCurrentHealth")
+    let healthLevel = currentHealth.value
+    let increment = Number(healthLevel) + 1
+    currentHealth.value = increment;
+    updateHealth();
+  }
+  function removeHealth() {
+    const currentHealth = document.getElementById("bCurrentHealth")
+    let healthLevel = currentHealth.value
+    let removal = Number(healthLevel) - 1
+    currentHealth.value = removal;
+    updateHealth();
   }
 
 
@@ -256,13 +281,15 @@
     const experienceNumber = document.getElementById("experience")
     let experienceValue = experienceNumber.value
     let increment = Number(experienceValue) + 1
-    experienceNumber.value = increment
+    experienceNumber.value = increment;
+    saveInventory(experienceNumber);
   }
   function removeExperience() {
     const experienceNumber = document.getElementById("experience")
     let experienceValue = experienceNumber.value
     let removal = Number(experienceValue) - 1
-    experienceNumber.value = removal
+    experienceNumber.value = removal;
+    saveInventory(experienceNumber);
   }
 </script>
 
