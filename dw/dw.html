@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Dungeon World Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /*BoilerPlate CSS*/
+        html, body {padding: 0;margin: 0;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;height:100%;}
+        h1, h2, h3, h4, h5, h6 {font-weight: 400;margin: 0;padding: 0;}
+        ::placeholder {color: rgba(20,0,0,1);opacity:1;}
+        *:focus {outline: none;}
+
+        /* Enter New CSS*/
+        body {background:white;color:black;font-family:Josefin Sans;}
+        .contentContainer {padding:1em;max-width:1280px;margin:0 auto;display:grid; grid-template-columns: 1fr 2fr;}
+        h2 {text-transform:uppercase;letter-spacing: .1em;margin-bottom:1em;margin-top:2em;border-top:1px solid #ccc;padding-top:1em;}
+        .healthStats {border-collapse: collapse;}
+        .healthStats td {padding:0.15em .5em;}
+        .healthStats p {margin:0;padding:0;font-size:18px;}
+        .container {height:25px;width:100px;background:#ddd;border-radius:5px;}
+        .percentage {width:20%;height:100%;background:#c12;border-radius:5px;}
+        .shieldStat {fill:#333;}
+        .healthStats input[type=text] {width:22px;text-align: center;padding:0;font-size:18px;border:none;border-bottom:1px dotted;font-family:Josefin Sans;}
+
+        .modifierContainer {border:1px solid;display:flex;border-radius:5px;margin:0.25em;width:220px;justify-content: space-between;align-items: baseline;}
+        .green {color:#183;background:#183;}
+        .blue {color:#1144ae;background:#1144ae;}
+        .gray {color:#aaa;background:#aaa;}
+        .modAttribute {padding:.25em 1em;color:white;border-radius:5px;text-transform: uppercase;font-weight:600;}
+        .modValue {padding:.25em;background:white;border-radius:5px;font-weight: 600;font-size: 1.5em;width:30px;text-align:center;}
+        .modAttribute small {opacity:0.65;font-weight:400;}
+
+        .moves {border-collapse: collapse;}
+        .moves p {margin:0;padding:0;}
+        .moves td {padding:0.5em;border-bottom:1px solid rgba(0,0,0,0.25);}
+        .moves td {vertical-align: top;}
+
+        .explainer {font-size: 0.75em;opacity:0.65;}
+
+        #rollValue {font-family:Josefin Sans;font-size: 2em;text-align: center;border:none;border-bottom:1px dotted;width:50px;}
+        .stat {font-size:1em;border:1px solid #00B0F0;color:#00B0F0;width:20px;font-weight:600;text-align:center;border-radius:100em;}
+
+        .highlight {color:#00B0F0}
+
+    </style>
+</head>
+
+<body>
+  <div class="contentContainer">
+
+  <div>
+  <h2>Global Health Stats</h2>
+
+  <table class="healthStats">
+    <tr>
+      <td><p>Sarya</p></td>
+      <td><div class="container">
+        <div class="percentage"></div>
+      </div></td>
+      <td><p><span>18</span>/20</p></td>
+      <td>
+        <svg height="30px" width="30px" fill="#000000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision;text-rendering:geometricPrecision;image-rendering:optimizeQuality;" viewBox="0 0 359.78 444.48" x="0px" y="0px" fill-rule="evenodd" clip-rule="evenodd"><defs><style type="text/css"> .fil0 {fill:#000000;fill-rule:nonzero}</style></defs>
+          <g xmlns="http://www.w3.org/2000/svg">
+            <path class="fil0" d="M179.89 26.57c-42.28,45.62 -96.75,69.49 -157.76,77.9 2.99,28.93 5.02,52.11 6.76,72.03 5.2,59.29 7.9,90.1 20.25,114.79 13.41,26.83 39.62,49.54 94.11,96.74l36.62 31.85 36.66 -31.85c54.49,-47.2 80.7,-69.9 94.11,-96.74 12.35,-24.7 15.05,-55.5 20.25,-114.79 1.74,-19.92 3.77,-43.1 6.76,-72.03 -61.01,-8.41 -115.48,-32.28 -157.76,-77.9zm-8.17 -22.67c4.73,-4.76 11.67,-5.58 16.27,-0.08 42,50.06 98.33,74.03 162.35,80.93 5.76,0.62 9.97,5.8 9.38,11.57 -3.27,30.94 -5.7,58.6 -7.75,82 -5.41,61.78 -8.23,93.87 -22.49,122.39 -15.33,30.68 -42.56,54.26 -99.15,103.28 -11.8,10.22 -25.05,21.69 -43.46,37.87 -3.93,3.42 -9.89,3.52 -13.92,0l-43.5 -37.87c-56.6,-49.03 -83.82,-72.62 -99.15,-103.28 -14.25,-28.5 -17.08,-60.61 -22.49,-122.39 -2.04,-23.31 -4.46,-50.84 -7.71,-81.63 -0.74,-5.92 3.36,-11.31 9.34,-11.94 63.98,-6.89 120.3,-30.84 162.28,-80.85z"/>
+            <text class="shieldStat" font-family="Verdana" font-size="235" x="100" y="275">1</text>
+          </g>
+        </svg>
+      </td>
+    </tr>
+    <tr>
+      <td><p><input style="width:80px;text-align:left;" type="text" value="Barak" data-id="cName" onblur="saveInventory(this)"></p></td>
+      <td><div class="container">
+        <div id="bHealthBar" class="percentage"></div>
+      </div></td>
+      <td><p><input id="bCurrentHealth" onkeyup="updateHealth();saveInventory(this)" type="text" value="18" data-id="healthLevel" ></span>/<input id="bMaxHealth" type="text" value="20" onkeyup="saveInventory(this)" data-id="maxHealth"></p></td>
+      <td><button onclick="removeHealth()">-</button> <button onclick="addHealth()">+</button></td>
+    </tr>
+    <tr>
+      <td><p>Andronicus</p></td>
+      <td><div class="container">
+        <div class="percentage"></div>
+      </div></td>
+      <td><p><span>18</span>/20</p></td>
+    </tr>
+    <tr>
+      <td><p>Alomar</p></td>
+      <td><div class="container">
+        <div class="percentage"></div>
+      </div></td>
+      <td><p><span>18</span>/20</p></td>
+    </tr>
+    <tr>
+      <td><p>Gwen</p></td>
+      <td><div class="container">
+        <div class="percentage"></div>
+      </div></td>
+      <td><p><span>18</span>/20</p></td>
+    </tr>
+  </table>
+
+  <h2>Personal Stats: <span class="highlight">Andronicus</span></h2>
+  <p>Level: <input class="stat" onblur="saveInventory(this)" data-id="currentLevel" type="text" value="3">
+  <p>Experience:  <input class="stat" id="experience" onblur="saveInventory(this)" data-id="currentXP" type="text" value="5"> <button onclick="removeExperience()">-</button> <button onclick="addExperience()">+</button> <button disabled>Level Up</button> </p>
+  <p>Alignment: <select>
+    <option value="good">Good</option>
+    <option value="neutral">Neutral</option>
+    <option value="evil">Evil</option>
+  </select></p>
+
+  <h2>Moves</h2>
+  <p>Modifiers</p>
+  <div class="modifierContainer green">
+    <div class="modAttribute"><small>16</small> Strength</div>
+    <div class="modValue">+2</div>
+  </div>
+  <div class="modifierContainer green">
+    <div class="modAttribute"><small>16</small> Dexterity</div>
+    <div class="modValue">+2</div>
+  </div>
+  <div class="modifierContainer blue">
+    <div class="modAttribute"><small>13</small> Constitution</div>
+    <div class="modValue">+1</div>
+  </div>
+
+  <div class="modifierContainer gray">
+    <div class="modAttribute"><small>9</small> Intelligence</div>
+    <div class="modValue">+0</div>
+  </div>
+  <div class="modifierContainer gray">
+    <div class="modAttribute"><small>9</small> Wisdom</div>
+    <div class="modValue">+0</div>
+  </div>
+  <div class="modifierContainer gray">
+    <div class="modAttribute"><small>12</small> Charisma</div>
+    <div class="modValue">+0</div>
+  </div>
+
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;margin-top:2em;">
+  <div>
+    <table class="moves">
+      <tr>
+        <td>
+          <p>General Roll</p>
+          <p class="explainer">x2 D6</p>
+        </td>
+        <td><button onclick="rollD6()">Roll</button></td>
+      </tr>
+      <tr>
+        <td>
+          <p>Damage Roll</p>
+          <p class="explainer">x1 D10</p>
+        </td>
+        <td><button onclick="rollD10()">Roll</button></td>
+      </tr>
+      <tr>
+        <td>
+          <p>Merciless Roll</p>
+          <p class="explainer">x1 D4</p>
+        </td>
+        <td><button onclick="rollD4()">Roll</button></td>
+      </tr>
+    </table>
+  </div>
+
+  <div style="border:1px solid;width:100%;height:100%;text-align:center;">
+    <p>Roll Result</p>
+    <input type="text" id="rollValue" value="">
+  </div>
+</div>
+
+
+  <h2>Inventory</h2>
+  <textarea onkeyup="saveInventory(this)" data-id="inventory" style="width:100%;height:300px;padding:1em;font-family:Josefin Sans;font-size:18px;border-radius:5px;border:1px dotted;line-height:1.5em;"></textarea>
+
+  <!-- <p><a href="https://medium.com/@wasthishelpful/how-to-roll-a-dice-in-javascript-ec543f8ffda1">https://medium.com/@wasthishelpful/how-to-roll-a-dice-in-javascript-ec543f8ffda1</a></p>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random</a>
+
+  <a href="https://rpg.stackexchange.com/questions/60300/dungeon-world-dm-companion-app">https://rpg.stackexchange.com/questions/60300/dungeon-world-dm-companion-app</a>
+  <a href="https://www.reddit.com/r/DungeonWorld/comments/9ebw9u/whats_the_best_way_to_play_online/">https://www.reddit.com/r/DungeonWorld/comments/9ebw9u/whats_the_best_way_to_play_online/</a>
+  <a href="https://medium.com/@hcigamesgroup/dungeon-worlds-dice-system-is-the-core-of-good-game-design-and-user-experience-8b9db8dcef49">https://medium.com/@hcigamesgroup/dungeon-worlds-dice-system-is-the-core-of-good-game-design-and-user-experience-8b9db8dcef49</a>
+  <a href="https://roll20.net/">https://roll20.net/</a> -->
+
+</div>
+
+<div style="padding:2em;">
+  <label style="margin-right:1em;" for="wbSource">Whiteboard URL:</label><input onkeyup="loadWB()" style="border:1px solid #ccc;padding:.5em;width:400px;" type="text" id="wbSource"><button onclick="loadWB()">Update</button>
+  <iframe noreferer style="width:100%;margin-top:1em;display:block;border:1px solid #ccc;height:80vh;" id="wbFrame" src=""></iframe>
+</div>
+
+</div>
+</body>
+
+<script>
+  appData = window.localStorage
+  window.onload = loadData(); updateHealth()
+
+  function saveInventory(item) {
+    let id = item.getAttribute("data-id")
+    let value = item.value
+    appData.setItem(id, value)
+  }
+
+  function loadData() {
+    document.querySelectorAll("textarea").forEach((item)=>{
+    let id = item.getAttribute("data-id");
+    let sectionValue = appData.getItem(id);
+    if(sectionValue == null || sectionValue == ""){
+      return;
+    }
+    item.value = sectionValue;
+  });
+  document.querySelectorAll("input").forEach((item)=>{
+  let id = item.getAttribute("data-id");
+  let sectionValue = appData.getItem(id);
+  if(sectionValue == null || sectionValue == ""){
+    return;
+  }
+  item.value = sectionValue;
+});
+
+  }
+
+  function loadWB() {
+    const wbCanvas = document.getElementById("wbFrame")
+    const sourceInput = document.getElementById("wbSource")
+    let wbSource = sourceInput.value
+    wbCanvas.src = wbSource
+  }
+
+  function updateHealth() {
+    const current = document.getElementById("bCurrentHealth").value
+    const max = document.getElementById("bMaxHealth").value
+    const healthBar = document.getElementById("bHealthBar")
+    let percentage = (Number(current)/Number(max))*100 +"%"
+    healthBar.style.width = percentage;
+    console.log(percentage)
+  }
+
+  function addHealth() {
+    const currentHealth = document.getElementById("bCurrentHealth")
+    let healthLevel = currentHealth.value
+    let increment = Number(healthLevel) + 1
+    currentHealth.value = increment;
+    updateHealth();
+  }
+  function removeHealth() {
+    const currentHealth = document.getElementById("bCurrentHealth")
+    let healthLevel = currentHealth.value
+    let removal = Number(healthLevel) - 1
+    currentHealth.value = removal;
+    updateHealth();
+  }
+
+
+  function rollD6() {
+    const resultContainer = document.getElementById("rollValue")
+    let die1 = 1 + Math.floor(Math.random()*6);
+    let die2 = 1 + Math.floor(Math.random()*6);
+    resultContainer.value = die1 + die2
+    console.log (die1 + "," + die2)
+  }
+
+  function rollD10() {
+    const resultContainer = document.getElementById("rollValue")
+    let die1 = 1 + Math.floor(Math.random()*10);
+    resultContainer.value = die1
+  }
+
+  function rollD4() {
+    const resultContainer = document.getElementById("rollValue")
+    let die1 = 1 + Math.floor(Math.random()*4);
+    resultContainer.value = die1
+  }
+
+  function addExperience() {
+    const experienceNumber = document.getElementById("experience")
+    let experienceValue = experienceNumber.value
+    let increment = Number(experienceValue) + 1
+    experienceNumber.value = increment;
+    saveInventory(experienceNumber);
+  }
+  function removeExperience() {
+    const experienceNumber = document.getElementById("experience")
+    let experienceValue = experienceNumber.value
+    let removal = Number(experienceValue) - 1
+    experienceNumber.value = removal;
+    saveInventory(experienceNumber);
+  }
+</script>
+
+</html>
