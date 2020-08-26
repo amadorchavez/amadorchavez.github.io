@@ -1,0 +1,2350 @@
+<html class="gr__aa79e3bd_ngrok_io"><head>
+    <title>Provider Dashboard | Nifty Links</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon-65691c5ff8ebfb4d4cc225658f41f2731f54c1f867898c44d4a0e9b079e1d083.png">
+    <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="KfG02KZJaqZ5Jofo6U9tBL0IFBJ3AOjgM7AzZM9dVOlEEM2q7GngG/oCVoT8H3j1ljzN17Scn5D66rwfml4iHw==">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
+    <link rel="stylesheet" media="all" href="/assets/admin.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1">
+<link rel="stylesheet" media="all" href="/assets/home.self-10ee6cc12d4506fb4db79d7f4c0a364149e8aa9f3e8ff46f0ac04cb212bdd5e1.css?body=1">
+<link rel="stylesheet" media="all" href="/assets/internal.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1">
+<link rel="stylesheet" media="all" href="/assets/application.self-f0d704deea029cf000697e2c0181ec173a1b474645466ed843eb5ee7bb215794.css?body=1">
+    <script src="/assets/rails-ujs.self-3b600681e552d8090230990c0a2e8537aff48159bea540d275a620d272ba33a0.js?body=1"></script>
+<script src="/assets/activestorage.self-0525629bb5bac7ed5f2bfc58a9679d75705e426dafd6957ae9879db97c8e9cbe.js?body=1"></script>
+<script src="/assets/action_cable.self-69fddfcddf4fdef9828648f9330d6ce108b93b82b0b8d3affffc59a114853451.js?body=1"></script>
+<script src="/assets/cable.self-8484513823f404ed0c0f039f75243bfdede7af7919dda65f2e66391252443ce9.js?body=1"></script>
+<script src="/assets/home.self-11a58379e947321bd0f92945f08ad947637dc276cfe81a50215010e40d7713e0.js?body=1"></script>
+<script src="/assets/application.self-eba3cb53a585a0960ade5a8cb94253892706bb20e3f12097a13463b1f12a4528.js?body=1"></script>
+      <style>
+        :root{
+          /* IS NOT DARKMODE */
+          --main-bg: #FCFCFD;
+          --main-bg-lit: white;
+          --main-text: black;
+          --inputs: white;
+          --input-text: black;
+          --input-border: rgba(0, 0, 0, 0.5);
+          --white: white;
+          --black: black;
+          --logo-fill: #23345a;
+
+          --light-blue: #5fc9ff;
+          --blue-dark: #23345a;
+          --lit-blue: #2176c0;
+          --submit-btn: #289668;
+          --submit-btn-hover: #007142;
+          --gray: rgba(0, 0, 0, 0.5);
+          --lit-gray: #eee;
+          --categories: #583377;
+          --flash-bg: rgba(0, 0, 0, .5);
+          --flash-notice: #00ea00;
+          --flash-warning: #ffa12d;
+
+          --table-bg: white;
+          --table-border-outer: #e8e8e8;
+          --table-text: #445;
+          --table-border-inner: rgba(224, 224, 224, .25);
+          --table-highlight: rgba(32, 117, 191, 0.05);
+          --table-row-select: #dcecfb;
+          --table-row-select-hover: #d4e6f7;
+          --table-tooltip: white;
+  }
+  .price-range-slider input[type="range"]::-webkit-slider-thumb, .da-range-slider input[type="range"]::-webkit-slider-thumb {
+    background: var(--lit-blue);
+    border: 4px solid var(--blue-dark) !important;
+    transition: background .2s ease-in, border .2s ease-out, color .2s ease;
+  }
+  /* line 6, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .price-range-slider input[type="range"]:hover::-webkit-slider-thumb, .da-range-slider input[type="range"]:hover::-webkit-slider-thumb {
+    background: var(--light-blue);
+  }
+  /* line 9, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .price-range-slider input[type="range"]:active::-webkit-slider-thumb, .da-range-slider input[type="range"]:active::-webkit-slider-thumb {
+    background: white;
+  }
+  /* line 12, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .price-range-slider input[type="range"]:hover::-webkit-slider-thumb, .da-range-slider input[type="range"]:hover::-webkit-slider-thumb, .price-range-slider input[type="range"]:active::-webkit-slider-thumb, .da-range-slider input[type="range"]:active::-webkit-slider-thumb {
+    color: var(--blue-dark);
+    border: 4px solid var(--blue-dark);
+  }
+
+  /* line 43, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .autocomplete .clear-search:hover, .category-selection .new-cats:hover, .agreement button:hover {
+    background: linear-gradient(-45deg, var(--lit-blue), var(--lit-blue), var(--lit-blue), var(--lit-blue), var(--light-blue), var(--lit-blue), var(--lit-blue), var(--lit-blue));
+    background-size: 200% 200%;
+    animation: hoverGradient 3s linear infinite;
+  }
+  @keyframes hoverGradient {
+    0% {
+      background-position: -80% 50%;
+    }
+    100% {
+      background-position: 120% 50%;
+    }
+  }
+  /* line 56, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  nav.main .new-order-link, .at-a-glance, .ordering .total a, .ordering .checkout a, .pm-td-status p span {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#202f52+0,3e5d89+29,3e5d89+76,279bd1+100 */
+    background: #202f52;
+    /* Old browsers */
+    background: radial-gradient(circle, #2178c3, #145186);
+  }
+
+  /* line 65, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .ordering .total a:hover, .ordering .checkout a:hover, .agreement h3 {
+    background: radial-gradient(circle, #2178c3, #145186);
+  }
+
+  /* line 71, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  * {
+    box-sizing: border-box;
+    font-family: Open Sans;
+    font-weight: 100;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* line 77, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* line 81, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  body {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--main-bg);
+    color: var(--main-text);
+  }
+
+  /* line 89, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  a {
+    color: var(--lit-blue);
+    border-bottom: 1px dotted;
+    text-decoration: none;
+  }
+  /* line 93, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  a:hover {
+    color: var(--blue-dark);
+  }
+  /* line 96, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  a[target="_blank"] {
+    cursor: alias;
+  }
+
+  /* line 100, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  p {
+    margin-top: 0;
+    font-size: .85em;
+  }
+
+  /* line 104, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  sup {
+    font-size: .75em;
+    vertical-align: top;
+    margin-right: .05em;
+  }
+
+  /* line 109, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  h1 {
+    font-size: 2.2em;
+    margin: 0;
+    font-family: roboto;
+  }
+
+  /* line 114, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  h2 {
+    margin-bottom: 0;
+  }
+
+  /* line 117, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  h4 {
+    text-decoration: underline;
+  }
+
+  /* line 120, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  small {
+    font-size: .75em;
+    color: var(--gray);
+  }
+  /* line 123, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  small.bold {
+    font-weight: bold;
+  }
+  /* line 126, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  small.super {
+    font-size: .6em;
+  }
+
+  /* line 130, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  strong {
+    font-weight: 800;
+  }
+
+  /* line 133, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  section {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 2em;
+  }
+  /* line 137, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  section:first-child {
+    padding: 25px 10px;
+  }
+  /* line 140, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  section.half {
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+
+  /* line 145, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .highlight {
+    background: yellow !important;
+    color: black !important;
+  }
+
+  /* navigation */
+  /* line 151, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  nav.main {
+    padding: 1px 20px;
+    position: sticky;
+    top: 0;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    text-align: right;
+    grid-gap: 10px;
+    background: var(--main-bg-lit);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
+    z-index: 10;
+  }
+  /* line 163, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  nav.main a {
+    color: var(--blue-dark);
+    border-bottom: 0;
+    margin: 0 10px;
+    opacity: .65;
+    transition: opacity .25s, border .25s;
+  }
+  /* line 169, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  nav.main a:hover {
+    opacity: 1;
+    border-bottom: 1px dotted;
+  }
+  /* line 173, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  nav.main a.onpage {
+    opacity: 1;
+    border-bottom: 1px dotted;
+    color: var(--black);
+  }
+  /* line 178, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  nav.main a.logo {
+    opacity: 1;
+    border-bottom: 0;
+  }
+  /* line 181, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  nav.main a.logo svg {
+    vertical-align: middle;
+    padding-top: .65em;
+    padding-bottom: .4em;
+    fill: var(--logo-fill);
+  }
+  /* line 189, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  nav.main .new-order-link {
+    color: white;
+    padding: 7px 15px;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: .8em;
+    opacity: 1;
+    transition: transform .25s;
+    transform: scale(1);
+  }
+  /* line 199, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  nav.main .new-order-link:hover {
+    color: white;
+    border-bottom: 0;
+    transform: scale(1.2);
+  }
+  /* line 204, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  nav.main .new-order-link span {
+    padding-right: 10px;
+    font-size: 1.7em;
+    line-height: .1em;
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 3px;
+  }
+
+  /* line 214, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .at-a-glance {
+    padding: 1px 0 0;
+    color: white;
+  }
+  /* line 218, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .at-a-glance:not(.first-nav) {
+    padding: .75em 0;
+  }
+  /* line 221, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .at-a-glance .container {
+    width: 100%;
+    max-width: 1300px;
+    margin: auto;
+    padding: 0 2em;
+  }
+  /* line 225, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .at-a-glance .container.starting {
+    display: flex;
+    align-items: center;
+  }
+  /* line 228, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .at-a-glance .container.starting:not(.starting) > * {
+    width: 100%;
+  }
+  /* line 232, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .at-a-glance .container.starting.starting div:first-child {
+    width: 100%;
+  }
+  /* line 235, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .at-a-glance .container.starting.starting div:last-child {
+    width: auto;
+  }
+  /* line 241, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .at-a-glance .container > section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+    text-align: center;
+    padding: 10px;
+  }
+  /* line 248, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .at-a-glance h1 {
+    font-weight: bold;
+    font-family: Roboto;
+  }
+  /* line 252, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .at-a-glance h5 {
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    color: #CCF0FF;
+  }
+  /* line 258, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .at-a-glance span {
+    font-size: 2.5em;
+    font-weight: 100;
+    font-family: roboto;
+  }
+  /* line 263, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .at-a-glance a {
+    color: white;
+  }
+  /* line 266, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .at-a-glance .back-to-dash {
+    float: right;
+    opacity: .7;
+    text-decoration: none;
+    font-size: .9em;
+    border-radius: 3px;
+    padding: .5em 1em;
+    border: 1px solid white;
+    color: white;
+    transition: opacity .25s;
+    white-space: nowrap;
+  }
+  /* line 277, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .at-a-glance .back-to-dash:hover {
+    color: white;
+    opacity: 1;
+  }
+
+  /* star ratings */
+  /* line 287, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  meter {
+    background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Ctext font-size="100" y="0.9em" stroke-linejoin="round" fill="transparent" stroke="darkorange" stroke-width="4"%3E★%3C/text%3E%3C/svg%3E') 0/auto 100%;
+    height: 1em;
+    width: 5em;
+  }
+
+  /* line 293, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  meter::-webkit-meter-bar {
+    background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Ctext font-size="100" y="0.9em" stroke-linejoin="round" fill="transparent" stroke="darkorange" stroke-width="4"%3E★%3C/text%3E%3C/svg%3E') 0/auto 100%;
+  }
+
+  /* firefox styling for the bar (filled stars) */
+  /* line 297, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  meter:-moz-meter-optimum::-moz-meter-bar,
+  meter:-moz-meter-sub-optimum::-moz-meter-bar,
+  meter:-moz-meter-sub-sub-optimum::-moz-meter-bar {
+    background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Ctext font-size="100" y="0.9em" stroke-linejoin="round" fill="gold" stroke="darkorange" stroke-width="4"%3E★%3C/text%3E%3C/svg%3E') 0/auto 100%;
+  }
+
+  /* webkit styling for the bar (filled stars) */
+  /* line 303, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  meter::-webkit-meter-optimum-value,
+  meter::-webkit-meter-suboptimum-value,
+  meter::-webkit-meter-even-less-good-value {
+    background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Ctext font-size="100" y="0.9em" stroke-linejoin="round" fill="gold" stroke="darkorange" stroke-width="4"%3E★%3C/text%3E%3C/svg%3E') 0/auto 100%;
+  }
+
+  /* tables */
+  /* line 312, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  table tbody tr:hover {
+    background: var(--table-highlight);
+  }
+  /* line 315, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  table tbody tr.selected {
+    background: var(--table-row-select);
+  }
+  /* line 317, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  table tbody tr.selected:hover {
+    background: var(--table-row-select-hover);
+  }
+  /* line 320, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  table tbody tr.selected td, table tbody tr.selected a {
+    font-weight: 400;
+  }
+  /* line 325, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  table thead {
+    color: white;
+  }
+  /* line 329, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  table tr:not(:last-child) td {
+    border-bottom: 1px solid var(--table-border-inner);
+  }
+  /* line 332, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  table th {
+    font-weight: bold;
+    text-align: left;
+    text-transform: uppercase;
+    font-family: roboto;
+    background: #1c67a7;
+  }
+  /* line 338, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  table th.sorted {
+    background: #2077c1;
+    border-left: 1px solid rgba(255, 255, 255, 0.25);
+    border-right: 1px solid rgba(255, 255, 255, 0.25);
+  }
+  /* line 344, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  table th, table td {
+    padding: .65em;
+    font-size: .85em;
+    vertical-align: top;
+  }
+  /* line 349, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  table td {
+    letter-spacing: .01em;
+    color: var(--table-text);
+  }
+  /* line 353, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  table td.status-td {
+    max-width: 175px;
+  }
+  /* line 356, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  table td.anchor-text-td {
+    max-width: 200px;
+  }
+  /* line 359, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  table select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 0.35em 2em 0.35em .5em;
+    min-width: 100%;
+    cursor: pointer;
+    font-size: .9em;
+    font-weight: bold;
+    border: 1px solid var(--gray);
+    background: var(--inputs);
+    color: var(--black);
+    background-image: linear-gradient(45deg, transparent 50%, var(--gray) 50%), linear-gradient(135deg, var(--gray) 50%, transparent 50%), linear-gradient(to right, var(--gray), var(--gray));
+    background-position: calc(100% - 10px) calc(.5em + 5px), calc(100% - 5px) calc(.5em + 5px), calc(100% - 1.7em) 0.35em;
+    background-size: 5px 5px, 5px 5px, 1px 1.5em;
+    background-repeat: no-repeat;
+  }
+  /* line 377, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  table select:hover {
+    border-color: var(--blue-dark);
+    background-image: linear-gradient(45deg, transparent 50%, black 50%), linear-gradient(135deg, black 50%, transparent 50%), linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  }
+
+  /* line 385, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  label {
+    vertical-align: top;
+  }
+  /* line 387, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  label small {
+    display: block;
+  }
+
+  /* line 391, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  input:not([type=submit]) {
+    padding: .35em .5em;
+    color: var(--input-text);
+    font-weight: bold;
+    background: var(--inputs);
+    border: 1px solid var(--input-border);
+    outline: none;
+    transition: border .2s;
+    border-radius: 3px;
+  }
+  /* line 400, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  input:not([type=submit])::placeholder {
+    color: var(--gray);
+    transition: color .2s;
+  }
+  /* line 404, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  input:not([type=submit]):hover, input:not([type=submit]) :focus {
+    border-color: var(--black);
+    color: var(--black);
+    background: transparent;
+  }
+  /* line 408, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  input:not([type=submit]):hover::placeholder, input:not([type=submit]) :focus::placeholder {
+    color: #666;
+  }
+
+  /* line 413, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  select[multiple="multiple"] {
+    resize: both;
+  }
+
+  /* line 416, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  input[type=submit] {
+    border: 0;
+    background: var(--submit-btn);
+    color: white;
+    font-weight: bold;
+    padding: 5px 15px;
+    margin: 5px 0;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+  /* line 425, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  input[type=submit]:hover {
+    background: var(--submit-btn-hover);
+  }
+
+  /* footer */
+  /* line 430, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .app-version {
+    text-align: right;
+    font-size: .65em;
+    padding: 50px 5px;
+    color: #666;
+    position: relative;
+  }
+
+  /* Circle SVGs */
+  /* line 439, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .circular-chart {
+    display: block;
+    margin: 10px auto;
+    max-width: 35%;
+    max-height: 250px;
+  }
+
+  /* line 445, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .circle-bg {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.12);
+    stroke-width: 3.8;
+  }
+
+  /* line 450, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .circle {
+    fill: none;
+    stroke-width: 2.8;
+    stroke-linecap: round;
+    animation: progress 1s ease-out forwards;
+  }
+
+  @keyframes progress {
+    0% {
+      stroke-dasharray: 0 100;
+    }
+  }
+  /* line 461, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .circular-chart.orange .circle {
+    stroke: #ff9f00;
+  }
+
+  /* line 464, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .circular-chart.green .circle {
+    stroke: #2dad78;
+  }
+
+  /* line 467, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .circular-chart.red .circle {
+    stroke: #d04949;
+  }
+
+  /* line 470, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .number, .verbiage {
+    fill: white;
+    font-family: sans-serif;
+    font-size: .45em;
+    text-anchor: middle;
+  }
+
+  /* line 476, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .verbiage {
+    font-size: .22em;
+  }
+
+  /* class based */
+  /* line 482, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .nothing {
+    text-align: center;
+    color: #808080;
+  }
+
+  /* line 486, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .hidden-field {
+    display: none;
+  }
+
+  /* line 489, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .delete_btn {
+    text-decoration: none;
+    border-bottom: 0;
+  }
+
+  /* line 493, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .half {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 5px;
+  }
+
+  /* line 498, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .new-order-div.hidden {
+    display: none;
+  }
+
+  /* line 501, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .tooltip {
+    position: relative;
+    cursor: help;
+  }
+  /* line 504, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .tooltip:after {
+    content: "✽";
+  }
+  /* line 507, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .tooltip .tip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+    bottom: -80%;
+    left: 30%;
+    font-size: 12px;
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: bottom .2s;
+    cursor: initial;
+  }
+  /* line 522, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .tooltip:hover .tip {
+    opacity: 1;
+    height: auto;
+    bottom: -50%;
+  }
+
+  /* line 528, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .categories {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  /* line 531, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .categories input, .categories small {
+    cursor: pointer;
+    user-select: none;
+  }
+  /* line 535, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .categories label {
+    width: 25%;
+    line-height: 1em;
+    margin: 2px 0;
+  }
+  /* line 540, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .categories small {
+    display: inline-block;
+  }
+
+  /* line 544, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .new-link-bg {
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 12;
+  }
+  /* line 552, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .new-link-bg.inactive {
+    display: none;
+  }
+  /* line 555, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .new-link-bg .new-link {
+    z-index: 1;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--table-bg);
+    border: 1px solid var(--gray);
+    padding: 1em 2em;
+  }
+  /* line 565, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .new-link-bg .new-link h3 {
+    margin: 0;
+    font-weight: bold;
+  }
+
+  /* auto complete fields */
+  /* line 572, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .autocomplete {
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    /*circle items*/
+  }
+  /* line 576, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .autocomplete:hover .list-wrapper {
+    height: 190px;
+    overflow-y: scroll;
+    border-bottom: 1px solid #969696;
+  }
+  /* line 581, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .autocomplete ul {
+    padding: 0;
+    margin: 0;
+  }
+  /* line 586, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .autocomplete .selected-items {
+    padding: 0 0;
+    display: block;
+    vertical-align: top;
+    text-align: left;
+  }
+  /* line 591, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .autocomplete .selected-items li {
+    list-style: none;
+    background-color: var(--lit-blue);
+    color: var(--white);
+    border-radius: 4px;
+    padding: 5px 10px;
+    display: inline-block;
+    margin: 4px 2px 0px 2px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    font-size: .8em;
+    transition: font-size .15s, padding .15s;
+    user-select: none;
+  }
+  /* line 605, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .autocomplete .selected-items li.hide {
+    display: none;
+  }
+  /* line 608, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .autocomplete .selected-items li:hover {
+    font-size: .7em;
+    padding: 11px 13.5px 2px;
+  }
+  /* line 612, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .autocomplete .selected-items li:hover:before {
+    top: 3px;
+  }
+  /* line 615, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .autocomplete .selected-items li:before {
+    content: 'Remove';
+    width: 100%;
+    position: absolute;
+    top: -100%;
+    left: 0;
+    color: var(--white);
+    text-align: center;
+    font-weight: bold;
+    font-size: .7em;
+    line-height: 1em;
+    transition: top .15s;
+  }
+  /* line 629, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .autocomplete .selected-items:hover ~ .input-wrapper .clear-search {
+    right: 0;
+  }
+  /* line 633, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .autocomplete .selected-input-wrapper {
+    border: solid 1px var(--input-border);
+    border-radius: 3px;
+  }
+  /* line 636, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .autocomplete .selected-input-wrapper:hover {
+    border-color: #5f5f5f;
+  }
+  /* line 640, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .autocomplete .input-wrapper {
+    position: relative;
+    vertical-align: top;
+    overflow: hidden;
+  }
+  /* line 645, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .autocomplete .input-wrapper input::-webkit-input-placeholder {
+    color: gray;
+  }
+  /* line 646, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .autocomplete .input-wrapper input::-moz-placeholder {
+    color: gray;
+  }
+  /* line 647, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .autocomplete .input-wrapper input::placeholder {
+    color: gray;
+  }
+  /* line 648, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .autocomplete .input-wrapper input:hover ~ .clear-search, .autocomplete .input-wrapper input:focus ~ .clear-search {
+    right: 0;
+  }
+  /* line 653, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .autocomplete .search-input {
+    width: 100%;
+    max-width: 100%;
+    border: none;
+    display: block;
+    padding: 10px 75px 10px 10px;
+    box-sizing: border-box;
+    color: var(--black);
+    font-size: .8em;
+  }
+  /* line 662, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .autocomplete .search-input:hover {
+    background: var(--white);
+    color: var(--gray);
+  }
+  /* line 666, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .autocomplete .search-input:focus {
+    border: none;
+    outline: none;
+    color: var(--gray);
+  }
+  /* line 672, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .autocomplete .clear-search {
+    color: var(--white);
+    position: absolute;
+    top: 0px;
+    right: -100%;
+    background: var(--lit-blue);
+    height: 100%;
+    padding: 10px 5px 0 5px;
+    font-size: .8em;
+    transition: right .2s;
+    cursor: pointer;
+  }
+  /* line 683, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .autocomplete .clear-search:hover {
+    right: 0;
+  }
+  /* line 688, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .autocomplete .list-wrapper {
+    z-index: 9;
+    background: var(--white);
+    overflow: hidden;
+    border-left: 1px solid #969696;
+    border-right: 1px solid #969696;
+    position: absolute;
+    width: 100%;
+    height: 0;
+    transition: height .2s;
+  }
+  /* line 698, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .autocomplete .list-wrapper li {
+    list-style: none;
+    padding: 5px;
+    text-align: left;
+    font-size: .9em;
+    position: relative;
+  }
+  /* line 704, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .autocomplete .list-wrapper li:hover {
+    background-color: var(--blue-dark);
+    color: var(--white);
+    cursor: pointer;
+    border-bottom: 1px solid #969696;
+  }
+  /* line 710, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .autocomplete .list-wrapper li:hover:after {
+    right: 10px;
+  }
+  /* line 713, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .autocomplete .list-wrapper li:after {
+    content: "Click to Select";
+    position: absolute;
+    right: -100%;
+    color: var(--white);
+    font-size: .85em;
+    transition: right .25s;
+  }
+  /* line 721, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .autocomplete .list-wrapper li.hide {
+    display: none;
+  }
+
+  /* alerts */
+  /* line 728, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .flashes {
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%);
+    background: var(--flash-bg);
+    padding: 5px;
+    max-width: 300px;
+    width: 100%;
+    z-index: 100;
+    border-bottom: 1px solid var(--black);
+    border-left: 1px solid var(--black);
+    border-right: 1px solid var(--black);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  /* line 742, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .flashes p {
+    text-align: center;
+    font-size: .9em;
+    font-weight: bold;
+    padding: 8px;
+    margin: 0;
+  }
+  /* line 748, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .flashes p span {
+    font-size: 2em;
+    line-height: 1em;
+    position: absolute;
+    left: 3px;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+  /* line 757, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .flashes[data-animation-style="false"] {
+    top: 0;
+    animation: showFlashFalse .5s linear;
+  }
+  @keyframes showFlashFalse {
+    0% {
+      top: -300px;
+    }
+    100% {
+      top: 0;
+    }
+  }
+  /* line 765, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .flashes[data-animation-style="true"] {
+    top: -300px;
+    animation: showFlashTrue 5s linear;
+  }
+  @keyframes showFlashTrue {
+    0%, 100% {
+      top: -300px;
+    }
+    5%, 95% {
+      top: 0;
+    }
+  }
+  /* line 773, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .flashes .notice {
+    color: var(--flash-notice);
+  }
+  /* line 775, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .flashes .notice span {
+    display: none;
+  }
+  /* line 779, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .flashes .warning {
+    color: var(--flash-warning);
+  }
+  /* line 781, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .flashes .warning span {
+    color: var(--flash-warning);
+  }
+  /* line 785, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .flashes .alert {
+    color: red;
+  }
+  /* line 787, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .flashes .alert span {
+    color: red;
+  }
+
+  /* voting */
+  /* line 795, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .pm-voting a {
+    padding: 0 2px;
+    border: 1px solid #CCC;
+    text-decoration: none;
+    color: #CCC;
+    background: white;
+  }
+  /* line 801, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .pm-voting a:hover {
+    color: white;
+  }
+  /* line 804, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .pm-voting a.down-vote:hover {
+    color: red;
+    border-color: red;
+  }
+  /* line 808, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .pm-voting a.up-vote:hover {
+    color: green;
+    border-color: green;
+  }
+  /* line 812, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .pm-voting a:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+  /* line 816, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .pm-voting a:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+
+  /* sliders */
+  /* line 824, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .price-range-slider, .da-range-slider {
+    position: relative;
+    padding: 15px 0 50px;
+  }
+
+  /* line 828, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .rangeValues {
+    position: absolute;
+    top: -13px;
+    left: 0;
+  }
+
+  /* line 833, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .price-range-slider input[type="range"], .da-range-slider input[type="range"] {
+    pointer-events: none;
+    position: absolute;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    border: none;
+    border-radius: 14px;
+    box-shadow: inset 0 1px 0 0 #cdc6c6, inset 0 -1px 0 0 #d9d4d4;
+    -webkit-box-shadow: inset 0 1px 0 0 #cdc6c6, inset 0 -1px 0 0 #d9d4d4;
+    overflow: hidden;
+    left: 0;
+    width: 250px;
+    outline: none;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+  }
+  /* line 849, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .price-range-slider input[type="range"]:hover, .da-range-slider input[type="range"]:hover {
+    background: none;
+  }
+  /* line 852, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .price-range-slider input[type="range"]::-webkit-slider-thumb, .da-range-slider input[type="range"]::-webkit-slider-thumb {
+    pointer-events: all;
+    position: relative;
+    z-index: 1;
+    outline: 0;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+  }
+  /* line 865, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .price-range-slider input[type="range"]::-moz-range-thumb, .da-range-slider input[type="range"]::-moz-range-thumb {
+    pointer-events: all;
+    position: relative;
+    z-index: 10;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: none;
+    border-radius: 14px;
+    background-image: radial-gradient(to bottom, #dad8da 0, #413F41 100%);
+  }
+  /* line 876, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .price-range-slider input[type="range"]::-ms-thumb, .da-range-slider input[type="range"]::-ms-thumb {
+    pointer-events: all;
+    position: relative;
+    z-index: 10;
+    -ms-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 14px;
+    border: 0;
+    background-image: radial-gradient(to bottom, #dad8da 0, #413F41 100%);
+  }
+  /* line 887, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .price-range-slider input[type="range"]::-moz-range-track, .da-range-slider input[type="range"]::-moz-range-track {
+    position: relative;
+    z-index: -1;
+    background-color: black;
+    border: 0;
+  }
+  /* line 893, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .price-range-slider input[type="range"]:last-of-type::-moz-range-track, .da-range-slider input[type="range"]:last-of-type::-moz-range-track {
+    -moz-appearance: none;
+    background: none transparent;
+    border: 0;
+  }
+  /* line 898, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .price-range-slider input[type="range"]::-moz-focus-outer, .da-range-slider input[type="range"]::-moz-focus-outer {
+    border: 0;
+  }
+
+  /* before ordering */
+  /* link type selector */
+  /* line 905, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .link-type-selector {
+    position: absolute;
+    top: -120%;
+    left: 50%;
+    transform: translate(-50%);
+    min-width: 200px;
+    padding: 25px;
+    border: 1px solid #CCC;
+    border-radius: 4px;
+    background: white;
+    transition: top .5s;
+    box-shadow: 1px 1px 55px rgba(0, 0, 0, 0.2);
+  }
+  /* line 917, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .link-type-selector.open {
+    top: 0;
+  }
+  /* line 920, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .link-type-selector a {
+    text-align: center;
+  }
+  /* line 923, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .link-type-selector .half {
+    grid-gap: 15px;
+  }
+  /* line 925, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .link-type-selector .half a {
+    padding: 5px;
+    border: 1px solid #CCC;
+    transition: color .25s, background .25s;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  /* line 931, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .link-type-selector .half a:hover {
+    background: var(--blue-dark);
+    color: white;
+  }
+
+  /* profile page */
+  /* line 941, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .user-settings input {
+    padding: 5px;
+  }
+
+  /* ordering */
+  /* line 947, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .ordering-list-table {
+    width: 100%;
+    background: var(--table-bg);
+    border-radius: 5px;
+    box-shadow: 5px 7px 12px rgba(14, 14, 14, 0.075);
+  }
+  /* line 953, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .ordering-list-table tr:first-child {
+    border-bottom-left-radius: 5px;
+  }
+  /* line 956, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .ordering-list-table tr:last-child {
+    border-bottom-right-radius: 5px;
+  }
+  /* line 961, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .ordering-list-table th:first-child {
+    border-top-left-radius: 5px;
+  }
+  /* line 964, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .ordering-list-table th:last-child {
+    border-top-right-radius: 5px;
+  }
+  /* line 967, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .ordering-list-table th a {
+    text-decoration: none;
+    font-size: .8em;
+    margin-left: 10px;
+    color: white;
+    border-bottom: 0;
+    float: right;
+  }
+  /* line 976, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .ordering-list-table input[type=checkbox] {
+    cursor: pointer;
+  }
+  /* line 979, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .ordering-list-table .report-link {
+    text-decoration: none;
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+    filter: grayscale(1);
+    transition: opacity .5s, filter .5s;
+    border-bottom: 0;
+  }
+  /* line 987, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .ordering-list-table .report-link:hover {
+    filter: grayscale(0);
+  }
+  /* line 992, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .ordering-list-table td a[target="_blank"] {
+    position: relative;
+    padding-left: 0;
+    transition: padding .1s;
+    font-weight: 600;
+  }
+  /* line 997, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .ordering-list-table td a[target="_blank"]:visited, .ordering-list-table td a[target="_blank"]:active, .ordering-list-table td a[target="_blank"]:focus, .ordering-list-table td a[target="_blank"]:focus-within {
+    padding-left: 15px;
+  }
+  /* line 999, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .ordering-list-table td a[target="_blank"]:visited:before, .ordering-list-table td a[target="_blank"]:active:before, .ordering-list-table td a[target="_blank"]:focus:before, .ordering-list-table td a[target="_blank"]:focus-within:before {
+    height: 0;
+    width: 0;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 10px solid #238ec5;
+    transform: translate(0, -40%);
+  }
+  /* line 1013, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .ordering-list-table tr:hover .report-link {
+    opacity: 1;
+    width: 100%;
+  }
+
+  /* line 1018, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .link-count {
+    color: var(--black);
+    border: 1px solid var(--gray);
+    display: inline-block;
+    text-align: center;
+    margin-left: 1em;
+    padding: .1em .5em;
+    border-radius: 3px;
+    font-size: .65em;
+    vertical-align: top;
+    position: relative;
+    cursor: default;
+  }
+  /* line 1030, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .link-count span {
+    display: none;
+    text-align: left;
+    border-radius: 3px;
+    padding: 1em 1.5em;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+    background: var(--table-tooltip);
+    color: var(--black);
+    border: 1px solid #555;
+    font-size: 1.2em;
+    position: absolute;
+    z-index: 4;
+    white-space: nowrap;
+  }
+  /* line 1044, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .link-count:hover span {
+    display: block;
+  }
+
+  /* line 1049, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  tr:not(.selected) .order-select span {
+    display: none;
+  }
+
+  /* line 1051, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .report-modal {
+    opacity: 0;
+    transition: opacity .5s;
+  }
+  /* line 1054, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .report-modal:not(.open) .modal-body {
+    top: 20%;
+    transition: top .5s;
+  }
+  /* line 1058, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .report-modal.open {
+    opacity: 1;
+  }
+  /* line 1060, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .report-modal.open .modal-body {
+    position: fixed;
+    top: 50%;
+    opacity: 1;
+    width: 100%;
+    max-width: 450px;
+    left: 50%;
+    background: var(--white);
+    border: 1px solid var(--gray);
+    padding: 10px;
+    transform: translate(-50%, -50%);
+    z-index: 11;
+  }
+  /* line 1072, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .report-modal.open .modal-body h3 {
+    margin: 0;
+    border-bottom: 1px solid var(--gray);
+  }
+  /* line 1076, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .report-modal.open .modal-body p {
+    font-size: 1em;
+  }
+  /* line 1079, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .report-modal.open .modal-body input {
+    vertical-align: top;
+  }
+  /* line 1082, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .report-modal.open .modal-body label {
+    display: block;
+    cursor: pointer;
+    font-size: .8em;
+  }
+  /* line 1087, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .report-modal.open .modal-body .labels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  /* line 1092, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .report-modal.open .modal-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+  }
+
+  /* line 1103, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .link-cats {
+    max-width: 250px;
+    overflow: auto;
+    white-space: nowrap;
+  }
+  /* line 1107, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .link-cats span {
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: .75em;
+    margin: 2px;
+    cursor: default;
+    display: -webkit-inline-box;
+    color: var(--categories);
+    border: 1px solid;
+  }
+  /* line 1117, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .link-cats.smaller span {
+    font-size: .5em;
+  }
+
+  /* line 1121, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .link-urls {
+    max-width: 300px;
+  }
+  /* line 1123, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .link-urls a {
+    max-width: 90%;
+    overflow: auto;
+    white-space: nowrap;
+    display: inline-block;
+  }
+
+  /* line 1131, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .not-indexed {
+    background: white;
+    padding: 2px 3px;
+    border: 1px solid #049cb5;
+    color: #049cb5;
+    border-radius: 5px;
+    font-size: 7.5px;
+    margin: 0 1px;
+    cursor: default;
+    font-weight: bold;
+  }
+
+  /* line 1142, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .ordering {
+    position: fixed;
+    bottom: -150px;
+    transition: bottom .25s;
+    right: 5px;
+    background: var(--main-bg-lit);
+    z-index: 99;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+  }
+  /* line 1152, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .ordering.show-checkout {
+    bottom: 0;
+  }
+  /* line 1155, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .ordering .order-list {
+    height: 0;
+    max-height: 375px;
+    overflow: auto;
+    background: var(--main-bg-lit);
+    transition: height .15s linear;
+  }
+  /* line 1161, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .ordering .order-list.show {
+    height: 375px;
+  }
+  /* line 1164, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .ordering .order-list p {
+    padding: 5px 10px;
+    margin: 0;
+    border-bottom: 1px solid #CCC;
+  }
+  /* line 1168, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .ordering .order-list p:hover {
+    background: var(--table-highlight);
+  }
+  /* line 1172, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .ordering .order-list small {
+    display: block;
+  }
+  /* line 1176, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .ordering .order-data-links {
+    text-align: center;
+    margin-bottom: 0;
+  }
+  /* line 1180, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .ordering .show-more {
+    display: block;
+    text-align: center;
+    background: #3d5c89;
+    color: white;
+    padding: 2px 0;
+    margin-bottom: .25em;
+    font-size: .8em;
+  }
+  /* line 1188, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .ordering .show-more:hover {
+    background: #17396d;
+  }
+  /* line 1192, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .ordering .total {
+    font-weight: 400;
+    font-size: 1.25em;
+  }
+  /* line 1196, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .ordering .total, .ordering .checkout {
+    transition: width .3s;
+    min-width: 200px;
+    text-align: center;
+    color: var(--black);
+    font-weight: 400;
+  }
+  /* line 1203, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .ordering .total.hide a, .ordering .checkout.hide a {
+    display: none;
+  }
+  /* line 1207, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .ordering .total .order-data, .ordering .checkout .order-data {
+    display: inline-block;
+  }
+  /* line 1210, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .ordering .total a, .ordering .checkout a {
+    color: white;
+    border-bottom: 0;
+    text-decoration: none;
+    border-radius: 3px;
+    font-weight: bold;
+    display: inline-block;
+    padding: .5em 2em;
+    margin: 5px 0;
+    margin-bottom: .75em;
+  }
+  /* line 1221, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .ordering .total a:hover, .ordering .checkout a:hover {
+    color: white;
+  }
+
+  /* line 1228, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .rejected-order-status, .rejected_updated-order-status, .live_failed-order-status {
+    background: rgba(199, 48, 23, 0.2) !important;
+  }
+
+  /* line 1231, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .accepted-order-status, .live_confirmed_pm-order-status, .request_post-order-status {
+    background: rgba(245, 255, 245, 0.1) !important;
+  }
+
+  /* line 1234, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .queued-order-status {
+    background: rgba(99, 99, 255, 0.2) !important;
+  }
+
+  /* line 1237, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .completed_paid-order-status {
+    background: rgba(255, 214, 0, 0.2) !important;
+  }
+
+  /* line 1240, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .cancelled-order-status {
+    background: rgba(0, 0, 0, 0.2) !important;
+    text-decoration: line-through;
+  }
+
+  /* category selection */
+  /* line 1246, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .category-selection {
+    position: absolute;
+    top: -150%;
+    left: 50%;
+    transform: translate(-50%);
+    width: 100%;
+    max-width: 640px;
+    padding: 25px;
+    border: 1px solid #CCC;
+    border-radius: 4px;
+    background: white;
+    transition: top .5s;
+    text-align: center;
+    z-index: 9;
+    box-shadow: 1px 1px 55px rgba(0, 0, 0, 0.2);
+  }
+  /* line 1261, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .category-selection h2 {
+    text-align: left;
+  }
+  /* line 1264, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .category-selection h3 {
+    text-align: left;
+    margin-top: 0;
+  }
+  /* line 1268, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .category-selection.open {
+    top: 0;
+  }
+  /* line 1277, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .category-selection label {
+    text-align: left;
+    cursor: context-menu;
+    font-size: .8em;
+  }
+  /* line 1281, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .category-selection label input {
+    margin-right: 5px;
+  }
+  /* line 1285, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .category-selection .new-cats {
+    text-align: center;
+    width: 150px;
+    border: 0;
+    color: white;
+    padding: 5px 10px;
+    margin: 5px auto;
+    display: block;
+    cursor: pointer;
+    text-decoration: none;
+    background: var(--blue-dark);
+  }
+
+  /* line 1301, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .keyword-search {
+    position: relative;
+    overflow: hidden;
+  }
+  /* line 1304, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .keyword-search input {
+    width: 100%;
+    padding: 10px;
+    font-size: .8em;
+    color: var(--black);
+    border: 1px solid var(--input-border);
+  }
+  /* line 1310, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .keyword-search input:hover {
+    color: var(--black);
+    background: transparent;
+  }
+  /* line 1313, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .keyword-search input:hover::placeholder {
+    color: #666;
+  }
+
+  /* new search bar */
+  /* line 1320, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .search-bar {
+    background: var(--main-bg-lit);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.125);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+  }
+  /* line 1328, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .search-bar > * {
+    padding: .75em 1.5em;
+    align-items: center;
+    display: flex;
+  }
+  /* line 1332, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .search-bar > *:not(:last-child) {
+    border-right: 1px solid var(--lit-gray);
+  }
+  /* line 1336, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .search-bar strong {
+    margin-right: .25em;
+    font-weight: 400;
+    color: var(--gray);
+  }
+  /* line 1341, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .search-bar .autocomplete {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  /* line 1345, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .search-bar .keyword-search {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  /* line 1349, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .search-bar input {
+    padding: .5em;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+  /* line 1353, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .search-bar input:hover {
+    border-color: var(--input-border);
+  }
+  /* line 1357, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .search-bar .new-cats {
+    text-decoration: none;
+    padding: .5em 2em;
+    border-radius: 3px;
+    font-size: .8em;
+    font-weight: 600;
+    border: 1px solid;
+  }
+
+  /* dashboards */
+  /* line 1368, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .order-table {
+    width: 100%;
+    background: var(--table-bg);
+    border-radius: 5px;
+    border: 1px solid var(--table-border-outer);
+    box-shadow: 5px 7px 8px rgba(0, 0, 0, 0.125);
+  }
+  /* line 1374, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .order-table .rejected {
+    color: red;
+  }
+  /* line 1376, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .order-table .rejected select {
+    border-color: #de0505;
+    color: white;
+    font-weight: 800;
+    background-color: #c12;
+    background-image: linear-gradient(45deg, transparent 50%, white 50%), linear-gradient(135deg, white 50%, transparent 50%), linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
+  }
+  /* line 1384, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .order-table input:not([type=submit]):not([type=checkbox]):not([type=range]) {
+    width: 100%;
+    width: 250px;
+  }
+  /* line 1388, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .order-table input:not([type=range]), .order-table select {
+    margin-bottom: 5px;
+  }
+  /* line 1391, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .order-table .hide-date {
+    display: none;
+  }
+  /* line 1394, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .order-table tr:hover .hide-date {
+    display: inline-block;
+    padding-left: 15px;
+  }
+  /* line 1398, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .order-table .not-live {
+    padding: 1px 4px;
+    background: #c10000;
+    color: white;
+    font-weight: bold;
+    font-size: .6em;
+  }
+  /* line 1405, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .order-table .delete-link {
+    text-decoration: none;
+    color: red;
+    padding: 1px 3px;
+    visibility: hidden;
+  }
+  /* line 1411, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .order-table tr:hover .delete-link {
+    visibility: visible;
+  }
+  /* line 1414, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .order-table .hide {
+    opacity: 0;
+    transition: opacity .25s;
+  }
+  /* line 1418, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .order-table tr:hover .hide {
+    opacity: 1;
+  }
+  /* line 1421, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .order-table:not(.order-completion):not(.admin) select {
+    background: #289668;
+    color: white;
+    border: 1px solid #289668;
+    background-image: linear-gradient(45deg, transparent 50%, white 50%), linear-gradient(135deg, white 50%, transparent 50%), linear-gradient(to right, var(--gray), var(--gray));
+    background-position: calc(100% - 10px) calc(.5em + 5px), calc(100% - 5px) calc(.5em + 5px), calc(100% - 1.7em) 0.35em;
+    background-size: 5px 5px, 5px 5px, 1px 1.5em;
+    background-repeat: no-repeat;
+  }
+
+  /* line 1433, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .copied {
+    position: relative;
+    visibility: hidden;
+  }
+  /* line 1436, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .copied:before {
+    visibility: visible;
+    position: absolute;
+    content: "Copied!";
+  }
+
+  /* line 1443, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .ordered-tr td {
+    text-align: center;
+    color: green;
+    font-weight: bold;
+  }
+
+  /* line 1449, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .reject-reason {
+    display: inline-block;
+    width: 72%;
+    min-width: 150px;
+    vertical-align: middle;
+  }
+  /* line 1454, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .reject-reason.hidden-field {
+    display: none;
+  }
+
+  /* line 1458, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .pm-td-status {
+    font-size: 0.75em;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+  /* line 1462, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .pm-td-status p {
+    width: 100px;
+    max-width: 100%;
+    height: 10px;
+    border-radius: 10px;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    display: inline-block;
+    color: white;
+    background: var(--gray);
+    overflow: hidden;
+  }
+  /* line 1474, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .pm-td-status p span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    content: "";
+    height: 100%;
+    border-radius: 5px;
+    animation: animateWidth 1.5s ease-in-out;
+  }
+  @keyframes animateWidth {
+    0% {
+      width: 0;
+    }
+  }
+  /* line 1490, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .price-td {
+    position: relative;
+    text-align: right;
+  }
+  /* line 1493, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .price-td .discount {
+    color: red;
+    text-align: right;
+  }
+
+  /* line 1498, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .price-change-modal {
+    background: #4e4e4e;
+    text-align: left;
+    color: white;
+    border-radius: 5px;
+    padding: 0 8px;
+    position: absolute;
+    bottom: 100%;
+    transform: translate(-50%);
+    display: inline-block;
+    height: 0;
+    opacity: 0;
+    transition: height .25s, opacity .25s, bottom .25s;
+    z-index: -1;
+  }
+  /* line 1512, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .price-change-modal.open-modal {
+    opacity: 1;
+    height: auto;
+    z-index: 1;
+    bottom: 90%;
+  }
+  /* line 1518, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .price-change-modal small {
+    color: white;
+    font-weight: bold;
+  }
+
+  /* admin */
+  /* line 1525, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  section > .admin-menu {
+    padding: 0 10px 25px;
+  }
+
+  /* line 1528, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .admin-menu {
+    text-align: center;
+    padding-bottom: 25px;
+  }
+  /* line 1531, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .admin-menu a {
+    margin: 0 10px;
+    text-decoration: none;
+  }
+  /* line 1534, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .admin-menu a.onpage, .admin-menu a:hover {
+    color: var(--black);
+  }
+
+  /* line 1539, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .admin-total td {
+    background: var(--table-bg);
+    color: var(--black);
+  }
+
+  /* charts & graphs */
+  /* line 1544, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .slice text {
+    font-size: 12px;
+  }
+
+  /* line 1548, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .stats-section .half .half > div:last-child {
+    text-align: center;
+  }
+
+  /***** Pages *****/
+  /* agreement page */
+  /* line 1554, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .agreement {
+    font-size: 1.2em;
+    max-width: 1000px;
+  }
+  /* line 1557, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .agreement small {
+    font-size: .55em;
+  }
+  /* line 1560, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .agreement h3 {
+    font-weight: bold;
+    margin-top: 35px;
+    display: inline-block;
+    background-clip: text;
+    -webkit-background-clip: text;
+    text-fill-color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+  /* line 1570, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .agreement li {
+    font-size: .8em;
+  }
+  /* line 1573, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .agreement form {
+    text-align: center;
+    margin-top: 50px;
+  }
+  /* line 1577, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .agreement button {
+    cursor: pointer;
+    background: var(--lit-blue);
+    color: white;
+    border: 0;
+    font-size: .8em;
+    border-radius: 5px;
+    padding: 5px 20px;
+  }
+
+  /* login */
+  /* line 1592, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .login {
+    width: 100%;
+    height: calc(100% - 50);
+  }
+  /* line 1595, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .login > div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 25px;
+    width: 100%;
+    max-width: 300px;
+    color: white;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid #CCC;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+  }
+  /* line 1608, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .login h1 {
+    text-align: center;
+  }
+  /* line 1611, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .login a {
+    color: white;
+  }
+  /* line 1614, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .login input:not([type=checkbox]) {
+    padding: 5px;
+    width: 100%;
+  }
+
+  /* line 1619, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .forgot {
+    width: 100%;
+    height: calc(100% - 50);
+  }
+  /* line 1622, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .forgot > div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 25px;
+    width: 100%;
+    max-width: 300px;
+    background: white;
+    border: 1px solid #CCC;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+  }
+  /* line 1634, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .forgot h1 {
+    text-align: center;
+  }
+  /* line 1637, /Users/niftymarketing/niftylinks/app/assets/stylesheets/home.scss */
+  .forgot input:not([type=checkbox]) {
+    padding: 5px;
+    width: 100%;
+  }
+  th:first-child {
+    border-radius: 5px 0 0 0;
+}
+th:last-child {
+    border-radius: 0 5px 0 0;
+}
+form {margin:0;}
+
+h1 {cursor:pointer;user-select: none;padding:0;padding-bottom:0.25em;margin:0;}
+p {margin:0;margin-bottom:0.25em;}
+.tableCount {background: #c00;font-size: 0.4em;color: white;vertical-align: super;padding: .15em 0.6em;border-radius: 15px;}
+
+
+.submit-link-bg, .submit-content-bg, .cancel-order-bg  {
+  background: rgba(0, 0, 0, .5);
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  z-index: 12;
+  backdrop-filter: blur(3px);
+}
+
+.submit-link-bg.inactive, .submit-content-bg.inactive, .cancel-order-bg.inactive  {
+  display: none
+}
+
+.submit-link-bg .new-link, .submit-content-bg .new-link, .cancel-order-bg .new-link {
+z-index: 1;
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background: var(--table-bg);
+border: 1px solid var(--gray);
+padding: 2em;
+border-radius: 5px;
+box-shadow: 0 0 15px rgba(0,0,0,0.5);
+width:100%;
+max-width:720px;
+}
+
+h4 {text-decoration: none;font-weight:600;}
+      </style>
+  </head>
+  <body data-gr-c-s-loaded="true">
+
+      <nav class="main">
+        <div>
+          <a href="/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="70" height="56" viewBox="0 0 722 405">
+              <defs>
+                <style>
+                  .cls-1 {fill-rule: evenodd;}
+                  #N{animation:N 1.5s linear;transform-origin:200px;}
+                  #I, #I-dot{animation:I 1s linear;transform-origin:200px;}
+                  #F{animation:F 1s linear;}
+                  #T{animation:T 1.5s linear;transform-origin:200px;}
+                  #Y{animation:Y 2s linear;transform-origin:1000px;}
+                  @keyframes N{from{transform:rotateX(90deg)}}
+                  @keyframes I{from{transform:rotateY(90deg)}}
+                  @keyframes F{from{transform:rotateX(180deg)}}
+                  @keyframes T{from{transform:rotateX(260deg)}}
+                  @keyframes Y{from{transform:rotateY(90deg)}}
+                </style>
+              </defs>
+              <path id="N" class="cls-1" d="M7,294H54V201s4.281-43,46-43,46,37,46,37l1,99h48V192s-10.079-83-95-83S7,196,7,196v98Z"></path>
+              <rect id="I" class="cls-2" x="218" y="110" width="48" height="184"></rect>
+              <path id="I-dot" class="cls-1" d="M213,70c0,13.174,11.808,29,29,29s30-11.89,30-30-17.367-29-29-29C226.355,40,213,54.432,213,70Z"></path>
+              <path id="F" class="cls-1" d="M290,294h48V224h46V182H338V106s1.027-17.027,16-32,30-13,30-13V13s-35.8-3.2-66,27-28,64-28,64V294Z"></path>
+              <path id="T" class="cls-1" d="M503,294s-34.54,5.46-69-29c-24.855-24.855-26-56-26-56V13h48l1,97h46v42H456v53s4.925,20.305,16,30c13.736,12.025,31,10,31,10v49Z"></path>
+              <path id="Y" class="cls-1" d="M525,110h48v99s5.834,43,46,43,47-44,47-44l-1-97h49l1,195s-4.67,28.667-21,50c-17.923,23.414-54,33-54,33l-20,1V341s26.938-2.753,38-19c9.678-14.215,7-34,7-34s-15.5,12-44,12-54.3-13.3-73-32-22-52-22-52Z"></path>
+            </svg>
+          </a>
+        </div>
+          <div>
+              <a class="onpage" href="/">Dashboard</a>
+              <a class="" href="/links">Links</a>
+              <a class="" href="/archived">Completed</a>
+              <a class="" href="/user_guide">Guide</a>
+              <a class="" href="/profile">Settings</a>
+          </div>
+      </nav>
+
+    <div class="at-a-glance first-nav"></div>
+
+    		<div class="at-a-glance">
+  <div class="container">
+    <h1>Dashboard</h1>
+  </div>
+</div>
+
+<section>
+  <h1 onclick="toggleAccordion(lateOrders)" style="color:#c00;text-transform:uppercase;">Past-Due Orders <span class="tableCount">1</span></h1>
+  <p style="color:#c00;">Orders must be completed within 8 weeks of acceptance. Please complete these orders immediately. Orders in this section will be canceled after 7 days of non-action and a strike will be applied to your account.</p>
+  <table cellspacing="0" class="order-table" id="lateOrders">
+    <thead>
+      <tr><th>Order Info</th>
+      <th>Link URL</th>
+      <th>Destination URL</th>
+      <th>Anchor Text</th>
+      <th>Content</th>
+      <th>Action</th>
+    </tr></thead>
+      <tbody><tr data-link="47">
+        <td width="100"><small><em>DmZLXC3gUw</em><br><strong>Jul 12, 2019</strong></small></td>
+        <td width="200">
+          https://coolwebsite.com
+        </td>
+        <td>https://socool.com</td>
+        <td class="anchor-text-td">will anyone stop me from ordering links</td>
+        <td width="100">
+            <a target="_blank" href="https://dinosarcontent.com/content">View Content</a>
+        </td>
+        <td width="125">
+          <a href="#" style="display:inline-block;padding:0.5em 1em;border-radius:3px;background:#289668;color:white;border:none;" onclick="event.preventDefault();document.querySelector('.submit-link-bg').classList.toggle('inactive');">Submit Link</a>
+	       </td>
+      </tr>
+  </tbody></table>
+  </section>
+
+  <section>
+    <h1 onclick="toggleAccordion(deadTable)" style="color:#c00;text-transform:uppercase;">Dead Links <span class="tableCount">1</span></h1>
+    <p style="color:#c00;">These links no longer exist. Please replace or issue a refund.</p>
+    <table cellspacing="0" class="order-table" id="deadTable">
+      <thead>
+        <tr><th>Order Info</th>
+        <th>Published Link</th>
+        <th>Publish Date</th>
+        <th>Dead Date</th>
+        <th>Original Content</th>
+
+        <th>Action</th>
+      </tr></thead>
+        <tbody><tr data-link="47">
+          <td width="100"><small><em>DmZLXC3gUw</em><br><strong>Jul 12, 2019</strong></small></td>
+          <td width="200">
+            https://coolwebsite.com
+          </td>
+          <td>July 12, 2020</td>
+          <td class="anchor-text-td">August 1, 2020</td>
+          <td width="100">
+              <a target="_blank" href="https://dinosarcontent.com/content">View Content</a>
+          </td>
+
+          <td width="50">
+
+              <form action="/orders/47" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="KfG02KZJaqZ5Jofo6U9tBL0IFBJ3AOjgM7AzZM9dVOlEEM2q7GngG/oCVoT8H3j1ljzN17Scn5D66rwfml4iHw==">
+                <select onchange="statusUpdate(this, this.options[0].value)" name="order[order_status]" id="order_order_status"><option selected="selected" value="request_post">Enter Replacement Link</option>
+    <option value="live">Link Is Live</option>
+    <option value="rejected">Rejected</option></select>
+                <textarea placeholder="Reason for rejection" class="reject-reason hidden-field" name="order[rejected_reason]" id="order_rejected_reason"></textarea>
+                <input type="submit" name="commit" value="Submit" class="hidden-field" data-disable-with="Submit">
+    </form>						</td>
+        </tr>
+    </tbody></table>
+    </section>
+
+  <section>
+
+
+      <h1 onclick="toggleAccordion(publishTable)">Ready To Publish <span class="tableCount">1</span></h1>
+			<table cellspacing="0" class="order-table" id="publishTable">
+				<thead>
+					<tr><th>Order Info</th>
+					<th>Link URL</th>
+					<th>Destination URL</th>
+					<th>Anchor Text</th>
+					<th>Content</th>
+					<th>Action</th>
+				</tr></thead>
+					<tbody><tr data-link="47">
+						<td width="100"><small><em>DmZLXC3gUw</em><br><strong>Jul 12, 2019</strong></small></td>
+						<td width="200">
+							https://coolwebsite.com
+						</td>
+						<td>https://socool.com</td>
+						<td class="anchor-text-td">will anyone stop me from ordering links</td>
+						<td width="100">
+								<a target="_blank" href="https://dinosarcontent.com/content">View Content</a>
+						</td>
+						<td width="50">
+
+								<form action="/orders/47" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="KfG02KZJaqZ5Jofo6U9tBL0IFBJ3AOjgM7AzZM9dVOlEEM2q7GngG/oCVoT8H3j1ljzN17Scn5D66rwfml4iHw==">
+								  <select onchange="statusUpdate(this, this.options[0].value)" name="order[order_status]" id="order_order_status"><option selected="selected" value="request_post">Submit Link</option>
+<option value="live">Link Is Live</option>
+<option value="rejected">Rejected</option></select>
+								  <textarea placeholder="Reason for rejection" class="reject-reason hidden-field" name="order[rejected_reason]" id="order_rejected_reason"></textarea>
+								  <input type="submit" name="commit" value="Submit" class="hidden-field" data-disable-with="Submit">
+</form>						</td>
+					</tr>
+			</tbody></table>
+			</section>
+
+      <section>
+  			<h1>Need Content</h1>
+  			<table cellspacing="0" class="order-table">
+  				<thead>
+  					<tr><th>Order Info</th>
+  					<th>Link URL</th>
+  					<th>Destination URL</th>
+  					<th>Anchor Text</th>
+  					<th>Action</th>
+  				</tr></thead>
+  					<tbody><tr data-link="45">
+  						<td width="100"><small><em>tnnL7saz-w</em><br><strong>Jul 12, 2019</strong></small></td>
+  						<td width="200">
+  							https://coolwebsite.com
+  						</td>
+  						<td>https://thecoolest.com</td>
+  						<td class="anchor-text-td">this is so cool</td>
+  						<td width="150">
+  							<a href="#" style="display:inline-block;padding:0.5em 1em;border-radius:3px;background:#289668;color:white;border:none;" onclick="event.preventDefault();document.querySelector('.submit-content-bg').classList.toggle('inactive');">Submit Content</a>
+              </td>
+  					</tr>
+  			</tbody></table>
+  </section>
+
+<section>
+		<h1>New Orders</h1>
+			<p>You <strong>must</strong> accept or reject orders <em>before</em> working on the order. Orders will be cancelled automatically after 7 days of inaction. Do not accept orders if you cannot complete them.</p>
+			<table cellspacing="0" class="order-table">
+				<thead>
+					<tr><th>Order Info</th>
+					<th>Link URL</th>
+					<th>Destination URL</th>
+					<th>Anchor Text</th>
+					<th>Content</th>
+					<th>Action</th>
+				</tr></thead>
+					<tbody><tr data-link="46">
+						<td width="100"><small><em>YcHKpl0o3A</em><br><strong>Jul 12, 2019</strong></small></td>
+						<td width="200">
+							https://coolwebsite.com
+						</td>
+						<td>https://coolme.com</td>
+						<td class="anchor-text-td">cool memes</td>
+						<td>
+								Need to write
+						</td>
+						<td width="50" class="status-td">
+							<form action="/orders/46" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="KfG02KZJaqZ5Jofo6U9tBL0IFBJ3AOjgM7AzZM9dVOlEEM2q7GngG/oCVoT8H3j1ljzN17Scn5D66rwfml4iHw==">
+							  <select onchange="statusUpdate(this, this.options[0].value)" name="order[order_status]" id="order_order_status"><option selected="selected" value="queued">Accept or Reject</option>
+<option value="accepted">Accept</option>
+<option value="rejected">Reject</option></select>
+							  <textarea placeholder="Reason for rejection" class="reject-reason hidden-field" name="order[rejected_reason]" id="order_rejected_reason"></textarea>
+							  <input type="submit" name="commit" value="Submit" class="hidden-field" data-disable-with="Submit">
+</form>						</td>
+					</tr>
+			</tbody></table>
+
+			</section>
+
+
+
+
+      <div class="app-version">
+        <section>
+          <span style="float:left;text-align:left;">Something inaccurate?<br>Email our <a href="mailto:link@niftymarketing.com">support team</a>.</span>
+          PayPal: amador@niftymarketing.com<br>
+          Logged in as
+          <a href="/profile">amador@niftymarketing.com</a>
+          | <a data-confirm="Are you sure you want to logout?" rel="nofollow" data-method="delete" href="/users/sign_out">Logout</a><br>
+          App v1.3.2.12
+          <form style="display:inline-block;" action="/home/save_profile?id=7&amp;user%5Bdarkmode%5D=true&amp;user%5Bid%5D=7" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="KfG02KZJaqZ5Jofo6U9tBL0IFBJ3AOjgM7AzZM9dVOlEEM2q7GngG/oCVoT8H3j1ljzN17Scn5D66rwfml4iHw==">
+            <a href="/profile/darkmode" title="Change dark mode setting" style="border-bottom:0;" onclick="event.preventDefault();this.parentNode.submit()">☾</a>
+</form>        </section>
+      </div>
+
+
+      <div class="submit-link-bg inactive">
+        <div class="new-link">
+          <a href="/close-new-link" style="float:right;" onclick="event.preventDefault();document.querySelector('.submit-link-bg').classList.toggle('inactive');">Close</a>
+          <h3 style="font-weight: 600;
+          color: var(--lit-blue);
+          font-size: 1.5em;
+          border-bottom: 2px solid;
+          padding-bottom: .25em;margin-top:0;">Submit Live Link</h3>
+
+          <label for="urlField" style="margin-bottom:0.5em;display:block;">Live Link URL</label>
+          <input type="text" id="urlField" placeholder="Paste URL here" style="width:100%;display:block;">
+          <p style="font-style:italic;color:rgba(0,0,0,0.75);margin-top:0.25em;">The pasted link must match the ordered domain and return a 200 status.</p>
+
+
+        <div class="actions">
+          <input value="true" required="required" type="hidden" name="link[verified]" id="link_verified">
+          <input value="0" required="required" type="hidden" name="link[domain_authority]" id="link_domain_authority">
+          <input type="submit" name="commit" value="Submit for Approval" data-disable-with="Working..." style="width: 100%;padding: 1em;background: #2276c0;margin-top: 1em;">  </div>
+          <input onclick="event.preventDefault();document.querySelector('.submit-link-bg').classList.toggle('inactive');document.querySelector('.cancel-order-bg').classList.toggle('inactive');" type="submit" name="commit" value="Reject Link" data-disable-with="Working..." style="width: 100%;padding: .5em;border: 1px solid #c00;background:transparent;color:#c00;margin-top: .25em;">  </div>
+
+      </form>
+        </div>
+      </div>
+
+      <div class="submit-content-bg inactive">
+        <div class="new-link">
+          <a href="/close-new-link" style="float:right;" onclick="event.preventDefault();document.querySelector('.submit-content-bg').classList.toggle('inactive');">Close</a>
+          <h3 style="font-weight: 600;
+          color: var(--lit-blue);
+          font-size: 1.5em;
+          border-bottom: 2px solid;
+          padding-bottom: .25em;margin-top:0;">Submit Content For Approval</h3>
+
+          <label for="urlField" style="margin-bottom:0.5em;display:block;">Google Docs Link</label>
+          <input type="text" id="urlField" placeholder="Paste URL here" style="width:100%;display:block;">
+          <p style="font-style:italic;color:rgba(0,0,0,0.75);margin-top:0.25em;">Please make sure Google Doc is shared with PM.</p>
+
+
+        <div class="actions">
+          <input value="true" required="required" type="hidden" name="link[verified]" id="link_verified">
+          <input value="0" required="required" type="hidden" name="link[domain_authority]" id="link_domain_authority">
+          <input type="submit" name="commit" value="Submit for Approval" data-disable-with="Working..." style="width: 100%;padding: 1em;background: #2276c0;margin-top: 1em;">  </div>
+          <input type="submit" name="commit" onclick="event.preventDefault();document.querySelector('.submit-link-bg').classList.toggle('inactive');document.querySelector('.cancel-order-bg').classList.toggle('inactive');" value="Reject Link" data-disable-with="Working..." style="width: 100%;padding: .5em;border: 1px solid #c00;background:transparent;color:#c00;margin-top: .25em;">  </div>
+
+      </form>
+        </div>
+
+        <div class="cancel-order-bg inactive">
+          <div class="new-link">
+            <a href="/close-new-link" style="float:right;" onclick="event.preventDefault();document.querySelector('.cancel-order-bg').classList.toggle('inactive');">Close</a>
+            <h3 style="font-weight: 600;
+            color: #c00;
+            font-size: 1.5em;
+            border-bottom: 2px solid;
+            padding-bottom: .25em;margin-top:0;">Reject Order</h3>
+
+            <h4>Please select why you are rejecting the order</h4>
+            <div style="display:block;"><input type="radio" value="one" id="one" name="reason"><label for="one">Website is not relevant</label></div>
+            <div style="display:block;"><input type="radio" value="two" id="two" name="reason"><label for="two">Anchor text does not meet site guidelines</label></diiv>
+            <div style="display:block;"><input type="radio" value="three" id="three" name="reason"><label for="three">No longer have access</label></div>
+            <div style="display:block;"><input type="radio" value="four" id="four" name="reason"><label for="four">Editor has rejected it</label></div>
+            <div style="display:block;"><input type="radio" value="five" id="five" name="reason"><label for="five">Other</label></div>
+
+            <h4>Please suggest an alternative anchor text:</h4>
+            <input type="text" placeholder="new anchor">
+
+            <h4>Please suggest alternative links:</h4>
+            <input type="text" placeholder="Search"><input type="number" placeholder="Min Price"><input type="number" placeholder="Min Price">
+
+            <table style="width:100%;border-collapse:collapse;table-layout:fixed;">
+            <tr>
+            <th width="15px"></th>
+            <th width="50%">Site</th>
+            <th width="20%">Price</th>
+            <th width="20%">DR</th>
+            </tr>
+            <tr>
+            <td><input type="radio"></td>
+            <td>Site</td>
+            <td>Price</td>
+            <td>DR</td>
+            </tr>
+          </table>
+
+
+          <div class="actions">
+            <input value="true" required="required" type="hidden" name="link[verified]" id="link_verified">
+            <input value="0" required="required" type="hidden" name="link[domain_authority]" id="link_domain_authority">
+            <input type="submit" name="commit" value="Send Back To PM" data-disable-with="Working..." style="width: 100%;padding: 1em;background: #2276c0;margin-top: 1em;">  </div>
+
+        </form>
+          </div>
+
+      </div>
+
+<script>
+  function toggleAccordion(tableID) {
+    console.log(tableID)
+    if (tableID.style.display == "none") {
+      tableID.style.display = "table";
+    } else {
+    tableID.style.display = "none";}
+  }
+</script>
+
+
+</body></html>
