@@ -340,33 +340,33 @@
 
     //Get IP Address from Cloudflare
     let theIP = ""
-    // fetch('https://www.cloudflare.com/cdn-cgi/trace')
-    //   .then(
-    //     function(response) {
-    //       if (response.status !== 200) {
-    //         console.log('Looks like there was a problem. Status Code: ' +
-    //           response.status);
-    //         return;
-    //       }
-    //
-    //       // Examine the text in the response
-    //       response.text().then(function(text) {
-    //
-    // 	if( text != '' )
-    //             {
-    //                 const txt = text.split("\n");
-    // 		const sanitizedIP = txt[2].replace("ip=","")
-    //     const please = document.getElementById("ipContainer")
-    //                 please.innerText = sanitizedIP;
-    //                 theIP = sanitizedIP;
-    // 		console.log(sanitizedIP);
-    //             } else {}
-    //         });
-    //     }
-    //   )
-    //   .catch(function(err) {
-    //     console.log('Fetch Error :-S', err);
-    //   });
+    fetch('https://www.cloudflare.com/cdn-cgi/trace')
+      .then(
+        function(response) {
+          if (response.status !== 200) {
+            console.log('Looks like there was a problem. Status Code: ' +
+              response.status);
+            return;
+          }
+
+          // Examine the text in the response
+          response.text().then(function(text) {
+
+    	if( text != '' )
+                {
+                    const txt = text.split("\n");
+    		const sanitizedIP = txt[2].replace("ip=","")
+        const please = document.getElementById("ipContainer")
+                    please.innerText = sanitizedIP;
+                    theIP = sanitizedIP;
+    		console.log(sanitizedIP);
+                } else {}
+            });
+        }
+      )
+      .catch(function(err) {
+        console.log('Fetch Error :-S', err);
+      });
 
       // Show OS
       const osValue = navigator.oscpu;
