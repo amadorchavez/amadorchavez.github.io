@@ -1,0 +1,73 @@
+Merciless
+Seeing Red: You take +1
+2/5 Rations remaining
+Map of the caves
+12/22 Coins remaining
+Elf Armor | 3 Weight | 2 Armor [GONE]
+Elf Ear Set
+2 Anti-Toxins
+FarSight Book: Infinite number of pages in finite space. Everything ever known is in it. Roll on 12+ = solution to problem.
+Small Blue + Red Gems: 1 weight; Worth= 3d6*100
+
+What I learned:
+- Big operation: lock up four suits of armor. He needs them.
+- Who are the slaves?
+- Who Is Edwin? Influence of King Edwin.
+
+Eveneer = Portal
+They need the suits of armor to enter in.
+
+Armor of Rothchild:
+- When you take damage; you can treat it like normal, if you roll + nothing and on a 10+ you can treat the damage irrelevant. 7-9: damage is halved but opened up to more severe damage; 1 armor
+
+Crown Back
+
+Face off Naga (sylycisus)
+Ovan - lantern for her daughter
+Sheo
+
+2 armor
+
+Raguhl
+
+Civilized place: razorguhl necklace, roll + CHA, on 10+ someone has information about another monster, 7-9: rumors. 
+
+Lost breastplate, lost lamp
+
+The Skeleton Trader [Vlari]
+
+PROBLEMS
+Where is Hume?
+Three Books?
+Clones?
+
+Glor
+
+Enigmatic Cylinder
+Feather of the Scourge
+
+Phantom Order
+Realm of Eveneer
+
+Twilight Grotto: Red catacombs to the east
+
+Ausceel: Tunnels of the nightmare raven: underneath abondoned city.  Nightsbane.
+
+
+
+
+
+==================================
+WEBRTC Dynamic
+
+https://stackoverflow.com/questions/28315879/is-it-possible-pass-data-between-two-
+different-browsers
+https://en.wikipedia.org/wiki/WebSocket
+https://blog.printf.net/articles/2013/05/17/webrtc-without-a-signaling-server/
+https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Simple_RTCDataChannel_sample
+https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Signaling_and_video_calling
+https://flaviocopes.com/webrtc/
+https://www.html5rocks.com/en/tutorials/webrtc/infrastructure/
+https://www.wowza.com/blog/webrtc-signaling-servers
+https://www.researchgate.net/publication/275277453_WebRTC_using_JSON_via_XMLHttpRequest_and_SIP_over_WebSocket_Initial_Signalling_Overhead_Findings
+https://codelabs.developers.google.com/codelabs/webrtc-web/#6
