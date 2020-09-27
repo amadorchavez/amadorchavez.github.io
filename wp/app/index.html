@@ -1,0 +1,229 @@
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
+
+    <style>
+    /*BoilerPlate CSS*/
+    html, body {padding: 0;margin: 0;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;height:100%;}
+    h1, h2, h3, h4, h5, h6 {font-weight: 400;margin: 0;padding: 0;}
+    ::placeholder {color: rgba(20,0,0,1);opacity:1;}
+    *:focus {outline: none;}
+
+    /* Colors */
+    :root {
+      --main-bg-color: #333;
+    }
+
+    /* New CSS */
+    body {font-family:Goldman Sans;}
+
+    .gridContainer {display:grid;grid-template-columns:250px 1fr 1fr 1fr;grid-template-rows:1fr 1fr 1fr 1fr;}
+
+    .sidebar {background:url('black-linen.png'), radial-gradient(circle,#2e31e4, #024388);grid-column: 1/1; grid-row:1/5;height:100vh;position:fixed;display:flex;width:250px;text-align:center;color:white;flex-flow:column;}
+    .sidebar div {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      text-align: left;
+      text-transform: uppercase;
+      font-size: .75em;
+      margin-bottom: 1em;
+      padding:1em;
+      }
+    .sidebar div:hover {background:rgba(205,210,255,0.1);cursor:pointer;}
+    .sidebar div svg {margin-right:1em;}
+    .sidebar h2 {font-size:1.35em;}
+
+    .topBar {grid-column: 2/5;border-bottom: 1px solid;display: flex;position: fixed;left: 250px;width: calc(100% - 250px);justify-content: space-around;background: linear-gradient(#4f7186,#22323a);color: white;align-items: center;height: 90px;}
+    .topBar svg {padding: 0 .5em;border-left: 1px solid rgba(255,255,255,0.15);}
+    .topBar svg:hover {background: rgba(255,255,255,0.1);}
+
+    .main {grid-row:2/5;grid-column: 2/5;padding:1em;}
+
+    .accountBox {background:transparent;display:inline-block;width:100%;max-width:320px;min-height:200px;margin:0.5em;border-radius:5px;box-shadow:0 0 10px rgba(0,0,0,0.25);text-align:center;border: 1px solid #aaa;}
+    .accountBox h2 {margin:1em 0;text-transform:uppercase;letter-spacing:0.05em;color:gray;font-size:1.15em;}
+
+    .accountButton {background: linear-gradient(0deg,#cacaca,#e4e4fd);color: #445;padding: 0.5em 0;font-weight: 600;display:block;width:100%;text-decoration:none;transition: ease all .25s;border-top: 1px solid #ccc;}
+
+    .accountImage {height:70px;background-color:#003971;border-radius:5px 5px 0 0;background-repeat: no-repeat;background-size: 40%;background-position: center;}
+
+    .main h1 {margin-left:0.25em;margin-bottom:0.5em;}
+
+    .subs h3 {margin:0;}
+
+    input[type="text"] {
+        cursor: pointer;
+        text-align: center;
+        font-size: 30px;
+        padding: 0;
+        margin: 0;
+        width: 200px;
+        border: none;
+        font-family:Goldman Sans;
+        background: transparent;
+    }
+
+    .chartContainer {position: relative; height:auto; width:100%;margin-top:-3em;z-index: -9;}
+    #myChart {display: block; width: 100% !important; height: 100px !important;}
+
+  /* Condensed View*/
+    .condensed .sidebar {width:80px}
+    .condensed .sidebar h2 {display:none}
+    .condensed {grid-template-columns:80px 1fr 1fr 1fr;}
+    .condensed .topBar {left:80px;width: calc(100% - 80px)}
+
+/* Dark Mode */
+    .dark {background:var(--main-bg-color);color:#eee;height:100%;}
+    .dark .accountBox {background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.15)}
+    .dark .accountBox h2 {color:#aaa}
+    .dark input[type="text"] {color:white;}
+    .dark .accountButton {background:#444;color:white;border-top: 1px solid rgba(255,255,255,0.15)}
+
+    </style>
+    </head>
+
+<body>
+<div class="gridContainer">
+  <div class="sidebar">
+    <div>
+      <svg height='50px' width='50px'  fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve"><style type="text/css">
+      	.st0{fill:none;stroke:#ffffff;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+      </style><g><path class="st0" d="M45.4,20.3H21.2c-0.8,0-1.4,0.6-1.4,1.4v23.6c0,0.8,0.6,1.4,1.4,1.4h23.6c0.8,0,1.4-0.6,1.4-1.4V21.1   C46.2,20.7,45.8,20.3,45.4,20.3L45.4,20.3z"></path></g><g><path class="st0" d="M79.4,20.3H55.2c-0.8,0-1.4,0.6-1.4,1.4v23.6c0,0.8,0.6,1.4,1.4,1.4h23.6c0.8,0,1.4-0.6,1.4-1.4V21.1   C80.2,20.7,79.8,20.3,79.4,20.3L79.4,20.3z"></path></g><g><path class="st0" d="M45.4,53.3H21.2c-0.8,0-1.4,0.6-1.4,1.4v23.6c0,0.8,0.6,1.4,1.4,1.4h23.6c0.8,0,1.4-0.6,1.4-1.4V54.1   C46.2,53.7,45.8,53.3,45.4,53.3L45.4,53.3z"></path></g><g><path class="st0" d="M79.4,53.3H55.2c-0.8,0-1.4,0.6-1.4,1.4v23.6c0,0.8,0.6,1.4,1.4,1.4h23.6c0.8,0,1.4-0.6,1.4-1.4V54.1   C80.2,53.7,79.8,53.3,79.4,53.3L79.4,53.3z"></path></g></svg>
+      <h2>Dashboard</h2>
+    </div>
+    <div>
+      <svg height='50px' width='50px'  fill="#ffffff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" x="0px" y="0px"><g><path d="M16,30a13.922,13.922,0,0,0,9.154-3.432l-9.86-9.86A1,1,0,0,1,15,16V2.051A13.992,13.992,0,0,0,16,30Z"></path><path d="M17,2.051V15H29.949A14,14,0,0,0,17,2.051Z"></path><path d="M18.414,17l8.154,8.154A13.919,13.919,0,0,0,29.949,17Z"></path></g></svg>
+      <h2>Reports</h2>
+    </div>
+    <div>
+      <svg height='50px' width='50px'  fill="#ffffff" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" x="0px" y="0px" viewBox="0 0 100 100"><g transform="translate(0,-952.36218)"><path style="color:#000000;enable-background:accumulate;" d="M 47.77802,959.36216 C 25.68671,960.48196 8.0107,978.23926 7,1000.3594 l 40.99709,0 0,-40.99724 c -0.0724,0 -0.14676,0 -0.21907,0 z m 4.22489,0 0,40.99724 40.99709,0 C 91.986,978.16686 74.19524,960.37626 52.00291,959.36216 z m -23.03348,14.99059 4.00582,0 0,7.01021 7.01019,0 0,4.0058 -7.01019,0 0,7.0102 -4.00582,0 0,-7.0102 -7.01019,0 0,-4.0058 7.01019,0 0,-7.01021 z m 31.04513,7.01021 18.0262,0 0,4.0058 -18.0262,0 0,-4.0058 z M 7,1004.3652 c 1.014,22.1923 18.80476,39.983 40.99709,40.997 l 0,-40.997 -40.99709,0 z m 45.00291,0 0,40.997 C 74.19524,1044.3482 91.986,1026.5575 93,1004.3652 l -40.99709,0 z m -25.97525,9.2635 4.94468,4.9446 4.94469,-4.9446 2.84789,2.8165 -4.97598,4.976 4.97598,4.9447 -2.84789,2.8166 -4.94469,-4.9447 -4.94468,4.9447 -2.84789,-2.8166 4.97598,-4.9447 -4.97598,-4.976 2.84789,-2.8165 z m 33.9869,1.7838 18.0262,0 0,4.0058 -18.0262,0 0,-4.0058 z m 0,8.0116 18.0262,0 0,4.0058 -18.0262,0 0,-4.0058 z" fill="#ffffff" stroke="none" marker="none" visibility="visible" display="inline" overflow="visible"></path></g></svg>
+      <h2>Tools & Calculators</h2>
+    </div>
+    <div>
+      <svg height='50px' width='50px'  fill="#ffffff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" x="0px" y="0px"><title>government, court, museum</title><g><path d="M59.22,55.74H56.5V51.22a1,1,0,0,0-1-1h-.56V26.93h.56a1,1,0,0,0,1-1V21.4h1.14a1,1,0,0,0,1-1V15.59a1,1,0,0,0-1-1h-.9v-4a1,1,0,0,0-.68-.95L32.32,1.5h-.11a.75.75,0,0,0-.42,0h-.11L7.94,9.64a1,1,0,0,0-.68.95v4h-.9a1,1,0,0,0-1,1V20.4a1,1,0,0,0,1,1H7.5v4.53a1,1,0,0,0,1,1h.56V50.22H8.5a1,1,0,0,0-1,1v4.52H4.78a1,1,0,0,0-1,1v4.81a1,1,0,0,0,1,1H59.22a1,1,0,0,0,1-1V56.74A1,1,0,0,0,59.22,55.74Zm-20.81,0V51.22a1,1,0,0,0-1-1h-.56V26.93h.56a1,1,0,0,0,1-1V21.4h5.27v4.53a1,1,0,0,0,1,1h.56V50.22h-.56a1,1,0,0,0-1,1v4.52Zm-18.09,0V51.22a1,1,0,0,0-1-1h-.56V26.93h.56a1,1,0,0,0,1-1V21.4h5.27v4.53a1,1,0,0,0,1,1h.56V50.22h-.56a1,1,0,0,0-1,1v4.52Zm14.53-5.52h-5.7V26.93h5.7Zm1.56-25.29H27.59V21.4h8.82ZM27.59,52.22h8.82v3.52H27.59Zm18.09,0H54.5v3.52H45.68Zm7.26-2h-5.7V26.93h5.7ZM54.5,24.93H45.68V21.4H54.5ZM9.26,11.3,32,3.51,54.74,11.3v3.29H9.26Zm-1.9,5.29H56.64V19.4H7.36Zm11,4.81v3.53H9.5V21.4Zm-7.26,5.53h5.7V50.22h-5.7ZM9.5,52.22h8.82v3.52H9.5Zm48.72,8.33H5.78V57.74H58.22Z"></path></g></svg>
+      <h2>Tax Center</h2>
+    </div>
+    <div>
+      <svg height='50px' width='50px'  fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision;text-rendering:geometricPrecision;image-rendering:optimizeQuality;" viewBox="0 0 847 847" x="0px" y="0px" fill-rule="evenodd" clip-rule="evenodd"><defs><style type="text/css">
+          .fil0 {fill:#ffffff}
+        </style></defs><g><path class="fil0" d="M422 830c-153,-69 -327,-162 -330,-353l-6 -306 3 -1c156,-20 218,-38 333,-152l1 -1 2 1c115,114 177,132 333,152l2 1 -5 306c-3,191 -177,284 -331,353l-1 0 -1 0zm1 -746c-83,81 -175,113 -288,128l4 264c3,160 156,244 284,302 129,-58 282,-142 284,-302l5 -264c-113,-15 -205,-47 -289,-128zm311 109c-135,-18 -212,-43 -311,-140 -99,97 -176,122 -311,140l5 283c3,175 166,263 306,326 140,-63 303,-151 306,-326l5 -283z"></path></g></svg>
+      <h2>Insurance Center</h2>
+    </div>
+    <div>
+      <svg height='50px' width='50px'  fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve"><path d="M76,24v52c0,3.3-2.7,6-6,6H30c-3.3,0-6-2.7-6-6V24c0-3.3,2.7-6,6-6h6v54h-5c-1.7,0-3,1.3-3,3v1c0,1.1,0.9,2,2,2h40  c1.1,0,2-0.9,2-2H31c-0.6,0-1-0.4-1-1s0.4-1,1-1h41v-2H38V18h32C73.3,18,76,20.7,76,24z"></path></svg>
+      <h2>Learning Center</h2>
+    </div>
+  </div>
+  <div class="topBar">
+    <h2>Net Worth:</h2>
+    <div class="subs">
+    <h3>Liquid Account Value:</h3>
+    <h3>Long-Term Account Value:</h3>
+    </div>
+    <h2>Health Score</h2>
+    <div>
+      <svg height='50px' width='50px'  fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" version="1.1" x="0px" y="0px"><title>Bell v2.3</title><desc>Created with Sketch.</desc><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g fill-rule="nonzero" fill="#ffffff"><path d="M58.4417969,71 C57.9468689,75.2231701 54.3561068,78.5 50,78.5 C45.6438932,78.5 42.0531311,75.2231701 41.5582031,71 L30.0098932,71 C26.9668098,71 24.5,68.5387515 24.5,65.5 C24.5,62.4654619 26.9648349,60 30.0020869,60 C30.2744059,60 30.5,59.7742672 30.5,59.4982567 L30.5,47.4992494 C30.5,38.9458465 36.0493632,31.50398 44,28.9402086 L44,28.0008537 C44,24.6882223 46.6897988,22 50,22 C53.3154934,22 56,24.682604 56,28.0008537 L56,28.9403324 C63.9504345,31.5044463 69.5,38.9476626 69.5,47.4992494 L69.5,59.4982567 C69.5,59.779748 69.720359,60 69.9979131,60 C73.0304702,60 75.5,62.4646677 75.5,65.5 C75.5,68.5351929 73.0310133,71 69.9901068,71 L58.4417969,71 Z M55.4093119,71 L44.5906881,71 C45.0609444,73.560118 47.3039304,75.5 50,75.5 C52.6960696,75.5 54.9390556,73.560118 55.4093119,71 Z M45.8737226,31.5194904 C38.643809,33.3794653 33.5,39.9246235 33.5,47.4992494 L33.5,59.4982567 C33.5,61.4307089 31.9316731,63 30.0020869,63 C28.62186,63 27.5,64.1221454 27.5,65.5 C27.5,66.8803796 28.6221502,68 30.0098932,68 L69.9901068,68 C71.3752958,68 72.5,66.8771998 72.5,65.5 C72.5,64.1228469 71.3749381,63 69.9979131,63 C68.0638308,63 66.5,61.4369284 66.5,59.4982567 L66.5,47.4992494 C66.5,39.926412 61.355852,33.3797286 54.1262255,31.5195519 L53,31.2297751 L53,28.0008537 C53,26.3399346 51.6591151,25 50,25 C48.3462594,25 47,26.3454704 47,28.0008537 L47,31.2297431 L45.8737226,31.5194904 Z"></path></g></g></svg>
+      <span id="counter" style="font-size:14px;font-weight:600;background:red;color:white;padding:.5em .35em .35em .35em;border-radius:3px;line-height:1;position:absolute;top:15px;right:135px;">1</span>
+
+      <svg height='50px' width='50px'  fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="-10 0 70 50" style="enable-background:new 0 0 50 50;" xml:space="preserve"><g><path d="M25,1C11.767,1,1,11.767,1,25c0,7.091,3.094,13.472,8,17.869v0.017l0.348,0.3c0.061,0.053,0.128,0.097,0.19,0.149   c0.431,0.364,0.875,0.713,1.331,1.047c0.123,0.09,0.246,0.177,0.371,0.264c0.484,0.34,0.979,0.664,1.487,0.968   c0.085,0.051,0.172,0.099,0.257,0.148c0.557,0.324,1.126,0.629,1.71,0.908c0.006,0.003,0.012,0.005,0.018,0.008   c1.249,0.595,2.559,1.082,3.915,1.456c0.025,0.007,0.05,0.015,0.075,0.021c0.641,0.175,1.293,0.322,1.954,0.443   c0.062,0.011,0.123,0.022,0.185,0.033c0.638,0.112,1.284,0.201,1.939,0.262c0.075,0.007,0.15,0.011,0.224,0.017   C23.663,48.965,24.327,49,25,49s1.337-0.035,1.996-0.09c0.075-0.006,0.15-0.01,0.224-0.017c0.655-0.06,1.301-0.15,1.939-0.262   c0.062-0.011,0.123-0.022,0.185-0.033c0.661-0.121,1.313-0.268,1.954-0.443c0.025-0.007,0.05-0.014,0.075-0.021   c1.356-0.374,2.666-0.861,3.915-1.456c0.006-0.003,0.012-0.005,0.018-0.008c0.584-0.279,1.153-0.585,1.71-0.908   c0.086-0.05,0.172-0.097,0.257-0.148c0.509-0.304,1.004-0.629,1.487-0.968c0.124-0.087,0.248-0.174,0.371-0.264   c0.456-0.334,0.9-0.683,1.331-1.047c0.062-0.052,0.129-0.096,0.19-0.149l0.348-0.3v-0.017c4.906-4.398,8-10.778,8-17.869   C49,11.767,38.233,1,25,1z M25,25c-4.411,0-8-3.589-8-8s3.589-8,8-8s8,3.589,8,8S29.411,25,25,25z M28,27c6.065,0,11,4.935,11,11   v3.958c-0.042,0.035-0.086,0.067-0.128,0.102c-0.395,0.321-0.8,0.626-1.214,0.918c-0.092,0.065-0.182,0.132-0.274,0.195   c-0.447,0.305-0.906,0.591-1.373,0.862c-0.085,0.05-0.171,0.099-0.257,0.148c-0.49,0.275-0.989,0.533-1.498,0.769   c-0.053,0.025-0.107,0.049-0.161,0.073c-1.661,0.755-3.411,1.302-5.212,1.626c-0.057,0.01-0.114,0.021-0.171,0.031   c-0.567,0.097-1.139,0.172-1.715,0.225c-0.079,0.007-0.159,0.012-0.239,0.018C26.175,46.97,25.589,47,25,47   s-1.175-0.03-1.758-0.077c-0.079-0.006-0.159-0.011-0.239-0.018c-0.576-0.053-1.148-0.127-1.715-0.225   c-0.057-0.01-0.114-0.02-0.171-0.031c-1.801-0.324-3.551-0.871-5.212-1.626c-0.054-0.025-0.108-0.048-0.161-0.073   c-0.509-0.236-1.008-0.494-1.498-0.769c-0.086-0.049-0.171-0.098-0.257-0.148c-0.467-0.27-0.926-0.557-1.373-0.862   c-0.093-0.063-0.183-0.13-0.274-0.195c-0.414-0.292-0.819-0.596-1.214-0.918c-0.042-0.034-0.086-0.067-0.128-0.102V38   c0-6.065,4.935-11,11-11H28z M41,40.076V38c0-6.271-4.464-11.519-10.38-12.735C33.261,23.464,35,20.431,35,17   c0-5.514-4.486-10-10-10s-10,4.486-10,10c0,3.431,1.739,6.464,4.38,8.265C13.464,26.481,9,31.729,9,38v2.076   C5.284,36.135,3,30.831,3,25C3,12.869,12.869,3,25,3s22,9.869,22,22C47,30.831,44.716,36.135,41,40.076z"></path></g></svg>
+    </div>
+  </div>
+
+
+  <div class="main">
+
+    <h1>Spending Accounts</h1>
+    <div class="accountBox">
+      <div class="accountImage" style="background-image:url('cone.png')"></div>
+      <div>
+        <h2>CapitalOne 360 Checking</h2>
+        <input type="text" value="$150,000">
+      </div>
+      <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
+      <a href="#" class="accountButton">View Details</a>
+    </div>
+
+    <div class="accountBox">
+      <div class="accountImage" style="background-image:url('usbank.png');background-color:#de1628;"></div>
+      <div>
+        <h2>US Bank Checking</h2>
+        <input type="text" value="$150,000">
+      </div>
+      <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
+      <a href="#" class="accountButton">View Details</a>
+    </div>
+
+    <div class="accountBox">
+      <div class="accountImage" style="background-image:url('paypal.png');background-color:#0d3685;"></div>
+      <div>
+        <h2>PayPal</h2>
+      <input type="text" value="$150,000">
+      </div>
+      <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
+      <a href="#" class="accountButton">View Details</a>
+    </div>
+
+  </div>
+
+
+<div class="bottomBar" style="position:fixed;bottom:0;background:#ccc;height:25px;width:100%;z-index:-9">
+</div>
+
+</div>
+
+</body>
+
+<script>
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+            label: '# of Votes',
+            data: [5, 8, 13, 15, 20, 30],
+            backgroundColor: "rgba(173,236,177,0.85)",
+						borderColor: "#adecb1",
+						fill: "start",
+            pointRadius:0,
+            borderWidth: 5
+        }]
+    },
+    options: {
+      responsive: true,
+      legend: {
+       display: false
+      },
+      elements: {
+                    point:{
+                        radius: 0
+                    }
+                },
+      scales: {
+      xAxes: [{
+          gridLines: {
+              display:false,
+              drawTicks: false,
+              drawBorder: false
+          },
+          ticks: {
+              display:false
+          }
+      }],
+      yAxes: [{
+          gridLines: {
+              display: false,
+              drawTicks: false,
+              drawBorder: false
+          },
+          ticks: {
+              beginAtZero: true,
+              display:false
+          }
+      }]
+  }
+}
+});
+</script>
