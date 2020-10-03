@@ -16,39 +16,44 @@
     }
 
     /* New CSS */
-    body {font-family:Goldman Sans;}
+    body {font-family:Goldman Sans;background: #D3DDED;color: rgba(0,0,0,0.75);}
+    sup {font-size:0.65em;vertical-align: top;margin-right:0.05em;}
 
     .gridContainer {display:grid;grid-template-columns:250px 1fr 1fr 1fr;grid-template-rows:1fr 1fr 1fr 1fr;}
 
-    .sidebar {background:url('black-linen.png'), radial-gradient(circle,#2e31e4, #024388);grid-column: 1/1; grid-row:1/5;height:100vh;position:fixed;display:flex;width:250px;text-align:center;color:white;flex-flow:column;}
+    .sidebar {background:url('black-linen.png'), radial-gradient(circle,#2e31e4, #024388);background:#bec7d5;height: 100vh;position: fixed;display: flex;width: 250px;text-align: center;color: white;flex-flow: column;color: rgba(0,0,0,0.75);border-right: 1px solid rgba(0,0,0,0.1);}
     .sidebar div {
-      width: 100%;
+      width: calc(100% - 2em);
       display: flex;
       align-items: center;
       text-align: left;
       text-transform: uppercase;
       font-size: .75em;
-      margin-bottom: 1em;
-      padding:1em;
+      padding: 1em;
+      border: 1px solid transparent;
+      transition: ease all .15s;
       }
-    .sidebar div:hover {background:rgba(205,210,255,0.1);cursor:pointer;}
+    .sidebar div:hover {background: rgb(211, 221, 237);cursor: pointer;border: 1px solid rgba(0,0,0,0.1);}
+    .sidebar div.active {background: #d3dded;font-weight:600;}
+    .sidebar div.active h2 {font-weight:600;}
     .sidebar div svg {margin-right:1em;}
-    .sidebar h2 {font-size:1.35em;}
+    .sidebar h2 {font-size:1.35em;font-weight: 500;}
 
-    .topBar {grid-column: 2/5;border-bottom: 1px solid;display: flex;position: fixed;left: 250px;width: calc(100% - 250px);justify-content: space-around;background: linear-gradient(#4f7186,#22323a);color: white;align-items: center;height: 90px;}
+    .topBar {grid-column: 2/5;border-bottom: 1px solid;display: flex;position: fixed;left: 250px;width: calc(100% - 250px);justify-content: space-around;background: linear-gradient(#4f7186,#22323a);background:#2E8864;color: white;align-items: center;height: 90px;}
     .topBar svg {padding: 0 .5em;border-left: 1px solid rgba(255,255,255,0.15);}
     .topBar svg:hover {background: rgba(255,255,255,0.1);}
 
     .main {grid-row:2/5;grid-column: 2/5;padding:1em;}
 
-    .accountBox {background:transparent;display:inline-block;width:100%;max-width:320px;min-height:200px;margin:0.5em;border-radius:5px;box-shadow:0 0 10px rgba(0,0,0,0.25);text-align:center;border: 1px solid #aaa;}
+    .accountBox {display: inline-block;width: 100%;max-width: 320px;min-height: 200px;margin: 0.5em;border-radius: 5px;box-shadow: 0 0 7px rgba(0,0,0,0.15);text-align: center;border: 1px solid rgba(0,0,0,0.15);background: #DCE6FC;}
     .accountBox h2 {margin:1em 0;text-transform:uppercase;letter-spacing:0.05em;color:gray;font-size:1.15em;}
-
-    .accountButton {background: linear-gradient(0deg,#cacaca,#e4e4fd);color: #445;padding: 0.5em 0;font-weight: 600;display:block;width:100%;text-decoration:none;transition: ease all .25s;border-top: 1px solid #ccc;}
+    .accountSummary {position:relative;z-index:99;}
+    .accountButton {background: linear-gradient(0deg,#d3dded,#e4e4fd);color: #35383c;padding: 0.5em 0;font-weight: 600;display: block;width: 100%;text-decoration: none;transition: ease all .15s;border-top: 1px solid rgba(0,0,0,0.1);border-radius: 0 0 5px 5px;}
+    .accountButton:hover {background:#2E8864;color:white;}
 
     .accountImage {height:70px;background-color:#003971;border-radius:5px 5px 0 0;background-repeat: no-repeat;background-size: 40%;background-position: center;}
 
-    .main h1 {margin-left:0.25em;margin-bottom:0.5em;}
+    .main h1 {margin-left:0.25em;margin-bottom:0.5em;text-transform: lowercase;letter-spacing: .05em;font-weight:300;}
 
     .subs h3 {margin:0;}
 
@@ -64,21 +69,29 @@
         background: transparent;
     }
 
-    .chartContainer {position: relative; height:auto; width:100%;margin-top:-3em;z-index: -9;}
+    .chartContainer {position: relative; height:auto; width:100%;margin-top:-3em;z-index: 9;}
     #myChart {display: block; width: 100% !important; height: 100px !important;}
 
   /* Condensed View*/
-    .condensed .sidebar {width:80px}
-    .condensed .sidebar h2 {display:none}
-    .condensed {grid-template-columns:80px 1fr 1fr 1fr;}
+    .condensed .sidebar {width:80px;z-index:999;transition:ease width .25s;}
+    .condensed .sidebar h2 {width:0;overflow: hidden;transition:ease width .25s;white-space: nowrap;}
+    .condensed .sidebar:hover h2 {display:block;margin-left:0.75em;width:auto;}
+    .condensed .sidebar:hover {width:250px;}
+    .condensed .gridContainer {grid-template-columns:80px 1fr 1fr 1fr;}
+    .condensed .sidebar div svg {margin:0;}
     .condensed .topBar {left:80px;width: calc(100% - 80px)}
 
 /* Dark Mode */
-    .dark {background:var(--main-bg-color);color:#eee;height:100%;}
-    .dark .accountBox {background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.15)}
-    .dark .accountBox h2 {color:#aaa}
+    .dark {background:#20152B;color:rgba(255,255,255,0.75);}
+    .dark .accountBox {box-shadow: 0 0 5px rgba(255,255,255,0.15);border: 1px solid rgba(255,255,255,0.15);background: #3E2953;}
+    .dark .accountBox h2 {color:rgba(255,255,255,0.5)}
+    .dark .sidebar {background: #2B1C39;color:rgba(255,255,255,0.75)}
+    .dark .topBar {border:none;}
+    .dark .sidebar div svg  {filter:invert(1) brightness(1.25);}
     .dark input[type="text"] {color:white;}
-    .dark .accountButton {background:#444;color:white;border-top: 1px solid rgba(255,255,255,0.15)}
+    .dark .accountButton {background: linear-gradient(0deg,#20152b,#2b1c39);color: rgba(255,255,2550,.75);border-top: 1px solid rgba(255,255,255,0.2);}
+    .dark .sidebar div.active {background: #3e2953;color:white;}
+    .dark .sidebar div:hover {background: #3e2953;border: 1px solid rgba(255,255,255,0.1);color:white;}
 
     </style>
     </head>
@@ -86,40 +99,50 @@
 <body>
 <div class="gridContainer">
   <div class="sidebar">
-    <div>
-      <svg height='50px' width='50px'  fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve"><style type="text/css">
-      	.st0{fill:none;stroke:#ffffff;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+    <div class="active">
+      <svg height='50px' width='50px'  fill="#35383c" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve"><style type="text/css">
+      	.st0{fill:none;stroke:#35383c;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
       </style><g><path class="st0" d="M45.4,20.3H21.2c-0.8,0-1.4,0.6-1.4,1.4v23.6c0,0.8,0.6,1.4,1.4,1.4h23.6c0.8,0,1.4-0.6,1.4-1.4V21.1   C46.2,20.7,45.8,20.3,45.4,20.3L45.4,20.3z"></path></g><g><path class="st0" d="M79.4,20.3H55.2c-0.8,0-1.4,0.6-1.4,1.4v23.6c0,0.8,0.6,1.4,1.4,1.4h23.6c0.8,0,1.4-0.6,1.4-1.4V21.1   C80.2,20.7,79.8,20.3,79.4,20.3L79.4,20.3z"></path></g><g><path class="st0" d="M45.4,53.3H21.2c-0.8,0-1.4,0.6-1.4,1.4v23.6c0,0.8,0.6,1.4,1.4,1.4h23.6c0.8,0,1.4-0.6,1.4-1.4V54.1   C46.2,53.7,45.8,53.3,45.4,53.3L45.4,53.3z"></path></g><g><path class="st0" d="M79.4,53.3H55.2c-0.8,0-1.4,0.6-1.4,1.4v23.6c0,0.8,0.6,1.4,1.4,1.4h23.6c0.8,0,1.4-0.6,1.4-1.4V54.1   C80.2,53.7,79.8,53.3,79.4,53.3L79.4,53.3z"></path></g></svg>
       <h2>Dashboard</h2>
     </div>
     <div>
-      <svg height='50px' width='50px'  fill="#ffffff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" x="0px" y="0px"><g><path d="M16,30a13.922,13.922,0,0,0,9.154-3.432l-9.86-9.86A1,1,0,0,1,15,16V2.051A13.992,13.992,0,0,0,16,30Z"></path><path d="M17,2.051V15H29.949A14,14,0,0,0,17,2.051Z"></path><path d="M18.414,17l8.154,8.154A13.919,13.919,0,0,0,29.949,17Z"></path></g></svg>
+      <svg height='50px' width='50px'  fill="#35383c" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" x="0px" y="0px"><g><path d="M16,30a13.922,13.922,0,0,0,9.154-3.432l-9.86-9.86A1,1,0,0,1,15,16V2.051A13.992,13.992,0,0,0,16,30Z"></path><path d="M17,2.051V15H29.949A14,14,0,0,0,17,2.051Z"></path><path d="M18.414,17l8.154,8.154A13.919,13.919,0,0,0,29.949,17Z"></path></g></svg>
       <h2>Reports</h2>
     </div>
     <div>
-      <svg height='50px' width='50px'  fill="#ffffff" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" x="0px" y="0px" viewBox="0 0 100 100"><g transform="translate(0,-952.36218)"><path style="color:#000000;enable-background:accumulate;" d="M 47.77802,959.36216 C 25.68671,960.48196 8.0107,978.23926 7,1000.3594 l 40.99709,0 0,-40.99724 c -0.0724,0 -0.14676,0 -0.21907,0 z m 4.22489,0 0,40.99724 40.99709,0 C 91.986,978.16686 74.19524,960.37626 52.00291,959.36216 z m -23.03348,14.99059 4.00582,0 0,7.01021 7.01019,0 0,4.0058 -7.01019,0 0,7.0102 -4.00582,0 0,-7.0102 -7.01019,0 0,-4.0058 7.01019,0 0,-7.01021 z m 31.04513,7.01021 18.0262,0 0,4.0058 -18.0262,0 0,-4.0058 z M 7,1004.3652 c 1.014,22.1923 18.80476,39.983 40.99709,40.997 l 0,-40.997 -40.99709,0 z m 45.00291,0 0,40.997 C 74.19524,1044.3482 91.986,1026.5575 93,1004.3652 l -40.99709,0 z m -25.97525,9.2635 4.94468,4.9446 4.94469,-4.9446 2.84789,2.8165 -4.97598,4.976 4.97598,4.9447 -2.84789,2.8166 -4.94469,-4.9447 -4.94468,4.9447 -2.84789,-2.8166 4.97598,-4.9447 -4.97598,-4.976 2.84789,-2.8165 z m 33.9869,1.7838 18.0262,0 0,4.0058 -18.0262,0 0,-4.0058 z m 0,8.0116 18.0262,0 0,4.0058 -18.0262,0 0,-4.0058 z" fill="#ffffff" stroke="none" marker="none" visibility="visible" display="inline" overflow="visible"></path></g></svg>
+      <svg height='50px' width='50px'  fill="#35383c" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" x="0px" y="0px" viewBox="0 0 100 100"><g transform="translate(0,-952.36218)"><path style="color:#000000;enable-background:accumulate;" d="M 47.77802,959.36216 C 25.68671,960.48196 8.0107,978.23926 7,1000.3594 l 40.99709,0 0,-40.99724 c -0.0724,0 -0.14676,0 -0.21907,0 z m 4.22489,0 0,40.99724 40.99709,0 C 91.986,978.16686 74.19524,960.37626 52.00291,959.36216 z m -23.03348,14.99059 4.00582,0 0,7.01021 7.01019,0 0,4.0058 -7.01019,0 0,7.0102 -4.00582,0 0,-7.0102 -7.01019,0 0,-4.0058 7.01019,0 0,-7.01021 z m 31.04513,7.01021 18.0262,0 0,4.0058 -18.0262,0 0,-4.0058 z M 7,1004.3652 c 1.014,22.1923 18.80476,39.983 40.99709,40.997 l 0,-40.997 -40.99709,0 z m 45.00291,0 0,40.997 C 74.19524,1044.3482 91.986,1026.5575 93,1004.3652 l -40.99709,0 z m -25.97525,9.2635 4.94468,4.9446 4.94469,-4.9446 2.84789,2.8165 -4.97598,4.976 4.97598,4.9447 -2.84789,2.8166 -4.94469,-4.9447 -4.94468,4.9447 -2.84789,-2.8166 4.97598,-4.9447 -4.97598,-4.976 2.84789,-2.8165 z m 33.9869,1.7838 18.0262,0 0,4.0058 -18.0262,0 0,-4.0058 z m 0,8.0116 18.0262,0 0,4.0058 -18.0262,0 0,-4.0058 z" fill="#35383c" stroke="none" marker="none" visibility="visible" display="inline" overflow="visible"></path></g></svg>
       <h2>Tools & Calculators</h2>
     </div>
     <div>
-      <svg height='50px' width='50px'  fill="#ffffff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" x="0px" y="0px"><title>government, court, museum</title><g><path d="M59.22,55.74H56.5V51.22a1,1,0,0,0-1-1h-.56V26.93h.56a1,1,0,0,0,1-1V21.4h1.14a1,1,0,0,0,1-1V15.59a1,1,0,0,0-1-1h-.9v-4a1,1,0,0,0-.68-.95L32.32,1.5h-.11a.75.75,0,0,0-.42,0h-.11L7.94,9.64a1,1,0,0,0-.68.95v4h-.9a1,1,0,0,0-1,1V20.4a1,1,0,0,0,1,1H7.5v4.53a1,1,0,0,0,1,1h.56V50.22H8.5a1,1,0,0,0-1,1v4.52H4.78a1,1,0,0,0-1,1v4.81a1,1,0,0,0,1,1H59.22a1,1,0,0,0,1-1V56.74A1,1,0,0,0,59.22,55.74Zm-20.81,0V51.22a1,1,0,0,0-1-1h-.56V26.93h.56a1,1,0,0,0,1-1V21.4h5.27v4.53a1,1,0,0,0,1,1h.56V50.22h-.56a1,1,0,0,0-1,1v4.52Zm-18.09,0V51.22a1,1,0,0,0-1-1h-.56V26.93h.56a1,1,0,0,0,1-1V21.4h5.27v4.53a1,1,0,0,0,1,1h.56V50.22h-.56a1,1,0,0,0-1,1v4.52Zm14.53-5.52h-5.7V26.93h5.7Zm1.56-25.29H27.59V21.4h8.82ZM27.59,52.22h8.82v3.52H27.59Zm18.09,0H54.5v3.52H45.68Zm7.26-2h-5.7V26.93h5.7ZM54.5,24.93H45.68V21.4H54.5ZM9.26,11.3,32,3.51,54.74,11.3v3.29H9.26Zm-1.9,5.29H56.64V19.4H7.36Zm11,4.81v3.53H9.5V21.4Zm-7.26,5.53h5.7V50.22h-5.7ZM9.5,52.22h8.82v3.52H9.5Zm48.72,8.33H5.78V57.74H58.22Z"></path></g></svg>
+      <svg height='50px' width='50px'  fill="#35383c" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" x="0px" y="0px"><title>government, court, museum</title><g><path d="M59.22,55.74H56.5V51.22a1,1,0,0,0-1-1h-.56V26.93h.56a1,1,0,0,0,1-1V21.4h1.14a1,1,0,0,0,1-1V15.59a1,1,0,0,0-1-1h-.9v-4a1,1,0,0,0-.68-.95L32.32,1.5h-.11a.75.75,0,0,0-.42,0h-.11L7.94,9.64a1,1,0,0,0-.68.95v4h-.9a1,1,0,0,0-1,1V20.4a1,1,0,0,0,1,1H7.5v4.53a1,1,0,0,0,1,1h.56V50.22H8.5a1,1,0,0,0-1,1v4.52H4.78a1,1,0,0,0-1,1v4.81a1,1,0,0,0,1,1H59.22a1,1,0,0,0,1-1V56.74A1,1,0,0,0,59.22,55.74Zm-20.81,0V51.22a1,1,0,0,0-1-1h-.56V26.93h.56a1,1,0,0,0,1-1V21.4h5.27v4.53a1,1,0,0,0,1,1h.56V50.22h-.56a1,1,0,0,0-1,1v4.52Zm-18.09,0V51.22a1,1,0,0,0-1-1h-.56V26.93h.56a1,1,0,0,0,1-1V21.4h5.27v4.53a1,1,0,0,0,1,1h.56V50.22h-.56a1,1,0,0,0-1,1v4.52Zm14.53-5.52h-5.7V26.93h5.7Zm1.56-25.29H27.59V21.4h8.82ZM27.59,52.22h8.82v3.52H27.59Zm18.09,0H54.5v3.52H45.68Zm7.26-2h-5.7V26.93h5.7ZM54.5,24.93H45.68V21.4H54.5ZM9.26,11.3,32,3.51,54.74,11.3v3.29H9.26Zm-1.9,5.29H56.64V19.4H7.36Zm11,4.81v3.53H9.5V21.4Zm-7.26,5.53h5.7V50.22h-5.7ZM9.5,52.22h8.82v3.52H9.5Zm48.72,8.33H5.78V57.74H58.22Z"></path></g></svg>
       <h2>Tax Center</h2>
     </div>
     <div>
-      <svg height='50px' width='50px'  fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision;text-rendering:geometricPrecision;image-rendering:optimizeQuality;" viewBox="0 0 847 847" x="0px" y="0px" fill-rule="evenodd" clip-rule="evenodd"><defs><style type="text/css">
-          .fil0 {fill:#ffffff}
+      <svg height='50px' width='50px'  fill="#35383c" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision;text-rendering:geometricPrecision;image-rendering:optimizeQuality;" viewBox="0 0 847 847" x="0px" y="0px" fill-rule="evenodd" clip-rule="evenodd"><defs><style type="text/css">
+          .fil0 {fill:#35383c}
         </style></defs><g><path class="fil0" d="M422 830c-153,-69 -327,-162 -330,-353l-6 -306 3 -1c156,-20 218,-38 333,-152l1 -1 2 1c115,114 177,132 333,152l2 1 -5 306c-3,191 -177,284 -331,353l-1 0 -1 0zm1 -746c-83,81 -175,113 -288,128l4 264c3,160 156,244 284,302 129,-58 282,-142 284,-302l5 -264c-113,-15 -205,-47 -289,-128zm311 109c-135,-18 -212,-43 -311,-140 -99,97 -176,122 -311,140l5 283c3,175 166,263 306,326 140,-63 303,-151 306,-326l5 -283z"></path></g></svg>
       <h2>Insurance Center</h2>
     </div>
     <div>
-      <svg height='50px' width='50px'  fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve"><path d="M76,24v52c0,3.3-2.7,6-6,6H30c-3.3,0-6-2.7-6-6V24c0-3.3,2.7-6,6-6h6v54h-5c-1.7,0-3,1.3-3,3v1c0,1.1,0.9,2,2,2h40  c1.1,0,2-0.9,2-2H31c-0.6,0-1-0.4-1-1s0.4-1,1-1h41v-2H38V18h32C73.3,18,76,20.7,76,24z"></path></svg>
+      <svg height='50px' width='50px'  fill="#35383c" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve"><path d="M76,24v52c0,3.3-2.7,6-6,6H30c-3.3,0-6-2.7-6-6V24c0-3.3,2.7-6,6-6h6v54h-5c-1.7,0-3,1.3-3,3v1c0,1.1,0.9,2,2,2h40  c1.1,0,2-0.9,2-2H31c-0.6,0-1-0.4-1-1s0.4-1,1-1h41v-2H38V18h32C73.3,18,76,20.7,76,24z"></path></svg>
       <h2>Learning Center</h2>
     </div>
   </div>
+
   <div class="topBar">
-    <h2>Net Worth:</h2>
+    <div>
+      <p style="margin:0;text-transform:lowercase;opacity:0.5;">Net Worth</p>
+      <h2 style="font-weight:500;font-size:1.65em;"><sup>$</sup><span id="netWorth">80,343<small style="opacity:0.75;font-size:0.65em;">.23</small></span></h2>
+    </div>
     <div class="subs">
-    <h3>Liquid Account Value:</h3>
-    <h3>Long-Term Account Value:</h3>
+      <div style="display:flex;align-items:center;gap:5px;">
+        <p style="margin:0;text-transform:lowercase;opacity:0.5;">Liquid Accounts</p>
+        <h2 style="font-weight:500;"><sup>$</sup><span id="netWorth">99,233<small style="opacity:0.75;font-size:0.65em;">.23</small></span></h2>
+      </div>
+      <div style="display:flex;align-items:center;gap:5px;">
+        <p style="margin:0;text-transform:lowercase;opacity:0.5;">Other Accounts</p>
+        <h2 style="font-weight:500;"><sup>$</sup><span id="netWorth">180,893<small style="opacity:0.75;font-size:0.65em;">.23</small></span></h2>
+      </div>
     </div>
     <h2>Health Score</h2>
     <div>
@@ -137,7 +160,7 @@
     <h1>Spending Accounts</h1>
     <div class="accountBox">
       <div class="accountImage" style="background-image:url('cone.png')"></div>
-      <div>
+      <div class="accountSummary">
         <h2>CapitalOne 360 Checking</h2>
         <input type="text" value="$150,000">
       </div>
@@ -147,7 +170,7 @@
 
     <div class="accountBox">
       <div class="accountImage" style="background-image:url('usbank.png');background-color:#de1628;"></div>
-      <div>
+      <div class="accountSummary">
         <h2>US Bank Checking</h2>
         <input type="text" value="$150,000">
       </div>
@@ -157,7 +180,7 @@
 
     <div class="accountBox">
       <div class="accountImage" style="background-image:url('paypal.png');background-color:#0d3685;"></div>
-      <div>
+      <div class="accountSummary">
         <h2>PayPal</h2>
       <input type="text" value="$150,000">
       </div>
@@ -168,7 +191,16 @@
   </div>
 
 
-<div class="bottomBar" style="position:fixed;bottom:0;background:#ccc;height:25px;width:100%;z-index:-9">
+<div class="bottomBar" style="position:fixed;bottom:0;background:#3e2953;height:25px;width:100%;z-index:9;text-align:Center;">
+  Add Expense or Account | Assumptions | Preferences (Dark, Condensed)
+</div>
+
+<div class="notification" style="display:inline-block;position:absolute;bottom:2em;right:1em;background:#3e2953;padding:1.5em;border:1px solid rgba(255,255,255,0.25)">
+  <span style="float:right;font-size:2em;">&times;</span>
+  <h2>It’s Time To Rebalance Your Investments</h2>
+  <p style="opacity:0.75;font-weight:300;">Regular rebalancing reduces your risk</p>
+  <a style="display:inline-block;background:transparent;border:1px solid rgba(255,255,255,0.1);color:white;text-decoration:none;padding:1em;" href="#">Dismiss</a>
+  <a style="display:inline-block;background:white;border:1px solid rgba(255,255,255,0.25);color:#3e2953;text-decoration:none;padding:1em;" href="#">Rebalance Now</a>
 </div>
 
 </div>
@@ -226,4 +258,13 @@ var myChart = new Chart(ctx, {
   }
 }
 });
+</script>
+
+  <script>
+    document.body.classList.add("dark");
+    document.body.classList.add("condensed");
+  </script>
+
+<script>
+// Number Formatting: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toLocaleString
 </script>
