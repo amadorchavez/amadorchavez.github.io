@@ -10,18 +10,28 @@
     ::placeholder {color: rgba(20,0,0,1);opacity:1;}
     *:focus {outline: none;}
 
-    /* Colors */
-    :root {
-      --main-bg-color: #333;
-    }
-
     /* New CSS */
-    body {font-family:Goldman Sans;background: #D3DDED;color: rgba(0,0,0,0.75);}
+    body {font-family:Goldman Sans;background: #D3DDED;color: rgba(0,0,0,0.75);overflow-x: hidden;}
     sup {font-size:0.65em;vertical-align: top;margin-right:0.05em;}
 
-    .gridContainer {display:grid;grid-template-columns:250px 1fr 1fr 1fr;grid-template-rows:1fr 1fr 1fr 1fr;}
+    .gridContainer {display:grid;grid-template-columns:250px 1fr 1fr 1fr;grid-template-rows:100px 1fr 1fr 1fr;}
 
-    .sidebar {background:url('black-linen.png'), radial-gradient(circle,#2e31e4, #024388);background:#bec7d5;height: 100vh;position: fixed;display: flex;width: 250px;text-align: center;color: white;flex-flow: column;color: rgba(0,0,0,0.75);border-right: 1px solid rgba(0,0,0,0.1);}
+    .sidebar {
+      background:url('black-linen.png'),radial-gradient(circle,#2e31e4, #024388);
+      background:#bec7d5;
+      height: 100vh;
+      bottom:0;
+      height: calc(100vh - 90px);
+      position: fixed;
+      display: flex;
+      width: 250px;
+      text-align: center;
+      color: white;
+      flex-flow: column;
+      color: rgba(0,0,0,0.75);
+      border-right: 1px solid rgba(0,0,0,0.1);
+      box-shadow:0 0 7px rgba(0,0,0,0.25);
+    }
     .sidebar div {
       width: calc(100% - 2em);
       display: flex;
@@ -39,35 +49,70 @@
     .sidebar div svg {margin-right:1em;}
     .sidebar h2 {font-size:1.35em;font-weight: 500;}
 
-    .topBar {grid-column: 2/5;border-bottom: 1px solid;display: flex;position: fixed;left: 250px;width: calc(100% - 250px);justify-content: space-around;background: linear-gradient(#4f7186,#22323a);background:#2E8864;color: white;align-items: center;height: 90px;}
+    .topBar {grid-column: 2/5;border-bottom: 1px solid;display: flex;position: fixed;/*left: 250px;width: calc(100% - 250px)*/;width:100%;justify-content: space-around;background: linear-gradient(#4f7186,#22323a);background:#2E8864;color: white;align-items: center;height: 90px;z-index:999;}
     .topBar svg {padding: 0 .5em;border-left: 1px solid rgba(255,255,255,0.15);}
     .topBar svg:hover {background: rgba(255,255,255,0.1);}
 
-    .main {grid-row:2/5;grid-column: 2/5;padding:1em;}
+    .main {grid-row:2/5;grid-column: 2/5;padding:1em 2em;}
 
+    /* Account Boxes */
     .accountBox {display: inline-block;width: 100%;max-width: 320px;min-height: 200px;margin: 0.5em;border-radius: 5px;box-shadow: 0 0 7px rgba(0,0,0,0.15);text-align: center;border: 1px solid rgba(0,0,0,0.15);background: #DCE6FC;}
-    .accountBox h2 {margin:1em 0;text-transform:uppercase;letter-spacing:0.05em;color:gray;font-size:1.15em;}
+    .accountBox h2 {margin:1em 0;text-transform:uppercase;letter-spacing:0.05em;opacity:0.75;font-size:1.15em;}
     .accountSummary {position:relative;z-index:99;}
     .accountButton {background: linear-gradient(0deg,#d3dded,#e4e4fd);color: #35383c;padding: 0.5em 0;font-weight: 600;display: block;width: 100%;text-decoration: none;transition: ease all .15s;border-top: 1px solid rgba(0,0,0,0.1);border-radius: 0 0 5px 5px;}
     .accountButton:hover {background:#2E8864;color:white;}
 
     .accountImage {height:70px;background-color:#003971;border-radius:5px 5px 0 0;background-repeat: no-repeat;background-size: 40%;background-position: center;}
+    .accountTotal {cursor: pointer;text-align: center;font-size: 30px;padding: 0;margin: 0;font-weight:500;}
 
-    .main h1 {margin-left:0.25em;margin-bottom:0.5em;text-transform: lowercase;letter-spacing: .05em;font-weight:300;}
+    .main h1 {margin-top:1em;margin-left:0.25em;margin-bottom:0.5em;text-transform: lowercase;letter-spacing: .05em;font-weight:300;}
 
     .subs h3 {margin:0;}
 
-    input[type="text"] {
-        cursor: pointer;
-        text-align: center;
-        font-size: 30px;
-        padding: 0;
-        margin: 0;
-        width: 200px;
-        border: none;
-        font-family:Goldman Sans;
-        background: transparent;
-    }
+
+    /* Notifications */
+    .notification {display:inline-block;position:fixed;z-index:999;bottom:2em;right:1em;background:#3e2953;padding:1.5em;border:1px solid rgba(255,255,255,0.25);transition: ease all .35s;transform:translateX(500px);opacity:0;}
+
+    .visible {transform:translateX(0px);opacity:1;}
+
+    /* Settings Window */
+    button {margin:0;display:inline;background:transparent;border:1px solid white;color:white;padding:.5em 2em;font-size:100%;font-family:inherit;cursor:pointer;}
+    button:focus, button:active {background:#3E2953;}
+    .selected {background:#2E8864}
+
+    #settings table {table-layout:fixed;width:100%;max-width:720px;}
+    #settings td {padding:.5em;vertical-align:middle;}
+    #settings td:first-child {text-align:right;width:150px;}
+    #settings td:nth-child(2) {display:flex;}
+
+    /* Modals */
+    .modal {width:100%;height:100%;position:fixed;top:0;left:0;z-index:999;display:none;}
+    .modal > div:first-child {top:25%;position:relative;width:50vw;height:auto;max-height:50vh;margin:0 auto;padding:2em;background: #3e2953;border: 1px solid rgba(255,255,255,0.25);box-shadow:0 0 15px rgba(0,0,0,0.5);overflow-y: scroll;}
+    .exitWindow {cursor:pointer;font-size:35px;position:absolute;right:5%;top:5%;opacity:.65;transition:ease opacity .25s;}
+    .exitWindow:hover {opacity:1;}
+
+    /* Transaction Log Table */
+    .transactionLogContainer {border:1px solid #777;border-radius:7px 7px 0 0;max-width:900px;}
+    .transactionLog {width:100%;table-layout:fixed;border-collapse:collapse;}
+
+    .transactionLog th {text-align:left;background:#555;color:white;}
+    .transactionLog th, td {padding:.5em;font-weight:400;}
+    .transactionLog th:first-child {border-radius:5px 0 0 0;}
+    .transactionLog th:last-child {border-radius:0 5px 0 0;}
+
+    .transactionLog tr:nth-child(even) {background:#ddd;}
+    .transactionLog tr {border-bottom:1px solid #ccc;}
+
+    .tag {background:#ea0;padding:0.5em 1em;font-size:.75em;border-radius:100em;font-weight:500;}
+
+    /* Assumptions */
+    fieldset {margin:1em 0;border-radius:5px;border:1px solid;}
+    legend {font-size:1.5em;}
+
+    #assumptions table {table-layout:fixed;width:100%;}
+    #assumptions td {width:50%;padding:.25em 0;}
+
+
 
     .chartContainer {position: relative; height:auto; width:100%;margin-top:-3em;z-index: 9;}
     #myChart {display: block; width: 100% !important; height: 100px !important;}
@@ -79,7 +124,7 @@
     .condensed .sidebar:hover {width:250px;}
     .condensed .gridContainer {grid-template-columns:80px 1fr 1fr 1fr;}
     .condensed .sidebar div svg {margin:0;}
-    .condensed .topBar {left:80px;width: calc(100% - 80px)}
+    .condensed .topBar {left:80px;width: calc(100% - 80px);left:0;width:100%;}
 
 /* Dark Mode */
     .dark {background:#20152B;color:rgba(255,255,255,0.75);}
@@ -88,10 +133,19 @@
     .dark .sidebar {background: #2B1C39;color:rgba(255,255,255,0.75)}
     .dark .topBar {border:none;}
     .dark .sidebar div svg  {filter:invert(1) brightness(1.25);}
-    .dark input[type="text"] {color:white;}
-    .dark .accountButton {background: linear-gradient(0deg,#20152b,#2b1c39);color: rgba(255,255,2550,.75);border-top: 1px solid rgba(255,255,255,0.2);}
+    .dark .accountButton {background: linear-gradient(0deg,#20152b,#2b1c39);color: rgba(255,255,2550,.75);border-top: 1px solid rgba(255,255,255,0.2);overflow: hidden;transition: ease all .25s;}
+    .dark .accountButton:hover {text-shadow: 0 0 25px rgba(255,255,255,0.65);}
     .dark .sidebar div.active {background: #3e2953;color:white;}
     .dark .sidebar div:hover {background: #3e2953;border: 1px solid rgba(255,255,255,0.1);color:white;}
+    .dark .chartContainer {filter:invert(1) brightness(2.5) hue-rotate(223deg);}
+
+    @media (max-width:620px) {
+      .topBar div:nth-child(2) {display: none;}
+      .topBar div:nth-child(3) {display: none;}
+      .topBar div:nth-child(4) {display: none;}
+      .topBar h2:nth-child(3) {display:none;}
+      .sidebar {width: 100%;height: 50px;flex-flow: row;}
+    }
 
     </style>
     </head>
@@ -127,28 +181,39 @@
       <svg height='50px' width='50px'  fill="#35383c" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve"><path d="M76,24v52c0,3.3-2.7,6-6,6H30c-3.3,0-6-2.7-6-6V24c0-3.3,2.7-6,6-6h6v54h-5c-1.7,0-3,1.3-3,3v1c0,1.1,0.9,2,2,2h40  c1.1,0,2-0.9,2-2H31c-0.6,0-1-0.4-1-1s0.4-1,1-1h41v-2H38V18h32C73.3,18,76,20.7,76,24z"></path></svg>
       <h2>Learning Center</h2>
     </div>
+    <div onclick="showModal(settings)" style="margin-top:5em;border-top:1px dotted;">
+      <svg height='50px' width='50px'  fill="#35383c" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 36 36" enable-background="new 0 0 36 36" xml:space="preserve"><circle cx="18" cy="18" r="4.087"></circle><path d="M31.481,15.589l-2.638-0.424c-0.262-1.005-0.657-1.953-1.169-2.826l1.563-2.166c0.322-0.447,0.266-1.131-0.121-1.52  l-1.768-1.769c-0.391-0.39-1.072-0.444-1.521-0.122l-2.165,1.564c-0.874-0.514-1.822-0.908-2.827-1.17l-0.427-2.639  C20.321,3.976,19.8,3.53,19.25,3.53h-2.5c-0.55,0-1.071,0.445-1.159,0.988l-0.427,2.639c-1.005,0.262-1.953,0.656-2.827,1.17  l-2.166-1.564C9.725,6.44,9.042,6.496,8.653,6.885L6.885,8.653C6.496,9.042,6.44,9.725,6.763,10.171l1.563,2.166  c-0.513,0.874-0.907,1.822-1.17,2.827L4.519,15.59c-0.544,0.089-0.987,0.61-0.987,1.159L3.53,19.25c0,0.55,0.443,1.072,0.987,1.159  l2.638,0.427c0.263,1.005,0.658,1.953,1.171,2.827l-1.563,2.166c-0.322,0.446-0.268,1.129,0.121,1.518l1.768,1.769  c0.39,0.39,1.072,0.444,1.52,0.122l2.165-1.563c0.874,0.513,1.823,0.908,2.827,1.171l0.426,2.637c0.088,0.544,0.61,0.988,1.16,0.988  h2.5c0.551,0,1.072-0.443,1.161-0.988l0.425-2.637c1.006-0.262,1.953-0.657,2.828-1.17l2.164,1.563  c0.447,0.322,1.131,0.268,1.52-0.121l1.768-1.768c0.391-0.39,0.445-1.072,0.123-1.52l-1.563-2.165  c0.513-0.874,0.907-1.822,1.17-2.827l2.637-0.426c0.544-0.088,0.988-0.611,0.989-1.16v-2.5C32.47,16.2,32.026,15.679,31.481,15.589z   M18,25.308c-4.035,0-7.307-3.271-7.307-7.307s3.271-7.307,7.307-7.307s7.307,3.271,7.307,7.307S22.035,25.308,18,25.308z"></path></svg>
+      <h2>Settings</h2>
+    </div>
+    <div>
+      <svg height='50px' width='50px'  fill="#35383c" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-2 -2 38 38" x="0px" y="0px"><title>plus-circle</title><path d="M8 14.857c-0.005 0-0.010 0-0.016 0-0.631 0-1.143 0.511-1.143 1.143s0.511 1.143 1.143 1.143c0.006 0 0.011 0 0.017 0h15.998c0.005 0 0.010 0 0.016 0 0.631 0 1.143-0.511 1.143-1.143s-0.511-1.143-1.143-1.143c-0.006 0-0.011 0-0.017 0z"></path><path d="M17.143 8c0-0.005 0-0.010 0-0.016 0-0.631-0.511-1.143-1.143-1.143s-1.143 0.511-1.143 1.143c0 0.006 0 0.011 0 0.017v-0.001 15.999c0 0.005 0 0.010 0 0.016 0 0.631 0.511 1.143 1.143 1.143s1.143-0.511 1.143-1.143c0-0.006 0-0.011 0-0.017v0.001z"></path><path d="M16 0c-8.823 0-15.999 7.177-15.999 15.999s7.177 15.999 15.999 15.999c8.823 0 15.999-7.177 15.999-15.999s-7.177-15.999-15.999-15.999zM16 2.286c7.588 0 13.714 6.127 13.714 13.714s-6.126 13.714-13.714 13.714c-7.588 0-13.714-6.126-13.714-13.714s6.126-13.714 13.714-13.714z"></path></svg>
+      <h2>Add</h2>
+    </div>
   </div>
 
   <div class="topBar">
+    <div style="display: flex;align-items: center;">
+      <svg style="stroke: white;stroke-width: 0.35;padding: 0;border: none;" width="100px" fill="#ffffff" xmlns:x="http://ns.adobe.com/Extensibility/1.0/" xmlns:i="http://ns.adobe.com/AdobeIllustrator/10.0/" xmlns:graph="http://ns.adobe.com/Graphs/1.0/" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" enable-background="new 0 0 90 54.727" xml:space="preserve" viewBox="0 -10 90 78" height="100px"><g><g i:extraneous="self"><path d="M89.997,21.398c-0.004-0.01-0.012-0.021-0.023-0.031c-0.012-0.012-0.027-0.021-0.045-0.029L45.015,0.018    c-0.012-0.006-0.025-0.01-0.041-0.014C44.96,0.002,44.944,0,44.927,0c-0.016,0-0.031,0.002-0.045,0.004    c-0.016,0.002-0.029,0.008-0.041,0.014l-44.77,21.32c-0.02,0.008-0.033,0.018-0.045,0.029c-0.012,0.01-0.018,0.021-0.023,0.033    c-0.004,0.01-0.004,0.021,0,0.031c0.004,0.012,0.012,0.021,0.021,0.029l45.076,33.225c0.02,0.014,0.041,0.023,0.064,0.031    c0.021,0.006,0.047,0.01,0.07,0.01c0.025,0,0.049-0.004,0.072-0.01c0.023-0.008,0.045-0.018,0.064-0.031l44.604-33.225    c0.012-0.008,0.02-0.018,0.023-0.029C90.001,21.422,90.001,21.41,89.997,21.398z M66.858,17.223l6.031-3.785l7.967,3.787    l-5.963,4.053L66.858,17.223l-0.227-0.113l-7.496-3.781l6.081-3.539h0.001l7.447,3.541l-6.033,3.779L66.858,17.223z     M44.837,21.398l-7.512,4.361l-7.02-4.361l7.498-4.064L44.837,21.398z M38.015,17.221l6.988-3.789l7.029,3.791l-6.984,4.055    L38.015,17.221z M45.05,21.521l7.559,4.369l-7.508,4.701l-7.563-4.699L45.05,21.521z M45.261,21.398l6.982-4.063L59.78,21.4    l-6.961,4.357L45.261,21.398z M52.442,17.221l6.51-3.785l7.496,3.787l-6.473,4.055L52.442,17.221z M52.229,17.107L45.2,13.324    l6.529-3.539l7.01,3.543L52.229,17.107z M45.003,13.219l-6.572-3.537l6.533-3.316l6.568,3.32L45.003,13.219z M44.806,13.326    l-6.988,3.779l-6.561-3.783l6.977-3.541L44.806,13.326z M37.606,17.221l-7.498,4.057l-6.529-4.059l7.467-3.789L37.606,17.221z     M29.882,21.398l-8.063,4.363l-6.477-4.363l8.01-4.064L29.882,21.398z M30.079,21.521l7.02,4.371l-8.102,4.703l-6.982-4.701    L30.079,21.521z M37.31,26.023l7.563,4.711l-8.119,5.084l-7.545-5.08L37.31,26.023z M45.103,30.877l8.174,5.09l-8.115,5.516    l-8.18-5.51L45.103,30.877z M45.329,30.734l7.508-4.711l8.146,4.707l-7.479,5.082l0.123,0.077l-0.125-0.077L45.329,30.734z     M53.048,25.891l6.959-4.369l8.1,4.367l-6.914,4.699L53.048,25.891z M60.204,21.398l6.471-4.061l8.039,4.063l-6.412,4.357    L60.204,21.398z M57.831,6.277l-6.115,3.309l0.197,0.1l6.115-3.314l6.98,3.318l-6.086,3.531l-7.01-3.535l-0.197-0.1l-6.568-3.314    l6.131-3.111L57.831,6.277z M44.929,0.141l6.164,2.932L44.962,6.18l-6.168-3.113L44.929,0.141z M38.61,3.156l6.168,3.115    l-6.533,3.311l-6.158-3.314L38.61,3.156z M31.89,6.361l6.158,3.32l-6.977,3.533l-6.133-3.537L31.89,6.361z M24.728,9.777    l6.135,3.545l-7.467,3.783l-6.092-3.785L24.728,9.777z M17.079,13.426l6.09,3.793l-8.01,4.059l-6.027-4.061L17.079,13.426z     M0.366,21.398l8.525-4.066l6.025,4.066l-8.615,4.365L0.366,21.398z M6.481,25.896l8.619-4.375l6.475,4.373L12.88,30.6    L6.481,25.896z M13.073,30.74l8.697-4.715l6.98,4.713l-8.762,5.086L13.073,30.74z M20.198,35.979l8.764-5.098l7.545,5.092    l-8.813,5.518L20.198,35.979z M27.923,41.658l8.813-5.531l8.18,5.523l-8.836,6.004L27.923,41.658z M45.235,54.385l-8.908-6.549    l8.836-6.018l8.9,6.008L45.235,54.385z M54.31,47.643l-8.898-5.992l8.113-5.529l8.863,5.52L54.31,47.643z M62.614,41.473    l-8.861-5.506l-0.001-0.001l7.478-5.093l8.805,5.088L62.614,41.473z M70.241,35.807l-8.803-5.076l6.912-4.709l8.729,4.705    L70.241,35.807z M77.272,30.584l-8.727-4.695l6.41-4.367l8.639,4.365L77.272,30.584z M83.772,25.756L75.136,21.4l5.961-4.061    l8.539,4.061L83.772,25.756z"></path></g></g></svg>
+      <h2 style="margin-left: .5em;display: inline-block;">WealthPrint</h2>
+    </div>
     <div>
       <p style="margin:0;text-transform:lowercase;opacity:0.5;">Net Worth</p>
-      <h2 style="font-weight:500;font-size:1.65em;"><sup>$</sup><span id="netWorth">80,343<small style="opacity:0.75;font-size:0.65em;">.23</small></span></h2>
+      <h2 style="font-weight:500;font-size:1.65em;"><sup>$</sup><span id="netWorth">80,343</span><small style="opacity:0.75;font-size:0.65em;">.23</small></h2>
     </div>
     <div class="subs">
       <div style="display:flex;align-items:center;gap:5px;">
         <p style="margin:0;text-transform:lowercase;opacity:0.5;">Liquid Accounts</p>
-        <h2 style="font-weight:500;"><sup>$</sup><span id="netWorth">99,233<small style="opacity:0.75;font-size:0.65em;">.23</small></span></h2>
+        <h2 style="font-weight:500;"><sup>$</sup><span id="liquidTotal">99,233</span><small style="opacity:0.75;font-size:0.65em;">.23</small></h2>
       </div>
       <div style="display:flex;align-items:center;gap:5px;">
         <p style="margin:0;text-transform:lowercase;opacity:0.5;">Other Accounts</p>
-        <h2 style="font-weight:500;"><sup>$</sup><span id="netWorth">180,893<small style="opacity:0.75;font-size:0.65em;">.23</small></span></h2>
+        <h2 style="font-weight:500;"><sup>$</sup><span id="otherTotal">180,893</span><small style="opacity:0.75;font-size:0.65em;">.23</small></h2>
       </div>
     </div>
     <h2>Health Score</h2>
     <div>
-      <svg height='50px' width='50px'  fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" version="1.1" x="0px" y="0px"><title>Bell v2.3</title><desc>Created with Sketch.</desc><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <svg onclick="toggleNotification()" height='50px' width='50px'  fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" version="1.1" x="0px" y="0px"><title>See Notifications</title><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g fill-rule="nonzero" fill="#ffffff"><path d="M58.4417969,71 C57.9468689,75.2231701 54.3561068,78.5 50,78.5 C45.6438932,78.5 42.0531311,75.2231701 41.5582031,71 L30.0098932,71 C26.9668098,71 24.5,68.5387515 24.5,65.5 C24.5,62.4654619 26.9648349,60 30.0020869,60 C30.2744059,60 30.5,59.7742672 30.5,59.4982567 L30.5,47.4992494 C30.5,38.9458465 36.0493632,31.50398 44,28.9402086 L44,28.0008537 C44,24.6882223 46.6897988,22 50,22 C53.3154934,22 56,24.682604 56,28.0008537 L56,28.9403324 C63.9504345,31.5044463 69.5,38.9476626 69.5,47.4992494 L69.5,59.4982567 C69.5,59.779748 69.720359,60 69.9979131,60 C73.0304702,60 75.5,62.4646677 75.5,65.5 C75.5,68.5351929 73.0310133,71 69.9901068,71 L58.4417969,71 Z M55.4093119,71 L44.5906881,71 C45.0609444,73.560118 47.3039304,75.5 50,75.5 C52.6960696,75.5 54.9390556,73.560118 55.4093119,71 Z M45.8737226,31.5194904 C38.643809,33.3794653 33.5,39.9246235 33.5,47.4992494 L33.5,59.4982567 C33.5,61.4307089 31.9316731,63 30.0020869,63 C28.62186,63 27.5,64.1221454 27.5,65.5 C27.5,66.8803796 28.6221502,68 30.0098932,68 L69.9901068,68 C71.3752958,68 72.5,66.8771998 72.5,65.5 C72.5,64.1228469 71.3749381,63 69.9979131,63 C68.0638308,63 66.5,61.4369284 66.5,59.4982567 L66.5,47.4992494 C66.5,39.926412 61.355852,33.3797286 54.1262255,31.5195519 L53,31.2297751 L53,28.0008537 C53,26.3399346 51.6591151,25 50,25 C48.3462594,25 47,26.3454704 47,28.0008537 L47,31.2297431 L45.8737226,31.5194904 Z"></path></g></g></svg>
-      <span id="counter" style="font-size:14px;font-weight:600;background:red;color:white;padding:.5em .35em .35em .35em;border-radius:3px;line-height:1;position:absolute;top:15px;right:135px;">1</span>
 
       <svg height='50px' width='50px'  fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="-10 0 70 50" style="enable-background:new 0 0 50 50;" xml:space="preserve"><g><path d="M25,1C11.767,1,1,11.767,1,25c0,7.091,3.094,13.472,8,17.869v0.017l0.348,0.3c0.061,0.053,0.128,0.097,0.19,0.149   c0.431,0.364,0.875,0.713,1.331,1.047c0.123,0.09,0.246,0.177,0.371,0.264c0.484,0.34,0.979,0.664,1.487,0.968   c0.085,0.051,0.172,0.099,0.257,0.148c0.557,0.324,1.126,0.629,1.71,0.908c0.006,0.003,0.012,0.005,0.018,0.008   c1.249,0.595,2.559,1.082,3.915,1.456c0.025,0.007,0.05,0.015,0.075,0.021c0.641,0.175,1.293,0.322,1.954,0.443   c0.062,0.011,0.123,0.022,0.185,0.033c0.638,0.112,1.284,0.201,1.939,0.262c0.075,0.007,0.15,0.011,0.224,0.017   C23.663,48.965,24.327,49,25,49s1.337-0.035,1.996-0.09c0.075-0.006,0.15-0.01,0.224-0.017c0.655-0.06,1.301-0.15,1.939-0.262   c0.062-0.011,0.123-0.022,0.185-0.033c0.661-0.121,1.313-0.268,1.954-0.443c0.025-0.007,0.05-0.014,0.075-0.021   c1.356-0.374,2.666-0.861,3.915-1.456c0.006-0.003,0.012-0.005,0.018-0.008c0.584-0.279,1.153-0.585,1.71-0.908   c0.086-0.05,0.172-0.097,0.257-0.148c0.509-0.304,1.004-0.629,1.487-0.968c0.124-0.087,0.248-0.174,0.371-0.264   c0.456-0.334,0.9-0.683,1.331-1.047c0.062-0.052,0.129-0.096,0.19-0.149l0.348-0.3v-0.017c4.906-4.398,8-10.778,8-17.869   C49,11.767,38.233,1,25,1z M25,25c-4.411,0-8-3.589-8-8s3.589-8,8-8s8,3.589,8,8S29.411,25,25,25z M28,27c6.065,0,11,4.935,11,11   v3.958c-0.042,0.035-0.086,0.067-0.128,0.102c-0.395,0.321-0.8,0.626-1.214,0.918c-0.092,0.065-0.182,0.132-0.274,0.195   c-0.447,0.305-0.906,0.591-1.373,0.862c-0.085,0.05-0.171,0.099-0.257,0.148c-0.49,0.275-0.989,0.533-1.498,0.769   c-0.053,0.025-0.107,0.049-0.161,0.073c-1.661,0.755-3.411,1.302-5.212,1.626c-0.057,0.01-0.114,0.021-0.171,0.031   c-0.567,0.097-1.139,0.172-1.715,0.225c-0.079,0.007-0.159,0.012-0.239,0.018C26.175,46.97,25.589,47,25,47   s-1.175-0.03-1.758-0.077c-0.079-0.006-0.159-0.011-0.239-0.018c-0.576-0.053-1.148-0.127-1.715-0.225   c-0.057-0.01-0.114-0.02-0.171-0.031c-1.801-0.324-3.551-0.871-5.212-1.626c-0.054-0.025-0.108-0.048-0.161-0.073   c-0.509-0.236-1.008-0.494-1.498-0.769c-0.086-0.049-0.171-0.098-0.257-0.148c-0.467-0.27-0.926-0.557-1.373-0.862   c-0.093-0.063-0.183-0.13-0.274-0.195c-0.414-0.292-0.819-0.596-1.214-0.918c-0.042-0.034-0.086-0.067-0.128-0.102V38   c0-6.065,4.935-11,11-11H28z M41,40.076V38c0-6.271-4.464-11.519-10.38-12.735C33.261,23.464,35,20.431,35,17   c0-5.514-4.486-10-10-10s-10,4.486-10,10c0,3.431,1.739,6.464,4.38,8.265C13.464,26.481,9,31.729,9,38v2.076   C5.284,36.135,3,30.831,3,25C3,12.869,12.869,3,25,3s22,9.869,22,22C47,30.831,44.716,36.135,41,40.076z"></path></g></svg>
     </div>
@@ -161,8 +226,8 @@
     <div class="accountBox">
       <div class="accountImage" style="background-image:url('cone.png')"></div>
       <div class="accountSummary">
-        <h2>CapitalOne 360 Checking</h2>
-        <input type="text" value="$150,000">
+        <h2>CapitalOne 360 Savings</h2>
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(this)" data-accountType="liquid" data-accountId="1">39961.21</span></p>
       </div>
       <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
       <a href="#" class="accountButton">View Details</a>
@@ -172,7 +237,17 @@
       <div class="accountImage" style="background-image:url('usbank.png');background-color:#de1628;"></div>
       <div class="accountSummary">
         <h2>US Bank Checking</h2>
-        <input type="text" value="$150,000">
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(this)" data-accountType="liquid" data-accountId="2">15137.97</span></p>
+      </div>
+      <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
+      <a href="#" class="accountButton">View Details</a>
+    </div>
+
+    <div class="accountBox">
+      <div class="accountImage" style="background-image:url('usbank.png');background-color:#de1628;"></div>
+      <div class="accountSummary">
+        <h2>US Bank Savings</h2>
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(this)" data-accountType="liquid" data-accountId="7">4000.56</span></p>
       </div>
       <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
       <a href="#" class="accountButton">View Details</a>
@@ -182,25 +257,212 @@
       <div class="accountImage" style="background-image:url('paypal.png');background-color:#0d3685;"></div>
       <div class="accountSummary">
         <h2>PayPal</h2>
-      <input type="text" value="$150,000">
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(this)" data-accountType="liquid" data-accountId="3">1400</span></p>
       </div>
       <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
       <a href="#" class="accountButton">View Details</a>
     </div>
 
+    <h1>Retirement Accounts</h1>
+    <div class="accountBox">
+      <div class="accountImage" style="background-image:url('transamerica.png');background-color:#052c50"></div>
+      <div class="accountSummary">
+        <h2>Nifty 401(k)</h2>
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(this)" data-accountType="other" data-accountId="4">34712.84</span></p>
+      </div>
+      <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
+      <a href="#" class="accountButton">View Details</a>
+    </div>
+
+    <div class="accountBox">
+      <div class="accountImage" style="background-image:url('vanguard.png');background-color:#96151d;"></div>
+      <div class="accountSummary">
+        <h2>Roth IRA</h2>
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(this)" data-accountType="other" data-accountId="5">34664.18</span></p>
+      </div>
+      <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
+      <a href="#" class="accountButton">View Details</a>
+    </div>
+
+    <div class="accountBox">
+      <div class="accountImage" style="background-image:url('td.png');background-color:#3fae49;"></div>
+      <div class="accountSummary">
+        <h2>HSA Investments</h2>
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(this)" data-accountType="other" data-accountId="6">9659.68</span></p>
+      </div>
+      <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
+      <a href="#" class="accountButton">View Details</a>
+    </div>
+
+    <div class="accountBox">
+      <div class="accountImage" style="background-image:url('ideal.png');background-color:#f4b242;"></div>
+      <div class="accountSummary">
+        <h2>Idaho 529</h2>
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(this)" data-accountType="other" data-accountId="8">9643.25</span></p>
+      </div>
+      <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
+      <a href="#" class="accountButton">View Details</a>
+    </div>
+
+    <div class="accountBox">
+      <div class="accountImage" style="background-image:url('lively.png');background-color:#19A69D;"></div>
+      <div class="accountSummary">
+        <h2>Lively HSA</h2>
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(this)" data-accountType="other" data-accountId="9">2083.28</span></p>
+      </div>
+      <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
+      <a href="#" class="accountButton">View Details</a>
+    </div>
+
+
   </div>
 
-
-<div class="bottomBar" style="position:fixed;bottom:0;background:#3e2953;height:25px;width:100%;z-index:9;text-align:Center;">
-  Add Expense or Account | Assumptions | Preferences (Dark, Condensed)
-</div>
-
-<div class="notification" style="display:inline-block;position:absolute;bottom:2em;right:1em;background:#3e2953;padding:1.5em;border:1px solid rgba(255,255,255,0.25)">
+<div class="notification">
   <span style="float:right;font-size:2em;">&times;</span>
   <h2>It’s Time To Rebalance Your Investments</h2>
   <p style="opacity:0.75;font-weight:300;">Regular rebalancing reduces your risk</p>
   <a style="display:inline-block;background:transparent;border:1px solid rgba(255,255,255,0.1);color:white;text-decoration:none;padding:1em;" href="#">Dismiss</a>
   <a style="display:inline-block;background:white;border:1px solid rgba(255,255,255,0.25);color:#3e2953;text-decoration:none;padding:1em;" href="#">Rebalance Now</a>
+</div>
+
+<div class="modal" id="settings">
+  <div>
+    <h2>App Settings</h2>
+    <span onClick="closeWindow(this)" class="exitWindow">&times;</span>
+      <table>
+      <tr>
+      <td>Dark Mode</td>
+      <td data-setting="darkMode">
+        <button onClick="updateToggle(this, 1)">On</button>
+        <button class="selected" onClick="updateToggle(this, 0)">Off</button>
+      </td>
+      </tr>
+        <tr>
+      <td>Condensed Mode</td>
+      <td data-setting="condensed">
+        <button onClick="updateToggle(this, 1)">On</button>
+        <button class="selected" onClick="updateToggle(this, 0)">Off</button>
+      </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="modal" id="updateBalance">
+  <div style="text-align:center;">
+    <h2>New Balance</h2>
+    <span onClick="closeWindow(this)" class="exitWindow">&times;</span>
+    <input style="width:100%;font-size:24px;padding:1em;background:rgba(255,255,255,0.1);margin:1em 0;border:none;text-align:center;color:white;" id="newBalance" type="number"></input>
+    <button id="saveBalance">Save</button>
+  </div>
+</div>
+
+<div class="modal" id="transactionLog">
+  <div style="text-align:center;">
+    <div class="transactionLogContainer">
+      <table class="transactionLog">
+        <tr>
+          <th>Date</th>
+          <th>Place</th>
+          <th>Expense</th>
+          <th>Income</th>
+          <th>Tags</th>
+        </tr>
+          <tr>
+          <td>May 4</td>
+          <td>Chik-Fil-A</td>
+          <td>(17.99)</td>
+          <td></td>
+            <td><span class="tag">Restaurants</span></td>
+        </tr>
+        <tr>
+          <td>May 4</td>
+          <td>Chik-Fil-A</td>
+          <td>(17.99)</td>
+          <td></td>
+            <td><span class="tag">Restaurants</span></td>
+        </tr>
+        <tr>
+          <td>May 4</td>
+          <td>Chik-Fil-A</td>
+          <td>(17.99)</td>
+          <td></td>
+            <td><span class="tag">Restaurants</span></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="assumptions">
+  <div style="text-align:center;">
+    <h1>Assumptions</h1>
+      <fieldset>
+              <table>
+                <legend>Retirement Info</legend>
+							<tr>
+								<td>Current Age:</td>
+								<td><input onkeydown="generateSVG()" type="number" id="offset" value="0" maxlength="15" size="15" /></td>
+							</tr>
+							<tr>
+								<td>Retirement Age: </td>
+								<td><input onkeydown="generateSVG()" type="text" id="outerText" value="Sample Text" size="15" /></td>
+							</tr>
+                <tr>
+								<td>Current Retirement Balance</td>
+								<td><input onkeydown="generateSVG()" type="text" id="outerText" value="Sample Text" size="15" /></td>
+							</tr>
+            </table>
+        </fieldset>
+
+        <fieldset>
+              <table>
+                <legend>Emergency Fund Info</legend>
+							<tr>
+								<td>Estimated Annual Income:</td>
+								<td><input onkeydown="generateSVG()" type="number" id="offset" value="0" maxlength="15" size="15" /></td>
+							</tr>
+							<tr>
+								<td>Estimated Monthly Expenses: </td>
+								<td><input onkeydown="generateSVG()" type="text" id="outerText" value="Sample Text" size="15" /></td>
+							</tr>
+                <tr>
+								<td>Current Emergency Savings: </td>
+								<td><input onkeydown="generateSVG()" type="text" id="outerText" value="Sample Text" size="15" /></td>
+							</tr>
+            </table>
+        </fieldset>
+
+        <fieldset>
+              <table>
+                <legend>General Info</legend>
+							<tr>
+								<td>Marital Status:</td>
+                <td><input onkeydown="generateSVG()" type="radio" value="Single" /><label>Single | Married</label></td>
+							</tr>
+							<tr>
+								<td>Health Status: </td>
+								<td><input onkeydown="generateSVG()" type="text" id="outerText" value="Sample Text" size="15" /><label>Pre-Existing Conditions + No Prexisting Conditions</td>
+							</tr>
+                <tr>
+								<td>Housing Status: </td>
+								<td><input onkeydown="generateSVG()" type="text" id="outerText" value="Sample Text" size="15" /><label>Rent | Own</label></td>
+							</tr>
+              <tr>
+                <td>Risk Tolerance: </td>
+                <td><input onkeydown="generateSVG()" type="text" id="outerText" value="Sample Text" size="15" /><label>Low | Medium | High</label></td>
+            </tr>
+                              <tr>
+                <td>Employment Status: </td>
+                <td><input onkeydown="generateSVG()" type="text" id="outerText" value="Sample Text" size="15" /><label>Full-Time | Part-Time | Self-Employed</label></td>
+            </tr>
+                              <tr>
+                <td>Kids: </td>
+                <td><input onkeydown="generateSVG()" type="text" id="outerText" value="Sample Text" size="15" /><label>Yes | No </label></td>
+            </tr>
+              </table>
+          </fieldset>
+  </div>
 </div>
 
 </div>
@@ -261,10 +523,142 @@ var myChart = new Chart(ctx, {
 </script>
 
   <script>
-    document.body.classList.add("dark");
-    document.body.classList.add("condensed");
-  </script>
 
-<script>
-// Number Formatting: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toLocaleString
-</script>
+  appData = window.localStorage
+
+  window.onload = loadUISettings(), loadData()
+
+  function loadUISettings() {
+    let darkSetting = appData.getItem("darkMode");
+    let condensedMode = appData.getItem("condensed");
+    darkContainer = Array.from(document.querySelector("[data-setting='darkMode']").children)
+    condensedContainer = Array.from(document.querySelector("[data-setting='condensed']").children)
+
+    if (darkSetting == 1) {
+      document.body.classList.add("dark")
+      darkContainer[0].classList.add("selected");
+      darkContainer[1].classList.remove("selected");
+    } else {document.body.classList.remove("dark")}
+
+    if (condensedMode == 1) {
+      document.body.classList.add("condensed")
+      condensedContainer[0].classList.add("selected");
+      condensedContainer[1].classList.remove("selected");
+    } else {document.body.classList.remove("condensed")}
+  }
+
+
+  function updateToggle(button, value) {
+    let settingGroup = button.parentElement.getAttribute("data-setting")
+    let allButtons = Array.from(button.parentElement.children)
+
+    allButtons.forEach((entry)=>
+         {
+      entry.classList.remove("selected")
+    });
+
+    button.classList.add("selected")
+    appData.setItem(settingGroup, value);
+    loadUISettings()
+  }
+
+    function toggleNotification() {
+      const note = document.querySelector(".notification")
+      note.classList.toggle("visible")
+    }
+
+    function closeWindow(item) {
+      let window = item.parentElement;
+      let windowContainer = window.parentElement;
+      windowContainer.style.display="none";
+    }
+
+    function showModal(window) {
+      window.style.display="block";
+      window.addEventListener('click', function(event) {
+        if (event.currentTarget !== event.target) {
+          return;
+        }
+      window.style.display="none";
+      }, false);
+    }
+
+    function updateTotals() {
+      const liquidTotalContainer = document.getElementById("liquidTotal")
+      const otherTotalContainer = document.getElementById("otherTotal")
+      const netWorthContainer = document.getElementById("netWorth")
+
+      let liquidTotal = 0
+      let otherTotal = 0
+      let netWorthTotal = 0
+
+      document.querySelectorAll("[data-accountType='liquid']").forEach((entry)=>
+           {
+        liquidTotal += parseFloat(entry.innerText)
+        entry.innerText = parseFloat(entry.innerText).toLocaleString('en-US')
+      });
+      formattedLiquidTotal = Math.floor(liquidTotal).toLocaleString('en-US')
+      liquidTotalContainer.innerText=formattedLiquidTotal;
+
+      document.querySelectorAll("[data-accountType='other']").forEach((entry)=>
+           {
+        otherTotal += parseFloat(entry.innerText)
+        entry.innerText = parseFloat(entry.innerText).toLocaleString('en-US')
+      });
+      formattedOtherTotal = Math.floor(otherTotal).toLocaleString('en-US')
+      otherTotalContainer.innerText=formattedOtherTotal;
+
+      netWorthTotal = liquidTotal + otherTotal
+      netWorthContainer.innerText = Math.floor(netWorthTotal).toLocaleString('en-US')
+    }
+
+    function loadData() {
+      document.querySelectorAll(".accountTotal span").forEach((item)=>{
+      let id = item.getAttribute("data-accountID");
+      let sectionValue = appData.getItem(id);
+      if(sectionValue == null || sectionValue == ""){
+        appData.setItem(id, parseFloat(item.innerText))
+        return
+      }
+      item.innerText = sectionValue;
+    });
+    updateTotals()
+  }
+
+  function updateBalance(account) {
+    let id = account.getAttribute("data-accountID")
+    const coolModal = document.getElementById("updateBalance")
+    const saveButton = document.getElementById("saveBalance")
+    const newInput = document.getElementById("newBalance")
+
+    coolModal.style.display="block"
+    newInput.value="";
+    newInput.focus();
+
+    coolModal.addEventListener('click', function(event) {
+      if (event.currentTarget !== event.target) {
+        return;
+      }
+    coolModal.style.display="none";
+    }, false);
+
+    newInput.addEventListener("keyup", function(event) {
+      if (event.keyCode === 13) {
+        newValue = document.getElementById("newBalance").value
+        appData.setItem(id, newValue);
+        coolModal.style.display="none";
+        id=null;
+        loadData();
+      }
+    });
+
+    saveButton.addEventListener("click", function(event) {
+      newValue = document.getElementById("newBalance").value
+      appData.setItem(id, newValue);
+      coolModal.style.display="none";
+      id=null;
+      loadData();
+      });
+  }
+
+  </script>
