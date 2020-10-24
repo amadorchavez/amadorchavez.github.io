@@ -41,6 +41,22 @@
     sup {font-size:0.65em;vertical-align: top;margin-right:0.05em;}
     * {transition:ease all .25s;}
 
+    input {
+    padding: .65em;
+    border: 1px solid var(--border-subtle-color);
+    box-shadow: 0 0 8px var(--shadow-color);
+    color:var(--text-color);
+    background: linear-gradient(45deg,var(--bg-color),var(--layer-color));
+    font-family: Goldman Sans;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: ease all .25s;
+    }
+    input:focus {border:1px solid var(--border-sharp-color);background:linear-gradient(225deg,var(--bg-color),var(--layer-color));box-shadow:0 0 5px var(--text-color)}
+    input:hover {box-shadow:0 0 5px var(--text-color);}
+
     .gridContainer {display:grid;grid-template-columns:250px 1fr 1fr 1fr;grid-template-rows:100px 1fr 1fr 1fr;}
 
     .sidebar {
@@ -73,14 +89,15 @@
     .sidebar div:hover {background: var(--layer-color);cursor: pointer;border: 1px solid var(--border-subtle-color);}
     .sidebar div.active {background: var(--layer-color);font-weight:600;}
     .sidebar div.active h2 {font-weight:600;}
-    .sidebar div svg {margin-right:1em;}
+    .sidebar div svg {margin-right:1em;flex-shrink:0;}
     .sidebar h2 {font-size:1.35em;font-weight: 500;}
 
     .topBar {grid-column: 2/5;border-bottom: 1px solid var(--border-subtle-color);display: flex;position: fixed;/*left: 250px;width: calc(100% - 250px)*/;width:100%;justify-content: space-around;background: linear-gradient(#4f7186,#22323a);background:#2E8864;color: white;align-items: center;height: 90px;z-index:999;}
     .topBar svg {padding: 0 .5em;border-left: 1px solid rgba(255,255,255,0.15);}
     .topBar svg:hover {background: rgba(255,255,255,0.1);}
+    #appName {margin-left: .5em;display: inline-block;}
 
-    .main {grid-row:2/5;grid-column: 2/5;padding:1em 2em;}
+    .main {grid-row:2/5;grid-column: 2/5;padding:1em 2em;overflow: hidden;}
 
     /* Account Boxes */
     .accountBox {animation:zoomFade ease 1s;display: inline-block;width: 100%;max-width: 320px;min-height: 200px;margin: 0.5em;border-radius: 5px;box-shadow: 0 0 7px var(--shadow-color);text-align: center;border: 1px solid var(--border-subtle-color);background: var(--layer-color);}
@@ -114,7 +131,7 @@
 
     /* Modals */
     .modal {width:100%;height:100%;position:fixed;top:0;left:0;z-index:999;display:none;}
-    .modal > div:first-child {animation:zoomFade ease .25s;top:25%;position:relative;width:50vw;height:auto;max-height:50vh;margin:0 auto;padding:2em;background: var(--layer-color);border: 1px solid var(--border-sharp-color);box-shadow:0 0 15px rgba(0,0,0,0.5);overflow-y: scroll;}
+    .modal > div:first-child {animation:zoomFade cubic-bezier(0,1.11,.75,.9) .15s;top:25%;position:relative;width:60vw;max-width:1280px;height:auto;max-height:50vh;margin:0 auto;padding:2em;background: var(--layer-color);border: 1px solid var(--border-sharp-color);box-shadow:0 0 115px rgba(0,0,0,0.5);overflow-y: scroll;}
     .exitWindow {cursor:pointer;font-size:35px;position:absolute;right:5%;top:5%;opacity:.65;transition:ease opacity .25s;}
     .exitWindow:hover {opacity:1;}
 
@@ -122,13 +139,13 @@
     .transactionLogContainer {border:1px solid #777;border-radius:7px 7px 0 0;max-width:900px;}
     .transactionLog {width:100%;table-layout:fixed;border-collapse:collapse;}
 
-    .transactionLog th {text-align:left;background:#555;color:white;}
+    .transactionLog th {text-align:left;background:#555;color:var(--text-color);}
     .transactionLog th, td {padding:.5em;font-weight:400;}
     .transactionLog th:first-child {border-radius:5px 0 0 0;}
     .transactionLog th:last-child {border-radius:0 5px 0 0;}
 
-    .transactionLog tr:nth-child(even) {background:#ddd;}
-    .transactionLog tr {border-bottom:1px solid #ccc;}
+    .transactionLog tr:nth-child(even) {background:var(--border-subtle-color);}
+    .transactionLog tr {border-bottom:1px solid var(--border-sharp-color);}
 
     .tag {background:#ea0;padding:0.5em 1em;font-size:.75em;border-radius:100em;font-weight:500;}
 
@@ -146,11 +163,10 @@
 
   /* Condensed View*/
     .condensed .sidebar {width:80px;z-index:999;transition:ease width .25s;}
-    .condensed .sidebar h2 {width:0;overflow: hidden;transition:ease width .25s;white-space: nowrap;}
-    .condensed .sidebar:hover h2 {display:block;margin-left:0.75em;width:auto;}
+    .condensed .sidebar h2 {opacity:0;overflow: hidden;transition:ease opacity .3s;flex-shrink:0;max-width:170px;}
+    .condensed .sidebar:hover h2 {opacity:1;}
     .condensed .sidebar:hover {width:250px;}
     .condensed .gridContainer {grid-template-columns:80px 1fr 1fr 1fr;}
-    .condensed .sidebar div svg {margin:0;}
     .condensed .topBar {left:80px;width: calc(100% - 80px);left:0;width:100%;}
 
   /* Dark Mode Fixes */
@@ -159,17 +175,45 @@
     .dark .sidebar div svg  {filter:invert(1) brightness(1.25);}
     .dark .chartContainer {filter:invert(1) brightness(2.5) hue-rotate(223deg);}
 
+  /* Health Score Styles */
+    .scoreRow {display:flex;align-items:top;gap:0.75em;margin-top:1.5em;text-align:left;border-top: 1px solid var(--border-sharp-color);padding-top: 1em;}
+    .scoreRow svg {flex-shrink:0;}
+    .scoreCircle {display: inline-block;overflow: hidden;}
+    .scoreCircle text {fill:var(--text-color);font-family:Goldman Sans;font-size:1.5em;font-weight:700;}
+    .maxScore {fill:gray;font-size:.5em;}
+    .scoreCircle circle {
+       stroke-dashoffset: 0;
+       transition: stroke .25s ease;
+       stroke: #777;
+       stroke-width: 7px;
+       transform: rotate(-90deg) rotateX(180deg);
+       transform-origin: center;
+     }
+    .scoreCircle #bar {
+       stroke: #ccc;
+       stroke: rgba(255,255,255,0.5);
+       transition: stroke-dashoffset .5s cubic-bezier(0,1.07,.89,.99) 90ms;
+       stroke-width:8px;
+     }
+
+  /* Mobile Mode */
     @media (max-width:620px) {
-      .topBar div:nth-child(2) {display: none;}
       .topBar div:nth-child(3) {display: none;}
       .topBar div:nth-child(4) {display: none;}
-      .topBar h2:nth-child(3) {display:none;}
-      .sidebar {width: 100%;height: 50px;flex-flow: row;}
+      .topBar h2:nth-child(4) {display:none;}
+      .condensed .sidebar, .sidebar {width: 100%;height: 50px;flex-flow: row;overflow-x: scroll;overflow-y: hidden;z-index: 9999999;border-top:1px solid var(--border-sharp-color);}
+      .sidebar h2, .condensed .sidebar h2 {display:none;}
+      .main {grid-column: 1/5;text-align:center;}
+      #appName {display:none;}
+      .condensed .sidebar:hover {width:initial;}
+      .sidebar div svg {height: 40px;width: 40px;margin: 0;padding: .35em;}
     }
 
     /* Animations */
     @keyframes zoomFade {
-      0% {opacity:0;transform:scale(0);}
+      /* translateX(-1190px) translateY(500px); */
+      0% {opacity:0;transform:scale(0)}
+      80% {opacity:1;transform:scale(1.05)}
       100% {opacity:1;transform:scale(1)}
     }
 
@@ -220,7 +264,7 @@
   <div class="topBar">
     <div style="display: flex;align-items: center;">
       <svg style="stroke: white;stroke-width: 0.35;padding: 0;border: none;" width="100px" fill="#ffffff" xmlns:x="http://ns.adobe.com/Extensibility/1.0/" xmlns:i="http://ns.adobe.com/AdobeIllustrator/10.0/" xmlns:graph="http://ns.adobe.com/Graphs/1.0/" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" enable-background="new 0 0 90 54.727" xml:space="preserve" viewBox="0 -10 90 78" height="100px"><g><g i:extraneous="self"><path d="M89.997,21.398c-0.004-0.01-0.012-0.021-0.023-0.031c-0.012-0.012-0.027-0.021-0.045-0.029L45.015,0.018    c-0.012-0.006-0.025-0.01-0.041-0.014C44.96,0.002,44.944,0,44.927,0c-0.016,0-0.031,0.002-0.045,0.004    c-0.016,0.002-0.029,0.008-0.041,0.014l-44.77,21.32c-0.02,0.008-0.033,0.018-0.045,0.029c-0.012,0.01-0.018,0.021-0.023,0.033    c-0.004,0.01-0.004,0.021,0,0.031c0.004,0.012,0.012,0.021,0.021,0.029l45.076,33.225c0.02,0.014,0.041,0.023,0.064,0.031    c0.021,0.006,0.047,0.01,0.07,0.01c0.025,0,0.049-0.004,0.072-0.01c0.023-0.008,0.045-0.018,0.064-0.031l44.604-33.225    c0.012-0.008,0.02-0.018,0.023-0.029C90.001,21.422,90.001,21.41,89.997,21.398z M66.858,17.223l6.031-3.785l7.967,3.787    l-5.963,4.053L66.858,17.223l-0.227-0.113l-7.496-3.781l6.081-3.539h0.001l7.447,3.541l-6.033,3.779L66.858,17.223z     M44.837,21.398l-7.512,4.361l-7.02-4.361l7.498-4.064L44.837,21.398z M38.015,17.221l6.988-3.789l7.029,3.791l-6.984,4.055    L38.015,17.221z M45.05,21.521l7.559,4.369l-7.508,4.701l-7.563-4.699L45.05,21.521z M45.261,21.398l6.982-4.063L59.78,21.4    l-6.961,4.357L45.261,21.398z M52.442,17.221l6.51-3.785l7.496,3.787l-6.473,4.055L52.442,17.221z M52.229,17.107L45.2,13.324    l6.529-3.539l7.01,3.543L52.229,17.107z M45.003,13.219l-6.572-3.537l6.533-3.316l6.568,3.32L45.003,13.219z M44.806,13.326    l-6.988,3.779l-6.561-3.783l6.977-3.541L44.806,13.326z M37.606,17.221l-7.498,4.057l-6.529-4.059l7.467-3.789L37.606,17.221z     M29.882,21.398l-8.063,4.363l-6.477-4.363l8.01-4.064L29.882,21.398z M30.079,21.521l7.02,4.371l-8.102,4.703l-6.982-4.701    L30.079,21.521z M37.31,26.023l7.563,4.711l-8.119,5.084l-7.545-5.08L37.31,26.023z M45.103,30.877l8.174,5.09l-8.115,5.516    l-8.18-5.51L45.103,30.877z M45.329,30.734l7.508-4.711l8.146,4.707l-7.479,5.082l0.123,0.077l-0.125-0.077L45.329,30.734z     M53.048,25.891l6.959-4.369l8.1,4.367l-6.914,4.699L53.048,25.891z M60.204,21.398l6.471-4.061l8.039,4.063l-6.412,4.357    L60.204,21.398z M57.831,6.277l-6.115,3.309l0.197,0.1l6.115-3.314l6.98,3.318l-6.086,3.531l-7.01-3.535l-0.197-0.1l-6.568-3.314    l6.131-3.111L57.831,6.277z M44.929,0.141l6.164,2.932L44.962,6.18l-6.168-3.113L44.929,0.141z M38.61,3.156l6.168,3.115    l-6.533,3.311l-6.158-3.314L38.61,3.156z M31.89,6.361l6.158,3.32l-6.977,3.533l-6.133-3.537L31.89,6.361z M24.728,9.777    l6.135,3.545l-7.467,3.783l-6.092-3.785L24.728,9.777z M17.079,13.426l6.09,3.793l-8.01,4.059l-6.027-4.061L17.079,13.426z     M0.366,21.398l8.525-4.066l6.025,4.066l-8.615,4.365L0.366,21.398z M6.481,25.896l8.619-4.375l6.475,4.373L12.88,30.6    L6.481,25.896z M13.073,30.74l8.697-4.715l6.98,4.713l-8.762,5.086L13.073,30.74z M20.198,35.979l8.764-5.098l7.545,5.092    l-8.813,5.518L20.198,35.979z M27.923,41.658l8.813-5.531l8.18,5.523l-8.836,6.004L27.923,41.658z M45.235,54.385l-8.908-6.549    l8.836-6.018l8.9,6.008L45.235,54.385z M54.31,47.643l-8.898-5.992l8.113-5.529l8.863,5.52L54.31,47.643z M62.614,41.473    l-8.861-5.506l-0.001-0.001l7.478-5.093l8.805,5.088L62.614,41.473z M70.241,35.807l-8.803-5.076l6.912-4.709l8.729,4.705    L70.241,35.807z M77.272,30.584l-8.727-4.695l6.41-4.367l8.639,4.365L77.272,30.584z M83.772,25.756L75.136,21.4l5.961-4.061    l8.539,4.061L83.772,25.756z"></path></g></g></svg>
-      <h2 style="margin-left: .5em;display: inline-block;">WealthPrint</h2>
+      <h2 id="appName">WealthPrint</h2>
     </div>
     <div>
       <p style="margin:0;text-transform:lowercase;opacity:0.5;">Net Worth</p>
@@ -236,7 +280,14 @@
         <h2 style="font-weight:500;"><sup>$</sup><span id="otherTotal">180,893</span><small style="opacity:0.75;font-size:0.65em;">.23</small></h2>
       </div>
     </div>
-    <h2>Health Score</h2>
+    <div style="display:flex;align-items:center;">
+    <h2 style="max-width:80px;text-align:right;margin-right:1em;font-size:1em;opacity:0.75">health score</h2>
+    <svg onclick="showModal(healthScoreBreakdown)" class="scoreCircle" id="comboCircle" width="80" height="80" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <circle r="40" cx="50" cy="50" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="0"></circle>
+      <circle id="bar" r="40" cx="50" cy="50" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="0"></circle>
+      <text x="50%" y="55%" text-anchor="middle"><tspan id="comboScore" fill="#fff">0</tspan></text>
+    </svg>
+    </div>
     <div>
       <svg onclick="toggleNotification()" height='50px' width='50px'  fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" version="1.1" x="0px" y="0px"><title>See Notifications</title><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g fill-rule="nonzero" fill="#ffffff"><path d="M58.4417969,71 C57.9468689,75.2231701 54.3561068,78.5 50,78.5 C45.6438932,78.5 42.0531311,75.2231701 41.5582031,71 L30.0098932,71 C26.9668098,71 24.5,68.5387515 24.5,65.5 C24.5,62.4654619 26.9648349,60 30.0020869,60 C30.2744059,60 30.5,59.7742672 30.5,59.4982567 L30.5,47.4992494 C30.5,38.9458465 36.0493632,31.50398 44,28.9402086 L44,28.0008537 C44,24.6882223 46.6897988,22 50,22 C53.3154934,22 56,24.682604 56,28.0008537 L56,28.9403324 C63.9504345,31.5044463 69.5,38.9476626 69.5,47.4992494 L69.5,59.4982567 C69.5,59.779748 69.720359,60 69.9979131,60 C73.0304702,60 75.5,62.4646677 75.5,65.5 C75.5,68.5351929 73.0310133,71 69.9901068,71 L58.4417969,71 Z M55.4093119,71 L44.5906881,71 C45.0609444,73.560118 47.3039304,75.5 50,75.5 C52.6960696,75.5 54.9390556,73.560118 55.4093119,71 Z M45.8737226,31.5194904 C38.643809,33.3794653 33.5,39.9246235 33.5,47.4992494 L33.5,59.4982567 C33.5,61.4307089 31.9316731,63 30.0020869,63 C28.62186,63 27.5,64.1221454 27.5,65.5 C27.5,66.8803796 28.6221502,68 30.0098932,68 L69.9901068,68 C71.3752958,68 72.5,66.8771998 72.5,65.5 C72.5,64.1228469 71.3749381,63 69.9979131,63 C68.0638308,63 66.5,61.4369284 66.5,59.4982567 L66.5,47.4992494 C66.5,39.926412 61.355852,33.3797286 54.1262255,31.5195519 L53,31.2297751 L53,28.0008537 C53,26.3399346 51.6591151,25 50,25 C48.3462594,25 47,26.3454704 47,28.0008537 L47,31.2297431 L45.8737226,31.5194904 Z"></path></g></g></svg>
@@ -452,8 +503,71 @@
   <div style="text-align:center;">
     <h2>New Balance</h2>
     <span onClick="closeWindow(this)" class="exitWindow">&times;</span>
-    <input style="width:100%;font-size:24px;padding:1em;background:rgba(255,255,255,0.1);margin:1em 0;border:none;text-align:center;color:white;" id="newBalance" type="number"></input>
+    <input style="width:100%;font-size:24px;padding:1em;margin:1em 0;text-align:center;" id="newBalance" type="number"></input>
     <button id="saveBalance">Save</button>
+  </div>
+</div>
+
+<div class="modal" id="healthScoreBreakdown">
+  <div style="text-align:center;">
+    <h2>Your Health Score</h2>
+    <div class="scoreRow">
+      <svg class="scoreCircle" id="efCircle" width="100" height="100" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <circle r="40" cx="50" cy="50" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="0"></circle>
+        <circle id="bar" r="40" cx="50" cy="50" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="0"></circle>
+        <text x="50%" y="55%" text-anchor="middle"><tspan id="efScore">0</tspan><tspan class="maxScore">/35</tspan></text>
+      </svg>
+      <div>
+        <h2>Emergency Fund Score</h2>
+        <p>This metric compares the balances of your Savings Account(s) to your average monthly expenses.</p>
+        <p>Based on your risk-comfort level, we recommend having <strong id="targetRunway">6</strong> months of expenses in liquid savings accounts.</p>
+        <p>You currently have <strong id="runway">x</strong> months worth of expenses in your savings accounts.</p>
+        <p><i>Key Formula: (Emergency fund balance) / avg monthly expenses = Current Runway</i></p>
+      </div>
+    </div>
+
+    <div class="scoreRow">
+      <svg class="scoreCircle" id="crCircle" width="100" height="100" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <circle r="40" cx="50" cy="50" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="0"></circle>
+        <circle id="bar" r="40" cx="50" cy="50" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="0"></circle>
+        <text x="50%" y="55%" text-anchor="middle"><tspan id="crScore">0</tspan><tspan class="maxScore">/35</tspan></text>
+      </svg>
+      <div>
+        <h2>Current Ratio Score</h2>
+          <p>Your Current Ratio (also knows as a Debt Ratio) compares your total net worth to your total debts.</p>
+          <p>We recommend a Current Ratio of <strong>2 or more</strong>. You currently have a debt ratio of: <strong id="currentRatio">x</strong>
+          <p><i>Key Formula: Net Worth / Total Debt = Current Ratio</i></p>
+      </div>
+    </div>
+
+    <div class="scoreRow">
+      <svg class="scoreCircle" id="nwCircle" width="100" height="100" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <circle r="40" cx="50" cy="50" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="0"></circle>
+        <circle id="bar" r="40" cx="50" cy="50" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="0"></circle>
+        <text x="50%" y="55%" text-anchor="middle"><tspan id="nwScore">0</tspan><tspan class="maxScore">/20</tspan></text>
+      </svg>
+      <div>
+        <h2>Net Worth Score</h2>
+        <p>Your Target Net Worth based on your age and income is <strong id="targetNetWorth">x</strong>.
+        <p>Your current net worth is <strong id="currentNetWorth">x</strong>.</p>
+        <p><i>Key Formula: (Age * Anual Income)/(Retirement Age - Current Age) = Target Net Worth</i></p>
+      </div>
+    </div>
+
+    <div class="scoreRow">
+      <svg class="scoreCircle" id="rCircle" width="100" height="100" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <circle r="40" cx="50" cy="50" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="0"></circle>
+        <circle id="bar" r="40" cx="50" cy="50" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="0"></circle>
+        <text x="50%" y="55%" text-anchor="middle"><tspan id="rScore">0</tspan><tspan class="maxScore">/10</tspan></text>
+      </svg>
+      <div>
+        <h2>Retirement Score</h2>
+        <p>This metric compares the future value of your current retirement balance to your target retirement balance</p>
+        <p>Your target retirement balance is: <strong id="retirementGoal">x</strong></p>
+        <p>The future value of your current retirement balance is: <strong id="retirementFutureValue">x</strong></p>
+        <p><i>Key Formula: (Retirement Balance * ((1 + Growth Rate)) ^ Number of Years Until Retirement) = Future Value of Retirement Balance</i></p>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -496,22 +610,33 @@
 
 <div class="modal" id="assumptions">
   <div style="text-align:center;">
+    <p>Name, Email, Drive Car, Financial Goals</p>
     <h1>Assumptions</h1>
       <fieldset>
               <table>
                 <legend>Retirement Info</legend>
 							<tr>
 								<td>Current Age:</td>
-								<td><input onkeydown="generateSVG()" type="number" id="offset" value="0" maxlength="15" size="15" /></td>
+								<td><input oninput="saveValue(this)" data-input="assumption" type="number" id="age" value="28"  size="15" /></td>
 							</tr>
 							<tr>
 								<td>Retirement Age: </td>
-								<td><input onkeydown="generateSVG()" type="text" id="outerText" value="Sample Text" size="15" /></td>
+								<td><input oninput="saveValue(this)" data-input="assumption" type="number" id="rAge" value="65" size="15" /></td>
 							</tr>
                 <tr>
 								<td>Current Retirement Balance</td>
-								<td><input onkeydown="generateSVG()" type="text" id="outerText" value="Sample Text" size="15" /></td>
+								<td><input oninput="saveValue(this)" data-input="assumption" type="number" id="cb" value="0" size="15" /></td>
 							</tr>
+            </tr>
+              <tr>
+              <td>Target Retirement Goal</td>
+              <td><input oninput="saveValue(this)" data-input="assumption" type="number" id="rg" value="1500984" size="15" /></td>
+            </tr>
+            </tr>
+              <tr>
+              <td>Estimated Annual Growth Rate</td>
+              <td><input oninput="saveValue(this)" data-input="assumption" type="number" id="ar" value="7" size="15" />%</td>
+            </tr>
             </table>
         </fieldset>
 
@@ -520,15 +645,15 @@
                 <legend>Emergency Fund Info</legend>
 							<tr>
 								<td>Estimated Annual Income:</td>
-								<td><input onkeydown="generateSVG()" type="number" id="offset" value="0" maxlength="15" size="15" /></td>
+								<td><input oninput="saveValue(this)" data-input="assumption" type="number" id="income" value="80101"  size="15" /></td>
 							</tr>
 							<tr>
 								<td>Estimated Monthly Expenses: </td>
-								<td><input onkeydown="generateSVG()" type="text" id="outerText" value="Sample Text" size="15" /></td>
+								<td><input oninput="saveValue(this)" data-input="assumption" type="number" id="ae" value="1950" size="15" /></td>
 							</tr>
                 <tr>
 								<td>Current Emergency Savings: </td>
-								<td><input onkeydown="generateSVG()" type="text" id="outerText" value="Sample Text" size="15" /></td>
+								<td><input oninput="saveValue(this)" data-input="assumption" type="number" id="ef" value="0" size="15" /></td>
 							</tr>
             </table>
         </fieldset>
@@ -538,27 +663,27 @@
                 <legend>General Info</legend>
 							<tr>
 								<td>Marital Status:</td>
-                <td><input onkeydown="generateSVG()" type="radio" value="Single" /><label>Single | Married</label></td>
+                <td><input data-input="assumption" type="radio" value="Single" /><label>Single | Married</label></td>
 							</tr>
 							<tr>
 								<td>Health Status: </td>
-								<td><input onkeydown="generateSVG()" type="text" id="outerText" value="Sample Text" size="15" /><label>Pre-Existing Conditions + No Prexisting Conditions</td>
+								<td><input data-input="assumption" type="text" id="outerText" value="Sample Text" size="15" /><label>Pre-Existing Conditions + No Prexisting Conditions</td>
 							</tr>
                 <tr>
 								<td>Housing Status: </td>
-								<td><input onkeydown="generateSVG()" type="text" id="outerText" value="Sample Text" size="15" /><label>Rent | Own</label></td>
+								<td><input data-input="assumption" type="text" id="outerText" value="Sample Text" size="15" /><label>Rent | Own</label></td>
 							</tr>
               <tr>
                 <td>Risk Tolerance: </td>
-                <td><input onkeydown="generateSVG()" type="text" id="outerText" value="Sample Text" size="15" /><label>Low | Medium | High</label></td>
+                <td><input data-input="assumption" type="text" id="outerText" value="Sample Text" size="15" /><label>Low | Medium | High</label></td>
             </tr>
                               <tr>
                 <td>Employment Status: </td>
-                <td><input onkeydown="generateSVG()" type="text" id="outerText" value="Sample Text" size="15" /><label>Full-Time | Part-Time | Self-Employed</label></td>
+                <td><input data-input="assumption" type="text" id="outerText" value="Sample Text" size="15" /><label>Full-Time | Part-Time | Self-Employed</label></td>
             </tr>
                               <tr>
                 <td>Kids: </td>
-                <td><input onkeydown="generateSVG()" type="text" id="outerText" value="Sample Text" size="15" /><label>Yes | No </label></td>
+                <td><input data-input="assumption" type="text" id="outerText" value="Sample Text" size="15" /><label>Yes | No </label></td>
             </tr>
               </table>
           </fieldset>
@@ -623,10 +748,12 @@ var myChart = new Chart(ctx, {
 </script>
 
   <script>
+  //Declare Global Variables
+  let liquidTotal, otherTotal, netWorthTotal, debtTotal
 
   appData = window.localStorage
 
-  window.onload = loadUISettings(), loadData()
+  window.onload = loadUISettings(), loadData(), calculateHS()
 
   function loadUISettings() {
     let darkSetting = appData.getItem("darkMode");
@@ -688,10 +815,11 @@ var myChart = new Chart(ctx, {
       const otherTotalContainer = document.getElementById("otherTotal")
       const netWorthContainer = document.getElementById("netWorth")
 
-      let liquidTotal = 0
-      let otherTotal = 0
-      let netWorthTotal = 0
-      let debtTotal = 0
+      // Reset global variables
+      liquidTotal = 0
+      otherTotal = 0
+      netWorthTotal = 0
+      debtTotal = 0
 
       document.querySelectorAll("[data-accountType='liquid']").forEach((entry)=>
            {
@@ -729,8 +857,27 @@ var myChart = new Chart(ctx, {
       }
       item.innerText = sectionValue;
     });
+
+    // Load assumptions
+    document.querySelectorAll("[data-input='assumption']").forEach((entry)=>{
+      let assumptionID = entry.id;
+      let savedAssumption = appData.getItem(assumptionID)
+      if(savedAssumption == null || savedAssumption == ""){
+        return
+      }
+      entry.value = savedAssumption;
+    });
+
     updateTotals()
+    calculateHS()
   }
+
+  function saveValue(item) {
+    let id = item.id;
+    let savedValue = item.value;
+    appData.setItem(id, savedValue);
+    calculateHS()
+    }
 
   function updateBalance(account) {
     let id = account.getAttribute("data-accountID")
@@ -767,5 +914,176 @@ var myChart = new Chart(ctx, {
       loadData();
       });
   }
+
+  function calculateHS() {
+
+    // Declare Empty Variables
+    let retirementBalance, growthRate, retirementAge, age, goalBalance, eFund, mExpenses, nWorth, debt, income, efScore, crScore, nwScore, rScore, finalScore
+
+    // Declare Donut Chart Offsets
+    const efChart = document.querySelector("#efCircle #bar")
+    const crChart = document.querySelector("#crCircle #bar")
+    const nwChart = document.querySelector("#nwCircle #bar")
+    const rChart = document.querySelector("#rCircle #bar")
+    const comboChart = document.querySelector("#comboCircle #bar")
+    const circumfrence = document.getElementById('bar').getAttribute('stroke-dasharray')
+
+    // Declare Donut Chart Color Placeholders
+    const efChartColor = document.querySelector("#efCircle circle:first-child")
+    const crChartColor = document.querySelector("#crCircle circle:first-child")
+    const nwChartColor = document.querySelector("#nwCircle circle:first-child")
+    const rChartColor = document.querySelector("#rCircle circle:first-child")
+    const comboChartColor = document.querySelector("#comboCircle circle:first-child")
+
+    // Declare Score Placeholders
+    const efScoreContainer = document.getElementById("efScore")
+    const crScoreContainer = document.getElementById("crScore")
+    const nwScoreContainer = document.getElementById("nwScore")
+    const rScoreContainer = document.getElementById("rScore")
+    const comboContainer = document.getElementById("comboScore")
+
+    // Declare Score Explainer Placeholders
+    const runwayContainer = document.getElementById("runway")
+    const crContainer = document.getElementById("currentRatio")
+    const targetNWContainer = document.getElementById("targetNetWorth")
+    const currentNWContainer = document.getElementById("currentNetWorth")
+    const rGoalContainer = document.getElementById("retirementGoal")
+    const rFVContainer = document.getElementById("retirementFutureValue")
+
+    // Get Input Values & Assign to Variables
+    retirementBalance = otherTotal;
+    growthRate = document.getElementById("ar").value/100;
+    retirementAge = document.getElementById("rAge").value;
+    goalBalance = document.getElementById("rg").value;
+    eFund = liquidTotal;
+    mExpenses = document.getElementById("ae").value;
+    age = document.getElementById("age").value;
+    income = document.getElementById("income").value;
+    nWorth = netWorthTotal;
+    debt = debtTotal;
+
+    // Emergency Fund Calculation
+    efRunway = (eFund/mExpenses).toFixed(2) //months of runway
+
+    if(efRunway <= 6) {
+	     efScore = (efRunway/6)*35;}  //If less than 6 months of runway divide the months by 6 (max/optimal value) and multiply by the number of points the score is worth
+       else {
+	        efScore = 35}  // If 6 months or more, set score to max points for this metric
+    console.log("EF Score: " + efScore)
+
+    runwayContainer.innerText = efRunway
+    efScoreContainer.innerHTML = Math.round(efScore)
+
+    // Current Ratio Calculation
+    currentRatio = (nWorth/debt).toFixed(2)
+
+    if(currentRatio <= 2) {
+      crScore = (currentRatio/2)*35
+    } else {
+      crScore = 35
+    }
+    console.log("CR Score: " + crScore)
+
+    crContainer.innerText = currentRatio
+    crScoreContainer.innerHTML = Math.round(crScore)
+
+    // Net Worth Score
+    targetNW = Number(((age * income)/(retirementAge - age)).toFixed(2))
+
+    if(targetNW <= nWorth) {
+      nwScore = 20
+    } else {
+      nwScore = (nWorth/targetNW)*20
+    }
+    console.log("NW Score: " + nwScore)
+
+    targetNWContainer.innerText = "$" + targetNW.toLocaleString('en-US')
+    currentNWContainer.innerText = "$" + Number(nWorth).toLocaleString('en-US')
+    nwScoreContainer.innerHTML = Math.round(nwScore)
+    console.log(targetNW.toLocaleString('en-US') + " is your Target Net Worth")
+
+    // Retirement Score
+    futureValue = Number((retirementBalance * ((1 + growthRate)**(retirementAge-age))).toFixed(2))
+
+    if(goalBalance <= futureValue) {
+      rScore = 10
+    } else {
+      rScore = (futureValue/goalBalance)*10
+    }
+    console.log("R Score: " + rScore)
+
+    rGoalContainer.innerText = "$" + Number(goalBalance).toLocaleString('en-US')
+    rFVContainer.innerText = "$" + futureValue.toLocaleString('en-US')
+    rScoreContainer.innerHTML = Math.round(rScore)
+    console.log(futureValue.toLocaleString('en-US') + " is estimated retirement value")
+
+    finalScore = efScore+crScore+nwScore+rScore
+    comboContainer.innerHTML = Math.round(finalScore);
+    console.log(finalScore)
+
+    // Update Donuts
+    efChart.style['stroke-dashoffset'] = (circumfrence * (efScore/35))
+    crChart.style['stroke-dashoffset'] = (circumfrence * (crScore/35))
+    nwChart.style['stroke-dashoffset'] = (circumfrence * (nwScore/20))
+    rChart.style['stroke-dashoffset'] = (circumfrence * (rScore/10))
+    comboChart.style['stroke-dashoffset'] = (circumfrence * (finalScore/100))
+
+    // Update Donut Colors
+    if ((efScore/35) > 0.7) {
+      efScoreContainer.style['fill'] = "#2E8864"
+      efChartColor.style['stroke'] = "#2E8864"
+    } else if ((efScore/35) > 0.5) {
+      efScoreContainer.style['fill'] = "#ff8811";
+      efChartColor.style['stroke'] = "#ff8811"
+    } else {
+      efScoreContainer.style['fill'] = "#c12";
+      efChartColor.style['stroke'] = "#c12"
+    }
+
+    if ((crScore/35) > 0.7) {
+      crScoreContainer.style['fill'] = "#2E8864"
+      crChartColor.style['stroke'] = "#2E8864"
+    } else if ((efScore/35) > 0.5) {
+      crScoreContainer.style['fill'] = "#ff8811";
+      crChartColor.style['stroke'] = "#ff8811"
+    } else {
+      crScoreContainer.style['fill'] = "#c12";
+      crChartColor.style['stroke'] = "#c12"
+    }
+
+    if ((nwScore/20) > 0.7) {
+      nwScoreContainer.style['fill'] = "#2E8864"
+      nwChartColor.style['stroke'] = "#2E8864"
+    } else if ((nwScore/20) > 0.5) {
+      nwScoreContainer.style['fill'] = "#ff8811";
+      nwChartColor.style['stroke'] = "#ff8811"
+    } else {
+      nwScoreContainer.style['fill'] = "#c12";
+      nwChartColor.style['stroke'] = "#c12"
+    }
+
+    if ((rScore/10) > 0.7) {
+      rScoreContainer.style['fill'] = "#2E8864"
+      rChartColor.style['stroke'] = "#2E8864"
+    } else if ((rScore/10) > 0.5) {
+      rScoreContainer.style['fill'] = "#ff8811";
+      rChartColor.style['stroke'] = "#ff8811"
+    } else {
+      rScoreContainer.style['fill'] = "#c12";
+      rChartColor.style['stroke'] = "#c12"
+    }
+
+    if ((finalScore/100) > 0.7) {
+      comboChartColor.style['stroke'] = "#1e5a42"
+    } else if ((finalScore/100) > 0.5) {
+      comboContainer.style['fill'] = "#ff8811";
+      comboChartColor.style['stroke'] = "#ff8811"
+    } else {
+      comboContainer.style['fill'] = "#c12";
+      comboChartColor.style['stroke'] = "#c12"
+    }
+  }
+
+
 
   </script>

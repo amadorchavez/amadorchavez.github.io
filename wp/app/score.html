@@ -1,0 +1,316 @@
+<html>
+<head>
+  <style>
+  /*BoilerPlate CSS*/
+  html, body {padding: 0;margin: 0;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;height:100%;font-family:goldman sans;}
+  h1, h2, h3, h4, h5, h6 {font-weight: 400;margin: 0;padding: 0;}
+  ::placeholder {color: rgba(20,0,0,1);opacity:1;}
+  *:focus {outline: none;}
+
+    input {
+    padding: .65em;
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 0 8px rgba(0,0,0,0.15);
+    background: linear-gradient(45deg,#D3DDED,#DCE6FC);
+    font-family: Goldman Sans;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  input:focus {border:1px solid rgba(0,0,0,0.25);background:linear-gradient(225deg,#D3DDED,#DCE6FC)}
+  label{padding:0 1.5em;}
+
+  .field {display:block;margin-bottom:1em;}
+
+
+  button {background:#c12;color:white;padding:1em 2em;border:none;border-bottom:3px solid rgba(0,0,0,0.25);border-radius:3px;cursor:pointer;}
+
+  .scoreRow {display:flex;align-items:center;gap:0.75em;margin-bottom:1em;}
+  .scoreRow svg {flex-shrink:0;}
+  .scoreCircle {display: inline-block;overflow: hidden;}
+  .scoreCircle text {fill:#333;font-family:Goldman Sans;font-size:1.5em;font-weight:700;}
+  .maxScore {fill:gray;font-size:.5em;}
+  .scoreCircle circle {
+     stroke-dashoffset: 0;
+     transition: stroke .25s ease;
+     stroke: #777;
+     stroke-width: 7px;
+     transform: rotate(-90deg) rotateX(180deg);
+     transform-origin: center;
+   }
+  .scoreCircle #bar {
+     stroke: #ccc;
+     stroke: rgba(255,255,255,0.5);
+     transition: stroke-dashoffset .5s cubic-bezier(0,1.07,.89,.99) 90ms;
+     stroke-width:8px;
+   }
+
+
+   .scoreRow p {margin:0;}
+
+  </style>
+
+</head>
+
+<body>
+  <div class="field">
+  <label for="cb">Current Balance</label><input id="cb" type="number">
+  </div>
+
+  <div class="field">
+  <label for="ar">Est. Annual Growth Rate</label><input id="ar" type="number">
+  </div>
+
+  <div class="field">
+  <label for="rAge">Retirement Age</label><input id="rAge" type="number">
+  </div>
+
+  <div class="field">
+  <label for="rg">Retirement Goal</label><input id="rg" type="number">
+  </div>
+
+  <div class="field">
+  <label for="ef">Emergency Fund Balance</label><input id="ef" type="number">
+  </div>
+
+  <div class="field">
+  <label for="ae">Average Monthly Expenses</label><input id="ae" type="number">
+  </div>
+
+  <div class="field">
+  <label for="nw">Net Worth</label><input id="nw" type="number">
+  </div>
+
+  <div class="field">
+  <label for="debt">Total Debt</label><input id="debt" type="number">
+  </div>
+
+  <div class="field">
+  <label for="age">Current Age</label><input id="age" type="number">
+  </div>
+
+  <div class="field">
+  <label for="income">Annual Income (before taxes)</label><input id="income" type="number">
+  </div>
+
+  <button onclick="calculateScores()">Get Scores</button>
+
+  <div class="scoreRow">
+    <svg class="scoreCircle" id="efCircle" width="100" height="100" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <circle r="40" cx="50" cy="50" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="0"></circle>
+      <circle id="bar" r="40" cx="50" cy="50" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="0"></circle>
+      <text x="50%" y="55%" text-anchor="middle"><tspan id="efScore">0</tspan><tspan class="maxScore">/35</tspan></text>
+    </svg>
+    <div>
+      <h2>Emergency Fund Score</h2>
+      <p>This metric compares the balances of your Savings Account(s) to your average monthly expenses.</p>
+      <p>Based on your risk-comfort level, we recommend having <strong id="targetRunway">6</strong> months of expenses in liquid savings accounts.</p>
+      <p>You currently have <strong id="runway">x</strong> months worth of expenses in your savings accounts.</p>
+      <p><i>Key Formula: (Emergency fund balance) / avg monthly expenses = Current Runway</i></p>
+    </div>
+  </div>
+
+  <div class="scoreRow">
+    <svg class="scoreCircle" id="crCircle" width="100" height="100" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <circle r="40" cx="50" cy="50" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="0"></circle>
+      <circle id="bar" r="40" cx="50" cy="50" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="0"></circle>
+      <text x="50%" y="55%" text-anchor="middle"><tspan id="crScore">0</tspan><tspan class="maxScore">/35</tspan></text>
+    </svg>
+    <div>
+      <h2>Current Ratio Score</h2>
+        <p>Your Current Ratio (also knows as a Debt Ratio) compares your total net worth to your total debts.</p>
+        <p>We recommend a Current Ratio of <strong>2 or more</strong>. You currently have a debt ratio of: <strong id="currentRatio">x</strong>
+        <p><i>Key Formula: Net Worth / Total Debt = Current Ratio</i></p>
+    </div>
+  </div>
+
+  <div class="scoreRow">
+    <svg class="scoreCircle" id="nwCircle" width="100" height="100" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <circle r="40" cx="50" cy="50" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="0"></circle>
+      <circle id="bar" r="40" cx="50" cy="50" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="0"></circle>
+      <text x="50%" y="55%" text-anchor="middle"><tspan id="nwScore">0</tspan><tspan class="maxScore">/20</tspan></text>
+    </svg>
+    <div>
+      <h2>Net Worth Score</h2>
+      <p>Your Target Net Worth based on your age and income is <strong id="targetNetWorth">x</strong>.
+      <p>Your current net worth is <strong id="currentNetWorth">x</strong>.</p>
+      <p><i>Key Formula: (Age * Anual Income)/(Retirement Age - Current Age) = Target Net Worth</i></p>
+    </div>
+  </div>
+
+  <div class="scoreRow">
+    <svg class="scoreCircle" id="rCircle" width="100" height="100" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <circle r="40" cx="50" cy="50" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="0"></circle>
+      <circle id="bar" r="40" cx="50" cy="50" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="0"></circle>
+      <text x="50%" y="55%" text-anchor="middle"><tspan id="rScore">0</tspan><tspan class="maxScore">/10</tspan></text>
+    </svg>
+    <div>
+      <h2>Retirement Score</h2>
+      <p>This metric compares the future value of your current retirement balance to your target retirement balance</p>
+      <p>Your target retirement balance is: <strong id="retirementGoal">x</strong></p>
+      <p>The future value of your current retirement balance is: <strong id="retirementFutureValue">x</strong></p>
+      <p><i>Key Formula: (Retirement Balance * ((1 + Growth Rate)) ^ Number of Years Until Retirement) = Future Value of Retirement Balance</i></p>
+    </div>
+  </div>
+
+
+</body>
+
+<script>
+
+  function calculateScores() {
+
+    // Declare Empty Variables
+    let retirementBalance, growthRate, retirementAge, age, goalBalance, eFund, mExpenses, nWorth, debt, income, efScore, crScore, nwScore, rScore, finalScore
+
+    // Declare Donut Chart Offsets
+    const efChart = document.querySelector("#efCircle #bar")
+    const crChart = document.querySelector("#crCircle #bar")
+    const nwChart = document.querySelector("#nwCircle #bar")
+    const rChart = document.querySelector("#rCircle #bar")
+    const circumfrence = document.getElementById('bar').getAttribute('stroke-dasharray')
+
+    // Declare Donut Chart Color Placeholders
+    const efChartColor = document.querySelector("#efCircle circle:first-child")
+    const crChartColor = document.querySelector("#crCircle circle:first-child")
+    const nwChartColor = document.querySelector("#nwCircle circle:first-child")
+    const rChartColor = document.querySelector("#rCircle circle:first-child")
+
+    // Declare Score Placeholders
+    const efScoreContainer = document.getElementById("efScore")
+    const crScoreContainer = document.getElementById("crScore")
+    const nwScoreContainer = document.getElementById("nwScore")
+    const rScoreContainer = document.getElementById("rScore")
+
+    // Declare Score Explainer Placeholders
+    const runwayContainer = document.getElementById("runway")
+    const crContainer = document.getElementById("currentRatio")
+    const targetNWContainer = document.getElementById("targetNetWorth")
+    const currentNWContainer = document.getElementById("currentNetWorth")
+    const rGoalContainer = document.getElementById("retirementGoal")
+    const rFVContainer = document.getElementById("retirementFutureValue")
+
+    // Get Input Values & Assign to Variables
+    retirementBalance = document.getElementById("cb").value;
+    growthRate = document.getElementById("ar").value/100;
+    retirementAge = document.getElementById("rAge").value;
+    goalBalance = document.getElementById("rg").value;
+    eFund = document.getElementById("ef").value;
+    mExpenses = document.getElementById("ae").value;
+    nWorth = document.getElementById("nw").value;
+    debt = document.getElementById("debt").value;
+    age = document.getElementById("age").value;
+    income = document.getElementById("income").value;
+
+    // Emergency Fund Calculation
+    efRunway = (eFund/mExpenses).toFixed(2) //months of runway
+
+    if(efRunway <= 6) {
+	     efScore = (efRunway/6)*35;}  //If less than 6 months of runway divide the months by 6 (max/optimal value) and multiply by the number of points the score is worth
+       else {
+	        efScore = 35}  // If 6 months or more, set score to max points for this metric
+    console.log("EF Score: " + efScore)
+
+    runwayContainer.innerText = efRunway
+    efScoreContainer.innerHTML = Math.round(efScore)
+
+    // Current Ratio Calculation
+    currentRatio = (nWorth/debt).toFixed(2)
+
+    if(currentRatio <= 2) {
+      crScore = (currentRatio/2)*35
+    } else {
+      crScore = 35
+    }
+    console.log("CR Score: " + crScore)
+
+    crContainer.innerText = currentRatio
+    crScoreContainer.innerHTML = Math.round(crScore)
+
+    // Net Worth Score
+    targetNW = Number(((age * income)/(retirementAge - age)).toFixed(2))
+
+    if(targetNW <= nWorth) {
+      nwScore = 20
+    } else {
+      nwScore = (nWorth/targetNW)*20
+    }
+    console.log("NW Score: " + nwScore)
+
+    targetNWContainer.innerText = "$" + targetNW.toLocaleString('en-US')
+    currentNWContainer.innerText = "$" + Number(nWorth).toLocaleString('en-US')
+    nwScoreContainer.innerHTML = Math.round(nwScore)
+    console.log(targetNW.toLocaleString('en-US') + " is your Target Net Worth")
+
+    // Retirement Score
+    futureValue = Number((retirementBalance * ((1 + growthRate)**(retirementAge-age))).toFixed(2))
+
+    if(goalBalance <= futureValue) {
+      rScore = 10
+    } else {
+      rScore = (futureValue/goalBalance)*10
+    }
+    console.log("R Score: " + rScore)
+
+    rGoalContainer.innerText = "$" + Number(goalBalance).toLocaleString('en-US')
+    rFVContainer.innerText = "$" + futureValue.toLocaleString('en-US')
+    rScoreContainer.innerHTML = Math.round(rScore)
+    console.log(futureValue.toLocaleString('en-US') + " is estimated retirement value")
+
+    finalScore = efScore+crScore+nwScore+rScore
+    console.log(finalScore)
+
+    // Update Donuts
+    efChart.style['stroke-dashoffset'] = (circumfrence * (efScore/35))
+    crChart.style['stroke-dashoffset'] = (circumfrence * (crScore/35))
+    nwChart.style['stroke-dashoffset'] = (circumfrence * (nwScore/20))
+    rChart.style['stroke-dashoffset'] = (circumfrence * (rScore/10))
+
+    // Update Donut Colors
+    if ((efScore/35) > 0.7) {
+      efScoreContainer.style['fill'] = "#2E8864"
+      efChartColor.style['stroke'] = "#2E8864"
+    } else if ((efScore/35) > 0.5) {
+      efScoreContainer.style['fill'] = "#ff8811";
+      efChartColor.style['stroke'] = "#ff8811"
+    } else {
+      efScoreContainer.style['fill'] = "#c12";
+      efChartColor.style['stroke'] = "#c12"
+    }
+
+    if ((crScore/35) > 0.7) {
+      crScoreContainer.style['fill'] = "#2E8864"
+      crChartColor.style['stroke'] = "#2E8864"
+    } else if ((efScore/35) > 0.5) {
+      crScoreContainer.style['fill'] = "#ff8811";
+      crChartColor.style['stroke'] = "#ff8811"
+    } else {
+      crScoreContainer.style['fill'] = "#c12";
+      crChartColor.style['stroke'] = "#c12"
+    }
+
+    if ((nwScore/20) > 0.7) {
+      nwScoreContainer.style['fill'] = "#2E8864"
+      nwChartColor.style['stroke'] = "#2E8864"
+    } else if ((nwScore/20) > 0.5) {
+      nwScoreContainer.style['fill'] = "#ff8811";
+      nwChartColor.style['stroke'] = "#ff8811"
+    } else {
+      nwScoreContainer.style['fill'] = "#c12";
+      nwChartColor.style['stroke'] = "#c12"
+    }
+
+    if ((rScore/10) > 0.7) {
+      rScoreContainer.style['fill'] = "#2E8864"
+      rChartColor.style['stroke'] = "#2E8864"
+    } else if ((rScore/10) > 0.5) {
+      rScoreContainer.style['fill'] = "#ff8811";
+      rChartColor.style['stroke'] = "#ff8811"
+    } else {
+      rScoreContainer.style['fill'] = "#c12";
+      rChartColor.style['stroke'] = "#c12"
+    }
+  }
+
+</script>
