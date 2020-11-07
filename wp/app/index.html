@@ -1,11 +1,10 @@
+<!DOCTYPE html>
+
 <html>
 <head>
   <title>Finance Overview | WealthPrint</title>
   <link rel="stylesheet" href="fonts.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="fonts.css">
-
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-
 
     <style>
     /*BoilerPlate CSS*/
@@ -107,7 +106,7 @@
     .accountButton {border:none;background: linear-gradient(0deg,#d3dded,#e4e4fd);color: #35383c;padding: 0.5em 0;font-weight: 600;display: block;width: 100%;text-decoration: none;transition: ease all .15s;border-top: 1px solid var(--border-subtle-color);border-radius: 0 0 5px 5px;}
     .accountButton:hover {background:#2E8864;color:white;}
 
-    .accountImage {height:70px;background-color:#003971;border-radius:5px 5px 0 0;background-repeat: no-repeat;background-size: 40%;background-position: center;}
+    .accountImage {height:70px;background-color:#003971;border-radius:5px 5px 0 0;background-repeat: no-repeat;background-size: 45%;background-position: center;}
     .accountTotal {text-align: center;font-size: 30px;padding: 0;margin: 0;font-weight:500;}
     .accountTotal span {border-bottom:1px dotted transparent;transition: ease border .15s;}
     .accountTotal span:hover {border-bottom:1px dotted;cursor: pointer;}
@@ -140,7 +139,7 @@
 
     /* Modals */
     .modal {width:100%;height:100%;position:fixed;top:0;left:0;z-index:999;display:none;}
-    .modal > div:first-child {top:25%;position:relative;width:60vw;max-width:1280px;height:auto;max-height:50vh;margin:0 auto;padding:2em;background: var(--layer-color);border: 1px solid var(--border-sharp-color);box-shadow:0 0 115px rgba(0,0,0,0.5);overflow-y: scroll;}
+    .modal > div:first-child {top:25%;position:relative;width:70vw;max-width:1280px;height:auto;max-height:50vh;margin:0 auto;padding:2em;background: var(--layer-color);border: 1px solid var(--border-sharp-color);box-shadow:0 0 115px rgba(0,0,0,0.5);overflow-y: scroll;}
     .modal p {margin:0;margin-bottom:0.75em;}
     .modalOut > div:first-child {animation:zoomFade cubic-bezier(0,1.11,.75,.9) .15s reverse forwards;}
     .modalIn > div:first-child {animation:zoomFade cubic-bezier(0,1.11,.75,.9) .15s;}
@@ -154,7 +153,7 @@
     .transactionLog th {padding:.5em 1em ;background: var(--sidebar-bg-color);color: var(--text-color);font-weight: 800 !important;border-right: 1px solid rgba(255,255,255,0.15);text-align: left;}
     .transactionLog td {padding:1em;font-weight:400;}
     .transactionLog th:first-child {border-radius:5px 0 0 0;}
-    .transactionLog th:last-child {border-radius:0 5px 0 0;}
+    .transactionLog th:last-child {border-radius:0 5px 0 0;border-right:none;}
 
     .transactionLog tr:nth-child(even) {background:var(--border-subtle-color);}
     .transactionLog tr {border-bottom:1px solid var(--border-subtle-color);}
@@ -312,7 +311,7 @@
 
     <h1>Spending Accounts</h1>
     <div class="accountBox">
-      <div class="accountImage" style="background-image:url('logos/cone.png')"></div>
+      <div class="accountImage" style="background-image:url('svgs/capital-one-white.svg')"></div>
       <div class="accountSummary">
         <h2>CapitalOne 360 Savings</h2>
         <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="liquid" data-accountId="1">39961.21</span></p>
@@ -322,7 +321,7 @@
     </div>
 
     <div class="accountBox">
-      <div class="accountImage" style="background-image:url('logos/usbank.png');background-color:#de1628;"></div>
+      <div class="accountImage" style="background-image:url('svgs/usb.svg');background-color:#de1628;"></div>
       <div class="accountSummary">
         <h2>US Bank Checking</h2>
         <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="liquid" data-accountId="2">15137.97</span></p>
@@ -332,7 +331,7 @@
     </div>
 
     <div class="accountBox">
-      <div class="accountImage" style="background-image:url('logos/usbank.png');background-color:#de1628;"></div>
+      <div class="accountImage" style="background-image:url('svgs/usb.svg');background-color:#de1628;"></div>
       <div class="accountSummary">
         <h2>US Bank Savings</h2>
         <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="liquid" data-accountId="7">4000.56</span></p>
@@ -342,7 +341,7 @@
     </div>
 
     <div class="accountBox">
-      <div class="accountImage" style="background-image:url('logos/paypal.png');background-color:#0d3685;"></div>
+      <div class="accountImage" style="background-image:url('svgs/paypal.svg');background-color:#0d3685;"></div>
       <div class="accountSummary">
         <h2>PayPal</h2>
         <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="liquid" data-accountId="3">1400</span></p>
@@ -352,7 +351,7 @@
     </div>
 
     <div class="accountBox">
-      <div class="accountImage" style="background-image:url('logos/dlevans.png');background-color:#0d3685;"></div>
+      <div class="accountImage" style="background-image:url('svgs/dl-evans.svg');background-color:#081F3F;"></div>
       <div class="accountSummary">
         <h2>Idaho MSA</h2>
         <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="liquid" data-accountId="10">5061.60</span></p>
@@ -373,7 +372,7 @@
 
     <h1>Credit Cards</h1>
     <div class="accountBox">
-      <div class="accountImage" style="background-image:url('logos/usbank.png');background-color:#de1628;"></div>
+      <div class="accountImage" style="background-image:url('svgs/usb.svg');background-color:#de1628;"></div>
       <div class="accountSummary">
         <h2>US Bank Altitude Go</h2>
         <p class="accountTotal">(<sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="debt" data-accountId="11" data-rewards="0.00" data-interest="0.08" data-credit="18,000.00">156.60</span>)</p>
@@ -383,7 +382,7 @@
     </div>
 
     <div class="accountBox">
-      <div class="accountImage" style="background-image:url('logos/usbank.png');background-color:#de1628;"></div>
+      <div class="accountImage" style="background-image:url('svgs/usb.svg');background-color:#de1628;"></div>
       <div class="accountSummary">
         <h2>US Bank Cash+</h2>
         <p class="accountTotal">(<sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="debt" data-accountId="12" data-rewards="0.00" data-interest="0.08" data-credit="18,000.00">26.92</span>)</p>
@@ -393,7 +392,7 @@
     </div>
 
     <div class="accountBox">
-      <div class="accountImage" style="background-image:url('logos/chase.png');background-color:#0d3685;"></div>
+      <div class="accountImage" style="background-image:url('svgs/chase.svg');background-color:#0d3685;"></div>
       <div class="accountSummary">
         <h2>Chase Freedom</h2>
         <p class="accountTotal">(<sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="debt" data-accountId="13" data-rewards="211.84" data-interest="0.08" data-credit="18,000.00">556.48</span>)</p>
@@ -403,7 +402,7 @@
     </div>
 
     <div class="accountBox">
-      <div class="accountImage" style="background-image:url('logos/amex.png');background-color:#ccd;"></div>
+      <div class="accountImage" style="background-image:url('svgs/amex.svg');background-color:#ccd;"></div>
       <div class="accountSummary">
         <h2>American Express Blue</h2>
         <p class="accountTotal">(<sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="debt" data-accountId="14" data-rewards="54.83" data-interest="0.08" data-credit="18,000.00">106.85</span>)</p>
@@ -413,7 +412,7 @@
     </div>
 
     <div class="accountBox">
-      <div class="accountImage" style="background-image:url('logos/cone.png');background-color:#0d3685;"></div>
+      <div class="accountImage" style="background-image:url('svgs/capital-one-white.svg');background-color:#0d3685;"></div>
       <div class="accountSummary">
         <h2>CapitalOne Savor</h2>
         <p class="accountTotal">(<sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="debt" data-accountId="15" data-rewards="179.00" data-interest="0.08" data-credit="18,000.00">12.30</span>)</p>
@@ -425,7 +424,7 @@
 
     <h1>Retirement Accounts</h1>
     <div class="accountBox">
-      <div class="accountImage" style="background-image:url('logos/transamerica.png');background-color:#052c50"></div>
+      <div class="accountImage" style="background-image:url('svgs/transamerica.svg');background-color:#052c50"></div>
       <div class="accountSummary">
         <h2>Nifty 401(k)</h2>
         <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="other" data-accountId="4">34712.84</span></p>
@@ -435,7 +434,7 @@
     </div>
 
     <div class="accountBox">
-      <div class="accountImage" style="background-image:url('logos/vanguard.png');background-color:#96151d;"></div>
+      <div class="accountImage" style="background-image:url('svgs/vanguard.svg');background-color:#96151d;"></div>
       <div class="accountSummary">
         <h2>Roth IRA</h2>
         <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="other" data-accountId="5">34664.18</span></p>
@@ -445,7 +444,7 @@
     </div>
 
     <div class="accountBox">
-      <div class="accountImage" style="background-image:url('logos/td.png');background-color:#3fae49;"></div>
+      <div class="accountImage" style="background-image:url('svgs/tdAmeritrade.svg');background-color:#3fae49;"></div>
       <div class="accountSummary">
         <h2>HSA Investments</h2>
         <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="other" data-accountId="6">9659.68</span></p>
@@ -455,7 +454,7 @@
     </div>
 
     <div class="accountBox">
-      <div class="accountImage" style="background-image:url('logos/ideal.png');background-color:#f4b242;"></div>
+      <div class="accountImage" style="background-image:url('svgs/ideal.svg');background-color:#f4b242;"></div>
       <div class="accountSummary">
         <h2>Idaho 529</h2>
         <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="other" data-accountId="8">9643.25</span></p>
@@ -465,7 +464,7 @@
     </div>
 
     <div class="accountBox">
-      <div class="accountImage" style="background-image:url('logos/lively.png');background-color:#19A69D;"></div>
+      <div class="accountImage" style="background-image:url('svgs/lively.svg');background-color:#19A69D;"></div>
       <div class="accountSummary">
         <h2>Lively HSA</h2>
         <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="other" data-accountId="9">2083.28</span></p>
@@ -584,7 +583,7 @@
 
 <div class="modal" id="transactionLog">
   <div style="text-align:left;">
-    <h2>account title</h2>
+    <h1>account title</h1>
     <p>1% interest rate</p>
     <div class="accountGrid" style="display:grid; grid-template-columns:3fr 1fr;margin-bottom:1em;">
       <div style="background:var(--border-subtle-color);">Chart</div>
@@ -714,6 +713,8 @@
 
 </body>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
 <script>
 var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
@@ -768,8 +769,14 @@ var myChart = new Chart(ctx, {
 </script>
 
   <script>
-  //Declare Global Variables
-  let liquidTotal, otherTotal, netWorthTotal, debtTotal, liquidCents, otherCents, debtCents, netWorthCents
+  //Declare Global Variables & Helpers
+  let liquidTotal, otherTotal, netWorthTotal, debtTotal, liquidCents, otherCents, debtCents, netWorthCents, ccRewards
+
+  const currencyFormat = function (digits) {
+    let minDecimal = (digits % 1 == 0) ? digits : digits.toFixed(2);
+    let commaAdd = minDecimal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return commaAdd
+  }
 
   appData = window.localStorage
 
@@ -822,6 +829,7 @@ var myChart = new Chart(ctx, {
     }
 
     function showModal(e, window) {
+      console.log(e);
       const root = document.documentElement;
       let currentX = e.clientX;
       let currentY = e.clientY;
@@ -912,11 +920,12 @@ var myChart = new Chart(ctx, {
       otherCents = 0
       debtCents = 0
       netWorthCents = 0
+      ccRewards = 0
 
       document.querySelectorAll("[data-accountType='liquid']").forEach((entry)=>
            {
         liquidTotal += parseFloat(entry.innerText)
-        entry.innerText = parseFloat(entry.innerText).toLocaleString('en-US')
+        entry.innerText = currencyFormat(parseFloat(entry.innerText))
       });
       formattedLiquidTotal = Math.floor(liquidTotal).toLocaleString('en-US')
       liquidTotalContainer.innerText=formattedLiquidTotal;
@@ -926,7 +935,7 @@ var myChart = new Chart(ctx, {
       document.querySelectorAll("[data-accountType='other']").forEach((entry)=>
            {
         otherTotal += parseFloat(entry.innerText)
-        entry.innerText = parseFloat(entry.innerText).toLocaleString('en-US')
+        entry.innerText = currencyFormat(parseFloat(entry.innerText))
       });
       formattedOtherTotal = Math.floor(otherTotal).toLocaleString('en-US')
       otherTotalContainer.innerText=formattedOtherTotal;
@@ -935,13 +944,20 @@ var myChart = new Chart(ctx, {
       document.querySelectorAll("[data-accountType='debt']").forEach((entry)=>
            {
         debtTotal += parseFloat(entry.innerText)
-        entry.innerText = parseFloat(entry.innerText).toLocaleString('en-US')
+        entry.innerText = currencyFormat(parseFloat(entry.innerText))
       });
       debtCents = (debtTotal % 1).toFixed(2)*100;
 
       netWorthTotal = liquidTotal + otherTotal - debtTotal
       netWorthContainer.innerText = Math.floor(netWorthTotal).toLocaleString('en-US')
       netWorthCentsContainer.innerText= "." + (netWorthTotal % 1).toFixed(2)*100;
+
+      // Credit Card Rewards Testing
+      document.querySelectorAll("[data-accountType='debt']").forEach((entry)=>
+           {
+        ccRewards += parseFloat(entry.getAttribute("data-rewards"))
+      });
+      console.log("Total Credit Card Reward Balance: " + currencyFormat(ccRewards))
     }
 
     function loadData() {
@@ -1058,10 +1074,10 @@ var myChart = new Chart(ctx, {
     }
     console.log("NW Score: " + nwScore)
 
-    targetNWContainer.innerText = "$" + targetNW.toLocaleString('en-US')
-    currentNWContainer.innerText = "$" + Number(nWorth).toLocaleString('en-US')
+    targetNWContainer.innerText = "$" + currencyFormat(targetNW)
+    currentNWContainer.innerText = "$" + currencyFormat(Number(nWorth))
     nwScoreContainer.innerHTML = Math.round(nwScore)
-    console.log(targetNW.toLocaleString('en-US') + " is your Target Net Worth")
+    console.log(currencyFormat(targetNW) + " is your Target Net Worth")
 
     // Retirement Score
     futureValue = Number((retirementBalance * ((1 + growthRate)**(retirementAge-age))).toFixed(2))
@@ -1073,10 +1089,10 @@ var myChart = new Chart(ctx, {
     }
     console.log("R Score: " + rScore)
 
-    rGoalContainer.innerText = "$" + Number(goalBalance).toLocaleString('en-US')
-    rFVContainer.innerText = "$" + futureValue.toLocaleString('en-US')
+    rGoalContainer.innerText = "$" + currencyFormat(Number(goalBalance))
+    rFVContainer.innerText = "$" + currencyFormat(futureValue)
     rScoreContainer.innerHTML = Math.round(rScore)
-    console.log(futureValue.toLocaleString('en-US') + " is estimated retirement value")
+    console.log(currencyFormat(futureValue) + " is estimated retirement value")
 
     finalScore = efScore+crScore+nwScore+rScore
     comboContainer.innerHTML = Math.round(finalScore);
@@ -1154,12 +1170,9 @@ var myChart = new Chart(ctx, {
     console.log(duration, depth, animationTime)
     let processing = setInterval(function() {
       countPositon += increment;
-      document.getElementById(target).innerHTML = countPositon.toLocaleString('en-US');
+      document.getElementById(target).innerHTML = currencyFormat(countPositon);
       if (countPositon == endNumber) {clearInterval(processing);}
     }, animationTime)
   }
-
-// thousands --> hundreds --> tens --> ones
-
-
+  // thousands --> hundreds --> tens --> ones
   </script>
