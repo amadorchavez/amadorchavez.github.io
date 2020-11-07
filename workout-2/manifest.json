@@ -1,8 +1,8 @@
 {
   "name": "Workout Manager",
   "display": "standalone",
-  "start_url": "/",
-  "short_name": "workout",
+  "start_url": "index.html",
+  "short_name": "Workout Manager",
   "theme_color": "#ac1234",
   "description": "Keep track of your workouts",
   "orientation": "portrait",
