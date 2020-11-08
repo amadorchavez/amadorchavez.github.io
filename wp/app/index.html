@@ -165,7 +165,7 @@
     legend {font-size:1.5em;}
 
     #assumptions table {table-layout:fixed;width:100%;}
-    #assumptions td {width:50%;padding:.25em 0;}
+    #assumptions td {width:50%;padding:.25em 0;text-align: left;}
 
 
 
@@ -314,7 +314,7 @@
       <div class="accountImage" style="background-image:url('svgs/capital-one-white.svg')"></div>
       <div class="accountSummary">
         <h2>CapitalOne 360 Savings</h2>
-        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="liquid" data-accountId="1">39961.21</span></p>
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="liquid" data-accountName="CapitalOne 360 Savings" data-accountId="1">39961.21</span></p>
       </div>
       <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
       <button onclick="showModal(event, transactionLog)" class="accountButton">View Details</button>
@@ -324,7 +324,7 @@
       <div class="accountImage" style="background-image:url('svgs/usb.svg');background-color:#de1628;"></div>
       <div class="accountSummary">
         <h2>US Bank Checking</h2>
-        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="liquid" data-accountId="2">15137.97</span></p>
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="liquid" data-accountName="US Bank Checking" data-accountId="2">15137.97</span></p>
       </div>
       <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
       <button onclick="showModal(event, transactionLog)" class="accountButton">View Details</button>
@@ -334,7 +334,7 @@
       <div class="accountImage" style="background-image:url('svgs/usb.svg');background-color:#de1628;"></div>
       <div class="accountSummary">
         <h2>US Bank Savings</h2>
-        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="liquid" data-accountId="7">4000.56</span></p>
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="liquid" data-accountName="US Bank Savings" data-accountId="7">4000.56</span></p>
       </div>
       <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
       <button onclick="showModal(event, transactionLog)" class="accountButton">View Details</button>
@@ -344,7 +344,7 @@
       <div class="accountImage" style="background-image:url('svgs/paypal.svg');background-color:#0d3685;"></div>
       <div class="accountSummary">
         <h2>PayPal</h2>
-        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="liquid" data-accountId="3">1400</span></p>
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="liquid" data-accountName="PayPal" data-accountId="3">1400</span></p>
       </div>
       <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
       <button onclick="showModal(event, transactionLog)" class="accountButton">View Details</button>
@@ -354,7 +354,7 @@
       <div class="accountImage" style="background-image:url('svgs/dl-evans.svg');background-color:#081F3F;"></div>
       <div class="accountSummary">
         <h2>Idaho MSA</h2>
-        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="liquid" data-accountId="10">5061.60</span></p>
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="liquid" data-accountName="DL Evans MSA" data-accountId="10">5061.60</span></p>
       </div>
       <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
       <button onclick="showModal(event, transactionLog)" class="accountButton">View Details</button>
@@ -364,7 +364,17 @@
       <div class="accountImage" style="background-color:#183;"></div>
       <div class="accountSummary">
         <h2>Cash</h2>
-        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="liquid" data-accountId="16">302</span></p>
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="liquid" data-accountName="Cash" data-accountId="16">302</span></p>
+      </div>
+      <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
+      <button onclick="showModal(event, transactionLog)" class="accountButton">View Details</button>
+    </div>
+
+    <div class="accountBox">
+      <div class="accountImage" style="background-color:#ac1234;"></div>
+      <div class="accountSummary">
+        <h2>Credit Card Rewards</h2>
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="liquid" data-accountName="Credit Card Rewards" data-accountId="ccr">0</span></p>
       </div>
       <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
       <button onclick="showModal(event, transactionLog)" class="accountButton">View Details</button>
@@ -513,7 +523,7 @@
   <div style="text-align:center;">
     <h2>New Balance</h2>
     <span onClick="closeWindow(this)" class="exitWindow">&times;</span>
-    <input style="width:100%;font-size:24px;padding:1em;margin:1em 0;text-align:center;" id="newBalance" type="number"></input>
+    <input style="width:calc(100% - 2em);font-size:24px;padding:1em;margin:1em 0;text-align:center;" id="newBalance" type="number"></input>
     <button class="ghostButton" id="saveBalance">Save</button>
   </div>
 </div>
@@ -583,7 +593,7 @@
 
 <div class="modal" id="transactionLog">
   <div style="text-align:left;">
-    <h1>account title</h1>
+    <h1 style="text-transform:lowercase" id="accountTitle"></h1>
     <p>1% interest rate</p>
     <div class="accountGrid" style="display:grid; grid-template-columns:3fr 1fr;margin-bottom:1em;">
       <div style="background:var(--border-subtle-color);">Chart</div>
@@ -595,7 +605,7 @@
         <p>1,984.03	net gain</p>
       </div>
     </div>
-    <h2>transaction history</h2>
+    <h2 style="margin-bottom:0.5em;">transaction history</h2>
     <div class="transactionLogContainer">
       <table class="transactionLog">
         <tr>
@@ -682,27 +692,46 @@
                 <legend>General Info</legend>
 							<tr>
 								<td>Marital Status:</td>
-                <td><input data-input="assumption" type="radio" value="Single" /><label>Single | Married</label></td>
+                <td>
+                  <input data-input="assumption" name="marital" id="single" value="single" type="radio" /><label for="single">Single</label>
+                  <input data-input="assumption" name="marital" id="married" value="married" type="radio" /><label for="married">Married</label>
+                </td>
 							</tr>
 							<tr>
 								<td>Health Status: </td>
-								<td><input data-input="assumption" type="text" id="outerText" value="Sample Text" size="15" /><label>Pre-Existing Conditions + No Prexisting Conditions</td>
+								<td>
+                  <input data-input="assumption" name="health" id="healthy" value="healthy" type="radio" /><label for="healthy">No Pre-Existing Medical Conditions</label>
+                  <input data-input="assumption" name="health" id="issues" value="issues" type="radio" /><label for="issues">Pre-Existing Conditions</label>
+                </td>
 							</tr>
                 <tr>
 								<td>Housing Status: </td>
-								<td><input data-input="assumption" type="text" id="outerText" value="Sample Text" size="15" /><label>Rent | Own</label></td>
+								<td>
+                  <input data-input="assumption" name="housing" id="own" value="own" type="radio" /><label for="own">Own</label>
+                  <input data-input="assumption" name="housing" id="rent" value="rent" type="radio" /><label for="rent">Rent</label>
+                </td>
 							</tr>
               <tr>
                 <td>Risk Tolerance: </td>
-                <td><input data-input="assumption" type="text" id="outerText" value="Sample Text" size="15" /><label>Low | Medium | High</label></td>
+                <td>
+                  <input data-input="assumption" name="risk" id="low" value="low" type="radio" /><label for="low">Low</label>
+                  <input data-input="assumption" name="risk" id="med" value="med" type="radio" /><label for="med">Medium</label>
+                  <input data-input="assumption" name="risk" id="high" value="high" type="radio" /><label for="high">High</label>
+                </td>
             </tr>
-                              <tr>
+            <tr>
                 <td>Employment Status: </td>
-                <td><input data-input="assumption" type="text" id="outerText" value="Sample Text" size="15" /><label>Full-Time | Part-Time | Self-Employed</label></td>
+                <td>
+                  <input data-input="assumption" name="employment" id="full" value="full" type="radio" /><label for="full">Full-Time</label>
+                  <input data-input="assumption" name="employment" id="part" value="part" type="radio" /><label for="part">Part-Time</label>
+                  <input data-input="assumption" name="employment" id="self" value="self" type="radio" /><label for="self">Self-Employed</label>
+                </td>
             </tr>
-                              <tr>
+            <tr>
                 <td>Kids: </td>
-                <td><input data-input="assumption" type="text" id="outerText" value="Sample Text" size="15" /><label>Yes | No </label></td>
+                <td>
+                  <input oninput="saveValue(this)" data-input="assumption" type="number" id="kids" value="0" size="15" />
+                </td>
             </tr>
               </table>
           </fieldset>
@@ -829,7 +858,14 @@ var myChart = new Chart(ctx, {
     }
 
     function showModal(e, window) {
-      console.log(e);
+      if (window == transactionLog) {
+        const accountInfo = e.target.previousElementSibling.previousElementSibling.lastElementChild.firstElementChild.nextElementSibling
+        const accountName = accountInfo.getAttribute("data-accountName")
+        const nameHolder = document.getElementById("accountTitle")
+        nameHolder.innerText=accountName;
+      }
+
+
       const root = document.documentElement;
       let currentX = e.clientX;
       let currentY = e.clientY;
@@ -910,6 +946,7 @@ var myChart = new Chart(ctx, {
       const liquidCentsContainer = liquidTotalContainer.nextElementSibling
       const otherCentsContainer = otherTotalContainer.nextElementSibling
       const netWorthCentsContainer = netWorthContainer.nextElementSibling
+      const ccRewardContainer = document.querySelector("[data-accountID=ccr]")
 
       // Reset global variables
       liquidTotal = 0
@@ -948,16 +985,21 @@ var myChart = new Chart(ctx, {
       });
       debtCents = (debtTotal % 1).toFixed(2)*100;
 
-      netWorthTotal = liquidTotal + otherTotal - debtTotal
-      netWorthContainer.innerText = Math.floor(netWorthTotal).toLocaleString('en-US')
-      netWorthCentsContainer.innerText= "." + (netWorthTotal % 1).toFixed(2)*100;
-
       // Credit Card Rewards Testing
       document.querySelectorAll("[data-accountType='debt']").forEach((entry)=>
            {
         ccRewards += parseFloat(entry.getAttribute("data-rewards"))
       });
-      console.log("Total Credit Card Reward Balance: " + currencyFormat(ccRewards))
+      ccRewardContainer.innerText = currencyFormat(ccRewards);
+
+      netWorthTotal = liquidTotal + otherTotal + ccRewards - debtTotal
+      console.log(netWorthTotal)
+      netWorthContainer.innerText = Math.floor(netWorthTotal).toLocaleString('en-US')
+
+      let initialCents = (netWorthTotal % 1).toFixed(2)*100
+      let textCents = initialCents.toString()
+      let finalCents = (textCents.length === 1) ? "0" + textCents : textCents;
+      netWorthCentsContainer.innerText= "." + finalCents
     }
 
     function loadData() {
