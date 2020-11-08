@@ -128,7 +128,7 @@
       .secondary {fill:#e39d43}
 
       /* Navigation */
-      .clippedDiv {background: #C8102E;clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);padding: 2em 1.25em;padding-bottom: 4em;-webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);text-align:left;background: linear-gradient(45deg, #c8102e, #ac1234);background:rgba(0,0,0,0.35)}
+      .clippedDiv {background: #C8102E;clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);padding: 3em 1.25em;padding-bottom: 4em;-webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);text-align:left;background: linear-gradient(45deg, #c8102e, #ac1234);background:rgba(0,0,0,0.35)}
       .navButton {font-size:50px;display:inline-block;font-weight:800;color:white;transition:ease all .35s;text-decoration:none;}
       .navButton:hover {filter:drop-shadow(3px -3px 10px rgba(0,0,0,0.2));transform:scale(1.05);}
       .pageTitle {text-transform:uppercase;font-family:Blender Pro;margin:0;padding:0;}
@@ -254,8 +254,8 @@ background: rgba(255,255,255,0.025);color: white;border-radius: 5px;display: inl
     </thead>
     <tr data-id="ex1.1">
     <td>Set 1</td>
-    <td><input data-id="ex1.1.R"  type="number" required onkeyup="checkRow(this)" onclick="checkRow(this)"></input></td>
-    <td class="weightCell"><input data-id="ex1.1.W" type="number" required onkeyup="checkRow(this)" onclick="checkRow(this)"></input><label for="set'">LBS</label></td>
+    <td><input data-id="ex1.1.R" inputmode="numeric" pattern="[0-9]*" type="number" required onkeyup="checkRow(this)" onclick="checkRow(this)"></input></td>
+    <td class="weightCell"><input data-id="ex1.1.W" inputmode="numeric" pattern="[0-9]*" type="number" required onkeyup="checkRow(this)" onclick="checkRow(this)"></input><label for="set'">LBS</label></td>
     <td><div class="container confirm">
           <input type="checkbox" name="group1" id="checkbox-1" onclick="progressUpdate();saveSet(this)">
           <label for="checkbox-1"><span class="checkbox"></span><span class="confirmLabel">Confirm</span></label>
@@ -265,8 +265,8 @@ background: rgba(255,255,255,0.025);color: white;border-radius: 5px;display: inl
 
     <tr data-id="ex1.2">
     <td>Set 2</td>
-    <td><input data-id="ex1.2.R"  type="number" required onkeyup="checkRow(this)" onclick="checkRow(this)"></input></td>
-    <td class="weightCell"><input data-id="ex1.2.W" type="number" required onkeyup="checkRow(this)" onclick="checkRow(this)"></input><label for="set'">LBS</label></td>
+    <td><input data-id="ex1.2.R" inputmode="numeric" pattern="[0-9]*" type="number" required onkeyup="checkRow(this)" onclick="checkRow(this)"></input></td>
+    <td class="weightCell"><input data-id="ex1.2.W" inputmode="numeric" pattern="[0-9]*" type="number" required onkeyup="checkRow(this)" onclick="checkRow(this)"></input><label for="set'">LBS</label></td>
     <td><div class="container confirm">
           <input type="checkbox" name="group2" id="checkbox-2" onclick="progressUpdate();saveSet(this)">
           <label for="checkbox-2"><span class="checkbox"></span><span class="confirmLabel">Confirm</span></label>
@@ -276,8 +276,8 @@ background: rgba(255,255,255,0.025);color: white;border-radius: 5px;display: inl
 
     <tr data-id="ex1.3">
     <td>Set 3</td>
-    <td><input data-id="ex1.3.R"  type="number" required onkeyup="checkRow(this)" onclick="checkRow(this)"></input></td>
-    <td class="weightCell"><input data-id="ex1.3.W" type="number" required onkeyup="checkRow(this)" onclick="checkRow(this)"></input><label for="set'">LBS</label></td>
+    <td><input data-id="ex1.3.R" inputmode="numeric" pattern="[0-9]*" type="number" required onkeyup="checkRow(this)" onclick="checkRow(this)"></input></td>
+    <td class="weightCell"><input data-id="ex1.3.W" inputmode="numeric" pattern="[0-9]*" type="number" required onkeyup="checkRow(this)" onclick="checkRow(this)"></input><label for="set'">LBS</label></td>
     <td><div class="container confirm">
           <input type="checkbox" name="group3" id="checkbox-3" onclick="progressUpdate();saveSet(this)">
           <label for="checkbox-3"><span class="checkbox"></span><span class="confirmLabel">Confirm</span></label>
