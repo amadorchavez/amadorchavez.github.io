@@ -6,7 +6,7 @@ self.addEventListener("install", function(event) {
           'index.html',
           'fonts.css',
           'monday-a.html',
-          'blender/blenderpro-medium-webfont.ttf'
+          'blender/blenderpro-medium-webfont.ttf',
           'PFDin/PFDinDisplayPro-Regular.ttf'
         ]);
       })
