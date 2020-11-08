@@ -28,7 +28,7 @@
     a {color:white;text-decoration: none;}
 
     /* iOS fixes to prevent long press popups on links, tap highlighitng, selectibility of content, & rubberband scrolling */
-    body {-webkit-touch-callout: none; -webkit-tap-highlight-color: transparent; -webkit-user-select: none;-webkit-overflow-scrolling: auto;}
+    body {-webkit-touch-callout: none; -webkit-tap-highlight-color: transparent; -webkit-user-select: none;-webkit-overflow-scrolling: auto;padding-top: env(safe-area-inset-top);padding-bottom: env(safe-area-inset-bottom);}
     *::-webkit-scrollbar {width: 0px;}
 
     /* Navigation */
