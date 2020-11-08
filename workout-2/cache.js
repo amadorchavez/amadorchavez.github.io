@@ -1,27 +1,29 @@
-// self.addEventListener("install", function(event) {
-//   event.waitUntil(
-//     caches.open('cacheV1').then(function(cache) {
-//         return cache.addAll(
-//         [
-//           '/',
-//           '/fonts.css',
-//           '/monday-a.html'
-//         ]);
-//       })
-//       .then(function() {
-//         console.log('WORKER: install completed');
-//       })
-//   );
-// });
+self.addEventListener("install", function(event) {
+  event.waitUntil(
+    caches.open('cacheV1').then(function(cache) {
+        return cache.addAll(
+        [
+          'index.html',
+          'fonts.css',
+          'monday-a.html',
+          'blender/blenderpro-medium-webfont.ttf'
+          'PFDin/PFDinDisplayPro-Regular.ttf'
+        ]);
+      })
+      .then(function() {
+        console.log('WORKER: install completed');
+      })
+  );
+});
 
 // Return Cached Pages and fall back to network
-// self.addEventListener("fetch", function(event) {
-//     event.respondWith(
-//       caches.match(event.request).then(function(response){
-//       return response || fetch(event.request);
-//       })
-//     );
-//   });
+self.addEventListener("fetch", function(event) {
+    event.respondWith(
+      caches.match(event.request).then(function(response){
+      return response || fetch(event.request);
+      })
+    );
+  });
 
 // Delete old Caches
 // self.addEventListener('activate', event => {
