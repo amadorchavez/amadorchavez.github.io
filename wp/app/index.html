@@ -100,7 +100,9 @@
     .main {grid-row:2/5;grid-column: 2/5;padding:1em 2em;overflow: hidden;}
 
     /* Account Boxes */
-    .accountBox {animation:zoomFade ease 1s;display: inline-block;width: 100%;max-width: 320px;min-height: 200px;margin: 0.5em;border-radius: 5px;box-shadow: 0 0 7px var(--shadow-color);text-align: center;border: 1px solid var(--border-subtle-color);background: var(--layer-color);}
+    .accountBox {animation:zoomFade ease 1s;display: inline-block;width: 100%;max-width: 320px;min-height: 200px;margin: 0.5em;border-radius: 5px;box-shadow: 0 0 7px var(--shadow-color);text-align: center;border: 1px solid var(--border-subtle-color);background: var(--layer-color);transition:ease all .5s;}
+    .accountBox.hidden {display:none;}
+
     .accountBox h2 {margin:1em 0;text-transform:uppercase;letter-spacing:0.05em;opacity:0.65;font-size:1.15em;}
     .accountSummary {position:relative;z-index:99;}
     .accountButton {border:none;background: linear-gradient(0deg,#d3dded,#e4e4fd);color: #35383c;padding: 0.5em 0;font-weight: 600;display: block;width: 100%;text-decoration: none;transition: ease all .15s;border-top: 1px solid var(--border-subtle-color);border-radius: 0 0 5px 5px;}
@@ -309,7 +311,7 @@
 
   <div class="main">
 
-    <h1>Spending Accounts</h1>
+    <h1 onclick="toggleView('liquid')">Spending Accounts</h1>
     <div class="accountBox">
       <div class="accountImage" style="background-image:url('svgs/capital-one-white.svg')"></div>
       <div class="accountSummary">
@@ -380,7 +382,7 @@
       <button onclick="showModal(event, transactionLog)" class="accountButton">View Details</button>
     </div>
 
-    <h1>Credit Cards</h1>
+    <h1 onclick="toggleView('debt')">Credit Cards</h1>
     <div class="accountBox">
       <div class="accountImage" style="background-image:url('svgs/usb.svg');background-color:#de1628;"></div>
       <div class="accountSummary">
@@ -432,7 +434,7 @@
     </div>
 
 
-    <h1>Retirement Accounts</h1>
+    <h1 onclick="toggleView('other')">Retirement Accounts</h1>
     <div class="accountBox">
       <div class="accountImage" style="background-image:url('svgs/transamerica.svg');background-color:#052c50"></div>
       <div class="accountSummary">
@@ -646,25 +648,25 @@
                 <legend>Retirement Info</legend>
 							<tr>
 								<td>Current Age:</td>
-								<td><input oninput="saveValue(this)" data-input="assumption" type="number" id="age" value="28"  size="15" /></td>
+								<td><input oninput="saveValue(this)" inputmode="numeric" pattern="[0-9]*"  data-input="assumption" type="text" id="age" value="28"/></td>
 							</tr>
 							<tr>
 								<td>Retirement Age: </td>
-								<td><input oninput="saveValue(this)" data-input="assumption" type="number" id="rAge" value="65" size="15" /></td>
+								<td><input oninput="saveValue(this)" inputmode="numeric" pattern="[0-9]*"  data-input="assumption" type="text" id="rAge" value="65"/></td>
 							</tr>
                 <tr>
 								<td>Current Retirement Balance</td>
-								<td><input oninput="saveValue(this)" data-input="assumption" type="number" id="cb" value="0" size="15" /></td>
+								<td><input oninput="saveValue(this)" inputmode="numeric" pattern="[0-9]*"  data-input="assumption" type="text" id="cb" value="0"/></td>
 							</tr>
             </tr>
               <tr>
               <td>Target Retirement Goal</td>
-              <td><input oninput="saveValue(this)" data-input="assumption" type="number" id="rg" value="1500984" size="15" /></td>
+              <td><input oninput="saveValue(this)" inputmode="numeric" pattern="[0-9]*"  data-input="assumption" type="text" id="rg" value="1,500,984"/></td>
             </tr>
             </tr>
               <tr>
               <td>Estimated Annual Growth Rate</td>
-              <td><input oninput="saveValue(this)" data-input="assumption" type="number" id="ar" value="7" size="15" />%</td>
+              <td><input oninput="saveValue(this)" inputmode="numeric" pattern="[0-9]*"  data-input="assumption" type="text" id="ar" value="7"/>%</td>
             </tr>
             </table>
         </fieldset>
@@ -674,15 +676,15 @@
                 <legend>Emergency Fund Info</legend>
 							<tr>
 								<td>Estimated Annual Income:</td>
-								<td><input oninput="saveValue(this)" data-input="assumption" type="number" id="income" value="80101"  size="15" /></td>
+								<td><input oninput="saveValue(this)" inputmode="numeric" pattern="[0-9]*"  data-input="assumption" type="text" id="income" value="80,101"/></td>
 							</tr>
 							<tr>
 								<td>Estimated Monthly Expenses: </td>
-								<td><input oninput="saveValue(this)" data-input="assumption" type="number" id="ae" value="1950" size="15" /></td>
+								<td><input oninput="saveValue(this)" inputmode="numeric" pattern="[0-9]*"  data-input="assumption" type="text" id="ae" value="1,950"/></td>
 							</tr>
                 <tr>
 								<td>Current Emergency Savings: </td>
-								<td><input oninput="saveValue(this)" data-input="assumption" type="number" id="ef" value="0" size="15" /></td>
+								<td><input oninput="saveValue(this)" inputmode="numeric" pattern="[0-9]*"  data-input="assumption" type="text" id="ef" value="0"/></td>
 							</tr>
             </table>
         </fieldset>
@@ -730,7 +732,7 @@
             <tr>
                 <td>Kids: </td>
                 <td>
-                  <input oninput="saveValue(this)" data-input="assumption" type="number" id="kids" value="0" size="15" />
+                  <input oninput="saveValue(this)" inputmode="numeric" pattern="[0-9]*"  data-input="assumption" type="text" id="kids" value="0"/>
                 </td>
             </tr>
               </table>
@@ -805,6 +807,17 @@ var myChart = new Chart(ctx, {
     let minDecimal = (digits % 1 == 0) ? digits : digits.toFixed(2);
     let commaAdd = minDecimal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return commaAdd
+  }
+
+  const numberize = function (textvalue) {
+    let numberVersion = Number(textvalue.replace(/,/g, ''));
+    return numberVersion
+  }
+
+  const cents = function(modulus) {
+    let textCents = modulus.toString()
+    let finalCents = (textCents.length === 1) ? "0" + textCents : textCents;
+    return "." + finalCents
   }
 
   appData = window.localStorage
@@ -976,7 +989,7 @@ var myChart = new Chart(ctx, {
       });
       formattedOtherTotal = Math.floor(otherTotal).toLocaleString('en-US')
       otherTotalContainer.innerText=formattedOtherTotal;
-      otherCentsContainer.innerText= "." + (otherTotal % 1).toFixed(2)*100;
+      otherCentsContainer.innerText= cents((otherTotal % 1).toFixed(2)*100);
 
       document.querySelectorAll("[data-accountType='debt']").forEach((entry)=>
            {
@@ -995,11 +1008,7 @@ var myChart = new Chart(ctx, {
       netWorthTotal = liquidTotal + otherTotal + ccRewards - debtTotal
       console.log(netWorthTotal)
       netWorthContainer.innerText = Math.floor(netWorthTotal).toLocaleString('en-US')
-
-      let initialCents = (netWorthTotal % 1).toFixed(2)*100
-      let textCents = initialCents.toString()
-      let finalCents = (textCents.length === 1) ? "0" + textCents : textCents;
-      netWorthCentsContainer.innerText= "." + finalCents
+      netWorthCentsContainer.innerText= cents((netWorthTotal % 1).toFixed(2)*100)
     }
 
     function loadData() {
@@ -1028,8 +1037,12 @@ var myChart = new Chart(ctx, {
   }
 
   function saveValue(item) {
+    console.log(item.validity.valid)
     let id = item.id;
-    let savedValue = item.value;
+    let textInput = item.value
+    let numberValue = numberize(textInput)
+    let savedValue = currencyFormat(numberValue)
+    item.value = savedValue;
     appData.setItem(id, savedValue);
     calculateHS()
     }
@@ -1071,13 +1084,13 @@ var myChart = new Chart(ctx, {
 
     // Get Input Values & Assign to Variables
     retirementBalance = otherTotal;
-    growthRate = document.getElementById("ar").value/100;
-    retirementAge = document.getElementById("rAge").value;
-    goalBalance = document.getElementById("rg").value;
+    growthRate = numberize(document.getElementById("ar").value)/100;
+    retirementAge = numberize(document.getElementById("rAge").value);
+    goalBalance = numberize(document.getElementById("rg").value);
     eFund = liquidTotal;
-    mExpenses = document.getElementById("ae").value;
-    age = document.getElementById("age").value;
-    income = document.getElementById("income").value;
+    mExpenses = numberize(document.getElementById("ae").value);
+    age = numberize(document.getElementById("age").value);
+    income = numberize(document.getElementById("income").value);
     nWorth = netWorthTotal;
     debt = debtTotal;
 
@@ -1217,4 +1230,15 @@ var myChart = new Chart(ctx, {
     }, animationTime)
   }
   // thousands --> hundreds --> tens --> ones
+
+  function toggleView(name) {
+    accountClass = "[data-accountType='" + name + "']"
+    document.querySelectorAll(accountClass).forEach((entry)=>
+         {
+      box = entry.closest(".accountBox")
+      box.classList.toggle("hidden")
+    });
+  }
+
+
   </script>
