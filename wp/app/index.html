@@ -100,7 +100,7 @@
     .main {grid-row:2/5;grid-column: 2/5;padding:1em 2em;overflow: hidden;}
 
     /* Account Boxes */
-    .accountBox {animation:zoomFade ease 1s;display: inline-block;width: 100%;max-width: 320px;min-height: 200px;margin: 0.5em;border-radius: 5px;box-shadow: 0 0 7px var(--shadow-color);text-align: center;border: 1px solid var(--border-subtle-color);background: var(--layer-color);transition:ease all .5s;}
+    .accountBox {animation:zoomFade ease .65s;display: inline-block;width: 100%;max-width: 320px;min-height: 200px;margin: 0.5em;border-radius: 5px;box-shadow: 0 0 7px var(--shadow-color);text-align: center;border: 1px solid var(--border-subtle-color);background: var(--layer-color);transition:ease all .5s;transform-origin: top;}
     .accountBox.hidden {display:none;}
 
     .accountBox h2 {margin:1em 0;text-transform:uppercase;letter-spacing:0.05em;opacity:0.65;font-size:1.15em;}
@@ -113,7 +113,10 @@
     .accountTotal span {border-bottom:1px dotted transparent;transition: ease border .15s;}
     .accountTotal span:hover {border-bottom:1px dotted;cursor: pointer;}
 
-    .main h1 {margin-top:1em;margin-left:0.25em;margin-bottom:0.5em;text-transform: lowercase;letter-spacing: .05em;font-weight:300;}
+    .main h1 {margin-top:1em;margin-left:0.25em;margin-bottom:0.5em;text-transform: lowercase;letter-spacing: .05em;font-weight:300;user-select: none;border-bottom: 1px dotted transparent;padding-bottom: .25em;max-width: max-content;transition: ease all .25s;position: relative;cursor:pointer;}
+    .main h1:hover {border-bottom: 1px dotted;}
+    .main h1:hover::after {content: "+";opacity: 1;font-weight: 400;transform: rotate(-90deg) scale(1);}
+    .main h1::after {content: "+";color: #35383c;position: absolute;font-size: 1.5em;top: -8px;margin-left: .25em;font-weight: 400;opacity: 0;transition: ease all .25s;transform: rotate(0) scale(0);}
 
     .subs h3 {margin:0;}
 
@@ -140,13 +143,14 @@
     #settings td:nth-child(2) {display:flex;}
 
     /* Modals */
-    .modal {width:100%;height:100%;position:fixed;top:0;left:0;z-index:999;display:none;}
+    .modal {width:100%;height:100%;position:fixed;top:0;left:0;z-index:999;display:none;background:rgba(0,0,0,0.1);}
     .modal > div:first-child {top:25%;position:relative;width:70vw;max-width:1280px;height:auto;max-height:50vh;margin:0 auto;padding:2em;background: var(--layer-color);border: 1px solid var(--border-sharp-color);box-shadow:0 0 115px rgba(0,0,0,0.5);overflow-y: scroll;}
     .modal p {margin:0;margin-bottom:0.75em;}
-    .modalOut > div:first-child {animation:zoomFade cubic-bezier(0,1.11,.75,.9) .15s reverse forwards;}
-    .modalIn > div:first-child {animation:zoomFade cubic-bezier(0,1.11,.75,.9) .15s;}
+    .modalOut > div:first-child {animation:springModal cubic-bezier(0,1.11,.75,.9) .15s reverse forwards;}
+    .modalIn > div:first-child {animation:springModal cubic-bezier(0,1.11,.75,.9) .15s;}
     .exitWindow {cursor:pointer;font-size:35px;position:absolute;right:5%;top:5%;opacity:.65;transition:ease opacity .25s;}
     .exitWindow:hover {opacity:1;}
+    body.noscroll {overflow:hidden;}
 
     /* Transaction Log Table */
     .transactionLogContainer {border:1px solid var(--border-subtle-color);border-radius:7px 7px 0 0;max-width:900px;}
@@ -224,10 +228,34 @@
 
     /* Animations */
     @keyframes zoomFade {
+      0% {opacity:0;transform:scale(0);}
+      65% {opacity:1;transform:scale(1.015)}
+      100% {opacity:1;transform:scale(1) translate(0,0);}
+    }
+
+    @keyframes springModal {
+      0% {opacity:0;transform:scale(.5) translate(var(--modalXStart), var(--modalYStart));}
+      100% {opacity:1;transform:scale(1) translate(0,0);}
+    }
+
+    @keyframes springModalBackup {
       0% {opacity:0;transform:scale(0) translate(var(--modalXStart), var(--modalYStart));}
       80% {opacity:1;transform:scale(1.05)}
       100% {opacity:1;transform:scale(1) translate(0,0);}
     }
+
+    /* Tabbed Interface */
+    .container {width:100%;}
+    .tabHolder {display:flex;border-bottom:1px solid var(--border-subtle-color);margin:1em 0;}
+    .tabHolder span {text-align:center;padding:.25em 1em;transition:ease all .15s;border:1px solid var(--border-subtle-color);border-radius:5px 5px 0 0;}
+    .tabHolder span:hover, .tabHolder span.active {background: #fcf8f3;color: #20152b;cursor: pointer;}
+    .tabHolder span:first-child {border:none;}
+
+
+    .contents {min-height:100px;width:100%;}
+
+    .inputSet {display:inline-block;margin-right:1em;padding:.5em;}
+    .inputSet label {display:block;margin-bottom:0.5em;}
 
     </style>
     </head>
@@ -267,7 +295,7 @@
       <svg height='50px' width='50px'  fill="#35383c" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 36 36" enable-background="new 0 0 36 36" xml:space="preserve"><circle cx="18" cy="18" r="4.087"></circle><path d="M31.481,15.589l-2.638-0.424c-0.262-1.005-0.657-1.953-1.169-2.826l1.563-2.166c0.322-0.447,0.266-1.131-0.121-1.52  l-1.768-1.769c-0.391-0.39-1.072-0.444-1.521-0.122l-2.165,1.564c-0.874-0.514-1.822-0.908-2.827-1.17l-0.427-2.639  C20.321,3.976,19.8,3.53,19.25,3.53h-2.5c-0.55,0-1.071,0.445-1.159,0.988l-0.427,2.639c-1.005,0.262-1.953,0.656-2.827,1.17  l-2.166-1.564C9.725,6.44,9.042,6.496,8.653,6.885L6.885,8.653C6.496,9.042,6.44,9.725,6.763,10.171l1.563,2.166  c-0.513,0.874-0.907,1.822-1.17,2.827L4.519,15.59c-0.544,0.089-0.987,0.61-0.987,1.159L3.53,19.25c0,0.55,0.443,1.072,0.987,1.159  l2.638,0.427c0.263,1.005,0.658,1.953,1.171,2.827l-1.563,2.166c-0.322,0.446-0.268,1.129,0.121,1.518l1.768,1.769  c0.39,0.39,1.072,0.444,1.52,0.122l2.165-1.563c0.874,0.513,1.823,0.908,2.827,1.171l0.426,2.637c0.088,0.544,0.61,0.988,1.16,0.988  h2.5c0.551,0,1.072-0.443,1.161-0.988l0.425-2.637c1.006-0.262,1.953-0.657,2.828-1.17l2.164,1.563  c0.447,0.322,1.131,0.268,1.52-0.121l1.768-1.768c0.391-0.39,0.445-1.072,0.123-1.52l-1.563-2.165  c0.513-0.874,0.907-1.822,1.17-2.827l2.637-0.426c0.544-0.088,0.988-0.611,0.989-1.16v-2.5C32.47,16.2,32.026,15.679,31.481,15.589z   M18,25.308c-4.035,0-7.307-3.271-7.307-7.307s3.271-7.307,7.307-7.307s7.307,3.271,7.307,7.307S22.035,25.308,18,25.308z"></path></svg>
       <h2>Settings</h2>
     </div>
-    <div>
+    <div onclick="showModal(event, newEntry)">
       <svg height='50px' width='50px'  fill="#35383c" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-2 -2 38 38" x="0px" y="0px"><title>plus-circle</title><path d="M8 14.857c-0.005 0-0.010 0-0.016 0-0.631 0-1.143 0.511-1.143 1.143s0.511 1.143 1.143 1.143c0.006 0 0.011 0 0.017 0h15.998c0.005 0 0.010 0 0.016 0 0.631 0 1.143-0.511 1.143-1.143s-0.511-1.143-1.143-1.143c-0.006 0-0.011 0-0.017 0z"></path><path d="M17.143 8c0-0.005 0-0.010 0-0.016 0-0.631-0.511-1.143-1.143-1.143s-1.143 0.511-1.143 1.143c0 0.006 0 0.011 0 0.017v-0.001 15.999c0 0.005 0 0.010 0 0.016 0 0.631 0.511 1.143 1.143 1.143s1.143-0.511 1.143-1.143c0-0.006 0-0.011 0-0.017v0.001z"></path><path d="M16 0c-8.823 0-15.999 7.177-15.999 15.999s7.177 15.999 15.999 15.999c8.823 0 15.999-7.177 15.999-15.999s-7.177-15.999-15.999-15.999zM16 2.286c7.588 0 13.714 6.127 13.714 13.714s-6.126 13.714-13.714 13.714c-7.588 0-13.714-6.126-13.714-13.714s6.126-13.714 13.714-13.714z"></path></svg>
       <h2>Add</h2>
     </div>
@@ -311,7 +339,8 @@
 
   <div class="main">
 
-    <h1 onclick="toggleView('liquid')">Spending Accounts</h1>
+    <h1 onclick="toggleView('liquid')">Spending Accounts<small style="font-size:.5em;vertical-align:middle;margin-left:.5em;">[7]</small></h1>
+    <div>
     <div class="accountBox">
       <div class="accountImage" style="background-image:url('svgs/capital-one-white.svg')"></div>
       <div class="accountSummary">
@@ -380,6 +409,7 @@
       </div>
       <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
       <button onclick="showModal(event, transactionLog)" class="accountButton">View Details</button>
+    </div>
     </div>
 
     <h1 onclick="toggleView('debt')">Credit Cards</h1>
@@ -480,6 +510,27 @@
       <div class="accountSummary">
         <h2>Lively HSA</h2>
         <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="other" data-accountId="9">2083.28</span></p>
+      </div>
+      <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
+      <button onclick="showModal(event, transactionLog)" class="accountButton">View Details</button>
+    </div>
+
+    <h1 onclick="toggleView('other')">Other Accounts</h1>
+    <div class="accountBox">
+      <div class="accountImage" style="background-image:url('svgs/amazon.svg');background-color:#333;"></div>
+      <div class="accountSummary">
+        <h2>Amazon Gift Card Balance</h2>
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="other" data-accountId="17">156.60</span></p>
+      </div>
+      <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
+      <button onclick="showModal(event, transactionLog)" class="accountButton">View Details</button>
+    </div>
+
+    <div class="accountBox">
+      <div class="accountImage" style="background-color:#ff7499;"></div>
+      <div class="accountSummary">
+        <h2>Refundable Deposits</h2>
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="other" data-accountId="18">850</span></p>
       </div>
       <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
       <button onclick="showModal(event, transactionLog)" class="accountButton">View Details</button>
@@ -636,6 +687,40 @@
         </tr>
       </table>
     </div>
+  </div>
+</div>
+
+<div class="modal" id="newEntry">
+  <div style="text-align:left;">
+    <h1 style="text-transform:lowercase" id="accountTitle">New Entry</h1>
+    <div class="container">
+      <div class="tabHolder">
+        <span class="active">Expense</span>
+        <span>Income</span>
+        <span>Life Event</span>
+        <span>Account</span>
+      </div>
+      <div class="contents">
+        <div class="inputSet">
+          <label for="date">Date</label>
+          <input type="date" id="date">
+        </div>
+        <div class="inputSet">
+          <label for="account">Account</label>
+          <input type="text" id="account">
+        </div>
+        <div class="inputSet">
+          <label for="place">Place</label>
+          <input type="text" id="place">
+        </div>
+        <div class="inputSet">
+          <label for="amount">Amount</label>
+          <input type="text" id="amount">
+        </div>
+      </div>
+      </div>
+
+      <button class="ghostButton">Save</button>
   </div>
 </div>
 
@@ -815,8 +900,11 @@ var myChart = new Chart(ctx, {
   }
 
   const cents = function(modulus) {
-    let textCents = modulus.toString()
-    let finalCents = (textCents.length === 1) ? "0" + textCents : textCents;
+    let preciseCents = modulus.toFixed(2)*100 // Get the number of cents
+    let roundedCents = preciseCents.toFixed(0) // Catch floating point errors (0.29 * 100) and round to whole number
+    let stringCents = roundedCents.toString()
+    let finalCents = (stringCents.length === 1) ? "0" + stringCents : stringCents;
+    console.log(modulus, preciseCents, roundedCents, stringCents, finalCents)
     return "." + finalCents
   }
 
@@ -867,7 +955,7 @@ var myChart = new Chart(ctx, {
       let window = item.parentElement;
       let windowContainer = window.parentElement;
       windowContainer.classList.add("modalOut")
-      setTimeout(function() {windowContainer.classList.remove("modalOut");windowContainer.style.display="none";}, 200)
+      setTimeout(function() {windowContainer.classList.remove("modalOut");windowContainer.style.display="none";document.body.classList.remove("noscroll");}, 200)
     }
 
     function showModal(e, window) {
@@ -890,6 +978,7 @@ var myChart = new Chart(ctx, {
       root.style.setProperty('--modalYStart', yModifier+"px")
 
       window.style.display="block";
+      document.body.classList.add("noscroll")
       window.classList.add("modalIn")
       setTimeout(function() {window.classList.remove("modalIn")}, 200)
       window.addEventListener('click', function(event) {
@@ -897,7 +986,7 @@ var myChart = new Chart(ctx, {
           return;
         }
       window.classList.add("modalOut")
-      setTimeout(function() {window.classList.remove("modalOut");window.style.display="none";}, 200)
+      setTimeout(function() {window.classList.remove("modalOut");window.style.display="none";document.body.classList.remove("noscroll");}, 200)
       }, false);
     }
 
@@ -979,7 +1068,7 @@ var myChart = new Chart(ctx, {
       });
       formattedLiquidTotal = Math.floor(liquidTotal).toLocaleString('en-US')
       liquidTotalContainer.innerText=formattedLiquidTotal;
-      liquidCentsContainer.innerText= "." + (liquidTotal % 1).toFixed(2)*100;
+      liquidCentsContainer.innerText= cents(liquidTotal % 1);
 
 
       document.querySelectorAll("[data-accountType='other']").forEach((entry)=>
@@ -989,7 +1078,7 @@ var myChart = new Chart(ctx, {
       });
       formattedOtherTotal = Math.floor(otherTotal).toLocaleString('en-US')
       otherTotalContainer.innerText=formattedOtherTotal;
-      otherCentsContainer.innerText= cents((otherTotal % 1).toFixed(2)*100);
+      otherCentsContainer.innerText= cents(otherTotal % 1);
 
       document.querySelectorAll("[data-accountType='debt']").forEach((entry)=>
            {
@@ -1008,7 +1097,7 @@ var myChart = new Chart(ctx, {
       netWorthTotal = liquidTotal + otherTotal + ccRewards - debtTotal
       console.log(netWorthTotal)
       netWorthContainer.innerText = Math.floor(netWorthTotal).toLocaleString('en-US')
-      netWorthCentsContainer.innerText= cents((netWorthTotal % 1).toFixed(2)*100)
+      netWorthCentsContainer.innerText= cents(netWorthTotal % 1)
     }
 
     function loadData() {
