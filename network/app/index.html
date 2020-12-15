@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  	<title>Network App</title>
+    <link rel="stylesheet" href="fonts.css">
+
+    <style>
+      /*BoilerPlate CSS*/
+      html, body {padding: 0;margin: 0;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;height:100%;}
+      h1, h2, h3, h4, h5, h6 {font-weight: 600;margin: 0;padding: 0;text-align:left;}
+      ::placeholder {color: rgba(20,0,0,1);opacity:1;}
+      *:focus {outline: none;}
+
+      body {font-family:Cadillac Sans, PFDin, Stratum2;font-weight:600;letter-spacing:.075em;text-transform:uppercase;background: radial-gradient(circle,#21272d,#121415);text-align: center;color: white}
+      a {color:rgba(255,255,255,0.75);text-decoration:none;border-bottom:1px dotted transparent;transition:ease all .5s;padding-bottom:.01em;}
+      a:hover {border-bottom:1px dotted;}
+
+      .card {position:relative;width:300px;height:400px;background:#292f3c;border-radius:5px;box-shadow:0px 2px 10px rgba(0,0,0,0.15);margin:0.5em;display:inline-block;animation:slide ease .5s forwards}
+      .photo {width:100px;height:100px;border-radius:75em;position:absolute;left:50%;top:15px;z-index:1;transform:translateX(-50%);}
+      .photo img {width: 100%;height: 100%;border-radius: 100em;object-fit: cover;}
+      .photo::before {content: '';background: #52fd83;width: 15px;height: 15px;position: absolute;bottom: .5em;right: .5em;border-radius: 100em;border: 2px solid #313131;z-index: 9;}
+      .photo::after {content: '';background: linear-gradient(135deg, rgba(255,255,255,.05) 70%,rgba(0,0,0,0.15) 70%);width: 100px;height: 100px;position: absolute;top: 0px;left: 0px;border-radius: 100em;}
+
+      .content {width:100%;height:calc(100% - 3.5em - 60px);top:60px;position:relative;z-index:0;padding-top:3.5em;text-align:center;overflow:scroll;border-radius:0 0 5px 5px}
+      .content table {text-align: left;font-size: 0.85em;table-layout: fixed;width: 85%;margin: 2em auto;}
+      .content table td:first-child {width:33%;min-width:72px;text-align:right;padding-right:.5em;}
+      .content table td:last-child {color:rgba(255,255,255,0.75)}
+      .content p {line-height:0;font-size:22px;}
+      .content p.location {font-size:.85em;padding-top:.25em;color:rgba(255,255,255,0.75)}
+
+      button.details {margin-top:1em;font-size:14px;display:inline-block;text-decoration:none;background:white;color:var(--text-color, black);padding:.35em 1em;padding-top:.45em;border-radius:3px;box-shadow:2px 2px 5px rgba(0,0,0,0.15);transition:ease all .25s;border:1px solid transparent;opacity:1;font-family:inherit;}
+      button.details:hover {box-shadow:2px 2px 10px rgba(0,0,0,0.25);background:rgba(255,255,255,0.1);border:1px solid white;color:white;}
+
+      .tag {background:rgba(255,255,255,0.075);font-size:.75em;display:inline;padding:.5em 1em;color:rgba(255,255,255,0.85);margin:.25em;border-radius:3px;text-decoration:none;transition:ease all .25s;border:1px solid rgba(255,255,255,0.1);display:inline-block;}
+      .tag:hover {background:rgba(255,255,255,0.85);color:var(--text-color, black);border:1px solid transparent;}
+
+      [data-tier=tier2] .content, [data-tier=tier2].modalBox {background:linear-gradient(204deg,#cc4e11,#5d3120);--text-color:#5d3120;border:none;}
+      [data-tier=tier1] .content, [data-tier=tier1].modalBox {background:linear-gradient(204deg,#ac1,#183);background:linear-gradient(204deg,#1169cc,#20345d);--text-color:#20345d;border:none;}
+      [data-tier=tier3] .content, [data-tier=tier3].modalBox {background:linear-gradient(204deg,#11cc63,#205d52);--text-color:#205d52;border:none;}
+      [data-tier=inspiration] .content, [data-tier=inspiration].modalBox {background:linear-gradient(204deg,#c11,#5d2020);--text-color:#5d2020;border:none;}
+      [data-tier=family] .content, [data-tier=family].modalBox {background:linear-gradient(204deg,#cc114e,#5d2023);--text-color:#5d2023;border:none;}
+
+      button {padding: 1em;font-size: 18px;border: 1px solid transparent;color: white;border-bottom: 2px solid transparent;font-weight: 600;letter-spacing: .1em;text-transform: uppercase;transition: ease all .25s;cursor: pointer;opacity: .65;background: rgba(255,255,255,0.1);border-radius: 3px;}
+      button:hover {opacity:1}
+
+      /* Input Styling */
+      .standardInput, select {padding: 1em;font-size: 18px;border: 1px solid transparent;color: white;letter-spacing: .1em;text-transform: uppercase;transition: ease all .25s;cursor: pointer;opacity: .65;background: rgba(255,255,255,0.1);border-radius: 3px;font-family:inherit;}
+      .standardInput:hover {opacity:1;}
+      .standardInput:focus {opacity:1;background:transparent;border:1px solid #ffaa03;color:#ffaa03}
+
+      .staticInput {padding:0;background:transparent;font-weight:600;border: none;border-bottom:1px dashed transparent;opacity:1;font-size:1.25em;color: white;font-family: inherit;resize:none;margin-bottom:1em;cursor:pointer;text-transform: uppercase;transition: ease all .15s;}
+      .staticInput:hover {border-bottom:1px dashed;}
+      .staticInput:focus {border:none;border-bottom:1px dashed;color:#ffaa03 !important;}
+
+      .staticInput {opacity:0;}
+      .staticInput:first-child {animation:flicker ease .25s forwards;animation-delay:.1s;}
+      .staticInput:nth-child(2n) {animation:flicker ease .25s forwards;animation-delay:.2s;}
+      .staticInput:nth-child(3n) {animation:flicker ease .25s forwards;animation-delay:.5s;}
+      .staticInput:nth-child(4n) {animation:flicker ease .25s forwards;animation-delay:.35s;}
+
+      @keyframes flicker {
+          0% {opacity:1;background:rgba(255,255,255,0.1)}
+          13% {background:transparent;color:#ffaa03;}
+          35% {background:rgba(255,255,255,0.1)}
+          50% {background:transparent;color:#ffaa03;}
+          75% {background:rgba(255,255,255,0.1)}
+          100% {opacity:1;background:transparent;}
+      }
+
+      select {-webkit-appearance: none;-moz-appearance: none;appearance: none;background:#222;opacity:1;width:100%;margin-bottom: .75em;}
+
+
+      .large {font-weight:800;font-size:2em;margin-bottom:0.5em;}
+
+      #details label {opacity:.5;font-weight:400;}
+      h2 {margin-top:1em;font-weight:400;opacity:.75;}
+      .noteSection {padding:1em 2em;display:flex;gap:1em;border-top:2px dotted rgba(255,255,255,0.15)}
+      .noteSection div {width:33.33%}
+
+
+      .topBar {display:flex;gap:1em;justify-content: center;padding:1em;}
+      .topBar button {flex-grow: none;}
+
+      .modalContainer {display:none;width:100%;height:100%;position:fixed;top:0;left:0;background:rgba(0,0,0,0.75);z-index: 9;}
+      .modalBox {position:relative;top:50%;transform:translateY(-50%);width:calc(100% - 8em);height:calc(90% - 4em);max-height:800px;max-width:1020px;margin:0 auto;background:#131313;padding: 2em 4em;border-radius: 5px;box-shadow: 0 0 15px inset rgba(255,255,255,0.05);border: 1px solid rgba(255,255,255,0.1);overflow:scroll;}
+      textarea {font-size:1.25em;width: calc(100% - 2em);background: transparent;border: 1px solid rgba(255,255,255,0.4);color: white;font-family: inherit;padding: 1em;resize: vertical;}
+      textarea:focus {border:1px solid #ffaa03;}
+      sup {font-size:.5em;}
+
+      #uploadedPhoto img {width:100%;height:100%;object-fit: cover;}
+
+      .closeButton {float:right;font-weight:100;font-size:2em;margin:.5em;padding:0 11px;background:rgba(255,255,255,0.1);border-radius:100em;transform-origin: center;transition: ease all .25s;border:1px solid transparent;cursor: pointer;}
+      .closeButton:hover {border:1px solid #ffaa03;color:#ffaa03;}
+
+      /* Search Bar */
+      input.searchBar {
+        display:block;
+        background:url('search2.png') no-repeat center center,rgba(255,255,255,0.1);
+        width: 20px;
+        padding: 1em;
+        font-size: 18px;
+        border: none;
+        color: transparent;
+        border-bottom: 2px solid transparent;
+        font-weight: 600;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        transition: ease all .25s;
+        cursor: pointer;
+        opacity: .65;
+        font-family:inherit;
+        border-radius:3px;
+      }
+      input.searchBar::placeholder {
+        color: rgba(255,255,255,0.5);
+        text-transform: capitalize;
+        font-style: italic;
+      }
+      input.searchBar:focus {
+          width: 320px;
+          border-bottom: 2px solid rgba(255,255,255,0.25);
+          padding-left: 2em;
+          opacity: 1;
+          background-position:90% center;
+          color:white;
+      }
+      input.searchBar:hover {
+          opacity: 1;
+      }
+
+      @keyframes  slide {
+        0% {transform:translateX(-900px);opacity:0}
+        100% {transform:translateX(0);opacity:1}
+      }
+
+      @keyframes fade {
+      0% {opacity:1;transform:scale(1);}
+      100% {opacity:0;transform:scale(0);}
+      }
+
+      @keyframes buttonClose {
+        0 {transform:rotate(0) scale(1);border:1px solid #ffaa03;color:#ffaa03;}
+        70% {transform:rotate(-0.25turn) scale(1)}
+        100% {transform:rotate(-0.25turn) scale(0);background:transparent;border:1px solid #ffaa03;color:#ffaa03;}
+      }
+
+      .fadeOut {animation: fade ease .25s forwards;animation-delay:.35s; }
+      .buttonRotate {animation: buttonClose ease .35s forwards}
+
+
+      .modalIn {animation:slide ease .25s forwards;}
+      .modalOut {animation:slide ease .25s reverse forwards;}
+      .modalBox label {display: block;margin-bottom: .25em;}
+      .modalBox input {margin-bottom:1em;}
+
+      .alert {background: #1a774b;color: white;position: absolute;left: 0;bottom: 0;padding: .5em 1em;transition:ease all .5s;transform:translateX(-200px);}
+      .slideIn {transform:translateX(0px);}
+
+      /* Filter Styles */
+
+
+      .filterMenu {position:relative;}
+      .filterMenu ul {display:none;position: absolute;z-index: 9;left: 0;margin: 0;padding: 0;width: max-content;background: #3f4144;text-align: left;margin-top: .25em;list-style: none;border-radius:3px;transform-origin: top;}
+      .filterMenu ul li {padding:.5em 1em;user-select: none;cursor:pointer;transition: ease all .15s;}
+      .filterMenu ul li:hover {color:#ffaa03;}
+      .filterMenu label {margin-left:.5em;cursor: pointer;}
+
+      .filterMenu.active button {background:rgba(255,255,255,0.25);opacity:1;}
+      .filterMenu.active ul {display:block;animation:fade .1s ease reverse forwards;}
+      .selectedRow {background: #54575a;}
+
+      .filterMenu.applied button {border:1px solid #ffaa03;opacity:1;}
+      .filterMenu.applied svg {fill:#ffaa03}
+
+
+
+      @media (max-width:640px) {
+        .modalBox {width:calc(100% - 4em);}
+        /* Image Width overidden currently */
+        .modalBox img {width:100%}
+        .modalBox input {width:100%}
+        .infoSection {flex-flow: column;width: 100%;}
+        /* Columns overidden currently */
+        .columns {columns:1;}
+        .noteSection {flex-flow:column;}
+        .noteSection div {width:100%;}
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="topBar">
+      <div class="filterMenu">
+      <button onclick="showFilters(this)"><svg height="25" width="25" fill="#FFF" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96"><path d="M92.164 12.076a2.008 2.008 0 00-1.852-1.244H5.684c-.812 0-1.544.492-1.848 1.244a1.99 1.99 0 00.444 2.176L38 47.524v35.64c0 .712.38 1.372.996 1.736.312.18.656.264 1.004.264.34 0 .684-.084.992-.256l16-9.12A2.001 2.001 0 0058 74.048V47.524l33.721-33.268a2.016 2.016 0 00.443-2.18z"/></svg></button>
+      <ul onclick="selectFilter(event)">
+        <li><input type="checkbox" id="t1Box" data-target="tier1" checked><label for="t1Box">Tier 1</label></li>
+        <li><input type="checkbox" id="t2Box" data-target="tier2" checked><label for="t2Box">Tier 2</label></li>
+        <li><input type="checkbox" id="t3Box" data-target="tier3" checked><label for="t3Box">Tier 3</label></li>
+        <li><input type="checkbox" id="fBox" data-target="family" checked><label for="fBox">Family</label></li>
+        <li><input type="checkbox" id="iBox" data-target="inspiration" checked><label for="iBox">Inspiration</label></li>
+      </ul>
+      </div>
+      <button onclick="showModalStatic(newContact)"><svg height="25" width="25" fill="#fff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path style="text-indent:0;text-transform:none;block-progression:tb" d="M44 11v33H11v12h33v33h12V56h33V44H56V11H44z" overflow="visible" color="#000"/></svg></button>
+      <input type="text" class="searchBar" list="people">
+    </div>
+
+    <div class="card" data-id="1" data-tier="tier1" data-name="John Doe" data-email="johndoe@gmail.com" data-phone="209-293-9203" data-bday="April 14th" data-location="Cupertino, CA" data-website="tomcruise.com">
+      <div class="photo">
+        <img src="john.jpg">
+      </div>
+      <div class="content">
+        <p>John Doe</p>
+        <p class="location">Cupertino, CA</p>
+      <button onclick="showModal(event, details)" class="details">View Details</button>
+        <table>
+          <tr>
+            <td>Email:</td>
+            <td><a href="#">johndoe@gmail.com</a></td>
+          </tr>
+          <tr>
+            <td>Phone:</td>
+            <td><a href="#">(714) 039-3642</a></td>
+          </tr>
+          <tr>
+            <td>Birthday:</td>
+            <td>April 14<sup>th</sup></td>
+          </tr>
+        </table>
+        <a href="#" class="tag">UI Design</a><a href="#" class="tag">Business</a><a href="#" class="tag">Art</a>
+      </div>
+    </div>
+
+    <div class="card" data-id="2" data-tier="tier2" data-name="Jane Doe" data-email="janey@gmail.com" data-phone="209-234-5356" data-bday="March 14th" data-location="Albany, NY" data-website="janedoe.com">
+      <div class="photo">
+        <img src="jane.jpg">
+      </div>
+      <div class="content">
+        <p>Jane Doe</p>
+        <p class="location">Albany, NY</p>
+        <button onclick="showModal(event, details)" class="details">View Details</button>
+        <table>
+          <tr>
+            <td>Email:</td>
+            <td><a href="#">johndoe@gmail.com</a></td>
+          </tr>
+          <tr>
+            <td>Phone:</td>
+            <td><a href="#">(714) 039-3642</a></td>
+          </tr>
+          <tr>
+            <td>Birthday:</td>
+            <td>April 14<sup>th</sup></td>
+          </tr>
+        </table>
+        <a href="#" class="tag">UI Design</a><a href="#" class="tag">Business</a><a href="#" class="tag">Art</a>
+      </div>
+    </div>
+
+<div class="card" data-id="3" data-tier="tier3" data-name="Henry Doe" data-email="henry@gmail.com" data-phone="209-842-4203" data-bday="June 14th" data-location="Cliffpoint, Norway" data-website="henrycavill.com">
+      <div class="photo">
+        <img src="henry.jpg">
+      </div>
+      <div class="content">
+        <p>Henry Doe</p>
+        <p class="location">Cliffpoint, Norway</p>
+      <button onclick="showModal(event, details)" class="details">View Details</button>
+        <table>
+          <tr>
+            <td>Email:</td>
+            <td><a href="#">johndoe@gmail.com</a></td>
+          </tr>
+          <tr>
+            <td>Phone:</td>
+            <td><a href="#">(714) 039-3642</a></td>
+          </tr>
+          <tr>
+            <td>Birthday:</td>
+            <td>April 14<sup>th</sup></td>
+          </tr>
+        </table>
+        <a href="#" class="tag">UI Design</a><a href="#" class="tag">Business</a><a href="#" class="tag">Art</a>
+      </div>
+    </div>
+
+    <div id="newContact" class="modalContainer">
+      <div class="modalBox">
+        <span class="closeButton" onclick="closeWindow(event)">&times;</span>
+        <div style="display:flex;gap:1em;">
+          <div onclick="uploadMe()" style="cursor:pointer;width:250px;background:rgba(255,255,255,0.1);padding:1em;border:1px dashed rgba(255,255,255,0.25);border-radius:5px;">
+            <input style="display:none;" onchange="fileProcess(this)" type="file" id="fileIt" accept=".jpg, .jpeg, .png">
+            <div id="uploadedPhoto">
+              <h2 style="text-align:center;">Click To Upload Photo</h2>
+              <p>or drag file</p>
+            </div>
+          </div>
+          <div style="text-align:left;">
+            <label for="contactName">Name</label><input style="width:100%;" class="standardInput" type="text" id="contactName"></input>
+            <div style="text-align:left;columns:2;column-gap:3em;">
+              <label for="contactDOB">Birthday</label><input class="standardInput" type="text" id="contactDOB"></input>
+              <label for="contactPhone">Phone Number</label><input class="standardInput" type="text" id="contactPhone"></input>
+              <label for="contactEmail">Email</label><input class="standardInput" type="text" id="contactEmail"></input>
+              <label for="contactWebsite">Website</label><input class="standardInput" type="text" id="contactWebsite"></input>
+              <label for="contactTier">Tier</label>
+              <select name="tierLevel" id="contactTier" required>
+                <option value="" disabled selected>Select</option>
+                <option value="tier1">Tier 1</option>
+                <option value="tier2">Tier 2</option>
+                <option value="tier3">Tier 3</option>
+                <option value="family">Family</option>
+                <option value="inspiration">Inspiration</option>
+              </select>
+              <label for="contactTags">Interests</label><input class="standardInput" type="text" id="contactTags"></input>
+              <label for="contactAddress">Address</label><textarea class="standardInput" style="height:125px" id="contactAddress"></textarea>
+            </div>
+          </div>
+        </div>
+        <button onclick="addCard()">Save</button>
+      </div>
+    </div>
+
+
+    <div id="details" class="modalContainer">
+      <div class="modalBox" style="padding:0;">
+          <span class="closeButton" onclick="closeWindow(event)">&times;</span>
+        <div class="infoSection" style="display:flex;gap:1em;">
+          <img src="" style="width:400px;object-fit:cover;animation: slide .5s ease forwards;animation-delay: .5s;transform: translateX(-900px);" id="bioPhoto">
+          <div style="text-align:left;overflow:scroll;padding:2em 2em 0 2em">
+              <input class="staticInput large" type="text" id="name" value="John Doe"></input>
+              <div class="columns" style="text-align:left;columns:2;column-gap:3em;width:calc(100% - 4em)">
+                <label for="birthday">Birthday</label><input class="staticInput" value="April 14th" type="text" id="birthday"></input>
+                <label for="phone">Phone Number</label><input class="staticInput" value="000-000-0000" type="text" id="phone"></input>
+                <label for="email">Email</label><input class="staticInput" value="me@aol.com" type="text" id="email"></input>
+                <label for="website">Website</label><input class="staticInput" value="me@aol.com" type="text" id="website"></input>
+                <label for="tier">Tier</label><input oninput="saveData(this)" class="staticInput" value="Tier 1" type="text" id="tier"></input>
+                <label for="last">Last Contact</label><input class="staticInput" type="date" id="last"></input>
+              </div>
+              <label for="address">Address</label><textarea class="staticInput" id="address">13800 Derwood Ave</textarea>
+            <label for="tags">Interests</label><input class="standardInput" style="width:calc(100% - 2em)" type="text" id="tags"></input>
+          </div>
+      </div>
+      <div class="noteSection">
+        <div>
+          <h2>Notes</h2>
+          <textarea></textarea>
+        </div>
+        <div>
+          <h2>Gift Ideas</h2>
+          <textarea></textarea>
+        </div>
+        <div>
+          <h2>Future Plans</h2>
+          <textarea></textarea>
+        </div>
+      </div>
+      <span class="alert">Changes Saved</span>
+    </div>
+    </div>
+
+    <audio id="openSound" src="open.wav"></audio>
+    <audio id="closeSound" src="close.wav"></audio>
+    <audio id="alertSound" src="alert.wav"></audio>
+
+  </body>
+
+  <script>
+    // Declare LocalStorage
+    appData = window.localStorage
+
+    // Global Variable Declarations
+    let displayTime = null;
+    let hideTime = null;
+    let lastImageURL = null
+
+    const openAudio = document.getElementById("openSound")
+    const closeAudio = document.getElementById("closeSound")
+    const alertAudio = document.getElementById("alertSound")
+
+    // closeAudio.currentTime = 0;
+    // closeAudio.play();
+
+    function addCard() {
+      const addWindow = document.getElementById("newContact")
+      const newPhotoHolder = document.getElementById("uploadedPhoto")
+
+      const cardCount = document.querySelectorAll(".card")
+      const cardID = cardCount.length + 1
+      const tierLevel = document.getElementById("contactTier").value
+      const imgSrc = lastImageURL
+      const name = document.getElementById("contactName").value
+      const location = "Burley, Idaho"
+      const emailAddress = document.getElementById("contactEmail").value
+      const phoneNumber = document.getElementById("contactPhone").value
+      const birthMonthDay = document.getElementById("contactDOB").value
+
+      const commaTags = document.getElementById("contactTags").value
+      const allTags = commaTags.split(",")
+
+      const cardTemplate = `<div class="card" data-id=${cardID} data-tier=${tierLevel}>
+            <div class="photo">
+              <img src=${imgSrc}>
+            </div>
+            <div class="content">
+              <p>${name}</p>
+              <p class="location">${location}</p>
+            <button onclick="showModal(event, details)" class="details">View Details</button>
+              <table>
+                <tr>
+                  <td>Email:</td>
+                  <td><a href="#">${emailAddress}</a></td>
+                </tr>
+                <tr>
+                  <td>Phone:</td>
+                  <td><a href="#">${phoneNumber}</a></td>
+                </tr>
+                <tr>
+                  <td>Birthday:</td>
+                  <td>${birthMonthDay}<sup>th</sup></td>
+                </tr>
+              </table>
+              ${allTags.map(function (key) {
+                return "<a href='#' class='tag'>" + key.trim() +"</a>"
+              }).join('')}
+            </div>
+          </div>`
+      addWindow.style.display="none"
+      document.body.innerHTML += cardTemplate
+      lastImageURL = null;
+    }
+
+    function showModal(e, window) {
+      // Declare Clicked Card Sources
+      let card = e.target.closest('.card')
+      let photo = card.querySelector("img").src
+      let interests = []
+      let tierLevel = card.getAttribute("data-tier")
+      let name = card.getAttribute("data-name")
+      let email = card.getAttribute("data-email")
+      let phone = card.getAttribute("data-phone")
+      let bday = card.getAttribute("data-bday")
+      let location = card.getAttribute("data-location")
+      let website = card.getAttribute("data-website")
+
+      // Declare Modal Targets
+      photoHolder = document.getElementById("bioPhoto")
+      let main = window.querySelector(".modalBox")
+      let tagInput = document.getElementById("tags")
+      let tierHolder = document.getElementById("tier")
+      let nameHolder = document.getElementById("name")
+      let bdayHolder = document.getElementById("birthday")
+      let phoneHolder = document.getElementById("phone")
+      let emailHolder = document.getElementById("email")
+      let websiteHolder = document.getElementById("website")
+      let lastContactHolder = document.getElementById("last")
+      let addressHolder = document.getElementById("address")
+
+      photoHolder.src = photo
+      main.setAttribute("data-tier", card.getAttribute('data-tier'))
+
+      card.querySelectorAll(".tag").forEach((card) => {
+        interests.push(card.innerText)
+      } )
+
+      tagInput.value = interests.join(', ')
+      tierHolder.value = tierLevel;
+      nameHolder.value = name;
+      bdayHolder.value = bday;
+      phoneHolder.value = phone;
+      emailHolder.value = email;
+      websiteHolder.value = website;
+      //lastContactHolder.value = lastContact || null;
+      addressHolder.value = location;
+
+      // Test Saving data
+      main.querySelectorAll('input').forEach((inputter) => {
+        inputter.addEventListener('input', function(e){
+          console.log(e.target.value)
+        }, false)
+      })
+
+      window.style.display="block";
+      window.classList.add("modalIn")
+      setTimeout(function() {window.classList.remove("modalIn")}, 200)
+      window.addEventListener('click', function(event) {
+        if (event.currentTarget !== event.target) {
+          return;
+        }
+      window.classList.add("modalOut")
+      setTimeout(function() {window.classList.remove("modalOut");window.style.display="none";}, 200)
+      }, false)
+    }
+
+    function showModalStatic(window) {
+      window.style.display="block";
+      window.classList.add("modalIn")
+      setTimeout(function() {window.classList.remove("modalIn")}, 200)
+      window.addEventListener('click', function(event) {
+        if (event.currentTarget !== event.target) {
+          return;
+        }
+      window.classList.add("modalOut")
+      setTimeout(function() {window.classList.remove("modalOut");window.style.display="none";}, 200)
+      }, false)
+    }
+
+    function closeWindow(e) {
+
+      const button = e.target;
+      const windowContainer = e.target.closest(".modalContainer")
+
+      button.classList.add("buttonRotate")
+      windowContainer.classList.add("fadeOut")
+      setTimeout(function() {
+        button.classList.remove("buttonRotate")
+        windowContainer.classList.remove("fadeOut")
+        windowContainer.style.display="none";
+      }, 750)
+
+    }
+
+    function saveData(inputter) {
+      clearTimeout(displayTime);
+      clearTimeout(hideTime);
+
+      const alertBox = document.querySelector(".alert")
+
+      displayTime = setTimeout(function() {
+        alertBox.classList.add("slideIn");
+        console.log(inputter.value);
+      }, 750)
+      hideTime = setTimeout(function() {alertBox.classList.remove("slideIn")}, 3000)
+    }
+
+    function fileProcess(theFile) {
+      const upload = theFile.files[0]
+      const photoContainer = document.getElementById("uploadedPhoto")
+
+      const browserReader = new FileReader();
+      browserReader.addEventListener('load', event => {
+        code = event.target.result
+        console.log(code)
+        lastImageURL = code;
+        photoContainer.innerHTML += `<img src="${code}">`
+      })
+      browserReader.readAsDataURL(upload)
+
+    }
+
+    function uploadMe() {
+      myInput = document.getElementById("fileIt")
+      myInput.click();
+    }
+
+    function showFilters(button) {
+      const menuDiv = button.closest(".filterMenu")
+      menuDiv.classList.toggle("active")
+
+      document.addEventListener('click', function(event) {
+        if (!event.target.closest(".filterMenu")) {
+            menuDiv.classList.remove("active")
+        }
+      }, false)
+    }
+
+    function selectFilter(e) {
+      e.preventDefault()
+      const row = e.target.closest("li")
+      const checkbox = row.querySelector("input[type=checkbox]")
+      const checkboxID = checkbox.getAttribute("id")
+
+      checkbox.checked = !checkbox.checked;
+
+      if (checkbox.checked === false) {
+        appData.setItem(checkboxID, "unchecked")
+        row.classList.add('selectedRow');
+      } else {
+        appData.setItem(checkboxID, "checked")
+        row.classList.remove('selectedRow');
+      }
+
+      matchFilter()
+    }
+
+    function loadSavedData() {
+      document.querySelectorAll("input[type=checkbox]").forEach((box) => {
+        const boxID = box.getAttribute("id")
+        const savedBoxStatus = appData.getItem(boxID)
+        if (savedBoxStatus === "unchecked") {
+          box.checked = false
+          box.closest("li").classList.add('selectedRow')
+        } else {return}
+      })
+      matchFilter()
+    }
+
+    function matchFilter () {
+      const unchecked = document.querySelectorAll("input[type=checkbox]:not(:checked)")
+      const checked = document.querySelectorAll("input[type=checkbox]:checked")
+      unchecked.forEach((box) => {
+        targetCard = box.getAttribute("data-target");
+        document.querySelectorAll("[data-tier='" + targetCard +"']").forEach((card) => {
+          card.style.display="none"
+        })
+      })
+
+      checked.forEach((box) => {
+        targetCard = box.getAttribute("data-target");
+        document.querySelectorAll("[data-tier='" + targetCard +"']").forEach((card) => {
+          card.style.display="inline-block"
+        })
+      })
+
+      const totalBoxes = document.querySelectorAll("input[type=checkbox]").length
+      const button = document.querySelector(".filterMenu")
+
+      if (checked.length < totalBoxes) {
+        button.classList.add("applied")
+      } else {
+        button.classList.remove("applied")
+      }
+    }
+
+
+    document.querySelectorAll("input[type='checkbox']").forEach((item) => {
+      item.addEventListener("click", function(event) {
+        event.preventDefault()})
+    })
+
+    window.onload = loadSavedData()
+
+
+
+  </script>
+
+  </html>
