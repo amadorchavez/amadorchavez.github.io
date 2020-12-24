@@ -4,8 +4,6 @@
   <head>
   	<title>Network App</title>
     <link rel="stylesheet" href="fonts.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 
     <style>
       /*BoilerPlate CSS*/
@@ -70,13 +68,7 @@
           100% {opacity:1;background:transparent;}
       }
 
-      select {-webkit-appearance: none;-moz-appearance: none;appearance: none;background:#222;opacity:1;width:100%;margin-bottom: .75em;
-        background: transparent;padding: .5em;border: 1px solid rgba(255,255,255,0.1);
-        background-image: url('select.svg');
-  background-size: 13px;
-  background-repeat: no-repeat;
-  background-position: 90%;
-}
+      select {-webkit-appearance: none;-moz-appearance: none;appearance: none;background:#222;opacity:1;width:100%;margin-bottom: .75em;}
 
 
       .large {font-weight:800;font-size:2em;margin-bottom:0.5em;}
@@ -181,9 +173,6 @@
       .filterMenu.applied button {border:1px solid #ffaa03;opacity:1;}
       .filterMenu.applied svg {fill:#ffaa03}
 
-      .dropZone {cursor:pointer;width:250px;background:rgba(255,255,255,0.05);padding:1em;border:1px dashed rgba(255,255,255,0.15);border-radius:5px;transition: ease all .25s;}
-      .dropZone:hover {background:rgba(255,255,255,0.1);border:1px dashed rgba(255,255,255,0.25)}
-
 
 
       @media (max-width:640px) {
@@ -201,8 +190,6 @@
   </head>
 
   <body>
-    <button onclick="openDB()">Import</button>
-    <button onclick="backupDB()">Export</button>
     <div class="topBar">
       <div class="filterMenu">
       <button onclick="showFilters(this)"><svg height="25" width="25" fill="#FFF" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96"><path d="M92.164 12.076a2.008 2.008 0 00-1.852-1.244H5.684c-.812 0-1.544.492-1.848 1.244a1.99 1.99 0 00.444 2.176L38 47.524v35.64c0 .712.38 1.372.996 1.736.312.18.656.264 1.004.264.34 0 .684-.084.992-.256l16-9.12A2.001 2.001 0 0058 74.048V47.524l33.721-33.268a2.016 2.016 0 00.443-2.18z"/></svg></button>
@@ -218,26 +205,93 @@
       <input type="text" class="searchBar" list="people">
     </div>
 
-    <div class="onboarding" style="padding:1em;border:1px solid rgba(255,255,255,0.15);border-radius:5px;max-width:720px;margin:0 auto;">
-      <p>No Contacts Have Been Added Yet</p>
-      <button onclick="loadDemo()">Load Demo</button>
-      <button onclick="openDB()">Load Saved Data</button>
-      <button onclick="showModalStatic(newContact)">Add Contact</button>
+    <div class="card" data-id="1" data-tier="tier1" data-name="John Doe" data-email="johndoe@gmail.com" data-phone="209-293-9203" data-bday="April 14th" data-location="Cupertino, CA" data-website="tomcruise.com">
+      <div class="photo">
+        <img src="john.jpg">
+      </div>
+      <div class="content">
+        <p>John Doe</p>
+        <p class="location">Cupertino, CA</p>
+      <button onclick="showModal(event, details)" class="details">View Details</button>
+        <table>
+          <tr>
+            <td>Email:</td>
+            <td><a href="#">johndoe@gmail.com</a></td>
+          </tr>
+          <tr>
+            <td>Phone:</td>
+            <td><a href="#">(714) 039-3642</a></td>
+          </tr>
+          <tr>
+            <td>Birthday:</td>
+            <td>April 14<sup>th</sup></td>
+          </tr>
+        </table>
+        <a href="#" class="tag">UI Design</a><a href="#" class="tag">Business</a><a href="#" class="tag">Art</a>
+      </div>
     </div>
 
-    <div id="contactSection">
+    <div class="card" data-id="2" data-tier="tier2" data-name="Jane Doe" data-email="janey@gmail.com" data-phone="209-234-5356" data-bday="March 14th" data-location="Albany, NY" data-website="janedoe.com">
+      <div class="photo">
+        <img src="jane.jpg">
+      </div>
+      <div class="content">
+        <p>Jane Doe</p>
+        <p class="location">Albany, NY</p>
+        <button onclick="showModal(event, details)" class="details">View Details</button>
+        <table>
+          <tr>
+            <td>Email:</td>
+            <td><a href="#">johndoe@gmail.com</a></td>
+          </tr>
+          <tr>
+            <td>Phone:</td>
+            <td><a href="#">(714) 039-3642</a></td>
+          </tr>
+          <tr>
+            <td>Birthday:</td>
+            <td>April 14<sup>th</sup></td>
+          </tr>
+        </table>
+        <a href="#" class="tag">UI Design</a><a href="#" class="tag">Business</a><a href="#" class="tag">Art</a>
+      </div>
+    </div>
+
+<div class="card" data-id="3" data-tier="tier3" data-name="Henry Doe" data-email="henry@gmail.com" data-phone="209-842-4203" data-bday="June 14th" data-location="Cliffpoint, Norway" data-website="henrycavill.com">
+      <div class="photo">
+        <img src="henry.jpg">
+      </div>
+      <div class="content">
+        <p>Henry Doe</p>
+        <p class="location">Cliffpoint, Norway</p>
+      <button onclick="showModal(event, details)" class="details">View Details</button>
+        <table>
+          <tr>
+            <td>Email:</td>
+            <td><a href="#">johndoe@gmail.com</a></td>
+          </tr>
+          <tr>
+            <td>Phone:</td>
+            <td><a href="#">(714) 039-3642</a></td>
+          </tr>
+          <tr>
+            <td>Birthday:</td>
+            <td>April 14<sup>th</sup></td>
+          </tr>
+        </table>
+        <a href="#" class="tag">UI Design</a><a href="#" class="tag">Business</a><a href="#" class="tag">Art</a>
+      </div>
     </div>
 
     <div id="newContact" class="modalContainer">
       <div class="modalBox">
         <span class="closeButton" onclick="closeWindow(event)">&times;</span>
         <div style="display:flex;gap:1em;">
-          <div onclick="uploadMe()" class="dropZone">
+          <div onclick="uploadMe()" style="cursor:pointer;width:250px;background:rgba(255,255,255,0.1);padding:1em;border:1px dashed rgba(255,255,255,0.25);border-radius:5px;">
             <input style="display:none;" onchange="fileProcess(this)" type="file" id="fileIt" accept=".jpg, .jpeg, .png">
-            <div>
+            <div id="uploadedPhoto">
               <h2 style="text-align:center;">Click To Upload Photo</h2>
               <p>or drag file</p>
-              <div id="uploadedPhoto"></div>
             </div>
           </div>
           <div style="text-align:left;">
@@ -278,14 +332,7 @@
                 <label for="phone">Phone Number</label><input class="staticInput" value="000-000-0000" type="text" id="phone"></input>
                 <label for="email">Email</label><input class="staticInput" value="me@aol.com" type="text" id="email"></input>
                 <label for="website">Website</label><input class="staticInput" value="me@aol.com" type="text" id="website"></input>
-                <label for="tier">Tier</label><select name="tierLevel" id="tier" required>
-                  <option value="" disabled selected>Select</option>
-                  <option value="tier1">Tier 1</option>
-                  <option value="tier2">Tier 2</option>
-                  <option value="tier3">Tier 3</option>
-                  <option value="family">Family</option>
-                  <option value="inspiration">Inspiration</option>
-                </select>
+                <label for="tier">Tier</label><input oninput="saveData(this)" class="staticInput" value="Tier 1" type="text" id="tier"></input>
                 <label for="last">Last Contact</label><input class="staticInput" type="date" id="last"></input>
               </div>
               <label for="address">Address</label><textarea class="staticInput" id="address">13800 Derwood Ave</textarea>
@@ -307,7 +354,6 @@
         </div>
       </div>
       <span class="alert">Changes Saved</span>
-      <button onclick="removeCard()"><svg height="50" width="50" viewBox="0 0 100 100" fill="#FFF"><g><path d="M85.5 22H62.9v-3.8a7 7 0 00-7-7H44.1a7 7 0 00-7 7V22H14.5a2 2 0 00-2 2 1.9 1.9 0 002 2h6.3v47.8a15 15 0 0015 15h28.5a15 15 0 0015-15V26h6.2a1.9 1.9 0 002-2 2 2 0 00-2-2zm-44.4-3.8a3 3 0 013-3h11.8a3 3 0 013 3V22H41.1zm34.2 55.6a11 11 0 01-11 11H35.8a11 11 0 01-11-11V26h50.5z"/><path d="M36.3 73.3a2 2 0 002-2v-34a2 2 0 00-4 0v34a2 2 0 002 2zM50 73.3a2 2 0 002-2v-34a2 2 0 00-4 0v34a2 2 0 002 2zM63.7 73.3a2 2 0 002-2v-34a2 2 0 00-4 0v34a2 2 0 002 2z"/></g></svg></button>
     </div>
     </div>
 
@@ -322,126 +368,13 @@
     appData = window.localStorage
 
     // Global Variable Declarations
-    let card
-    let person
     let displayTime = null;
     let hideTime = null;
-    let lastImageURL = null;
-    let currentID = null;
-    let thecards = [];
+    let lastImageURL = null
 
     const openAudio = document.getElementById("openSound")
     const closeAudio = document.getElementById("closeSound")
     const alertAudio = document.getElementById("alertSound")
-
-    function loadDemo() {
-      const card1 = {
-        id: '1',
-        tier: 'tier1',
-        name: 'John Doe',
-        email: 'johndoe@gmail.com',
-        phone: '(208) 894-9403',
-        birthday: 'April 14',
-        location: 'Cupertino, CA',
-        website: 'https://www.tomcruise.com',
-        img: "john.jpg",
-        tags: 'UI design, Art, Business'
-      }
-
-      const card2 = {
-        id: '2',
-        tier: 'tier2',
-        name: 'Jane Doe',
-        email: 'janedoe@gmail.com',
-        phone: ' (714) 039-3642',
-        birthday: 'April 14',
-        location: 'Albany, NY',
-        website: 'https://www.apple.com',
-        img: "jane.jpg",
-        tags: 'Writing, Music, Business'
-      }
-
-      const card3 = {
-        id: '3',
-        tier: 'tier3',
-        name: 'Henry Doe',
-        email: 'henrycav@gmail.com',
-        phone: ' (714) 934-3904',
-        birthday: 'March 14',
-        location: 'Tuscany, NY',
-        website: 'https://www.manwellreyes.com',
-        img: "henry.jpg",
-        tags: 'Writing, Music, Business'
-      }
-
-      thecards.push(card1, card2, card3);
-      renderCards();
-    }
-
-    function loadLocalData() {
-      let localBlob = appData.getItem('cards')
-      let contactBook = JSON.parse(localBlob) || []
-      thecards = contactBook
-      if (thecards.length < 1) {
-        return
-      } else {
-        document.querySelector('.onboarding').style.display="none"
-        renderCards()
-      }
-    }
-
-
-    function renderCards() {
-        thecards.forEach((card) => {
-          generateCard(card)
-        })
-      }
-
-      const findCard = function (cardID) {
-        let target = thecards.find(o => o.id == cardID)
-        return target
-      }
-
-      function removeCard() {
-        let tempArray = thecards.filter(cards => cards.id != currentID)
-        thecards = tempArray
-        document.querySelector("[data-id='"+currentID+"']").remove()
-        closeWindow(event)
-        saveCards()
-      }
-
-      function generateCard(cardObject) {
-        const cardTemplate = `<div class="card" data-id=${cardObject.id} data-tier=${cardObject.tier}>
-              <div class="photo">
-                <img src=${cardObject.img}>
-              </div>
-              <div class="content">
-                <p>${cardObject.name}</p>
-                <p class="location">${cardObject.location}</p>
-              <button onclick="showModal(event, details)" class="details">View Details</button>
-                <table>
-                  <tr>
-                    <td>Email:</td>
-                    <td><a href="#">${cardObject.email}</a></td>
-                  </tr>
-                  <tr>
-                    <td>Phone:</td>
-                    <td><a href="#">${cardObject.phone}</a></td>
-                  </tr>
-                  <tr>
-                    <td>Birthday:</td>
-                    <td>${cardObject.birthday}<sup>th</sup></td>
-                  </tr>
-                </table>
-                ${cardObject.tags.split(",").map(function (key) {
-                  return "<a href='#' class='tag'>" + key.trim() +"</a>"
-                }).join('')}
-              </div>
-            </div>`
-
-        document.getElementById("contactSection").innerHTML += cardTemplate
-        saveCards()
-      }
 
     // closeAudio.currentTime = 0;
     // closeAudio.play();
@@ -463,48 +396,50 @@
       const commaTags = document.getElementById("contactTags").value
       const allTags = commaTags.split(",")
 
-      const newCard = {
-        id: cardID,
-        tier: tierLevel,
-        name: name,
-        email: emailAddress,
-        phone: phoneNumber,
-        birthday: birthMonthDay,
-        location: 'Cupertino, CA',
-        website: 'https://www.tomcruise.com',
-        img: imgSrc,
-        tags: commaTags
-      }
-      addWindow.style.display="none";
+      const cardTemplate = `<div class="card" data-id=${cardID} data-tier=${tierLevel}>
+            <div class="photo">
+              <img src=${imgSrc}>
+            </div>
+            <div class="content">
+              <p>${name}</p>
+              <p class="location">${location}</p>
+            <button onclick="showModal(event, details)" class="details">View Details</button>
+              <table>
+                <tr>
+                  <td>Email:</td>
+                  <td><a href="#">${emailAddress}</a></td>
+                </tr>
+                <tr>
+                  <td>Phone:</td>
+                  <td><a href="#">${phoneNumber}</a></td>
+                </tr>
+                <tr>
+                  <td>Birthday:</td>
+                  <td>${birthMonthDay}<sup>th</sup></td>
+                </tr>
+              </table>
+              ${allTags.map(function (key) {
+                return "<a href='#' class='tag'>" + key.trim() +"</a>"
+              }).join('')}
+            </div>
+          </div>`
+      addWindow.style.display="none"
+      document.body.innerHTML += cardTemplate
       lastImageURL = null;
-      thecards.push(newCard);
-      generateCard(newCard);
-    }
-
-    function saveCards() {
-      appData.setItem ('cards', JSON.stringify(thecards))
     }
 
     function showModal(e, window) {
-      // Reset cards
-      if (card !== null) {card == null}
-      if (person !== null) {card == null}
-
       // Declare Clicked Card Sources
-      card = e.target.closest('.card');
-      let id = card.getAttribute("data-id");
-      currentID = id;
-      person = findCard(id);
-
-      let photo = person.img
-      let interests = person.tags
-      let tierLevel = person.tier
-      let name = person.name
-      let email = person.email
-      let phone = person.phone
-      let bday = person.birthday
-      let location = person.location
-      let website = person.website
+      let card = e.target.closest('.card')
+      let photo = card.querySelector("img").src
+      let interests = []
+      let tierLevel = card.getAttribute("data-tier")
+      let name = card.getAttribute("data-name")
+      let email = card.getAttribute("data-email")
+      let phone = card.getAttribute("data-phone")
+      let bday = card.getAttribute("data-bday")
+      let location = card.getAttribute("data-location")
+      let website = card.getAttribute("data-website")
 
       // Declare Modal Targets
       photoHolder = document.getElementById("bioPhoto")
@@ -522,7 +457,11 @@
       photoHolder.src = photo
       main.setAttribute("data-tier", card.getAttribute('data-tier'))
 
-      tagInput.value = interests;
+      card.querySelectorAll(".tag").forEach((card) => {
+        interests.push(card.innerText)
+      } )
+
+      tagInput.value = interests.join(', ')
       tierHolder.value = tierLevel;
       nameHolder.value = name;
       bdayHolder.value = bday;
@@ -535,9 +474,7 @@
       // Test Saving data
       main.querySelectorAll('input').forEach((inputter) => {
         inputter.addEventListener('input', function(e){
-          let identifier = e.target.getAttribute('id')
-          person[identifier] = e.target.value;
-          updateCardPlease(card, person)
+          console.log(e.target.value)
         }, false)
       })
 
@@ -553,41 +490,7 @@
       }, false)
     }
 
-    function updateCardPlease(targetCard, cardObject) {
-      const updateTemplate = `<div class="photo">
-          <img src=${cardObject.img}>
-        </div>
-        <div class="content">
-          <p>${cardObject.name}</p>
-          <p class="location">${cardObject.location}</p>
-        <button onclick="showModal(event, details)" class="details">View Details</button>
-          <table>
-            <tr>
-              <td>Email:</td>
-              <td><a href="#">${cardObject.email}</a></td>
-            </tr>
-            <tr>
-              <td>Phone:</td>
-              <td><a href="#">${cardObject.phone}</a></td>
-            </tr>
-            <tr>
-              <td>Birthday:</td>
-              <td>${cardObject.birthday}<sup>th</sup></td>
-            </tr>
-          </table>
-          ${cardObject.tags.split(",").map(function (key) {
-            return "<a href='#' class='tag'>" + key.trim() +"</a>"
-          }).join('')}
-        </div>`
-
-      targetCard.innerHTML=updateTemplate
-      targetCard.setAttribute('data-tier', cardObject.tier)
-      saveCards()
-    }
-
     function showModalStatic(window) {
-      const photoContainer = document.getElementById("uploadedPhoto")
-      photoContainer.innerHTML=""
       window.style.display="block";
       window.classList.add("modalIn")
       setTimeout(function() {window.classList.remove("modalIn")}, 200)
@@ -635,10 +538,12 @@
       const browserReader = new FileReader();
       browserReader.addEventListener('load', event => {
         code = event.target.result
+        console.log(code)
         lastImageURL = code;
-        photoContainer.innerHTML = `<img src="${code}">`
+        photoContainer.innerHTML += `<img src="${code}">`
       })
       browserReader.readAsDataURL(upload)
+
     }
 
     function uploadMe() {
@@ -721,37 +626,7 @@
         event.preventDefault()})
     })
 
-    window.onload = loadSavedData(), loadLocalData()
-
-    function backupDB() {
-      //let theBlob = new Blob([JSON.stringify(thecards)], {type : 'application/json'});
-      let theBlob = new Blob([JSON.stringify(thecards)]);
-      let theFile = window.URL.createObjectURL(theBlob);
-      let link = document.createElement('a');
-      link.download = 'networkBackup.data';
-      link.href = theFile
-      link.click();
-    }
-
-    function openDB() {
-      let field = document.createElement("input")
-      field.setAttribute('type', 'file')
-      field.setAttribute('accept', '.data')
-
-      field.addEventListener('change', function(e) {
-        const upload = field.files[0]
-        const browserReader = new FileReader();
-        browserReader.addEventListener('load', event => {
-          code = event.target.result
-          contactBook = JSON.parse(code)
-          thecards = contactBook
-          renderCards()
-        })
-        browserReader.readAsText(upload)
-      } )
-
-      field.click()
-    }
+    window.onload = loadSavedData()
 
 
 
