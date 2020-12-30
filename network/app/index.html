@@ -5,6 +5,7 @@
   	<title>Network App</title>
     <link rel="stylesheet" href="fonts.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
 
 
     <style>
@@ -128,14 +129,16 @@
         text-transform: capitalize;
         font-style: italic;
       }
-      input.searchBar:focus {
+      input.searchBar:focus, input.searchBar:valid {
+        /* color:white; border: rgba(255,255,255,0.25) */
           width: 320px;
-          border-bottom: 2px solid rgba(255,255,255,0.25);
+          border-bottom: 2px solid #ffaa03;
           padding-left: 2em;
           opacity: 1;
           background-position:90% center;
-          color:white;
+          color:#ffaa03;
       }
+      input.searchBar:invalid {box-shadow:none;}
       input.searchBar:hover {
           opacity: 1;
       }
@@ -219,7 +222,7 @@
       </ul>
       </div>
       <button onclick="showModalStatic(newContact)"><svg height="25" width="25" fill="#fff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path style="text-indent:0;text-transform:none;block-progression:tb" d="M44 11v33H11v12h33v33h12V56h33V44H56V11H44z" overflow="visible" color="#000"/></svg></button>
-      <input type="text" class="searchBar" list="people">
+      <input type="text" class="searchBar" list="people" oninput="matchCard(this)" required>
     </div>
 
     <div class="onboarding" style="padding:1em;border:1px solid rgba(255,255,255,0.15);border-radius:5px;max-width:720px;margin:0 auto;">
@@ -757,7 +760,27 @@
       field.click()
     }
 
+    function matchCard(query) {
+      thecards.forEach((card) => {
+        let cardContents = JSON.stringify(card).toLowerCase()
+        let searchValue = query.value.toLowerCase().trim()
+        if (cardContents.includes(searchValue) == false) {
+          document.querySelector("[data-id='" + card.id +"']").style.display = "none"
+        } else {
+          document.querySelector("[data-id='" + card.id +"']").style.display = "inline-block"
+        }
+      })
+    }
 
+    // document.querySelectorAll('.tag').forEach((item) => {
+    //   addEventListener('click', function(){tagthis(event)}, true)
+    //   console.log(item)
+    // })
+    //
+    // function tagthis(e, tag) {
+    //   e.preventDefault()
+    //   console.log(e.target)
+    // }
 
   </script>
 

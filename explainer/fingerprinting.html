@@ -98,8 +98,8 @@
         </tr>
         <tr>
           <td>Loaded Cookies</td>
-          <td id="cookieContainer"></td>
-          <td>Cookies are semicolon-separated pieces of data that are sent to the server every time a request is made. The data can be used to authenticate you so that you don't have to log in to each page you visit. But these cookies can also be used to track the sites you visit</td>
+          <td id="cookieContainerBypass"></td>
+          <td><button onclick="alert(document.cookie)">Show Cookies</button>Cookies are semicolon-separated pieces of data that are sent to the server every time a request is made. The data can be used to authenticate you so that you don't have to log in to each page you visit. But these cookies can also be used to track the sites you visit</td>
           <td>JavaScript was used to place a cookie tying your canvas fingerprint to a data point named "id"</td>
           <td>Ability for website to recognize you as legitimate owner of an account.</td>
           <td>Browser settings and clearing cookies</td>
@@ -442,7 +442,7 @@
       createCookie("userId", theHash, 7);
 
       const cookieList = document.cookie
-      const cookieBox=document.getElementById("cookieContainer")
+      const cookieBox=document.getElementById("cookieContainerBypass") //Ublock Origin displays none if ID = cookieContainer
       cookieBox.innerText = cookieList;
 
 
