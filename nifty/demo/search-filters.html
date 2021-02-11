@@ -1,7 +1,7 @@
 <html>
 
 <head>
-  <title>Nifty Links </title>
+  <title>Nifty Links Search Results</title>
   <meta name="robots" content="noindex, nofollow">
   <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon-65691c5ff8ebfb4d4cc225658f41f2731f54c1f867898c44d4a0e9b079e1d083.png">
   <meta name="csrf-param" content="authenticity_token">
@@ -434,12 +434,12 @@
     }
     .search-parent {    position: sticky;
     top: 0;
-    z-index: 9;}
+    z-index: 99;}
 
     table th.sorted {
       background: #2077c1;
-      border-left: 1px solid rgba(255, 255, 255, .25);
-      border-right: 1px solid rgba(255, 255, 255, .25)
+      /* border-left: 1px solid rgba(255, 255, 255, .25);
+      border-right: 1px solid rgba(255, 255, 255, .25) */
     }
 
     table th,
@@ -2192,6 +2192,20 @@
       text-align: center;
     }
     .selectorColumn .check-input {margin:0;}
+
+    /* Styles for Zillow Modifier Popup */
+    .modifierPopup {
+        border-radius: 3px;
+        position: absolute;
+        top: 3em;
+        background: #3d3f41;
+        width: 150%;
+        box-shadow: 0 0 15px black;
+    border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .dropSelect {display:inline-block;color: white;cursor: pointer;font-size: .85em;font-weight: 700;border: 1px solid var(--gray);background: var(--inputs);background-image: linear-gradient(45deg, transparent 50%, var(--gray) 50%), linear-gradient(135deg, var(--gray) 50%, transparent 50%), linear-gradient(to right, var(--gray), var(--gray));background-position: calc(100% - 10px) calc(.5em + 5px), calc(100% - 5px) calc(.5em + 5px), calc(100% - 1.7em) .35em;background-size: 5px 5px, 5px 5px, 1px 1.5em;background-repeat: no-repeat;padding: .5em 0;padding-right: 4em;padding-left: 1em;}
+
   </style>
 </head>
 
@@ -2212,534 +2226,108 @@
     </div>
   </div>
   <div class="search-parent">
-    <div class="search-bar  ">
-      <div>
-        <strong>Client:</strong>
-        <select name="cs" id="cs" onchange="clientSelect(this)">
-          <option value="">SELECT A CLIENT</option>
-          <option data-test="0" data-has-subs="false" value="1">ABC Pumping</option>
-          <option data-test="0" data-has-subs="false" selected="selected" value="149">Acton Implants</option>
-          <option data-test="0" data-has-subs="false" value="145">Albrecht Law</option>
-          <option data-test="0" data-has-subs="false" value="2">Alliance Law Group PS</option>
-          <option data-test="0" data-has-subs="false" value="3">Amanda Cook</option>
-          <option data-test="0" data-has-subs="false" value="99">Amco Ranger</option>
-          <option data-test="0" data-has-subs="false" value="306">Anthony Carbone Law</option>
-          <option data-test="0" data-has-subs="false" value="4">AVT</option>
-          <option data-test="0" data-has-subs="false" value="148">Barnes Law Firm</option>
-          <option data-test="0" data-has-subs="false" value="5">Barrier Pest</option>
-          <option data-test="0" data-has-subs="false" value="6">Baumgartner Law Firm</option>
-          <option data-test="0" data-has-subs="false" value="7">Benenati Law Firm</option>
-          <option data-test="0" data-has-subs="false" value="8">Bizzy Bee Pest Solutions</option>
-          <option data-test="0" data-has-subs="false" value="218">Buford Law</option>
-          <option data-test="0" data-has-subs="false" value="298">Call &amp; Gentry Law Group</option>
-          <option data-test="0" data-has-subs="false" value="302">Caruso Law</option>
-          <option data-test="0" data-has-subs="false" value="254">Cawlfield Law Firm</option>
-          <option data-test="0" data-has-subs="false" value="9">Check Stub Maker</option>
-          <option data-test="0" data-has-subs="false" value="10">Christopher Simon</option>
-          <option data-test="0" data-has-subs="false" value="11">Cimarron Ridge Legal Group</option>
-          <option data-test="0" data-has-subs="false" value="107">Cirrus Aviation</option>
-          <option data-test="0" data-has-subs="false" value="12">City Property Management</option>
-          <option data-test="0" data-has-subs="false" value="13">Clearwater Business Law</option>
-          <option data-test="0" data-has-subs="false" value="14">Cluff Law</option>
-          <option data-test="0" data-has-subs="false" value="15">Coffman Legal</option>
-          <option data-test="0" data-has-subs="false" value="16">Coil Law</option>
-          <option data-test="0" data-has-subs="false" value="17">Colwell Law Group</option>
-          <option data-test="0" data-has-subs="false" value="260">Concerto Law</option>
-          <option data-test="0" data-has-subs="false" value="18">CPR Law</option>
-          <option data-test="0" data-has-subs="false" value="19">DC Law</option>
-          <option data-test="0" data-has-subs="false" value="20">Delventhal Law</option>
-          <option data-test="0" data-has-subs="false" value="101">Desmond Law</option>
-          <option data-test="0" data-has-subs="false" value="21">Divorce Matters</option>
-          <option data-test="0" data-has-subs="false" value="22">Dolan Dobrinsky Rosenblum</option>
-          <option data-test="0" data-has-subs="false" value="23">Dolan Law Firm PC</option>
-          <option data-test="0" data-has-subs="false" value="297">Dr. Lazare</option>
-          <option data-test="0" data-has-subs="false" value="216">Duffy Law</option>
-          <option data-test="0" data-has-subs="false" value="24">Edwards &amp; Petersen</option>
-          <option data-test="0" data-has-subs="false" value="102">El Dabe Ritter Trial Lawyers</option>
-          <option data-test="0" data-has-subs="false" value="25">Elevate Pest</option>
-          <option data-test="0" data-has-subs="false" value="26">Empire Pest Defense</option>
-          <option data-test="0" data-has-subs="false" value="98">Enova</option>
-          <option data-test="0" data-has-subs="false" value="27">Evan Braunstein</option>
-          <option data-test="0" data-has-subs="false" value="252">ExpoMarketing</option>
-          <option data-test="0" data-has-subs="false" value="28">ExpoMarketing Group, LLC</option>
-          <option data-test="0" data-has-subs="false" value="29">Fisher &amp; Talwar</option>
-          <option data-test="0" data-has-subs="false" value="256">Gallo, Curtis &amp; Cazort Law Firm</option>
-          <option data-test="0" data-has-subs="false" value="30">Galvin Legal</option>
-          <option data-test="0" data-has-subs="false" value="31">Gloria Nilson</option>
-          <option data-test="0" data-has-subs="false" value="32">Groth &amp; Associates</option>
-          <option data-test="0" data-has-subs="false" value="33">Groth Law Firm</option>
-          <option data-test="0" data-has-subs="false" value="34">H1 Law Group</option>
-          <option data-test="0" data-has-subs="false" value="35">Hammett, Bellin &amp; Oswald</option>
-          <option data-test="0" data-has-subs="false" value="36">Hangover Hospital</option>
-          <option data-test="0" data-has-subs="false" value="146">Hanlon Law</option>
-          <option data-test="0" data-has-subs="false" value="255">Hayber, McKenna &amp; Dinsmore, LLC</option>
-          <option data-test="0" data-has-subs="false" value="342">Hinkle Law, PLLC</option>
-          <option data-test="0" data-has-subs="false" value="37">IMI</option>
-          <option data-test="0" data-has-subs="false" value="257">Improving Lives Counseling Services</option>
-          <option data-test="0" data-has-subs="false" value="111">Jackson Law</option>
-          <option data-test="0" data-has-subs="false" value="38">Jocelyn C. Stewart </option>
-          <option data-test="0" data-has-subs="false" value="259">John Colvin</option>
-          <option data-test="0" data-has-subs="false" value="40">Johnston Law Firm</option>
-          <option data-test="0" data-has-subs="false" value="261">Jones Law Firm</option>
-          <option data-test="0" data-has-subs="false" value="41">Josh Goldstein</option>
-          <option data-test="0" data-has-subs="false" value="103">Julian Gomez</option>
-          <option data-test="0" data-has-subs="false" value="343">Kemp, Ruge and Green</option>
-          <option data-test="0" data-has-subs="false" value="42">Keren Goldenberg</option>
-          <option data-test="0" data-has-subs="false" value="43">Khan Law Firm PLLC</option>
-          <option data-test="0" data-has-subs="false" value="305">King Law</option>
-          <option data-test="0" data-has-subs="false" value="44">Kohlmeyer Hagen</option>
-          <option data-test="0" data-has-subs="false" value="45">Kosieradzki Smith Law Firm</option>
-          <option data-test="0" data-has-subs="false" value="46">Ladah Law Firm</option>
-          <option data-test="0" data-has-subs="false" value="341">Larson &amp; Gallivan Injury Law</option>
-          <option data-test="0" data-has-subs="false" value="47">Las Vegas Defense Group</option>
-          <option data-test="0" data-has-subs="false" value="48">Lawrence Law</option>
-          <option data-test="0" data-has-subs="false" value="147">Lockett Law</option>
-          <option data-test="0" data-has-subs="false" value="49">Mark Berkowitz</option>
-          <option data-test="0" data-has-subs="false" value="50">Master Environmental</option>
-          <option data-test="0" data-has-subs="false" value="215">McCormick &amp; Murphy</option>
-          <option data-test="0" data-has-subs="false" value="51">Metal Master Shop</option>
-          <option data-test="0" data-has-subs="false" value="52">MG Law</option>
-          <option data-test="0" data-has-subs="false" value="53">Mitchell &amp; Crunk</option>
-          <option data-test="0" data-has-subs="false" value="251">Mixbook</option>
-          <option data-test="0" data-has-subs="false" value="54">Modern Law</option>
-          <option data-test="0" data-has-subs="false" value="55">Moses &amp; Rooth</option>
-          <option data-test="0" data-has-subs="false" value="56">My Uncle Gus</option>
-          <option data-test="0" data-has-subs="false" value="58">Nancy L Cavey</option>
-          <option data-test="0" data-has-subs="false" value="59">Naqvi Law</option>
-          <option data-test="0" data-has-subs="false" value="60">Navads</option>
-          <option data-test="0" data-has-subs="false" value="340">Neary Law Offices</option>
-          <option data-test="0" data-has-subs="false" value="61">Nifty Marketing</option>
-          <option data-test="0" data-has-subs="false" value="57">N.J. Preovolos Law</option>
-          <option data-test="0" data-has-subs="false" value="109">OrthoPro</option>
-          <option data-test="0" data-has-subs="false" value="62">Pacific Health Law Group</option>
-          <option data-test="158" data-has-subs="true" value="213">PatientPop</option>
-          <option data-test="0" data-has-subs="false" value="150">Peak Family Dental</option>
-          <option data-test="0" data-has-subs="false" value="106">Perry Bundy Plyler &amp; Long</option>
-          <option data-test="0" data-has-subs="false" value="63">Personal Health Care</option>
-          <option data-test="0" data-has-subs="false" value="64">Petroske Riezenman &amp; Meyers</option>
-          <option data-test="0" data-has-subs="false" value="217">Pierce McCoy Law</option>
-          <option data-test="0" data-has-subs="false" value="65">Pointe (Andrew)</option>
-          <option data-test="0" data-has-subs="false" value="66">Pointe (Jacob)</option>
-          <option data-test="0" data-has-subs="false" value="104">Ponton Law</option>
-          <option data-test="0" data-has-subs="false" value="262">Portella Law Firm</option>
-          <option data-test="0" data-has-subs="false" value="67">Pottroff &amp; Karlin</option>
-          <option data-test="0" data-has-subs="false" value="144">Powers &amp; Santola</option>
-          <option data-test="0" data-has-subs="false" value="180">Premiere Law Group</option>
-          <option data-test="0" data-has-subs="false" value="68">Quirk Law Firm</option>
-          <option data-test="0" data-has-subs="false" value="214">Ramos Law Group</option>
-          <option data-test="0" data-has-subs="false" value="69">Real Estate Prep</option>
-          <option data-test="0" data-has-subs="false" value="299">Real Property Management</option>
-          <option data-test="0" data-has-subs="false" value="70">Responsible Pest</option>
-          <option data-test="0" data-has-subs="false" value="253">Richmond Vona</option>
-          <option data-test="0" data-has-subs="false" value="300">Ricotta &amp; Marks P.C.</option>
-          <option data-test="0" data-has-subs="false" value="71">Robert Buford</option>
-          <option data-test="0" data-has-subs="false" value="72">Rose Counsel</option>
-          <option data-test="0" data-has-subs="false" value="73">Rosenthal &amp; Wadas</option>
-          <option data-test="0" data-has-subs="false" value="74">Rove Pest</option>
-          <option data-test="0" data-has-subs="false" value="75">Rutter Mills</option>
-          <option data-test="0" data-has-subs="false" value="296">Sabbeth Law</option>
-          <option data-test="0" data-has-subs="false" value="76">Sattiraju Law Firm</option>
-          <option data-test="0" data-has-subs="false" value="77">Schultz &amp; Myers</option>
-          <option data-test="0" data-has-subs="false" value="78">Shouse Law Group</option>
-          <option data-test="0" data-has-subs="false" value="105">Sleemi Law</option>
-          <option data-test="0" data-has-subs="false" value="79">Snow Carpio &amp; Weekley</option>
-          <option data-test="0" data-has-subs="false" value="295">Social Security Law Group</option>
-          <option data-test="0" data-has-subs="false" value="110">Speaks Family Law</option>
-          <option data-test="0" data-has-subs="false" value="80">Spillers Law Firm</option>
-          <option data-test="0" data-has-subs="false" value="81">Strianese &amp; Huckert</option>
-          <option data-test="0" data-has-subs="false" value="308">Suivant Consulting</option>
-          <option data-test="0" data-has-subs="false" value="82">Susan Hopkins</option>
-          <option data-test="0" data-has-subs="false" value="83">Tad Nelson</option>
-          <option data-test="0" data-has-subs="false" value="84">Terry Law Firm</option>
-          <option data-test="0" data-has-subs="false" value="303">The Harris Firm LLC</option>
-          <option data-test="0" data-has-subs="false" value="85">The Peck Law Firm</option>
-          <option data-test="0" data-has-subs="false" value="86">The Walthew Law Firm</option>
-          <option data-test="0" data-has-subs="false" value="87">Thomas Olivers</option>
-          <option data-test="0" data-has-subs="false" value="88">Tier One Chiropractic</option>
-          <option data-test="0" data-has-subs="false" value="89">Tittle Law</option>
-          <option data-test="0" data-has-subs="false" value="108">TorHoerman Law</option>
-          <option data-test="0" data-has-subs="false" value="90">Tuite Law</option>
-          <option data-test="0" data-has-subs="false" value="91">UEW Health</option>
-          <option data-test="0" data-has-subs="false" value="258">Wagoner Law Firm</option>
-          <option data-test="0" data-has-subs="false" value="92">Waikoloa Vacation Rentals</option>
-          <option data-test="0" data-has-subs="false" value="93">Walker Morgan</option>
-          <option data-test="0" data-has-subs="false" value="94">Walthew Law</option>
-          <option data-test="0" data-has-subs="false" value="95">Weisinger Law Firm</option>
-          <option data-test="0" data-has-subs="false" value="307">Williams Accounting &amp; Consulting</option>
-          <option data-test="0" data-has-subs="false" value="96">Wisconsin Medical Group</option>
-          <option data-test="0" data-has-subs="false" value="97">Yellowstone Bear World</option>
-        </select>
-      </div>
-      <div>
-        <strong>Sub Client:</strong>
-        <select name="sub" id="sub" onchange="clientSelect(this)">
-          <option value="">SELECT A SUB CLIENT</option>
-          <option data-client="213" value="67">10486</option>
-          <option data-client="213" value="3">10579</option>
-          <option data-client="213" value="17">10656</option>
-          <option data-client="213" value="141">10746</option>
-          <option data-client="213" value="62">10998</option>
-          <option data-client="213" value="40">11023</option>
-          <option data-client="213" value="58">11055</option>
-          <option data-client="213" value="21">11363</option>
-          <option data-client="213" value="47">11394</option>
-          <option data-client="213" value="6">11415</option>
-          <option data-client="213" value="104">11783</option>
-          <option data-client="213" value="35">11791</option>
-          <option data-client="213" value="33">11998</option>
-          <option data-client="213" value="217">12109</option>
-          <option data-client="213" value="22">12220</option>
-          <option data-client="213" value="206">12283</option>
-          <option data-client="213" value="60">12572</option>
-          <option data-client="213" value="59">12596</option>
-          <option data-client="213" value="24">12645</option>
-          <option data-client="213" value="48">12754</option>
-          <option data-client="213" value="36">13127</option>
-          <option data-client="213" value="54">13216</option>
-          <option data-client="213" value="78">13254</option>
-          <option data-client="213" value="39">13403</option>
-          <option data-client="213" value="13">13411</option>
-          <option data-client="213" value="61">13422</option>
-          <option data-client="213" value="38">13555</option>
-          <option data-client="213" value="155">13733</option>
-          <option data-client="213" value="11">13796</option>
-          <option data-client="213" value="2">13810</option>
-          <option data-client="213" value="80">13817</option>
-          <option data-client="213" value="31">14054</option>
-          <option data-client="213" value="8">14076</option>
-          <option data-client="213" value="69">14133</option>
-          <option data-client="213" value="44">14212</option>
-          <option data-client="213" value="143">14218</option>
-          <option data-client="213" value="14">14246</option>
-          <option data-client="213" value="4">14248</option>
-          <option data-client="213" value="7">14279</option>
-          <option data-client="213" value="18">14392</option>
-          <option data-client="213" value="208">14616</option>
-          <option data-client="213" value="133">14807</option>
-          <option data-client="213" value="140">14819</option>
-          <option data-client="213" value="32">14857</option>
-          <option data-client="213" value="20">14880</option>
-          <option data-client="213" value="9">14950</option>
-          <option data-client="213" value="10">15063</option>
-          <option data-client="213" value="49">15101</option>
-          <option data-client="213" value="12">15173</option>
-          <option data-client="213" value="15">15235</option>
-          <option data-client="213" value="98">15426</option>
-          <option data-client="213" value="51">16173</option>
-          <option data-client="213" value="30">16243</option>
-          <option data-client="213" value="166">16255</option>
-          <option data-client="213" value="28">16271</option>
-          <option data-client="213" value="16">16300</option>
-          <option data-client="213" value="151">16321</option>
-          <option data-client="213" value="93">16330</option>
-          <option data-client="213" value="165">16538</option>
-          <option data-client="213" value="41">16596</option>
-          <option data-client="213" value="26">16649</option>
-          <option data-client="213" value="64">16718</option>
-          <option data-client="213" value="34">16719</option>
-          <option data-client="213" value="72">16866</option>
-          <option data-client="213" value="46">16901</option>
-          <option data-client="213" value="23">16920</option>
-          <option data-client="213" value="68">16923</option>
-          <option data-client="213" value="144">17150</option>
-          <option data-client="213" value="82">17210</option>
-          <option data-client="213" value="75">17232</option>
-          <option data-client="213" value="53">17302</option>
-          <option data-client="213" value="45">17324</option>
-          <option data-client="213" value="50">17345</option>
-          <option data-client="213" value="56">17370</option>
-          <option data-client="213" value="88">17551</option>
-          <option data-client="213" value="71">17568</option>
-          <option data-client="213" value="81">17580</option>
-          <option data-client="213" value="19">17611</option>
-          <option data-client="213" value="5">17761</option>
-          <option data-client="213" value="86">17852</option>
-          <option data-client="213" value="94">17949</option>
-          <option data-client="213" value="25">17952</option>
-          <option data-client="213" value="169">18045</option>
-          <option data-client="213" value="136">18091</option>
-          <option data-client="213" value="90">18116</option>
-          <option data-client="213" value="103">18227</option>
-          <option data-client="213" value="27">18309</option>
-          <option data-client="213" value="87">18325</option>
-          <option data-client="213" value="37">18438</option>
-          <option data-client="213" value="153">18529</option>
-          <option data-client="213" value="147">18554</option>
-          <option data-client="213" value="79">18562</option>
-          <option data-client="213" value="216">18589</option>
-          <option data-client="213" value="29">18603</option>
-          <option data-client="213" value="135">18667</option>
-          <option data-client="213" value="42">18695</option>
-          <option data-client="213" value="150">18707</option>
-          <option data-client="213" value="74">18813</option>
-          <option data-client="213" value="43">18820</option>
-          <option data-client="213" value="146">18844</option>
-          <option data-client="213" value="73">19008</option>
-          <option data-client="213" value="76">19046</option>
-          <option data-client="213" value="66">19074</option>
-          <option data-client="213" value="57">19077</option>
-          <option data-client="213" value="97">19117</option>
-          <option data-client="213" value="52">19125</option>
-          <option data-client="213" value="211">19161</option>
-          <option data-client="213" value="171">19190</option>
-          <option data-client="213" value="63">19211</option>
-          <option data-client="213" value="70">19260</option>
-          <option data-client="213" value="139">19334</option>
-          <option data-client="213" value="161">19409</option>
-          <option data-client="213" value="213">19447</option>
-          <option data-client="213" value="65">19529</option>
-          <option data-client="213" value="102">19543</option>
-          <option data-client="213" value="83">19598</option>
-          <option data-client="213" value="77">19670</option>
-          <option data-client="213" value="85">19690</option>
-          <option data-client="213" value="96">19716</option>
-          <option data-client="213" value="84">19805</option>
-          <option data-client="213" value="101">19834</option>
-          <option data-client="213" value="99">19861</option>
-          <option data-client="213" value="92">19903</option>
-          <option data-client="213" value="95">19941</option>
-          <option data-client="213" value="89">19985</option>
-          <option data-client="213" value="132">19996</option>
-          <option data-client="213" value="91">20039</option>
-          <option data-client="213" value="138">20047</option>
-          <option data-client="213" value="168">20071</option>
-          <option data-client="213" value="207">20112</option>
-          <option data-client="213" value="100">20152</option>
-          <option data-client="213" value="134">20158</option>
-          <option data-client="213" value="149">20214</option>
-          <option data-client="213" value="137">20243</option>
-          <option data-client="213" value="142">20266</option>
-          <option data-client="213" value="156">20301</option>
-          <option data-client="213" value="152">20365</option>
-          <option data-client="213" value="148">20379</option>
-          <option data-client="213" value="163">20460</option>
-          <option data-client="213" value="160">20466</option>
-          <option data-client="213" value="154">20637</option>
-          <option data-client="213" value="162">20640</option>
-          <option data-client="213" value="170">20678</option>
-          <option data-client="213" value="164">20717</option>
-          <option data-client="213" value="159">20744</option>
-          <option data-client="213" value="204">20746</option>
-          <option data-client="213" value="157">20774</option>
-          <option data-client="213" value="167">20844</option>
-          <option data-client="213" value="158">20865</option>
-          <option data-client="213" value="205">20966</option>
-          <option data-client="213" value="210">20981</option>
-          <option data-client="213" value="218">20999</option>
-          <option data-client="213" value="214">21072</option>
-          <option data-client="213" value="209">21163</option>
-          <option data-client="213" value="212">21167</option>
-          <option data-client="213" value="215">9285</option>
-          <option data-client="213" value="145">9554</option>
-          <option data-client="213" value="1">9815</option>
-        </select>
-      </div>
-      <div>
-        <strong>Cost:</strong>
-        <input placeholder="10" min="10" max="10000" step="10" type="number" class="price-low" data-default="10"> —
-        <input placeholder="10000" min="10" max="10000" step="10" type="number" class="price-high" data-default="10000">
-      </div>
-      <div>
-        <strong>DR:</strong>
-        <input placeholder="-1" min="-1" max="100" step="1" type="number" class="dr-low" data-default="-1"> —
-        <input placeholder="100" min="-1" max="100" step="1" type="number" class="dr-high" data-default="100">
-      </div>
-      <div class="extra-filter hidden-filter">
-        <strong>Keyword:</strong>
-        <select class="keyword-inex include" name="keyie[keyword-inex]" id="keyie_keyword-inex">
-          <option selected="selected" value="i">Include</option>
-          <option value="e">Exclude</option>
-        </select>
-        <div class="keyword-search">
-          <input type="text" placeholder="Enter Search Term" onkeyup="submitSearchForm(event)" value="tgdaily.com">
-        </div>
-      </div>
-      <div class="extra-filter hidden-filter">
-        <strong>Categories:</strong>
-        <div class="autocomplete categories">
-          <div class="selected-input-wrapper">
-            <ul class="selected-items"></ul>
-            <div class="input-wrapper">
-              <input type="text" name="search" placeholder="Type or select a category" class="search-input" value="" onkeyup="filterValues(this)">
-              <div class="clear-search" onclick="clearAllSelectedItems(this)">Clear All</div>
-            </div>
-          </div>
-          <ul class="list-wrapper">
-            <li data-number="1" onclick="selectListItem(this)">Arts</li>
-            <li data-number="2" onclick="selectListItem(this)">Automotive</li>
-            <li data-number="3" onclick="selectListItem(this)">Baby</li>
-            <li data-number="4" onclick="selectListItem(this)">Beauty</li>
-            <li data-number="5" onclick="selectListItem(this)">Birthday</li>
-            <li data-number="6" onclick="selectListItem(this)">Blog</li>
-            <li data-number="7" onclick="selectListItem(this)">Business</li>
-            <li data-number="8" onclick="selectListItem(this)">Careers</li>
-            <li data-number="9" onclick="selectListItem(this)">Commercial</li>
-            <li data-number="10" onclick="selectListItem(this)">Cooking</li>
-            <li data-number="11" onclick="selectListItem(this)">Crime</li>
-            <li data-number="12" onclick="selectListItem(this)">Culture</li>
-            <li data-number="13" onclick="selectListItem(this)">Education</li>
-            <li data-number="14" onclick="selectListItem(this)">Entertainment</li>
-            <li data-number="15" onclick="selectListItem(this)">Environment</li>
-            <li data-number="16" onclick="selectListItem(this)">Events</li>
-            <li data-number="17" onclick="selectListItem(this)">Family</li>
-            <li data-number="18" onclick="selectListItem(this)">Fashion</li>
-            <li data-number="19" onclick="selectListItem(this)">Finance</li>
-            <li data-number="20" onclick="selectListItem(this)">Fitness</li>
-            <li data-number="21" onclick="selectListItem(this)">Food</li>
-            <li data-number="22" onclick="selectListItem(this)">Funny</li>
-            <li data-number="23" onclick="selectListItem(this)">Gambling</li>
-            <li data-number="24" onclick="selectListItem(this)">Games</li>
-            <li data-number="25" onclick="selectListItem(this)">Garden</li>
-            <li data-number="26" onclick="selectListItem(this)">General</li>
-            <li data-number="27" onclick="selectListItem(this)">Graphic Design</li>
-            <li data-number="28" onclick="selectListItem(this)">Green Energy</li>
-            <li data-number="29" onclick="selectListItem(this)">Health</li>
-            <li data-number="30" onclick="selectListItem(this)">Home</li>
-            <li data-number="31" onclick="selectListItem(this)">Home Improvement</li>
-            <li data-number="32" onclick="selectListItem(this)">Hotel</li>
-            <li data-number="33" onclick="selectListItem(this)">Industrial</li>
-            <li data-number="34" onclick="selectListItem(this)">Insurance</li>
-            <li data-number="35" onclick="selectListItem(this)">Interior Designing</li>
-            <li data-number="36" onclick="selectListItem(this)">Internet Service</li>
-            <li data-number="37" onclick="selectListItem(this)">Investment</li>
-            <li data-number="38" onclick="selectListItem(this)">Jobs</li>
-            <li data-number="39" onclick="selectListItem(this)">Kids</li>
-            <li data-number="40" onclick="selectListItem(this)">Legal</li>
-            <li data-number="41" onclick="selectListItem(this)">Life</li>
-            <li data-number="42" onclick="selectListItem(this)">Lifehacks</li>
-            <li data-number="43" onclick="selectListItem(this)">Lifestyle</li>
-            <li data-number="45" onclick="selectListItem(this)">Lifestyle Men</li>
-            <li data-number="44" onclick="selectListItem(this)">Lifestyle Women</li>
-            <li data-number="46" onclick="selectListItem(this)">Marketing</li>
-            <li data-number="47" onclick="selectListItem(this)">Marriage</li>
-            <li data-number="48" onclick="selectListItem(this)">Medical</li>
-            <li data-number="49" onclick="selectListItem(this)">Moms</li>
-            <li data-number="50" onclick="selectListItem(this)">Money</li>
-            <li data-number="51" onclick="selectListItem(this)">Music</li>
-            <li data-number="52" onclick="selectListItem(this)">News</li>
-            <li data-number="53" onclick="selectListItem(this)">Nutrition</li>
-            <li data-number="54" onclick="selectListItem(this)">Opinion</li>
-            <li data-number="55" onclick="selectListItem(this)">Outdoors</li>
-            <li data-number="56" onclick="selectListItem(this)">Parenting</li>
-            <li data-number="57" onclick="selectListItem(this)">Pets</li>
-            <li data-number="58" onclick="selectListItem(this)">Photography</li>
-            <li data-number="60" onclick="selectListItem(this)">Politics</li>
-            <li data-number="74" onclick="selectListItem(this)">Profile</li>
-            <li data-number="59" onclick="selectListItem(this)">Programming</li>
-            <li data-number="61" onclick="selectListItem(this)">Real Estate</li>
-            <li data-number="62" onclick="selectListItem(this)">Recreation</li>
-            <li data-number="63" onclick="selectListItem(this)">Religion</li>
-            <li data-number="64" onclick="selectListItem(this)">Reviews</li>
-            <li data-number="65" onclick="selectListItem(this)">Science</li>
-            <li data-number="66" onclick="selectListItem(this)">SEO</li>
-            <li data-number="67" onclick="selectListItem(this)">Shopping</li>
-            <li data-number="68" onclick="selectListItem(this)">Social Media</li>
-            <li data-number="69" onclick="selectListItem(this)">Sports</li>
-            <li data-number="70" onclick="selectListItem(this)">Startup</li>
-            <li data-number="71" onclick="selectListItem(this)">Technology</li>
-            <li data-number="72" onclick="selectListItem(this)">Travel</li>
-            <li data-number="73" onclick="selectListItem(this)">Wedding</li>
-          </ul>
-        </div>
-      </div>
-      <div class="extra-filter hidden-filter">
-        <strong>Provider:</strong>
-        <select class="provider-inex include" name="provie[provider-inex]" id="provie_provider-inex">
-          <option selected="selected" value="i">Include</option>
-          <option value="e">Exclude</option>
-        </select>
-        <select name="pr" id="pr">
-          <option value="">SELECT A PROVIDER</option>
-          <option value="13">Abdul Mateen</option>
-          <option value="22">Amit Onweb</option>
-          <option value="83">Amy Miester</option>
-          <option value="70">Andrew Anthoney</option>
-          <option value="8">Andrew Dobrow</option>
-          <option value="130">Andrew Dominik</option>
-          <option value="15">Anna Freud</option>
-          <option value="131">Anthony Middleton</option>
-          <option value="91">Anton Langer</option>
-          <option value="132">Anuja Singh</option>
-          <option value="66">Aparna Shukla</option>
-          <option value="71">Ariana Ostrow</option>
-          <option value="124">Asim Bhattacharya</option>
-          <option value="173">Becky Ward</option>
-          <option value="126">Benjamin Logan</option>
-          <option value="128">Brett Farmiloe</option>
-          <option value="85">Chris Goldman</option>
-          <option value="179">Christine Berry</option>
-          <option value="135">Claire Rocks</option>
-          <option value="75">Cody Obrian</option>
-          <option value="88">David Clarke</option>
-          <option value="176">David Leach</option>
-          <option value="59">David Tomas</option>
-          <option value="5">Debbie Tom</option>
-          <option value="61">Eliza Graham</option>
-          <option value="3">Eliza Halse</option>
-          <option value="134">Emma Lannarilli</option>
-          <option value="139">Georgina Grogan </option>
-          <option value="79">Gizelle Marie</option>
-          <option value="68">Greg Davis</option>
-          <option value="175">Isabella Miller</option>
-          <option value="81">Jackson Miller</option>
-          <option value="125">Jack Vidal</option>
-          <option value="6">James Hendrickson</option>
-          <option value="63">Jason</option>
-          <option value="14">Jenna</option>
-          <option value="26">John Miller</option>
-          <option value="10">Joy Blanca</option>
-          <option value="60">Judson Simmons</option>
-          <option value="129">Kajal Singhania</option>
-          <option value="87">Kalth Harry</option>
-          <option value="133">Kartik Paramanik</option>
-          <option value="174">Kaylee Hall</option>
-          <option value="11">Keith Osullivan</option>
-          <option value="4">Lambodar Sahu</option>
-          <option value="12">Lemari Parker</option>
-          <option value="76">Lindsay</option>
-          <option value="140">Louise Hegarty</option>
-          <option value="137">Lucy Mitchell</option>
-          <option value="64">Mandi </option>
-          <option value="86">Mandy Chau</option>
-          <option value="89">Mark Evans</option>
-          <option value="19">Maya Denette</option>
-          <option value="138">Mellissa Williams</option>
-          <option value="16">Michelle Turner</option>
-          <option value="73">Morgan</option>
-          <option value="69">NIck Erices</option>
-          <option value="21">Niels Andersen</option>
-          <option value="90">Pamela Lee</option>
-          <option value="23">Rahul Kumar</option>
-          <option value="67">Ramdas Chakraborty</option>
-          <option value="74">Rani Mukherjee</option>
-          <option value="24">Revati Shahu</option>
-          <option value="136">Sam</option>
-          <option value="178">Sam Hilbers</option>
-          <option value="82">Sam L.</option>
-          <option value="18">Sandra Daigle</option>
-          <option value="127">Sarah Scott</option>
-          <option value="72">Scott</option>
-          <option value="1">Stella Astor</option>
-          <option value="78">Taylor C. </option>
-          <option value="80">Troy Redstone</option>
-          <option value="77">Tyler Thursby</option>
-          <option value="62">Vinay Mall</option>
-          <option value="84">Vivek Baghel</option>
-          <option value="177">Waqas Anwar</option>
-          <option value="20">Willson Anovic</option>
-          <option value="17">Zainab Sajjad</option>
-          <option value="65">Zing Xiong</option>
-        </select>
-      </div>
-      <div class="more-less-filters">
-        <a onclick="moreLessFilters(this)">
-          + 1 Filter
-        </a>
-      </div>
-      <div>
-        <a class="new-cats" onclick="addCats(event, this)" href="/start-order?link_type=sponsored">Go</a>
-      </div>
-    </div>
+    <div class="search-bar all-filters">
+<div>
+<strong>Client:</strong>
+<select name="cs" id="cs" onchange="clientSelect(this)"><option value="">SELECT A CLIENT</option><option data-test="0" data-has-subs="false" value="344"></option>
+<option data-test="0" data-has-subs="false" value="149">Acton Implants</option>
+<option data-test="0" data-has-subs="false" value="148">Barnes Law Firm</option>
+<option data-test="0" data-has-subs="false" value="6">Baumgartner Law Firm</option>
+<option data-test="0" data-has-subs="false" value="7">Benenati Law Firm</option>
+<option data-test="0" data-has-subs="false" value="17">Colwell Law Group</option>
+<option data-test="0" data-has-subs="false" value="18">CPR Law</option>
+<option data-test="0" data-has-subs="false" value="21">Divorce Matters</option>
+<option data-test="0" data-has-subs="false" value="216">Duffy Law</option>
+<option data-test="0" data-has-subs="false" value="27">Evan Braunstein</option>
+<option data-test="0" data-has-subs="false" value="31">Gloria Nilson</option>
+<option data-test="0" data-has-subs="false" value="33">Groth Law Firm</option>
+<option data-test="0" data-has-subs="false" value="343">Kemp, Ruge and Green</option>
+<option data-test="0" data-has-subs="false" value="147">Lockett Law</option>
+<option data-test="0" data-has-subs="false" value="51">Metal Master Shop</option>
+<option data-test="0" data-has-subs="false" value="60">Navads</option>
+<option data-test="0" data-has-subs="false" value="109">OrthoPro</option>
+<option data-test="0" data-has-subs="false" value="62">Pacific Health Law Group</option>
+<option data-test="154" data-has-subs="true" value="213">PatientPop</option>
+<option data-test="0" data-has-subs="false" value="150">Peak Family Dental</option>
+<option data-test="0" data-has-subs="false" value="68">Quirk Law Firm</option>
+<o<option data-test="0" data-has-subs="false" value="76">Sattiraju Law Firm</option>
+<option data-test="0" data-has-subs="false" value="77">Schultz &amp; Myers</option>
+<option data-test="0" data-has-subs="false" value="78">Shouse Law Group</option>
+<option data-test="0" data-has-subs="false" value="85">The Peck Law Firm</option>
+<option data-test="0" data-has-subs="false" value="93">Walker Morgan</option>
+</select>
+</div>
+<div></div>
+<div style="
+    border: none;
+    padding-right: 0;
+">
+<strong style="
+    border: 1px solid var(--gray);
+    padding: 0.25em .5em;
+    border-radius: 3px;
+    cursor: pointer;
+    color: white;
+">Price: Any</strong>
+
+</div>
+<div>
+<strong style="border: 1px solid var(--gray);padding: 0.25em .5em;border-radius: 3px;cursor: pointer;color: white;">DR: Any</strong>
+
+</div>
+
+
+<div class="extra-filter" style="
+    border: none;
+    padding-right: 0;
+">
+
+
+<div style="position:relative;">
+<span onclick="showProviderBox(this)" id="providerList" class="dropSelect">All Providers</span>
+
+<div id="selectProviders" class="modifierPopup" style="display:none;"><input type="text" placeholder="search" style="width:100%;border: none;border-bottom: 1px solid rgba(255,255,255,0.2);"><a href="#" style="font-size: .75em;margin: 0 0.5em;margin-top: 0px;margin-top: .5em;display: inline-block;">Select All</a><a href="#" style="font-size: .75em;margin: 0 0.5em;margin-top: .5em;display: inline-block;">Select None</a>
+  <div style="padding:0.75em">
+<div style="display:block;margin-bottom: .25em;"><input type="checkbox" id="one"><label for="one">Stella Astor</label></div>
+<div style="display:block;margin-bottom: .25em;"><input type="checkbox" id="two"><label for="two">Andrew Dominick</label></div>
+<div style="display:block"><input type="checkbox" id="three"><label for="three">Anna Freud</label></div>
+</div>
+  <div style="background: #2076bf;padding: .75em;text-align: right;border-radius: 0 0 3px 3px;"><button style="background: white;border: none;padding: .5em 1em;border-radius: 3px;font-family: lato;font-size: 14px;letter-spacing: .03em;color: #2076bf;">Done</button></div></div>
+</div>
+</div>
+
+
+<div class="extra-filter">
+
+<select name="pr" id="pr" style="
+    width: 125px;
+"><option value="">All Categories</option>
+<option value="13">Lifestyle</option>
+<option value="22">Automotive</option>
+<option value="83">Money</option>
+<option value="70">Finance</option>
+<option value="8">General</option>
+<option value="130">Arts</option>
+<option value="15">Family</option>
+<option value="131">Health</option>
+<option value="91">Legal</option>
+<option value="132">Opinions</option>
+<option value="66">Moms</option>
+</select>
+</div>
+
+<div class="extra-filter">
+
+
+<div class="keyword-search">
+<input type="text" placeholder="Search" onkeyup="submitSearchForm(event)" value="" style="
+    border: none;
+    border-bottom: 1px dotted rgba(255,255,255,0.35);
+    border-radius: 0;
+    width: 150px;
+">
+</div>
+</div></div>
   </div>
   <section>
     <div class="report-modal"></div>
@@ -2753,13 +2341,13 @@
       <thead>
         <tr>
           <th></th>
-          <th>Domain <span style="float:right;margin-right:1em;">▼</span></th>
-          <th>DR </th>
-          <th>Rank </th>
-          <th>Cost </th>
-          <th>Content Surcharge</th>
-          <th>Provider </th>
-          <th>Categories</th>
+          <th data-type="text" onclick="sortTable(1, this)">Domain <span style="float:right;margin-right:1em;">▼</span></th>
+          <th data-type="number" onclick="sortTable(2, this)">DR </th>
+          <th data-type="number" onclick="sortTable(3, this)">Rank </th>
+          <th data-type="number" onclick="sortTable(4, this)">Cost </th>
+          <th data-type="number" onclick="sortTable(5, this)">Content Surcharge</th>
+          <th data-type="text" onclick="sortTable(6, this)">Provider </th>
+          <th data-type="text" onclick="sortTable(7, this)">Categories</th>
           <th></th>
         </tr>
       </thead>
@@ -3782,8 +3370,14 @@ Last Checked: <strong>16 days</strong>
       }
     }
 
-    function sortTable(n, e) {
-      e.preventDefault();
+    function sortTable(n, header) {
+
+      const headers = document.querySelectorAll(".sorted")
+      headers.forEach(title => title.classList.remove("sorted"))
+
+      header.classList.add("sorted")
+
+      dataType = header.getAttribute("data-type")
 
       var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
       table = document.querySelector(".ordering-list-table");
@@ -3805,16 +3399,47 @@ Last Checked: <strong>16 days</strong>
           one from current row and one from the next: */
           x = rows[i].getElementsByTagName("TD")[n];
           y = rows[i + 1].getElementsByTagName("TD")[n];
+
+          xNum = x.innerText
+          if (xNum.match(/\d+/g) == null) {
+            xInt = 0
+          } else {
+            xInt = xNum.match(/\d+/g).join('')
+          }
+          // xInt = xNum.match(/\d+/g);
+          numberX = Number(xInt)
+
+          yNum = y.innerText
+          if (yNum.match(/\d+/g) == null) {
+            yInt = 0
+          } else {
+            yInt = yNum.match(/\d+/g).join('')
+          }
+          // yInt = yNum.match(/\d+/g);
+          numberY = Number(yInt)
+
           /* Check if the two rows should switch place,
           based on the direction, asc or desc: */
-          if (dir == "asc") {
-            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          if (dataType == "text" && dir == "asc") {
+            if (x.innerText.trim() > y.innerText.trim()) {
               // If so, mark as a switch and break the loop:
               shouldSwitch = true;
               break;
             }
-          } else if (dir == "desc") {
-            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          } else if (dataType == "number" && dir == "asc") {
+            if (numberX > numberY) {
+              // If so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
+          } else if (dataType == "text" && dir == "desc") {
+            if (x.innerText.trim() < y.innerText.trim()) {
+              // If so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
+          } else if (dataType == "number" && dir == "desc") {
+            if (numberX < numberY) {
               // If so, mark as a switch and break the loop:
               shouldSwitch = true;
               break;
@@ -4042,6 +3667,24 @@ Last Checked: <strong>16 days</strong>
       item7.classList.toggle("invisible")
 
     }
+
+    function showProviderBox(button) {
+
+      if (button.style.backgroundColor = "#2076bf") {
+        console.log("true")
+        button.style.backgroundColor = "transparent"
+      } else {
+        console.log("false")
+      }
+  button.style.backgroundColor = "#2076bf"
+
+
+  const theBox = document.getElementById("selectProviders");
+  if (theBox.style.display==="none") {
+  theBox.style.display="block";} else {
+    theBox.style.display="none";
+  }
+}
 
   </script>
   <div class="app-version">
