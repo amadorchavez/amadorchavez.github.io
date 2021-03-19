@@ -1,0 +1,324 @@
+<style>
+  body {
+    padding: 0;margin: 0;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;height:100%;scroll-behavior: smooth;
+    font-family: Cadillac Sans;background:#eee;
+  }
+
+  .entrant input[type=tel] {
+    max-width: 65px;
+    text-align: right;
+    font-weight: 400;
+    padding: .5em;
+    background: #eee;
+  }
+
+  .entrant input[type=text] {
+    width: 350px;
+    text-align: left;
+    padding: .5em;
+    background: #fff;
+    letter-spacing: .025em;
+    transition: ease all .25s;
+  }
+
+  .entrant input {
+    border-radius:0;
+    border:none;
+  }
+
+  .entrant {
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    display: inline-block;
+  }
+
+  .entrant:first-child {
+    border-top:1px solid #ccc;
+  }
+
+  .radioSelector {
+    display:none;
+  }
+
+  .radioSelector + label {
+    display: inline-block;
+    border: 1px solid #aaa;
+    padding: 1em 2em;
+    border-radius:3px;
+    text-transform: uppercase;
+    text-align: center;
+    user-select:none;
+    cursor: pointer;
+  }
+
+  .radioSelector:checked + label {
+    background:linear-gradient(145deg,#ffaa00,#ff7744);
+    animation: fade ease .25s forwards;
+  }
+
+  @keyframes fade {
+    0% {opacity:0.5;scale:1;}
+    50% {scale:1.05;}
+    100% {opacity:1;}
+  }
+
+  .radioSelector + label span {
+    display: block;
+    font-size: .75em;
+    color: rgba(0,0,0,0.75);
+    margin-top:0.25em;
+  }
+
+  .colorSwatch + label {
+    height:30px;
+    width:30px;
+    padding:0;
+    border-radius:100em;
+    display: inline-block;
+    border: 2px solid transparent;
+    cursor:pointer;
+    transition: ease all .25s;
+    margin-right:.5em;
+  }
+  .colorSwatch {
+    display:none;
+  }
+  .colorSwatch:checked + label, .colorSwatch:hover + label {
+    border: 2px solid rgba(0,0,0,0.35);
+    box-shadow: 0px 0px 2px rgba(0,0,0,0.75);
+    transform:scale(1.05);
+  }
+
+  input {
+    padding: 1em;
+    font-size: 18px;
+    font-family: inherit;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    max-width:350px;
+    width:100%;
+  }
+
+
+  button {
+    display: block;
+    padding: 1em 2em;
+    color: #313131;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    transition: ease all 0.35s;
+    background: linear-gradient(45deg, #f90, #ffb400);
+    border: none;
+    font-size: 1em;
+    background: linear-gradient(145deg, #ffaa00, #ff7744);
+    border-top: 2px solid rgba(0, 0, 0, 0.075);
+    cursor:pointer;
+    font-weight: 500;
+    font-family: inherit;
+    background-size: 400% 400%;
+  }
+
+  button.secondary {background:#eee;border:1px solid #ccc;}
+  button.secondary:hover {background:#fff;}
+
+  button:hover {
+    animation: gradientSweep ease 2s infinite;
+  }
+
+  @keyframes gradientSweep {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+  }
+
+  .modal {display: block;}
+  .modalContents {border:1px solid #ccc;box-shadow:0px 1px 10px rgba(0,0,0,0.15);padding:2em 3.6em;max-width:720px;border-radius:5px;font-family:Cadillac Sans;text-align:left;background:white;margin:5% auto;}
+  .modal h2 {letter-spacing:.1em;font-weight:100;margin-top:2em;margin-bottom:.25em;}
+  .modal h1 {font-weight:400;text-transform:uppercase;font-size:.85em;letter-spacing:.1em;color:rgba(0,0,0,0.35);text-align:left;-moz-user-select:none;}
+
+  .close {float:right;font-size:28px;font-weight:100;color:#ccc;cursor:pointer;transition:ease all .5s;}
+  .close:hover {color:#313131;}
+
+  .actionBar {border-top:1px solid #ccc;margin-top:1em;display:flex;justify-content:end;padding-top:1em;gap:0.5em;}
+
+  .race {padding:1em}
+  .racer {
+    display: flex;
+    padding: .25em;
+    max-width: 200px;
+}
+.racerId {
+    padding: .5em;
+    background: transparent;
+    color: white;
+    border: 1px solid;
+}
+.racerName {
+    background: white;
+    padding: .5em;
+    width: 100%;
+}
+
+</style>
+
+<body>
+  <div class="modal" id="setupModal">
+    <div class="modalContents">
+    <span class="close">&times;</span>
+      <h1>// Create A New Race<h1>
+      <h2>Name Of Your Event:</h2>
+      <input type="text" name="event[name]"></input>
+      <h2 >How Many Racing Classes Are There?</h2>
+      <input type="tel" style="width:75px;"></input><span style="margin-left:1em;color:rgba(0,0,0,0.5)";>classes</span>
+      <div class="actionBar">
+      <button>Create Race</button>
+      </div>
+  </div>
+
+  <div class="modal" id="settingsModal">
+    <div class="modalContents">
+    <span class="close">&times;</span>
+      <h1>// Class 2 Settings<h1>
+      <h2>Class Name:</h2>
+      <input type="text" name="event[name]"></input>
+      <h2>Class Color:</h2>
+      <input class="colorSwatch" data-color="radial-gradient(circle,#da3559,#73113a)" type="radio" name="color" value="red" id="red"><label style="background:#da3559" for="red"></label>
+      <input class="colorSwatch" data-color="radial-gradient(circle,#11cc8f,#117345)" type="radio" name="color" value="green" id="green"><label style="background:#ac1" for="green"></label>
+      <input class="colorSwatch" data-color="radial-gradient(circle,#27f,#113c73)" type="radio" name="color" value="blue" id="blue"><label style="background:#27f" for="blue"></label>
+      <h2>How Many Racers Are In This Class?</h2>
+      <input type="tel" id="racerCount" style="width:75px;"></input><span style="margin-left:1em;color:rgba(0,0,0,0.5)";>racers</span>
+      <h2>How Many Lanes Will You Be Racing?</h2>
+      <input class="radioSelector" type="radio" name="laneCount" value="2" id="2"><label for="2">2 Lanes <span id="rLength2">x total races</span></label>
+      <input checked class="radioSelector" type="radio" name="laneCount" value="3" id="3"><label for="3">3 Lanes <span id="rLength2">x total races</span></label>
+      <input class="radioSelector" type="radio" name="laneCount" value="4" id="4"><label for="4">4 Lanes <span id="rLength2">x total races</span></label>
+      <div class="actionBar">
+      <button onclick="generateRacers()">Add Racers</button>
+      </div>
+  </div>
+
+  <div class="modal" id="racerModal">
+    <div class="modalContents">
+      <span class="close">&times;</span>
+        <h1>// Adding Racers<h1>
+        <h2>Add Racers:</h2>
+      <div id="formInputs"></div>
+      <div class="actionBar">
+      <button class="secondary" onclick="addRacer()">Add Racer</button>
+      <button onclick="createObjects()">Finish</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="raceColumn">
+    </div>
+
+  <div style="position:fixed;bottom:0;right:0;background:white;padding:0 2em;">
+    <p>Initial Number of Competition Groups is <strong id="groupCount"></strong></p>
+    <p>Number of Slots for Racing of Winners Is <strong id="winGroup"></strong></p>
+    <p>Number of Slots for 1 Loss Is  <strong id="oneLoss"></strong></p>
+    <p>Third Column equals <strong id="thirdColumn"></strong></p>
+    </div>
+
+
+</body>
+
+<script>
+  const theForm = document.getElementById('formInputs')
+  const racers = []
+
+  function generateTemplate(count) {
+    let padCount = String(count + 1).padStart(2, '0')
+    let result = `<div class="entrant">
+  <input type="tel" class="id_holder" id="racerID-${padCount}" value="${padCount}"><input type="text" class="name_holder" id="racerName-${padCount}" name="name" placeholder="Enter Name">
+</div>`
+    return result
+  }
+
+  function createRacerInputs(count) {
+    for (let i = 0; i < count; i++) {
+      theForm.innerHTML += generateTemplate(i)
+    }
+  }
+
+  function addRacer() {
+    let count = document.querySelectorAll('.entrant').length
+    theForm.insertAdjacentHTML('beforeend', generateTemplate(count))
+  }
+
+  function generateRacers() {
+    const colorBG = document.querySelector('input[name="color"]:checked').getAttribute('data-color')
+    document.body.style.background = colorBG
+    const racerCount = document.getElementById('racerCount').value
+    const laneCount = document.querySelector('input[name="laneCount"]:checked').value
+    createRacerInputs(racerCount)
+
+    // Declare Placeholder Fields
+    const initialCount = document.getElementById('groupCount');
+    const winners = document.getElementById('winGroup');
+    const oneLoss = document.getElementById('oneLoss')
+
+    // Initial Group Calculations
+    const firstCount = Math.ceil(racerCount/laneCount);
+
+    let winnerCount
+    const initialWinners = Math.floor(firstCount/laneCount);
+    const initialLeftoverSlots = racerCount%laneCount
+    const multiWinners = initialWinners/laneCount
+    if (initialLeftoverSlots <= initialWinners) {
+      winnerCount = Math.ceil(firstCount/laneCount)
+    } else {
+      winnerCount = Math.ceil(firstCount/laneCount) + 1
+    }
+
+    const oneLossCount = Math.ceil(((firstCount*(laneCount-1)) + (winnerCount*(laneCount-1))) / laneCount);
+
+    const oneLossMultiCount = Math.ceil(oneLossCount/laneCount)
+
+    groupCount.innerText=firstCount
+    winGroup.innerText = winnerCount
+    oneLoss.innerText = oneLossCount
+    thirdColumn.innerText = oneLossMultiCount
+  }
+
+  function createObjects() {
+    document.querySelectorAll('.entrant').forEach((item) => {
+      let id = item.querySelector('.id_holder').value
+      let name = item.querySelector('.name_holder').value
+      let tempObject = {
+        id: id,
+        name: name
+      }
+      if (racers.find(r => r.id == tempObject.id) == undefined)
+      racers.push(tempObject)
+    })
+
+    createColumn(3, 3, 'primary')
+    fillColumn(racers)
+  }
+
+  function createColumn(count, laneCount, name) {
+    const racerEntry = `<div class="racer">
+        <span class="racerId">1</span><span class="racerName">Name</span>
+        </div>`
+    const totalDivs = racerEntry.repeat(laneCount)
+    const raceSet = `<div class="race">${totalDivs}</div>`
+    const allRaces = raceSet.repeat(count)
+    const column = `<div class="column" id="${name}">${allRaces}</div>`
+    document.getElementById('raceColumn').innerHTML = column
+  }
+
+  function fillColumn(racers) {
+    const racerSlots =  document.querySelectorAll(".racer")
+    for (i=0; i<racers.length; i++) {
+      racerSlots[i].querySelector('.racerId').innerText = racers[i].id
+      racerSlots[i].querySelector('.racerName').innerText = racers[i].name
+    }
+}
+
+// onclick, get target parent div and add class of inactive, add class of winer to target parent racer, move winner to winner array, take others and move to loser array
+
+// What if each race is numbered with an individual id. Then each racer has an array of race objects including what race they participated in and whether they won or lost. Upon the completion of each race, the racer is pushed into other buckets. If they have two losses and lose, they are done. If they have one loss and win, they are pushed to the next available race. Maybe there’s data attributes like “filled” and “completed.” Would this object oriented system work better than the initial garbage I was doing of keeping it all array based? I think it’s worth exploring. The key is to be able to save a JSON file that can reconstruct an entire race. 
+</script>
