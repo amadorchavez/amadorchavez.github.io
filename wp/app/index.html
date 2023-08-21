@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Finance Overview | WealthPrint</title>
+  <link rel="stylesheet" href="fonts.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+    /*BoilerPlate CSS*/
+    html, body {padding: 0;margin: 0;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;height:100%;}
+    h1, h2, h3, h4, h5, h6 {font-weight: 400;margin: 0;padding: 0;}
+    ::placeholder {color: rgba(20,0,0,1);opacity:1;}
+    *:focus {outline: none;}
+
+    /* Light & Dark Variables */
+
+    :root {
+      --bg-color:#D3DDED;
+      --text-color:rgba(0,0,0,0.75);
+      --border-subtle-color:rgba(0,0,0,0.1);
+      --border-sharp-color:rgba(0,0,0,0.35);
+      --shadow-color:rgba(0,0,0,0.15);
+      --layer-color:#DCE6FC;
+      --sidebar-bg-color:#bec7d5;
+    }
+
+    .dark {
+      --bg-color:#20152B;
+      --text-color:rgba(255,255,255,0.75);
+      --border-subtle-color:rgba(255,255,255,0.15);
+      --border-sharp-color:rgba(255,255,255,0.25);
+      --shadow-color:rgba(255,255,255,0.15);
+      --layer-color:#3E2953;
+      --sidebar-bg-color:#2B1C39;
+    }
+
+    /* New CSS */
+    html {scroll-behavior: smooth;}
+    body {font-family:Goldman Sans;background: var(--bg-color);color: var(--text-color);overflow-x: hidden;transition:ease background .25s, ease color .25s;}
+    sup {font-size:0.65em;vertical-align: top;margin-right:0.05em;}
+
+    input {
+    padding: .65em;
+    border: 1px solid var(--border-subtle-color);
+    box-shadow: 0 0 8px var(--shadow-color);
+    color:var(--text-color);
+    background: linear-gradient(45deg,var(--bg-color),var(--layer-color));
+    font-family: Goldman Sans;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: ease all .25s;
+    }
+    input:focus {border:1px solid var(--border-sharp-color);background:linear-gradient(225deg,var(--bg-color),var(--layer-color));box-shadow:0 0 5px var(--text-color)}
+    input:hover {box-shadow:0 0 5px var(--text-color);}
+
+    .gridContainer {display:grid;grid-template-columns:250px 1fr 1fr 1fr;grid-template-rows:100px 1fr 1fr 1fr;}
+
+    .sidebar {
+      background:url('black-linen.png'),radial-gradient(circle,#2e31e4, #024388);
+      background:var(--sidebar-bg-color);
+      height: 100vh;
+      bottom:0;
+      height: calc(100vh - 90px);
+      position: fixed;
+      display: flex;
+      width: 250px;
+      text-align: center;
+      color: white;
+      flex-flow: column;
+      color: var(--text-color);
+      border-right: 1px solid var(--border-subtle-color);
+      box-shadow:0 0 7px var(--shadow-color);
+      transition: ease width .25s;
+    }
+    .sidebar div {
+      width: calc(100% - 2em);
+      display: flex;
+      align-items: center;
+      text-align: left;
+      text-transform: uppercase;
+      font-size: .75em;
+      padding: 1em;
+      border: 1px solid transparent;
+      transition: ease all .15s;
+      }
+    .sidebar div:hover {background: var(--layer-color);cursor: pointer;border: 1px solid var(--border-subtle-color);}
+    .sidebar div.active {background: var(--layer-color);font-weight:600;}
+    .sidebar div.active h2 {font-weight:600;}
+    .sidebar div svg {margin-right:1em;flex-shrink:0;}
+    .sidebar h2 {font-size:1.35em;font-weight: 500;transition:ease all .25s;flex-shrink: 0;}
+
+    .topBar {grid-column: 2/5;border-bottom: 1px solid var(--border-subtle-color);display: flex;position: fixed;/*left: 250px;width: calc(100% - 250px)*/;width:100%;justify-content: space-around;background: linear-gradient(#4f7186,#22323a);background:#2E8864;color: white;align-items: center;height: 90px;z-index:999;}
+    .topBar p {margin:0;text-transform:lowercase;opacity:0.5;}
+    .topBar h2 {font-weight:500;font-size:1.65em;}
+    .topBar small {opacity:0.75;font-size:0.65em;}
+    .subs h2 {font-size:24px;}
+    .subs > div {display:flex;align-items:center;gap:5px;}
+    .subs {}
+    .left {border-left:1px solid rgba(255,255,255,0.25);padding-left:3em;}
+    .right {border-right:1px solid rgba(255,255,255,0.25);padding-right:3em;}
+    .actions {display:flex;flex-flow:column;border-left:1px solid rgba(255,255,255,0.25);padding:0 2em;}
+    .actions svg {cursor:pointer;transition: ease all .35s;opacity: .65;}
+    .actions svg:hover {opacity: 1;transform:rotate(.5turn);fill:#ffaa22;}
+
+    #appName {margin-left: .5em;display: inline-block;}
+    .healthButton{display:flex;align-items:center;padding:0 1em;border-radius:5px;cursor:pointer;transition:ease all .25s;}
+    .healthButton:hover {background:rgba(255,255,255,0.1)}
+    .healthButton h2 {max-width:80px;text-align:right;margin-right:1em;font-size:1em;opacity:0.75;font-weight:500;width:min-content}
+
+    .main {grid-row:2/5;grid-column: 2/5;padding:1em 2em;overflow: hidden;}
+
+    /* Account Boxes */
+    .accountBox {animation:zoomFade ease .65s;display: inline-block;width: 100%;max-width: 320px;min-height: 200px;margin: 0.5em;border-radius: 5px;box-shadow: 0 0 7px var(--shadow-color);text-align: center;border: 1px solid var(--border-subtle-color);background: var(--layer-color);transition:ease all .5s;transform-origin: top;}
+    .accountBox.hidden {display:none;}
+
+    .accountBox h2 {margin:1em 0;text-transform:uppercase;letter-spacing:0.05em;opacity:0.65;font-size:1.15em;}
+    .accountSummary {position:relative;z-index:99;}
+    .accountButton {border:none;background: linear-gradient(0deg,#d3dded,#e4e4fd);color: #35383c;padding: 0.5em 0;font-weight: 600;display: block;width: 100%;text-decoration: none;transition: ease all .15s;border-top: 1px solid var(--border-subtle-color);border-radius: 0 0 5px 5px;}
+    .accountButton:hover {background:#2E8864;color:white;}
+
+    .accountImage {height:70px;background-color:#003971;border-radius:5px 5px 0 0;background-repeat: no-repeat;background-size: 45%;background-position: center;}
+    .accountTotal {text-align: center;font-size: 30px;padding: 0;margin: 0;font-weight:500;}
+    .accountTotal span {border-bottom:1px dotted transparent;transition: ease border .15s;}
+    .accountTotal span:hover {border-bottom:1px dotted;cursor: pointer;}
+
+    .main h1 {margin-top:1em;margin-left:0.25em;margin-bottom:0.5em;text-transform: lowercase;letter-spacing: .05em;font-weight:300;user-select: none;border-bottom: 1px dotted transparent;padding-bottom: .25em;max-width: max-content;transition: ease all .25s;position: relative;cursor:pointer;}
+    .main h1:hover {border-bottom: 1px dotted;}
+    .main h1:hover::after {content: "+";opacity: 1;font-weight: 400;transform: rotate(-90deg) scale(1);}
+    .main h1::after {content: "+";color: #35383c;position: absolute;font-size: 1.5em;top: -8px;margin-left: .25em;font-weight: 400;opacity: 0;transition: ease all .25s;transform: rotate(0) scale(0);}
+
+    /* Buttons */
+    .mainButton {background:var(--text-color);color:var(--layer-color);padding:.5em 2em;display:inline-block;transition:ease .15s background;}
+    .ghostButton {background:transparent;color:var(--text-color);padding:.5em 2em;display:inline-block;transition:ease .15s background;border:1px solid var(--text-color);}
+    .mainButton:hover {background:#2E8864;}
+    .ghostButton:hover {background:var(--text-color);color:var(--layer-color);}
+
+
+    /* Notifications */
+    .notification {display:inline-block;position:fixed;z-index:999;bottom:2em;right:1em;background:var(--layer-color);padding:1.5em;border:1px solid var(--border-sharp-color);transition: ease all .35s;transform:translateX(500px);opacity:0;box-shadow:0 0 15px rgba(0,0,0,0.35);}
+
+    .visible {transform:translateX(0px);opacity:1;}
+
+    /* Settings Window */
+    button {margin:0;display:inline;background:transparent;border:1px solid var(--border-sharp-color);color:var(--text-color);padding:.5em 2em;font-size:100%;font-family:inherit;cursor:pointer;}
+    button:active {background:var(--layer-color);}
+    .selected {background:#2E8864;color:white;}
+
+    #settings table {table-layout:fixed;width:100%;max-width:720px;}
+    #settings td {padding:.5em;vertical-align:middle;}
+    #settings td:first-child {text-align:right;width:150px;}
+    #settings td:nth-child(2) {display:flex;}
+
+    /* Modals */
+    .modal {width:100%;height:100%;position:fixed;top:0;left:0;z-index:999;display:none;background:rgba(0,0,0,0.1);}
+    .modal > div:first-child {top:25%;position:relative;width:70vw;max-width:1280px;height:auto;max-height:50vh;margin:0 auto;padding:2em;background: var(--layer-color);border: 1px solid var(--border-sharp-color);box-shadow:0 0 115px rgba(0,0,0,0.5);overflow-y: scroll;}
+    .modal p {margin:0;margin-bottom:0.75em;}
+    .modalOut > div:first-child {animation:springModal cubic-bezier(0,1.11,.75,.9) .15s reverse forwards;}
+    .modalIn > div:first-child {animation:springModal cubic-bezier(0,1.11,.75,.9) .15s;}
+    .exitWindow {cursor:pointer;font-size:35px;position:absolute;right:5%;top:5%;opacity:.65;transition:ease opacity .25s;}
+    .exitWindow:hover {opacity:1;}
+    body.noscroll {overflow:hidden;}
+
+    /* Transaction Log Table */
+    .transactionLogContainer {border:1px solid var(--border-subtle-color);border-radius:7px 7px 0 0;max-width:900px;}
+    .transactionLog {width:100%;table-layout:fixed;border-collapse:collapse;}
+
+    .transactionLog th {padding:.5em 1em ;background: var(--sidebar-bg-color);color: var(--text-color);font-weight: 800 !important;border-right: 1px solid rgba(255,255,255,0.15);text-align: left;}
+    .transactionLog td {padding:1em;font-weight:400;}
+    .transactionLog th:first-child {border-radius:5px 0 0 0;}
+    .transactionLog th:last-child {border-radius:0 5px 0 0;border-right:none;}
+
+    .transactionLog tr:nth-child(even) {background:var(--border-subtle-color);}
+    .transactionLog tr {border-bottom:1px solid var(--border-subtle-color);}
+
+    .tag {color:white;background: #296ec8;padding: .25em .75em;font-size: .75em;border-radius: 3px;font-weight: 500;border: 1px solid var(--border-subtle-color);}
+
+    /* Assumptions */
+    fieldset {margin:1em 0;border-radius:5px;border:1px solid;}
+    legend {font-size:1.5em;}
+
+    #assumptions table {table-layout:fixed;width:100%;}
+    #assumptions td {width:50%;padding:.25em 0;text-align: left;}
+
+
+
+    .chartContainer {position: relative; height:auto; width:100%;margin-top:-3em;z-index: 9;}
+    #myChart {display: block; width: 100% !important; height: 100px !important;}
+
+  /* Condensed View*/
+    .condensed .sidebar {width:80px;z-index:999;transition:ease width .25s;}
+    .condensed .sidebar h2 {opacity:0;overflow: hidden;transition:ease opacity .3s;flex-shrink:0;max-width:170px;}
+    .condensed .sidebar:hover h2 {opacity:1;}
+    .condensed .sidebar:hover {width:250px;}
+    .condensed .gridContainer {grid-template-columns:80px 1fr 1fr 1fr;}
+    .condensed .topBar {left:80px;width: calc(100% - 80px);left:0;width:100%;}
+
+  /* Dark Mode Fixes */
+    .dark .accountButton {background: linear-gradient(0deg,#20152b,#2b1c39);color: rgba(255,255,2550,.75);border-top: 1px solid rgba(255,255,255,0.2);overflow: hidden;transition: ease all .25s;}
+    .dark .accountButton:hover {text-shadow: 0 0 25px rgba(255,255,255,0.65);}
+    .dark .sidebar div svg  {filter:invert(1) brightness(1.25);}
+    .dark .chartContainer {filter:invert(1) brightness(2.5) hue-rotate(223deg);}
+
+  /* Health Score Styles */
+    .scoreRow {display:flex;align-items:top;gap:0.75em;margin-top:1.5em;text-align:left;border-top: 1px solid var(--border-sharp-color);padding-top: 1em;}
+    .scoreRow svg {flex-shrink:0;}
+    .scoreCircle {display: inline-block;overflow: hidden;}
+    .scoreCircle text {fill:var(--text-color);font-family:Goldman Sans;font-size:1.5em;font-weight:700;}
+    .maxScore {fill:gray;font-size:.5em;}
+    .scoreCircle circle {
+       stroke-dashoffset: 0;
+       transition: stroke .25s ease;
+       stroke: #777;
+       stroke-width: 7px;
+       transform: rotate(-90deg) rotateX(180deg);
+       transform-origin: center;
+     }
+    .scoreCircle #bar {
+       stroke: #ccc;
+       stroke: rgba(255,255,255,0.5);
+       transition: stroke-dashoffset .5s cubic-bezier(0,1.07,.89,.99) 90ms;
+       stroke-width:8px;
+     }
+
+  /* Mobile Mode */
+    @media (max-width:620px) {
+      .topBar div:nth-child(3) {display: none;}
+      .topBar div:nth-child(4) {display: none;}
+      .topBar h2:nth-child(4) {display:none;}
+      .condensed .sidebar, .sidebar {width: 100%;height: 50px;flex-flow: row;overflow-x: scroll;overflow-y: hidden;z-index: 9999999;border-top:1px solid var(--border-sharp-color);}
+      .sidebar h2, .condensed .sidebar h2 {display:none;}
+      .main {grid-column: 1/5;text-align:center;}
+      #appName {display:none;}
+      .condensed .sidebar:hover {width:initial;}
+      .sidebar div svg {height: 40px;width: 40px;margin: 0;padding: .35em;}
+    }
+
+    /* Animations */
+    @keyframes zoomFade {
+      0% {opacity:0;transform:scale(0);}
+      65% {opacity:1;transform:scale(1.015)}
+      100% {opacity:1;transform:scale(1) translate(0,0);}
+    }
+
+    @keyframes springModal {
+      0% {opacity:0;transform:scale(.5) translate(var(--modalXStart), var(--modalYStart));}
+      100% {opacity:1;transform:scale(1) translate(0,0);}
+    }
+
+    @keyframes springModalBackup {
+      0% {opacity:0;transform:scale(0) translate(var(--modalXStart), var(--modalYStart));}
+      80% {opacity:1;transform:scale(1.05)}
+      100% {opacity:1;transform:scale(1) translate(0,0);}
+    }
+
+    /* Tabbed Interface */
+    .container {width:100%;}
+    .tabHolder {display:flex;border-bottom:1px solid var(--border-subtle-color);margin:1em 0;}
+    .tabHolder span {text-align:center;padding:.25em 1em;transition:ease all .15s;border:1px solid var(--border-subtle-color);border-radius:5px 5px 0 0;}
+    .tabHolder span:hover, .tabHolder span.active {background: #fcf8f3;color: #20152b;cursor: pointer;}
+    .tabHolder span:first-child {border:none;}
+
+
+    .contents {min-height:100px;width:100%;}
+
+    .inputSet {display:inline-block;margin-right:1em;padding:.5em;}
+    .inputSet label {display:block;margin-bottom:0.5em;}
+
+    </style>
+    </head>
+
+<body>
+<div class="gridContainer">
+  <div class="sidebar">
+    <div class="active">
+      <svg height='50px' width='50px'  fill="#35383c" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve"><style type="text/css">
+      	.st0{fill:none;stroke:#35383c;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+      </style><g><path class="st0" d="M45.4,20.3H21.2c-0.8,0-1.4,0.6-1.4,1.4v23.6c0,0.8,0.6,1.4,1.4,1.4h23.6c0.8,0,1.4-0.6,1.4-1.4V21.1   C46.2,20.7,45.8,20.3,45.4,20.3L45.4,20.3z"></path></g><g><path class="st0" d="M79.4,20.3H55.2c-0.8,0-1.4,0.6-1.4,1.4v23.6c0,0.8,0.6,1.4,1.4,1.4h23.6c0.8,0,1.4-0.6,1.4-1.4V21.1   C80.2,20.7,79.8,20.3,79.4,20.3L79.4,20.3z"></path></g><g><path class="st0" d="M45.4,53.3H21.2c-0.8,0-1.4,0.6-1.4,1.4v23.6c0,0.8,0.6,1.4,1.4,1.4h23.6c0.8,0,1.4-0.6,1.4-1.4V54.1   C46.2,53.7,45.8,53.3,45.4,53.3L45.4,53.3z"></path></g><g><path class="st0" d="M79.4,53.3H55.2c-0.8,0-1.4,0.6-1.4,1.4v23.6c0,0.8,0.6,1.4,1.4,1.4h23.6c0.8,0,1.4-0.6,1.4-1.4V54.1   C80.2,53.7,79.8,53.3,79.4,53.3L79.4,53.3z"></path></g></svg>
+      <h2>Dashboard</h2>
+    </div>
+    <div>
+      <svg height='50px' width='50px'  fill="#35383c" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" x="0px" y="0px"><g><path d="M16,30a13.922,13.922,0,0,0,9.154-3.432l-9.86-9.86A1,1,0,0,1,15,16V2.051A13.992,13.992,0,0,0,16,30Z"></path><path d="M17,2.051V15H29.949A14,14,0,0,0,17,2.051Z"></path><path d="M18.414,17l8.154,8.154A13.919,13.919,0,0,0,29.949,17Z"></path></g></svg>
+      <h2>Reports</h2>
+    </div>
+    <div>
+      <svg height='50px' width='50px'  fill="#35383c" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" x="0px" y="0px" viewBox="0 0 100 100"><g transform="translate(0,-952.36218)"><path style="color:#000000;enable-background:accumulate;" d="M 47.77802,959.36216 C 25.68671,960.48196 8.0107,978.23926 7,1000.3594 l 40.99709,0 0,-40.99724 c -0.0724,0 -0.14676,0 -0.21907,0 z m 4.22489,0 0,40.99724 40.99709,0 C 91.986,978.16686 74.19524,960.37626 52.00291,959.36216 z m -23.03348,14.99059 4.00582,0 0,7.01021 7.01019,0 0,4.0058 -7.01019,0 0,7.0102 -4.00582,0 0,-7.0102 -7.01019,0 0,-4.0058 7.01019,0 0,-7.01021 z m 31.04513,7.01021 18.0262,0 0,4.0058 -18.0262,0 0,-4.0058 z M 7,1004.3652 c 1.014,22.1923 18.80476,39.983 40.99709,40.997 l 0,-40.997 -40.99709,0 z m 45.00291,0 0,40.997 C 74.19524,1044.3482 91.986,1026.5575 93,1004.3652 l -40.99709,0 z m -25.97525,9.2635 4.94468,4.9446 4.94469,-4.9446 2.84789,2.8165 -4.97598,4.976 4.97598,4.9447 -2.84789,2.8166 -4.94469,-4.9447 -4.94468,4.9447 -2.84789,-2.8166 4.97598,-4.9447 -4.97598,-4.976 2.84789,-2.8165 z m 33.9869,1.7838 18.0262,0 0,4.0058 -18.0262,0 0,-4.0058 z m 0,8.0116 18.0262,0 0,4.0058 -18.0262,0 0,-4.0058 z" fill="#35383c" stroke="none" marker="none" visibility="visible" display="inline" overflow="visible"></path></g></svg>
+      <h2>Tools & Calculators</h2>
+    </div>
+    <div>
+      <svg height='50px' width='50px'  fill="#35383c" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" x="0px" y="0px"><title>government, court, museum</title><g><path d="M59.22,55.74H56.5V51.22a1,1,0,0,0-1-1h-.56V26.93h.56a1,1,0,0,0,1-1V21.4h1.14a1,1,0,0,0,1-1V15.59a1,1,0,0,0-1-1h-.9v-4a1,1,0,0,0-.68-.95L32.32,1.5h-.11a.75.75,0,0,0-.42,0h-.11L7.94,9.64a1,1,0,0,0-.68.95v4h-.9a1,1,0,0,0-1,1V20.4a1,1,0,0,0,1,1H7.5v4.53a1,1,0,0,0,1,1h.56V50.22H8.5a1,1,0,0,0-1,1v4.52H4.78a1,1,0,0,0-1,1v4.81a1,1,0,0,0,1,1H59.22a1,1,0,0,0,1-1V56.74A1,1,0,0,0,59.22,55.74Zm-20.81,0V51.22a1,1,0,0,0-1-1h-.56V26.93h.56a1,1,0,0,0,1-1V21.4h5.27v4.53a1,1,0,0,0,1,1h.56V50.22h-.56a1,1,0,0,0-1,1v4.52Zm-18.09,0V51.22a1,1,0,0,0-1-1h-.56V26.93h.56a1,1,0,0,0,1-1V21.4h5.27v4.53a1,1,0,0,0,1,1h.56V50.22h-.56a1,1,0,0,0-1,1v4.52Zm14.53-5.52h-5.7V26.93h5.7Zm1.56-25.29H27.59V21.4h8.82ZM27.59,52.22h8.82v3.52H27.59Zm18.09,0H54.5v3.52H45.68Zm7.26-2h-5.7V26.93h5.7ZM54.5,24.93H45.68V21.4H54.5ZM9.26,11.3,32,3.51,54.74,11.3v3.29H9.26Zm-1.9,5.29H56.64V19.4H7.36Zm11,4.81v3.53H9.5V21.4Zm-7.26,5.53h5.7V50.22h-5.7ZM9.5,52.22h8.82v3.52H9.5Zm48.72,8.33H5.78V57.74H58.22Z"></path></g></svg>
+      <h2>Tax Center</h2>
+    </div>
+    <div>
+      <svg height='50px' width='50px'  fill="#35383c" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision;text-rendering:geometricPrecision;image-rendering:optimizeQuality;" viewBox="0 0 847 847" x="0px" y="0px" fill-rule="evenodd" clip-rule="evenodd"><defs><style type="text/css">
+          .fil0 {fill:#35383c}
+        </style></defs><g><path class="fil0" d="M422 830c-153,-69 -327,-162 -330,-353l-6 -306 3 -1c156,-20 218,-38 333,-152l1 -1 2 1c115,114 177,132 333,152l2 1 -5 306c-3,191 -177,284 -331,353l-1 0 -1 0zm1 -746c-83,81 -175,113 -288,128l4 264c3,160 156,244 284,302 129,-58 282,-142 284,-302l5 -264c-113,-15 -205,-47 -289,-128zm311 109c-135,-18 -212,-43 -311,-140 -99,97 -176,122 -311,140l5 283c3,175 166,263 306,326 140,-63 303,-151 306,-326l5 -283z"></path></g></svg>
+      <h2>Insurance Center</h2>
+    </div>
+    <div>
+      <svg height='50px' width='50px'  fill="#35383c" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve"><path d="M76,24v52c0,3.3-2.7,6-6,6H30c-3.3,0-6-2.7-6-6V24c0-3.3,2.7-6,6-6h6v54h-5c-1.7,0-3,1.3-3,3v1c0,1.1,0.9,2,2,2h40  c1.1,0,2-0.9,2-2H31c-0.6,0-1-0.4-1-1s0.4-1,1-1h41v-2H38V18h32C73.3,18,76,20.7,76,24z"></path></svg>
+      <h2>Learning Center</h2>
+    </div>
+    <div onclick="showModal(event, settings)" style="margin-top:5em;border-top:1px dotted;">
+      <svg height='50px' width='50px'  fill="#35383c" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 36 36" enable-background="new 0 0 36 36" xml:space="preserve"><circle cx="18" cy="18" r="4.087"></circle><path d="M31.481,15.589l-2.638-0.424c-0.262-1.005-0.657-1.953-1.169-2.826l1.563-2.166c0.322-0.447,0.266-1.131-0.121-1.52  l-1.768-1.769c-0.391-0.39-1.072-0.444-1.521-0.122l-2.165,1.564c-0.874-0.514-1.822-0.908-2.827-1.17l-0.427-2.639  C20.321,3.976,19.8,3.53,19.25,3.53h-2.5c-0.55,0-1.071,0.445-1.159,0.988l-0.427,2.639c-1.005,0.262-1.953,0.656-2.827,1.17  l-2.166-1.564C9.725,6.44,9.042,6.496,8.653,6.885L6.885,8.653C6.496,9.042,6.44,9.725,6.763,10.171l1.563,2.166  c-0.513,0.874-0.907,1.822-1.17,2.827L4.519,15.59c-0.544,0.089-0.987,0.61-0.987,1.159L3.53,19.25c0,0.55,0.443,1.072,0.987,1.159  l2.638,0.427c0.263,1.005,0.658,1.953,1.171,2.827l-1.563,2.166c-0.322,0.446-0.268,1.129,0.121,1.518l1.768,1.769  c0.39,0.39,1.072,0.444,1.52,0.122l2.165-1.563c0.874,0.513,1.823,0.908,2.827,1.171l0.426,2.637c0.088,0.544,0.61,0.988,1.16,0.988  h2.5c0.551,0,1.072-0.443,1.161-0.988l0.425-2.637c1.006-0.262,1.953-0.657,2.828-1.17l2.164,1.563  c0.447,0.322,1.131,0.268,1.52-0.121l1.768-1.768c0.391-0.39,0.445-1.072,0.123-1.52l-1.563-2.165  c0.513-0.874,0.907-1.822,1.17-2.827l2.637-0.426c0.544-0.088,0.988-0.611,0.989-1.16v-2.5C32.47,16.2,32.026,15.679,31.481,15.589z   M18,25.308c-4.035,0-7.307-3.271-7.307-7.307s3.271-7.307,7.307-7.307s7.307,3.271,7.307,7.307S22.035,25.308,18,25.308z"></path></svg>
+      <h2>Settings</h2>
+    </div>
+    <div onclick="showModal(event, newEntry)">
+      <svg height='50px' width='50px'  fill="#35383c" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-2 -2 38 38" x="0px" y="0px"><title>plus-circle</title><path d="M8 14.857c-0.005 0-0.010 0-0.016 0-0.631 0-1.143 0.511-1.143 1.143s0.511 1.143 1.143 1.143c0.006 0 0.011 0 0.017 0h15.998c0.005 0 0.010 0 0.016 0 0.631 0 1.143-0.511 1.143-1.143s-0.511-1.143-1.143-1.143c-0.006 0-0.011 0-0.017 0z"></path><path d="M17.143 8c0-0.005 0-0.010 0-0.016 0-0.631-0.511-1.143-1.143-1.143s-1.143 0.511-1.143 1.143c0 0.006 0 0.011 0 0.017v-0.001 15.999c0 0.005 0 0.010 0 0.016 0 0.631 0.511 1.143 1.143 1.143s1.143-0.511 1.143-1.143c0-0.006 0-0.011 0-0.017v0.001z"></path><path d="M16 0c-8.823 0-15.999 7.177-15.999 15.999s7.177 15.999 15.999 15.999c8.823 0 15.999-7.177 15.999-15.999s-7.177-15.999-15.999-15.999zM16 2.286c7.588 0 13.714 6.127 13.714 13.714s-6.126 13.714-13.714 13.714c-7.588 0-13.714-6.126-13.714-13.714s6.126-13.714 13.714-13.714z"></path></svg>
+      <h2>Add</h2>
+    </div>
+  </div>
+
+  <div class="topBar">
+    <div style="display: flex;align-items: center;">
+      <svg style="padding:0;border:0" width="100" fill="#fff" xmlns="http://www.w3.org/2000/svg" viewBox="0 -10 90 78" height="100" stroke="#fff" stroke-width=".35"><path d="M89.997 21.398a.089.089 0 00-.023-.031.145.145 0 00-.045-.029L45.015.018A.196.196 0 0044.927 0a.314.314 0 00-.045.004.124.124 0 00-.041.014L.071 21.338a.14.14 0 00-.045.029.08.08 0 00-.023.033.042.042 0 000 .031.068.068 0 00.021.029L45.1 54.685c.02.014.041.023.064.031a.269.269 0 00.142 0 .271.271 0 00.064-.031L89.974 21.46a.053.053 0 00.023-.029.047.047 0 000-.033zm-23.139-4.175l6.031-3.785 7.967 3.787-5.963 4.053-8.035-4.055-.227-.113-7.496-3.781 6.081-3.539h.001l7.447 3.541-6.033 3.779.227.113zm-22.021 4.175l-7.512 4.361-7.02-4.361 7.498-4.064 7.034 4.064zm-6.822-4.177l6.988-3.789 7.029 3.791-6.984 4.055-7.033-4.057zm7.035 4.3l7.559 4.369-7.508 4.701-7.563-4.699 7.512-4.371zm.211-.123l6.982-4.063L59.78 21.4l-6.961 4.357-7.558-4.359zm7.181-4.177l6.51-3.785 7.496 3.787-6.473 4.055-7.533-4.057zm-.213-.114L45.2 13.324l6.529-3.539 7.01 3.543-6.51 3.779zm-7.226-3.888l-6.572-3.537 6.533-3.316 6.568 3.32-6.529 3.533zm-.197.107l-6.988 3.779-6.561-3.783 6.977-3.541 6.572 3.545zm-7.2 3.895l-7.498 4.057-6.529-4.059 7.467-3.789 6.56 3.791zm-7.724 4.177l-8.063 4.363-6.477-4.363 8.01-4.064 6.53 4.064zm.197.123l7.02 4.371-8.102 4.703-6.982-4.701 8.064-4.373zm7.231 4.502l7.563 4.711-8.119 5.084-7.545-5.08 8.101-4.715zm7.793 4.854l8.174 5.09-8.115 5.516-8.18-5.51 8.121-5.096zm.226-.143l7.508-4.711 8.146 4.707-7.479 5.082.123.077-.125-.077-8.173-5.078zm7.719-4.843l6.959-4.369 8.1 4.367-6.914 4.699-8.145-4.697zm7.156-4.493l6.471-4.061 8.039 4.063-6.412 4.357-8.098-4.359zM57.831 6.277l-6.115 3.309.197.1 6.115-3.314 6.98 3.318-6.086 3.531-7.01-3.535-.197-.1-6.568-3.314 6.131-3.111 6.553 3.116zM44.929.141l6.164 2.932-6.131 3.107-6.168-3.113L44.929.141zM38.61 3.156l6.168 3.115-6.533 3.311-6.158-3.314 6.523-3.112zm-6.72 3.205l6.158 3.32-6.977 3.533-6.133-3.537 6.952-3.316zm-7.162 3.416l6.135 3.545-7.467 3.783-6.092-3.785 7.424-3.543zm-7.649 3.649l6.09 3.793-8.01 4.059-6.027-4.061 7.947-3.791zM.366 21.398l8.525-4.066 6.025 4.066-8.615 4.365-5.935-4.365zm6.115 4.498l8.619-4.375 6.475 4.373L12.88 30.6l-6.399-4.704zm6.592 4.844l8.697-4.715 6.98 4.713-8.762 5.086-6.915-5.084zm7.125 5.239l8.764-5.098 7.545 5.092-8.813 5.518-7.496-5.512zm7.725 5.679l8.813-5.531 8.18 5.523-8.836 6.004-8.157-5.996zm17.312 12.727l-8.908-6.549 8.836-6.018 8.9 6.008-8.828 6.559zm9.075-6.742l-8.898-5.992 8.113-5.529 8.863 5.52-8.078 6.001zm8.304-6.17l-8.861-5.506-.001-.001 7.478-5.093 8.805 5.088-7.421 5.512zm7.627-5.666l-8.803-5.076 6.912-4.709 8.729 4.705-6.838 5.08zm7.031-5.223l-8.727-4.695 6.41-4.367 8.639 4.365-6.322 4.697zm6.5-4.828L75.136 21.4l5.961-4.061 8.539 4.061-5.864 4.356z"/></svg>
+      <!-- <h2 id="appName">WealthPrint</h2> -->
+    </div>
+    <div>
+      <p>Net Worth</p>
+      <h2><sup>$</sup><span id="netWorth">00</span><small>.00</small></h2>
+    </div>
+    <div class="subs left">
+      <div>
+        <p>Spending Accounts</p>
+        <h2><sup>$</sup><span id="liquidTotal">00</span><small>.00</small></h2>
+      </div>
+      <div>
+        <p>Retirement Accounts</p>
+        <h2><sup>$</sup><span id="retirementTotal">00</span><small>.00</small></h2>
+      </div>
+    </div>
+    <div class="subs right">
+      <div>
+        <p>Total Debt</p>
+        <h2><sup>$</sup><span id="debtTotal">00</span><small>.00</small></h2>
+      </div>
+      <div>
+        <p>Other Accounts</p>
+        <h2><sup>$</sup><span id="otherTotal">0</span><small>.00</small></h2>
+      </div>
+    </div>
+    <div onclick="showModal(event, healthScoreBreakdown)" class="healthButton">
+    <h2>health score</h2>
+    <svg class="scoreCircle" id="comboCircle" width="80" height="80" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <circle r="40" cx="50" cy="50" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="0"></circle>
+      <circle id="bar" r="40" cx="50" cy="50" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="0"></circle>
+      <text x="50%" y="55%" text-anchor="middle"><tspan id="comboScore" fill="#fff">0</tspan></text>
+    </svg>
+    </div>
+    <div class="actions">
+      <svg onclick="showModal(event, assumptions)" height="35px" width="35px" fill="#ffffff" viewBox="0 0 120 120"><path d="M36 107h56l28-48-28-48H36L8 59l28 48zm28-72c13.3 0 24 10.7 24 24S77.3 83 64 83 40 72.3 40 59s10.7-24 24-24z"></path></svg>
+
+      <svg xmlns="http://www.w3.org/2000/svg" onclick="toggleNotification()" height="35px" width="35px" viewBox="0 0 100 100" fill="#ffffff"><path d="M93.3 70.1L61.4 16.5C59 12.3 54.7 9.9 50 9.9s-9 2.4-11.4 6.5L6.8 70.1c-2.5 4.1-2.5 9.2-.1 13.3s6.7 6.7 11.6 6.7h63.5c4.9 0 9.2-2.5 11.6-6.7 2.4-4.1 2.4-9.2-.1-13.3zM54.5 72c0 2.5-1.9 4.4-4.4 4.4s-4.4-2.1-4.4-4.4V48.3c0-2.5 1.9-4.4 4.4-4.4s4.4 1.9 4.4 4.4V72zm0-35c0 2.5-1.9 4.4-4.4 4.4s-4.4-1.9-4.4-4.4v-1.5c0-2.5 1.9-4.4 4.4-4.4s4.4 1.9 4.4 4.4V37z"></path></svg>
+    </div>
+  </div>
+
+
+  <div class="main">
+
+    <h1 onclick="toggleView('liquid')">Spending Accounts<small style="font-size:.5em;vertical-align:middle;margin-left:.5em;">[7]</small></h1>
+    <div>
+    <div class="accountBox">
+      <div class="accountImage" style="background-image:url('svgs/capital-one-white.svg')"></div>
+      <div class="accountSummary">
+        <h2>CapitalOne 360 Savings</h2>
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="liquid" data-accountName="CapitalOne 360 Savings" data-accountId="1">0.00</span></p>
+      </div>
+      <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
+      <button onclick="showModal(event, transactionLog)" class="accountButton">View Details</button>
+    </div>
+
+    <div class="accountBox">
+      <div class="accountImage" style="background-image:url('svgs/usb.svg');background-color:#de1628;"></div>
+      <div class="accountSummary">
+        <h2>US Bank Checking</h2>
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="liquid" data-accountName="US Bank Checking" data-accountId="2">0.00</span></p>
+      </div>
+      <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
+      <button onclick="showModal(event, transactionLog)" class="accountButton">View Details</button>
+    </div>
+
+    <div class="accountBox">
+      <div class="accountImage" style="background-image:url('svgs/usb.svg');background-color:#de1628;"></div>
+      <div class="accountSummary">
+        <h2>US Bank Savings</h2>
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="liquid" data-accountName="US Bank Savings" data-accountId="7">0.00</span></p>
+      </div>
+      <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
+      <button onclick="showModal(event, transactionLog)" class="accountButton">View Details</button>
+    </div>
+
+    <div class="accountBox">
+      <div class="accountImage" style="background-image:url('svgs/capital-one-white.svg');background-color:#de1628;"></div>
+      <div class="accountSummary">
+        <h2>CapitalOne 360 Checking</h2>
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="liquid" data-accountName="US Bank Savings" data-accountId="20">0.00</span></p>
+      </div>
+      <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
+      <button onclick="showModal(event, transactionLog)" class="accountButton">View Details</button>
+    </div>
+
+    <div class="accountBox">
+      <div class="accountImage" style="background-image:url('svgs/paypal.svg');background-color:#0d3685;"></div>
+      <div class="accountSummary">
+        <h2>PayPal</h2>
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="liquid" data-accountName="PayPal" data-accountId="3">0.00</span></p>
+      </div>
+      <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
+      <button onclick="showModal(event, transactionLog)" class="accountButton">View Details</button>
+    </div>
+
+    <div class="accountBox">
+      <div class="accountImage" style="background-color:#183;"></div>
+      <div class="accountSummary">
+        <h2>Cash</h2>
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="liquid" data-accountName="Cash" data-accountId="16">0.00</span></p>
+      </div>
+      <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
+      <button onclick="showModal(event, transactionLog)" class="accountButton">View Details</button>
+    </div>
+
+    </div>
+
+    <h1 onclick="toggleView('debt')">Credit Cards</h1>
+    <div class="accountBox">
+      <div class="accountImage" style="background-image:url('svgs/usb.svg');background-color:#de1628;"></div>
+      <div class="accountSummary">
+        <h2>US Bank Altitude Go</h2>
+        <p class="accountTotal">(<sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="debt" data-accountId="11" data-rewards="0.00" data-interest="0.08" data-credit="18,000.00">0.00</span>)</p>
+      </div>
+      <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
+      <button onclick="showModal(event, transactionLog)" class="accountButton">View Details</button>
+    </div>
+
+    <div class="accountBox">
+      <div class="accountImage" style="background-image:url('svgs/usb.svg');background-color:#de1628;"></div>
+      <div class="accountSummary">
+        <h2>US Bank Cash+</h2>
+        <p class="accountTotal">(<sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="debt" data-accountId="12" data-rewards="0.00" data-interest="0.08" data-credit="18,000.00">0.00</span>)</p>
+      </div>
+      <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
+      <button onclick="showModal(event, transactionLog)" class="accountButton">View Details</button>
+    </div>
+
+    <div class="accountBox">
+      <div class="accountImage" style="background-image:url('svgs/chase.svg');background-color:#0d3685;"></div>
+      <div class="accountSummary">
+        <h2>Chase Freedom</h2>
+        <p class="accountTotal">(<sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="debt" data-accountId="13" data-rewards="211.84" data-interest="0.08" data-credit="18,000.00">0.00</span>)</p>
+      </div>
+      <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
+      <button onclick="showModal(event, transactionLog)" class="accountButton">View Details</button>
+    </div>
+
+    <div class="accountBox">
+      <div class="accountImage" style="background-image:url('svgs/amex.svg');background-color:#ccd;"></div>
+      <div class="accountSummary">
+        <h2>American Express Blue</h2>
+        <p class="accountTotal">(<sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="debt" data-accountId="14" data-rewards="54.83" data-interest="0.08" data-credit="18,000.00">0.00</span>)</p>
+      </div>
+      <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
+      <button onclick="showModal(event, transactionLog)" class="accountButton">View Details</button>
+    </div>
+
+    <div class="accountBox">
+      <div class="accountImage" style="background-image:url('svgs/capital-one-white.svg');background-color:#0d3685;"></div>
+      <div class="accountSummary">
+        <h2>CapitalOne Savor</h2>
+        <p class="accountTotal">(<sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="debt" data-accountId="15" data-rewards="179.00" data-interest="0.08" data-credit="18,000.00">0.00</span>)</p>
+      </div>
+      <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
+      <button onclick="showModal(event, transactionLog)" class="accountButton">View Details</button>
+    </div>
+
+
+    <h1 onclick="toggleView('retirement')">Retirement Accounts</h1>
+    <div class="accountBox">
+      <div class="accountImage" style="background-image:url('svgs/transamerica.svg');background-color:#052c50"></div>
+      <div class="accountSummary">
+        <h2>Nifty 401(k)</h2>
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="retirement" data-accountId="4">0.00</span></p>
+      </div>
+      <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
+      <button onclick="showModal(event, transactionLog)" class="accountButton">View Details</button>
+    </div>
+
+    <div class="accountBox">
+      <div class="accountImage" style="background-image:url('svgs/vanguard.svg');background-color:#96151d;"></div>
+      <div class="accountSummary">
+        <h2>Roth IRA</h2>
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="retirement" data-accountId="5">0.00</span></p>
+      </div>
+      <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
+      <button onclick="showModal(event, transactionLog)" class="accountButton">View Details</button>
+    </div>
+
+    <div class="accountBox">
+      <div class="accountImage" style="background-image:url('svgs/tdAmeritrade.svg');background-color:#3fae49;"></div>
+      <div class="accountSummary">
+        <h2>HSA Investments</h2>
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="retirement" data-accountId="6">0.00</span></p>
+      </div>
+      <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
+      <button onclick="showModal(event, transactionLog)" class="accountButton">View Details</button>
+    </div>
+
+
+    <h1 onclick="toggleView('other')">Other Accounts</h1>
+    <div class="accountBox">
+      <div class="accountImage" style="background-image:url('svgs/dl-evans.svg');background-color:#081F3F;"></div>
+      <div class="accountSummary">
+        <h2>Idaho MSA</h2>
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="other" data-accountName="DL Evans MSA" data-accountId="10">0.00</span></p>
+      </div>
+      <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
+      <button onclick="showModal(event, transactionLog)" class="accountButton">View Details</button>
+    </div>
+
+    <div class="accountBox">
+      <div class="accountImage" style="background-color:#ac1234;"></div>
+      <div class="accountSummary">
+        <h2>Credit Card Rewards</h2>
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="other" data-accountName="Credit Card Rewards" data-accountId="ccr">0</span></p>
+      </div>
+      <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
+      <button onclick="showModal(event, transactionLog)" class="accountButton">View Details</button>
+    </div>
+
+    <div class="accountBox">
+      <div class="accountImage" style="background-image:url('svgs/ideal.svg');background-color:#f4b242;"></div>
+      <div class="accountSummary">
+        <h2>Idaho 529</h2>
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="other" data-accountId="8">0.00</span></p>
+      </div>
+      <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
+      <button onclick="showModal(event, transactionLog)" class="accountButton">View Details</button>
+    </div>
+
+    <div class="accountBox">
+      <div class="accountImage" style="background-image:url('svgs/lively.svg');background-color:#19A69D;"></div>
+      <div class="accountSummary">
+        <h2>Lively HSA</h2>
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="other" data-accountId="9">0.00</span></p>
+      </div>
+      <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
+      <button onclick="showModal(event, transactionLog)" class="accountButton">View Details</button>
+    </div>
+
+    <div class="accountBox">
+      <div class="accountImage" style="background-image:url('svgs/amazon.svg');background-color:#333;"></div>
+      <div class="accountSummary">
+        <h2>Amazon Gift Card Balance</h2>
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="other" data-accountId="17">0.00</span></p>
+      </div>
+      <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
+      <button onclick="showModal(event, transactionLog)" class="accountButton">View Details</button>
+    </div>
+
+    <div class="accountBox">
+      <div class="accountImage" style="background-color:#ff7499;"></div>
+      <div class="accountSummary">
+        <h2>Refundable Deposits</h2>
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)" data-accountType="other" data-accountId="18">0.00</span></p>
+      </div>
+      <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
+      <button onclick="showModal(event, transactionLog)" class="accountButton">View Details</button>
+    </div>
+
+
+  </div>
+
+<div class="notification">
+  <span onclick="toggleNotification()" style="cursor:pointer;float:right;font-size:2em;">&times;</span>
+  <h2>It’s Time To Rebalance Your Investments</h2>
+  <p style="opacity:0.75;font-weight:300;">Regular rebalancing reduces your risk</p>
+  <div style="display:flex;column-gap:5px;">
+  <button onclick="toggleNotification()" class="ghostButton" style="width:50%">Dismiss</button>
+  <button style="width:50%;" class="mainButton">Rebalance Now</button>
+</div>
+</div>
+
+<div class="modal" id="settings">
+  <div>
+    <h2>App Settings</h2>
+    <span onClick="closeWindow(this)" class="exitWindow">&times;</span>
+      <table>
+      <tr>
+      <td>Dark Mode</td>
+      <td data-setting="darkMode">
+        <button onClick="updateToggle(this, 1)">On</button>
+        <button class="selected" onClick="updateToggle(this, 0)">Off</button>
+      </td>
+      </tr>
+        <tr>
+      <td>Condensed Mode</td>
+      <td data-setting="condensed">
+        <button onClick="updateToggle(this, 1)">On</button>
+        <button class="selected" onClick="updateToggle(this, 0)">Off</button>
+      </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="modal" id="updateBalance">
+  <div style="text-align:center;">
+    <h2>New Balance</h2>
+    <span onClick="closeWindow(this)" class="exitWindow">&times;</span>
+    <input style="width:calc(100% - 2em);font-size:24px;padding:1em;margin:1em 0;text-align:center;" id="newBalance" type="number"></input>
+    <button class="ghostButton" id="saveBalance">Save</button>
+  </div>
+</div>
+
+<div class="modal" id="healthScoreBreakdown">
+  <div style="text-align:center;">
+    <h2>Your Health Score</h2>
+    <div class="scoreRow">
+      <svg class="scoreCircle" id="efCircle" width="100" height="100" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <circle r="40" cx="50" cy="50" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="0"></circle>
+        <circle id="bar" r="40" cx="50" cy="50" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="0"></circle>
+        <text x="50%" y="55%" text-anchor="middle"><tspan id="efScore">0</tspan><tspan class="maxScore">/35</tspan></text>
+      </svg>
+      <div>
+        <h2>Emergency Fund Score</h2>
+        <p>This metric compares the balances of your Savings Account(s) to your average monthly expenses.</p>
+        <p>Based on your risk-comfort level, we recommend having <strong id="targetRunway">6</strong> months of expenses in liquid savings accounts.</p>
+        <p>You currently have <strong id="runway">x</strong> months worth of expenses in your savings accounts.</p>
+        <p><i>Key Formula: (Emergency fund balance) / avg monthly expenses = Current Runway</i></p>
+      </div>
+    </div>
+
+    <div class="scoreRow">
+      <svg class="scoreCircle" id="crCircle" width="100" height="100" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <circle r="40" cx="50" cy="50" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="0"></circle>
+        <circle id="bar" r="40" cx="50" cy="50" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="0"></circle>
+        <text x="50%" y="55%" text-anchor="middle"><tspan id="crScore">0</tspan><tspan class="maxScore">/35</tspan></text>
+      </svg>
+      <div>
+        <h2>Current Ratio Score</h2>
+          <p>Your Current Ratio (also knows as a Debt Ratio) compares your total net worth to your total debts.</p>
+          <p>We recommend a Current Ratio of <strong>2 or more</strong>. You currently have a debt ratio of: <strong id="currentRatio">x</strong>
+          <p><i>Key Formula: Net Worth / Total Debt = Current Ratio</i></p>
+      </div>
+    </div>
+
+    <div class="scoreRow">
+      <svg class="scoreCircle" id="nwCircle" width="100" height="100" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <circle r="40" cx="50" cy="50" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="0"></circle>
+        <circle id="bar" r="40" cx="50" cy="50" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="0"></circle>
+        <text x="50%" y="55%" text-anchor="middle"><tspan id="nwScore">0</tspan><tspan class="maxScore">/20</tspan></text>
+      </svg>
+      <div>
+        <h2>Net Worth Score</h2>
+        <p>Your Target Net Worth based on your age and income is <strong id="targetNetWorth">x</strong>.
+        <p>Your current net worth is <strong id="currentNetWorth">x</strong>.</p>
+        <p><i>Key Formula: (Age * Anual Income)/(Retirement Age - Current Age) = Target Net Worth</i></p>
+      </div>
+    </div>
+
+    <div class="scoreRow">
+      <svg class="scoreCircle" id="rCircle" width="100" height="100" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <circle r="40" cx="50" cy="50" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="0"></circle>
+        <circle id="bar" r="40" cx="50" cy="50" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="0"></circle>
+        <text x="50%" y="55%" text-anchor="middle"><tspan id="rScore">0</tspan><tspan class="maxScore">/10</tspan></text>
+      </svg>
+      <div>
+        <h2>Retirement Score</h2>
+        <p>This metric compares the future value of your current retirement balance to your target retirement balance</p>
+        <p>Your target retirement balance is: <strong id="retirementGoal">x</strong></p>
+        <p>The future value of your current retirement balance is: <strong id="retirementFutureValue">x</strong></p>
+        <p><i>Key Formula: (Retirement Balance * ((1 + Growth Rate)) ^ Number of Years Until Retirement) = Future Value of Retirement Balance</i></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="transactionLog">
+  <div style="text-align:left;">
+    <h1 style="text-transform:lowercase" id="accountTitle"></h1>
+    <p>1% interest rate</p>
+    <div class="accountGrid" style="display:grid; grid-template-columns:3fr 1fr;margin-bottom:1em;">
+      <div style="background:var(--border-subtle-color);">Chart</div>
+      <div style="text-align:right;">
+        <h2>october changes</h2>
+        <p>$3,984.03	inflow</p>
+        <p>$2,083.03	outflow</p>
+        <p>$4.83	interest</p>
+        <p>1,984.03	net gain</p>
+      </div>
+    </div>
+    <h2 style="margin-bottom:0.5em;">transaction history</h2>
+    <div class="transactionLogContainer">
+      <table class="transactionLog">
+        <tr>
+          <th>Date</th>
+          <th>Place</th>
+          <th>Inflow/Outflow</th>
+          <th>Tags</th>
+        </tr>
+          <tr>
+          <td>May 4</td>
+          <td>Chik-Fil-A</td>
+          <td>(17.99)</td>
+            <td><span class="tag">Restaurants</span></td>
+        </tr>
+        <tr>
+          <td>May 4</td>
+          <td>Chik-Fil-A</td>
+          <td>(17.99)</td>
+            <td><span class="tag">Restaurants</span></td>
+        </tr>
+        <tr>
+          <td>May 4</td>
+          <td>Chik-Fil-A</td>
+          <td>(17.99)</td>
+            <td><span class="tag">Restaurants</span></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="newEntry">
+  <div style="text-align:left;">
+    <h1 style="text-transform:lowercase" id="accountTitle">New Entry</h1>
+    <div class="container">
+      <div class="tabHolder">
+        <span class="active">Expense</span>
+        <span>Income</span>
+        <span>Life Event</span>
+        <span>Account</span>
+      </div>
+      <div class="contents">
+        <div class="inputSet">
+          <label for="date">Date</label>
+          <input type="date" id="date">
+        </div>
+        <div class="inputSet">
+          <label for="account">Account</label>
+          <input type="text" id="account">
+        </div>
+        <div class="inputSet">
+          <label for="place">Place</label>
+          <input type="text" id="place">
+        </div>
+        <div class="inputSet">
+          <label for="amount">Amount</label>
+          <input type="text" id="amount">
+        </div>
+      </div>
+      </div>
+
+      <button class="ghostButton">Save</button>
+  </div>
+</div>
+
+<div class="modal" id="assumptions">
+  <div style="text-align:center;">
+    <p>Name, Email, Drive Car, Financial Goals</p>
+    <h1>Assumptions</h1>
+      <fieldset>
+              <table>
+                <legend>Retirement Info</legend>
+							<tr>
+								<td>Current Age:</td>
+								<td><input oninput="saveValue(this)" inputmode="numeric" pattern="[0-9]*"  data-input="assumption" type="text" id="age" value="28"/></td>
+							</tr>
+							<tr>
+								<td>Retirement Age: </td>
+								<td><input oninput="saveValue(this)" inputmode="numeric" pattern="[0-9]*"  data-input="assumption" type="text" id="rAge" value="65"/></td>
+							</tr>
+                <tr>
+								<td>Current Retirement Balance</td>
+								<td><input oninput="saveValue(this)" inputmode="numeric" pattern="[0-9]*"  data-input="assumption" type="text" id="cb" value="0"/></td>
+							</tr>
+            </tr>
+              <tr>
+              <td>Target Retirement Goal</td>
+              <td><input oninput="saveValue(this)" inputmode="numeric" pattern="[0-9]*"  data-input="assumption" type="text" id="rg" value="1,500,984"/></td>
+            </tr>
+            </tr>
+              <tr>
+              <td>Estimated Annual Growth Rate</td>
+              <td><input oninput="saveValue(this)" inputmode="numeric" pattern="[0-9]*"  data-input="assumption" type="text" id="ar" value="7"/>%</td>
+            </tr>
+            </table>
+        </fieldset>
+
+        <fieldset>
+              <table>
+                <legend>Emergency Fund Info</legend>
+							<tr>
+								<td>Estimated Annual Income:</td>
+								<td><input oninput="saveValue(this)" inputmode="numeric" pattern="[0-9]*"  data-input="assumption" type="text" id="income" value="80,101"/></td>
+							</tr>
+							<tr>
+								<td>Estimated Monthly Expenses: </td>
+								<td><input oninput="saveValue(this)" inputmode="numeric" pattern="[0-9]*"  data-input="assumption" type="text" id="ae" value="1,950"/></td>
+							</tr>
+                <tr>
+								<td>Current Emergency Savings: </td>
+								<td><input oninput="saveValue(this)" inputmode="numeric" pattern="[0-9]*"  data-input="assumption" type="text" id="ef" value="0"/></td>
+							</tr>
+            </table>
+        </fieldset>
+
+        <fieldset>
+              <table>
+                <legend>General Info</legend>
+							<tr>
+								<td>Marital Status:</td>
+                <td>
+                  <input data-input="assumption" name="marital" id="single" value="single" type="radio" /><label for="single">Single</label>
+                  <input data-input="assumption" name="marital" id="married" value="married" type="radio" /><label for="married">Married</label>
+                </td>
+							</tr>
+							<tr>
+								<td>Health Status: </td>
+								<td>
+                  <input data-input="assumption" name="health" id="healthy" value="healthy" type="radio" /><label for="healthy">No Pre-Existing Medical Conditions</label>
+                  <input data-input="assumption" name="health" id="issues" value="issues" type="radio" /><label for="issues">Pre-Existing Conditions</label>
+                </td>
+							</tr>
+                <tr>
+								<td>Housing Status: </td>
+								<td>
+                  <input data-input="assumption" name="housing" id="own" value="own" type="radio" /><label for="own">Own</label>
+                  <input data-input="assumption" name="housing" id="rent" value="rent" type="radio" /><label for="rent">Rent</label>
+                </td>
+							</tr>
+              <tr>
+                <td>Risk Tolerance: </td>
+                <td>
+                  <input data-input="assumption" name="risk" id="low" value="low" type="radio" /><label for="low">Low</label>
+                  <input data-input="assumption" name="risk" id="med" value="med" type="radio" /><label for="med">Medium</label>
+                  <input data-input="assumption" name="risk" id="high" value="high" type="radio" /><label for="high">High</label>
+                </td>
+            </tr>
+            <tr>
+                <td>Employment Status: </td>
+                <td>
+                  <input data-input="assumption" name="employment" id="full" value="full" type="radio" /><label for="full">Full-Time</label>
+                  <input data-input="assumption" name="employment" id="part" value="part" type="radio" /><label for="part">Part-Time</label>
+                  <input data-input="assumption" name="employment" id="self" value="self" type="radio" /><label for="self">Self-Employed</label>
+                </td>
+            </tr>
+            <tr>
+                <td>Kids: </td>
+                <td>
+                  <input oninput="saveValue(this)" inputmode="numeric" pattern="[0-9]*"  data-input="assumption" type="text" id="kids" value="0"/>
+                </td>
+            </tr>
+              </table>
+          </fieldset>
+  </div>
+</div>
+
+</div>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
+<script>
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+            data: [5, 8, 13, 15, 20, 30],
+            backgroundColor: "rgba(173,236,177,0.85)",
+						borderColor: "#adecb1",
+						fill: "start",
+            pointRadius:0,
+            borderWidth: 5
+        }]
+    },
+    options: {
+      responsive: true,
+      legend: {
+       display: false
+      },
+      elements: {
+                    point:{
+                        radius: 0
+                    }
+                },
+      scales: {
+      xAxes: [{
+          gridLines: {
+              display:false,
+              drawTicks: false,
+              drawBorder: false
+          },
+          ticks: {
+              display:false
+          }
+      }],
+      yAxes: [{
+          gridLines: {
+              display: false,
+              drawTicks: false,
+              drawBorder: false
+          },
+          ticks: {
+              beginAtZero: true,
+              display:false
+          }
+      }]
+  }
+}
+});
+</script>
+
+  <script>
+  //Declare Global Variables & Helpers
+  let liquidTotal, otherTotal, netWorthTotal, debtTotal, liquidCents, otherCents, debtCents, netWorthCents, ccRewards, retirementTotal
+
+  const currencyFormat = function (digits) {
+    let minDecimal = (digits % 1 == 0) ? digits : digits.toFixed(2);
+    let commaAdd = minDecimal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return commaAdd
+  }
+
+  const numberize = function (textvalue) {
+    let numberVersion = Number(textvalue.replace(/,/g, ''));
+    return numberVersion
+  }
+
+  const cents = function(modulus) {
+    let preciseCents = modulus.toFixed(2)*100 // Get the number of cents
+    let roundedCents = preciseCents.toFixed(0) // Catch floating point errors (0.29 * 100) and round to whole number
+    let stringCents = roundedCents.toString()
+    let finalCents = (stringCents.length === 1) ? "0" + stringCents : stringCents;
+    console.log(modulus, preciseCents, roundedCents, stringCents, finalCents)
+    return "." + finalCents
+  }
+
+  appData = window.localStorage
+
+  window.onload = loadUISettings(), loadData()
+
+  function loadUISettings() {
+    let darkSetting = appData.getItem("darkMode");
+    let condensedMode = appData.getItem("condensed");
+    darkContainer = Array.from(document.querySelector("[data-setting='darkMode']").children)
+    condensedContainer = Array.from(document.querySelector("[data-setting='condensed']").children)
+
+    if (darkSetting == 1) {
+      document.body.classList.add("dark")
+      darkContainer[0].classList.add("selected");
+      darkContainer[1].classList.remove("selected");
+    } else {document.body.classList.remove("dark")}
+
+    if (condensedMode == 1) {
+      document.body.classList.add("condensed")
+      condensedContainer[0].classList.add("selected");
+      condensedContainer[1].classList.remove("selected");
+    } else {document.body.classList.remove("condensed")}
+  }
+
+
+  function updateToggle(button, value) {
+    let settingGroup = button.parentElement.getAttribute("data-setting")
+    let allButtons = Array.from(button.parentElement.children)
+
+    allButtons.forEach((entry)=>
+         {
+      entry.classList.remove("selected")
+    });
+
+    button.classList.add("selected")
+    appData.setItem(settingGroup, value);
+    loadUISettings()
+  }
+
+    function toggleNotification() {
+      const note = document.querySelector(".notification")
+      note.classList.toggle("visible")
+    }
+
+    function closeWindow(item) {
+      let window = item.parentElement;
+      let windowContainer = window.parentElement;
+      windowContainer.classList.add("modalOut")
+      setTimeout(function() {windowContainer.classList.remove("modalOut");windowContainer.style.display="none";document.body.classList.remove("noscroll");}, 200)
+    }
+
+    function showModal(e, window) {
+      if (window == transactionLog) {
+        const accountInfo = e.target.previousElementSibling.previousElementSibling.lastElementChild.firstElementChild.nextElementSibling
+        const accountName = accountInfo.getAttribute("data-accountName")
+        const nameHolder = document.getElementById("accountTitle")
+        nameHolder.innerText=accountName;
+      }
+
+
+      const root = document.documentElement;
+      let currentX = e.clientX;
+      let currentY = e.clientY;
+      const centerX = document.documentElement.clientWidth /2;
+      const centerY = document.documentElement.clientHeight /2;
+      let xModifier = (centerX-currentX)*-1;
+      let yModifier = (centerY-currentY)*-1;
+      root.style.setProperty('--modalXStart', xModifier+"px")
+      root.style.setProperty('--modalYStart', yModifier+"px")
+
+      window.style.display="block";
+      document.body.classList.add("noscroll")
+      window.classList.add("modalIn")
+      setTimeout(function() {window.classList.remove("modalIn")}, 200)
+      window.addEventListener('click', function(event) {
+        if (event.currentTarget !== event.target) {
+          return;
+        }
+      window.classList.add("modalOut")
+      setTimeout(function() {window.classList.remove("modalOut");window.style.display="none";document.body.classList.remove("noscroll");}, 200)
+      }, false);
+    }
+
+    function updateBalance(e, account) {
+      const root = document.documentElement;
+      let currentX = e.clientX;
+      let currentY = e.clientY;
+      const centerX = document.documentElement.clientWidth /2;
+      const centerY = document.documentElement.clientHeight /2;
+      let xModifier = (centerX-currentX)*-1;
+      let yModifier = (centerY-currentY)*-1;
+      root.style.setProperty('--modalXStart', xModifier+"px")
+      root.style.setProperty('--modalYStart', yModifier+"px")
+
+      let id = account.getAttribute("data-accountID")
+      const coolModal = document.getElementById("updateBalance")
+      const saveButton = document.getElementById("saveBalance")
+      const newInput = document.getElementById("newBalance")
+
+      coolModal.style.display="block"
+      coolModal.classList.add("modalIn")
+      setTimeout(function() {coolModal.classList.remove("modalIn")}, 200)
+      newInput.value="";
+      newInput.focus();
+
+      coolModal.addEventListener('click', function(event) {
+        if (event.currentTarget !== event.target) {
+          return;
+        }
+        coolModal.classList.add("modalOut")
+        setTimeout(function() {coolModal.classList.remove("modalOut");coolModal.style.display="none";}, 200)
+      }, false);
+
+      newInput.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+          newValue = document.getElementById("newBalance").value
+          appData.setItem(id, newValue);
+          coolModal.classList.add("modalOut")
+          setTimeout(function() {coolModal.classList.remove("modalOut");coolModal.style.display="none";}, 200)
+          id=null;
+          loadData();
+        }
+      });
+
+      saveButton.addEventListener("click", function(event) {
+        newValue = document.getElementById("newBalance").value
+        appData.setItem(id, newValue);
+        coolModal.classList.add("modalOut")
+        setTimeout(function() {coolModal.classList.remove("modalOut");coolModal.style.display="none";}, 200)
+        id=null;
+        loadData();
+        });
+    }
+
+    function updateTotals() {
+      const liquidTotalContainer = document.getElementById("liquidTotal")
+      const otherTotalContainer = document.getElementById("otherTotal")
+      const netWorthContainer = document.getElementById("netWorth")
+      const debtTotalContainer = document.getElementById("debtTotal")
+      const retirementTotalContainer = document.getElementById("retirementTotal")
+      const liquidCentsContainer = liquidTotalContainer.nextElementSibling
+      const otherCentsContainer = otherTotalContainer.nextElementSibling
+      const netWorthCentsContainer = netWorthContainer.nextElementSibling
+      const debtCentsContainer = debtTotalContainer.nextElementSibling
+      const retirementCentsContainer = retirementTotalContainer.nextElementSibling
+      const ccRewardContainer = document.querySelector("[data-accountID=ccr]")
+
+      // Reset global variables
+      liquidTotal = 0
+      otherTotal = 0
+      netWorthTotal = 0
+      debtTotal = 0
+      liquidCents = 0
+      otherCents = 0
+      debtCents = 0
+      netWorthCents = 0
+      ccRewards = 0
+      retirementTotal = 0
+
+      document.querySelectorAll("[data-accountType='liquid']").forEach((entry)=>
+           {
+        liquidTotal += parseFloat(entry.innerText)
+        entry.innerText = currencyFormat(parseFloat(entry.innerText))
+      });
+      formattedLiquidTotal = Math.floor(liquidTotal).toLocaleString('en-US')
+      liquidTotalContainer.innerText=formattedLiquidTotal;
+      liquidCentsContainer.innerText= cents(liquidTotal % 1);
+
+
+      document.querySelectorAll("[data-accountType='other']").forEach((entry)=>
+           {
+        otherTotal += parseFloat(entry.innerText)
+        entry.innerText = currencyFormat(parseFloat(entry.innerText))
+      });
+      formattedOtherTotal = Math.floor(otherTotal).toLocaleString('en-US')
+      otherTotalContainer.innerText=formattedOtherTotal;
+      otherCentsContainer.innerText= cents(otherTotal % 1);
+
+      document.querySelectorAll("[data-accountType='retirement']").forEach((entry)=>
+           {
+        retirementTotal += parseFloat(entry.innerText)
+        entry.innerText = currencyFormat(parseFloat(entry.innerText))
+      });
+      formattedRetirementTotal = Math.floor(retirementTotal).toLocaleString('en-US')
+      retirementTotalContainer.innerText=formattedRetirementTotal;
+      retirementCentsContainer.innerText= cents(retirementTotal % 1);
+
+      document.querySelectorAll("[data-accountType='debt']").forEach((entry)=>
+           {
+        debtTotal += parseFloat(entry.innerText)
+        entry.innerText = currencyFormat(parseFloat(entry.innerText))
+      });
+      formattedDebtTotal = Math.floor(debtTotal).toLocaleString('en-US')
+      debtTotalContainer.innerText=formattedDebtTotal;
+      debtCentsContainer.innerText= cents(debtTotal % 1);
+
+      // Credit Card Rewards Testing
+      document.querySelectorAll("[data-accountType='debt']").forEach((entry)=>
+           {
+        ccRewards += parseFloat(entry.getAttribute("data-rewards"))
+      });
+      ccRewardContainer.innerText = currencyFormat(ccRewards);
+
+      netWorthTotal = liquidTotal + retirementTotal + otherTotal - debtTotal
+      console.log(netWorthTotal)
+      netWorthContainer.innerText = Math.floor(netWorthTotal).toLocaleString('en-US')
+      netWorthCentsContainer.innerText= cents(netWorthTotal % 1)
+    }
+
+    function loadData() {
+      document.querySelectorAll(".accountTotal span").forEach((item)=>{
+      let id = item.getAttribute("data-accountID");
+      let sectionValue = appData.getItem(id);
+      if(sectionValue == null || sectionValue == ""){
+        appData.setItem(id, parseFloat(item.innerText))
+        return
+      }
+      item.innerText = sectionValue;
+    });
+
+    // Load assumptions
+    document.querySelectorAll("[data-input='assumption']").forEach((entry)=>{
+      let assumptionID = entry.id;
+      let savedAssumption = appData.getItem(assumptionID)
+      if(savedAssumption == null || savedAssumption == ""){
+        return
+      }
+      entry.value = savedAssumption;
+    });
+
+    updateTotals()
+    calculateHS()
+  }
+
+  function saveValue(item) {
+    console.log(item.validity.valid)
+    let id = item.id;
+    let textInput = item.value
+    let numberValue = numberize(textInput)
+    let savedValue = currencyFormat(numberValue)
+    item.value = savedValue;
+    appData.setItem(id, savedValue);
+    calculateHS()
+    }
+
+  function calculateHS() {
+
+    // Declare Empty Variables
+    let retirementBalance, growthRate, retirementAge, age, goalBalance, eFund, mExpenses, nWorth, debt, income, efScore, crScore, nwScore, rScore, finalScore
+
+    // Declare Donut Chart Offsets
+    const efChart = document.querySelector("#efCircle #bar")
+    const crChart = document.querySelector("#crCircle #bar")
+    const nwChart = document.querySelector("#nwCircle #bar")
+    const rChart = document.querySelector("#rCircle #bar")
+    const comboChart = document.querySelector("#comboCircle #bar")
+    const circumfrence = document.getElementById('bar').getAttribute('stroke-dasharray')
+
+    // Declare Donut Chart Color Placeholders
+    const efChartColor = document.querySelector("#efCircle circle:first-child")
+    const crChartColor = document.querySelector("#crCircle circle:first-child")
+    const nwChartColor = document.querySelector("#nwCircle circle:first-child")
+    const rChartColor = document.querySelector("#rCircle circle:first-child")
+    const comboChartColor = document.querySelector("#comboCircle circle:first-child")
+
+    // Declare Score Placeholders
+    const efScoreContainer = document.getElementById("efScore")
+    const crScoreContainer = document.getElementById("crScore")
+    const nwScoreContainer = document.getElementById("nwScore")
+    const rScoreContainer = document.getElementById("rScore")
+    const comboContainer = document.getElementById("comboScore")
+
+    // Declare Score Explainer Placeholders
+    const runwayContainer = document.getElementById("runway")
+    const crContainer = document.getElementById("currentRatio")
+    const targetNWContainer = document.getElementById("targetNetWorth")
+    const currentNWContainer = document.getElementById("currentNetWorth")
+    const rGoalContainer = document.getElementById("retirementGoal")
+    const rFVContainer = document.getElementById("retirementFutureValue")
+
+    // Get Input Values & Assign to Variables
+    retirementBalance = retirementTotal;
+    growthRate = numberize(document.getElementById("ar").value)/100;
+    retirementAge = numberize(document.getElementById("rAge").value);
+    goalBalance = numberize(document.getElementById("rg").value);
+    eFund = liquidTotal;
+    mExpenses = numberize(document.getElementById("ae").value);
+    age = numberize(document.getElementById("age").value);
+    income = numberize(document.getElementById("income").value);
+    nWorth = netWorthTotal;
+    debt = debtTotal;
+
+    // Emergency Fund Calculation
+    efRunway = (eFund/mExpenses).toFixed(2) //months of runway
+
+    if(efRunway <= 6) {
+	     efScore = (efRunway/6)*35;}  //If less than 6 months of runway divide the months by 6 (max/optimal value) and multiply by the number of points the score is worth
+       else {
+	        efScore = 35}  // If 6 months or more, set score to max points for this metric
+    console.log("EF Score: " + efScore)
+
+    runwayContainer.innerText = efRunway
+    efScoreContainer.innerHTML = Math.round(efScore)
+
+    // Current Ratio Calculation
+    currentRatio = (nWorth/debt).toFixed(2)
+
+    if(currentRatio <= 2) {
+      crScore = (currentRatio/2)*35
+    } else {
+      crScore = 35
+    }
+    console.log("CR Score: " + crScore)
+
+    crContainer.innerText = currentRatio
+    crScoreContainer.innerHTML = Math.round(crScore)
+
+    // Net Worth Score
+    targetNW = Number(((age * income)/(retirementAge - age)).toFixed(2))
+
+    if(targetNW <= nWorth) {
+      nwScore = 20
+    } else {
+      nwScore = (nWorth/targetNW)*20
+    }
+    console.log("NW Score: " + nwScore)
+
+    targetNWContainer.innerText = "$" + currencyFormat(targetNW)
+    currentNWContainer.innerText = "$" + currencyFormat(Number(nWorth))
+    nwScoreContainer.innerHTML = Math.round(nwScore)
+    console.log(currencyFormat(targetNW) + " is your Target Net Worth")
+
+    // Retirement Score
+    futureValue = Number((retirementBalance * ((1 + growthRate)**(retirementAge-age))).toFixed(2))
+
+    if(goalBalance <= futureValue) {
+      rScore = 10
+    } else {
+      rScore = (futureValue/goalBalance)*10
+    }
+    console.log("R Score: " + rScore)
+
+    rGoalContainer.innerText = "$" + currencyFormat(Number(goalBalance))
+    rFVContainer.innerText = "$" + currencyFormat(futureValue)
+    rScoreContainer.innerHTML = Math.round(rScore)
+    console.log(currencyFormat(futureValue) + " is estimated retirement value")
+
+    finalScore = efScore+crScore+nwScore+rScore
+    comboContainer.innerHTML = Math.round(finalScore);
+    console.log(finalScore)
+
+    // Update Donuts
+    efChart.style['stroke-dashoffset'] = (circumfrence * (efScore/35))
+    crChart.style['stroke-dashoffset'] = (circumfrence * (crScore/35))
+    nwChart.style['stroke-dashoffset'] = (circumfrence * (nwScore/20))
+    rChart.style['stroke-dashoffset'] = (circumfrence * (rScore/10))
+    comboChart.style['stroke-dashoffset'] = (circumfrence * (finalScore/100))
+
+    // Update Donut Colors
+    if ((efScore/35) > 0.7) {
+      efScoreContainer.style['fill'] = "#2E8864"
+      efChartColor.style['stroke'] = "#2E8864"
+    } else if ((efScore/35) > 0.5) {
+      efScoreContainer.style['fill'] = "#ff8811";
+      efChartColor.style['stroke'] = "#ff8811"
+    } else {
+      efScoreContainer.style['fill'] = "#c12";
+      efChartColor.style['stroke'] = "#c12"
+    }
+
+    if ((crScore/35) > 0.7) {
+      crScoreContainer.style['fill'] = "#2E8864"
+      crChartColor.style['stroke'] = "#2E8864"
+    } else if ((efScore/35) > 0.5) {
+      crScoreContainer.style['fill'] = "#ff8811";
+      crChartColor.style['stroke'] = "#ff8811"
+    } else {
+      crScoreContainer.style['fill'] = "#c12";
+      crChartColor.style['stroke'] = "#c12"
+    }
+
+    if ((nwScore/20) > 0.7) {
+      nwScoreContainer.style['fill'] = "#2E8864"
+      nwChartColor.style['stroke'] = "#2E8864"
+    } else if ((nwScore/20) > 0.5) {
+      nwScoreContainer.style['fill'] = "#ff8811";
+      nwChartColor.style['stroke'] = "#ff8811"
+    } else {
+      nwScoreContainer.style['fill'] = "#c12";
+      nwChartColor.style['stroke'] = "#c12"
+    }
+
+    if ((rScore/10) > 0.7) {
+      rScoreContainer.style['fill'] = "#2E8864"
+      rChartColor.style['stroke'] = "#2E8864"
+    } else if ((rScore/10) > 0.5) {
+      rScoreContainer.style['fill'] = "#ff8811";
+      rChartColor.style['stroke'] = "#ff8811"
+    } else {
+      rScoreContainer.style['fill'] = "#c12";
+      rChartColor.style['stroke'] = "#c12"
+    }
+
+    if ((finalScore/100) > 0.7) {
+      comboChartColor.style['stroke'] = "#1e5a42"
+    } else if ((finalScore/100) > 0.5) {
+      comboContainer.style['fill'] = "#ff8811";
+      comboChartColor.style['stroke'] = "#ff8811"
+    } else {
+      comboContainer.style['fill'] = "#c12";
+      comboChartColor.style['stroke'] = "#c12"
+    }
+  }
+
+  function countUp(target, startNumber, endNumber, duration) {
+    if (startNumber === endNumber) {return;}
+    let depth = endNumber - startNumber;
+    let countPositon = startNumber;
+    let increment = endNumber > startNumber? 1 : -1; //https://devbytroy.wordpress.com/2010/04/12/javascript-conditional-operator-question-mark-colon
+    let animationTime = Math.abs(Math.floor(duration / depth));
+    console.log(duration, depth, animationTime)
+    let processing = setInterval(function() {
+      countPositon += increment;
+      document.getElementById(target).innerHTML = currencyFormat(countPositon);
+      if (countPositon == endNumber) {clearInterval(processing);}
+    }, animationTime)
+  }
+  // thousands --> hundreds --> tens --> ones
+
+  function toggleView(name) {
+    accountClass = "[data-accountType='" + name + "']"
+    document.querySelectorAll(accountClass).forEach((entry)=>
+         {
+      box = entry.closest(".accountBox")
+      box.classList.toggle("hidden")
+    });
+  }
+
+  function fetchThis() {
+    fetch('score.html').then(function (response) {
+      if (response.ok) {        // Check if Response is a 200
+      return response.text();   // if JSON, use response.json()
+    } else {
+      return Promise.reject(response);
+    }
+  }).then(function (data) {   // data can be named anything
+      console.log(data)
+    }).catch(function (err) {
+      console.log("Something Went Wrong.", err);
+    })
+  }
+
+  function pushThis() {
+    fetch('push.html', {
+      method:'POST',
+      body: '',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      referrer: 'no-referrer'
+    })
+  }
+
+
+
+  </script>

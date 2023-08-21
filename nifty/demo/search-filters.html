@@ -1,0 +1,3707 @@
+<html>
+
+<head>
+  <title>Nifty Links Search Results</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon-65691c5ff8ebfb4d4cc225658f41f2731f54c1f867898c44d4a0e9b079e1d083.png">
+  <meta name="csrf-param" content="authenticity_token">
+  <meta name="csrf-token" content="iutqbqbgYZPrBX8SlNxq9/qRupOrZk8bCNntiXdcDWnLMEpkKMnF3KASMe6s7diJ09/0cwGnuEp/g8ryTbMUDA==">
+  <link href="https://fonts.googleapis.com/css?family=Lato|Roboto" rel="stylesheet">
+  <script src="/assets/application-d292375853784be884939e9b464c3962fc11d08c0d5ee63d357129f8e2fed405.js"></script>
+  <style>
+    :root {
+      /* DARKMODE */
+      --main-bg: #252729;
+      --main-bg-lit: #2b2d2f;
+      --main-text: white;
+      --inputs: #303234;
+      --input-text: white;
+      --input-border: rgba(255, 255, 255, 0.25);
+      --white: black;
+      --black: white;
+      --logo-fill: white;
+
+      --light-blue: #5fc9ff;
+      --blue-dark: #86c0fb;
+      --lit-blue: #63b6ff;
+      --submit-btn: #289668;
+      --submit-btn-hover: #007142;
+      --gray: rgba(255, 255, 255, 0.5);
+      --lit-gray: rgba(255, 255, 255, .25);
+      --categories: rgba(255, 255, 255, .35);
+      --flash-bg: rgba(255, 255, 255, .5);
+      --flash-notice: #75ff75;
+      --flash-warning: #ffc986;
+
+      --table-bg: #333537;
+      --table-border-outer: #333537;
+      --table-text: white;
+      --table-border-inner: rgba(224, 224, 224, .1);
+      --table-highlight: rgba(255, 255, 255, 0.025);
+      --table-row-select: rgba(220, 236, 251, .15);
+      --table-row-select-hover: rgba(220, 236, 251, .18);
+      --table-tooltip: #3d3f42;
+      --table-deep-red: #373333;
+    }
+
+    .price-range-slider input[type=range]::-webkit-slider-thumb,
+    .da-range-slider input[type=range]::-webkit-slider-thumb {
+      background: var(--lit-blue);
+      border: 4px solid var(--blue-dark) !important;
+      transition: background .2s ease-in, border .2s ease-out, color .2s ease
+    }
+
+    .price-range-slider input[type=range]:hover::-webkit-slider-thumb,
+    .da-range-slider input[type=range]:hover::-webkit-slider-thumb {
+      background: var(--light-blue)
+    }
+
+    .price-range-slider input[type=range]:active::-webkit-slider-thumb,
+    .da-range-slider input[type=range]:active::-webkit-slider-thumb {
+      background: #fff
+    }
+
+    .price-range-slider input[type=range]:hover::-webkit-slider-thumb,
+    .da-range-slider input[type=range]:hover::-webkit-slider-thumb,
+    .price-range-slider input[type=range]:active::-webkit-slider-thumb,
+    .da-range-slider input[type=range]:active::-webkit-slider-thumb {
+      color: var(--blue-dark);
+      border: 4px solid var(--blue-dark)
+    }
+
+    .autocomplete .clear-search:hover,
+    .category-selection .new-cats:hover,
+    .agreement button:hover {
+      background: linear-gradient(-45deg, var(--lit-blue), var(--lit-blue), var(--lit-blue), var(--lit-blue), var(--light-blue), var(--lit-blue), var(--lit-blue), var(--lit-blue));
+      background-size: 200% 200%;
+      animation: hoverGradient 3s linear infinite
+    }
+
+    @keyframes hoverGradient {
+      0% {
+        background-position: -80% 50%
+      }
+
+      100% {
+        background-position: 120% 50%
+      }
+    }
+
+    nav.main .new-order-link,
+    .at-a-glance,
+    .ordering .total a,
+    .ordering .checkout a,
+    .pm-td-status p span {
+      background: #202f52;
+      background: radial-gradient(circle, #2178c3, #145186)
+    }
+
+    .ordering .total a:hover,
+    .ordering .checkout a:hover,
+    .agreement h3 {
+      background: radial-gradient(circle, #2178c3, #145186)
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: Lato;
+      font-weight: 100;
+      -webkit-font-smoothing: antialiased
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0
+    }
+
+    body {
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--main-bg);
+      color: var(--main-text)
+    }
+
+    a {
+      color: var(--lit-blue);
+      border-bottom: 1px dotted;
+      text-decoration: none
+    }
+
+    a:hover {
+      color: var(--blue-dark)
+    }
+
+    a[target=_blank] {
+      cursor: alias
+    }
+
+    p {
+      margin-top: 0;
+      font-size: .85em
+    }
+
+    sup {
+      font-size: .75em;
+      vertical-align: top;
+      margin-right: .05em
+    }
+
+    h1 {
+      font-size: 2.2em;
+      margin: 0;
+      font-family: roboto
+    }
+
+    h2 {
+      margin-bottom: 0
+    }
+
+    h4 {
+      text-decoration: underline
+    }
+
+    small {
+      font-size: .75em;
+      color: var(--gray)
+    }
+
+    small.bold {
+      font-weight: 700
+    }
+
+    small.super {
+      font-size: .6em
+    }
+
+    strong {
+      font-weight: 800
+    }
+
+    section {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 25px 10px
+    }
+
+    section:first-child {
+      padding: 25px 10px
+    }
+
+    section.half {
+      display: grid;
+      grid-template-columns: auto auto
+    }
+
+    .highlight {
+      background: inherit;
+      font-weight: 800;
+    }
+
+    select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      padding: .35em 2em .35em .5em;
+      width: auto;
+      cursor: pointer;
+      font-size: .85em;
+      font-weight: 700;
+      border: 1px solid var(--gray);
+      background: var(--inputs);
+      color: var(--black);
+      background-image: linear-gradient(45deg, transparent 50%, var(--gray) 50%), linear-gradient(135deg, var(--gray) 50%, transparent 50%), linear-gradient(to right, var(--gray), var(--gray));
+      background-position: calc(100% - 10px) calc(.5em + 5px), calc(100% - 5px) calc(.5em + 5px), calc(100% - 1.7em) .35em;
+      background-size: 5px 5px, 5px 5px, 1px 1.5em;
+      background-repeat: no-repeat
+    }
+
+    select:hover {
+      border-color: var(--blue-dark);
+      background-image: linear-gradient(45deg, transparent 50%, var(--black) 50%), linear-gradient(135deg, var(--black) 50%, transparent 50%), linear-gradient(to right, var(--black), var(--black))
+    }
+
+    nav.main {
+      padding: 1px 20px;
+      position: sticky;
+      top: 0;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      text-align: right;
+      grid-gap: 10px;
+      background: var(--main-bg-lit);
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, .25);
+      z-index: 10
+    }
+
+    nav.main a {
+      color: var(--blue-dark);
+      border-bottom: 0;
+      margin: 0 10px;
+      opacity: .65;
+      transition: opacity .25s, border .25s
+    }
+
+    nav.main a:hover {
+      opacity: 1;
+      border-bottom: 1px dotted
+    }
+
+    nav.main a.onpage {
+      opacity: 1;
+      border-bottom: 1px dotted;
+      color: var(--black)
+    }
+
+    nav.main a.logo {
+      opacity: 1;
+      border-bottom: 0
+    }
+
+    nav.main a.logo svg {
+      vertical-align: middle;
+      padding-top: .65em;
+      padding-bottom: .4em;
+      fill: var(--logo-fill)
+    }
+
+    nav.main .new-order-link {
+      color: #fff;
+      padding: 7px 15px;
+      border-radius: 3px;
+      font-weight: 700;
+      font-size: .8em;
+      opacity: 1;
+      transition: transform .25s;
+      transform: scale(1)
+    }
+
+    nav.main .new-order-link:hover {
+      color: #fff;
+      border-bottom: 0;
+      transform: scale(1.2)
+    }
+
+    nav.main .new-order-link span {
+      padding-right: 10px;
+      font-size: 1.7em;
+      line-height: .1em;
+      display: inline-block;
+      vertical-align: middle;
+      margin-bottom: 3px
+    }
+
+    .at-a-glance {
+      padding: 1px 0 0;
+      color: #fff
+    }
+
+    .at-a-glance:not(.first-nav) {
+      padding: .75em 0
+    }
+
+    .at-a-glance .container {
+      width: 100%;
+      max-width: 1300px;
+      margin: auto
+    }
+
+    .at-a-glance .container.starting {
+      display: flex;
+      align-items: center
+    }
+
+    .at-a-glance .container.starting:not(.starting)>* {
+      width: 100%
+    }
+
+    .at-a-glance .container.starting.starting div:first-child {
+      width: 100%
+    }
+
+    .at-a-glance .container.starting.starting div:last-child {
+      width: auto
+    }
+
+    .at-a-glance .container>section {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 20px;
+      text-align: center;
+      padding: 10px
+    }
+
+    .at-a-glance h1 {
+      font-weight: 700;
+      font-family: Roboto
+    }
+
+    .at-a-glance h5 {
+      font-weight: 700;
+      margin: 0;
+      padding: 0;
+      color: #ccf0ff
+    }
+
+    .at-a-glance span {
+      font-size: 2.5em;
+      font-weight: 100;
+      font-family: roboto
+    }
+
+    .at-a-glance a {
+      color: #fff
+    }
+
+    .at-a-glance .back-to-dash {
+      float: right;
+      opacity: .7;
+      text-decoration: none;
+      font-size: .9em;
+      border-radius: 3px;
+      padding: .5em 1em;
+      border: 1px solid #fff;
+      color: #fff;
+      transition: opacity .25s;
+      white-space: nowrap
+    }
+
+    .at-a-glance .back-to-dash:hover {
+      color: #fff;
+      opacity: 1
+    }
+
+    meter {
+      background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Ctext font-size="100" y="0.9em" stroke-linejoin="round" fill="transparent" stroke="darkorange" stroke-width="4"%3E★%3C/text%3E%3C/svg%3E') 0/auto 100%;
+      height: 1em;
+      width: 5em
+    }
+
+    meter::-webkit-meter-bar {
+      background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Ctext font-size="100" y="0.9em" stroke-linejoin="round" fill="transparent" stroke="darkorange" stroke-width="4"%3E★%3C/text%3E%3C/svg%3E') 0/auto 100%
+    }
+
+    meter:-moz-meter-optimum::-moz-meter-bar,
+    meter:-moz-meter-sub-optimum::-moz-meter-bar,
+    meter:-moz-meter-sub-sub-optimum::-moz-meter-bar {
+      background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Ctext font-size="100" y="0.9em" stroke-linejoin="round" fill="gold" stroke="darkorange" stroke-width="4"%3E★%3C/text%3E%3C/svg%3E') 0/auto 100%
+    }
+
+    meter::-webkit-meter-optimum-value,
+    meter::-webkit-meter-suboptimum-value,
+    meter::-webkit-meter-even-less-good-value {
+      background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Ctext font-size="100" y="0.9em" stroke-linejoin="round" fill="gold" stroke="darkorange" stroke-width="4"%3E★%3C/text%3E%3C/svg%3E') 0/auto 100%
+    }
+
+    table tbody tr:hover {
+      background: var(--table-highlight)
+    }
+
+    table tbody tr.selected {
+      background: var(--table-row-select)
+    }
+
+    table tbody tr.selected:hover {
+      background: var(--table-row-select-hover)
+    }
+
+    table tbody tr.selected td,
+    table tbody tr.selected a {
+      font-weight: 400
+    }
+
+    table thead {
+      color: #fff
+    }
+
+    table tr:not(:last-child) td {
+      border-bottom: 1px solid var(--table-border-inner)
+    }
+
+    table th {
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      font-weight: 700;
+      text-align: left;
+      text-transform: uppercase;
+      font-family: roboto;
+      background: #1c67a7;
+      position: sticky;
+      top: 4em;
+      z-index: 9;
+    }
+    .search-parent {    position: sticky;
+    top: 0;
+    z-index: 99;}
+
+    table th.sorted {
+      background: #2077c1;
+      /* border-left: 1px solid rgba(255, 255, 255, .25);
+      border-right: 1px solid rgba(255, 255, 255, .25) */
+    }
+
+    table th,
+    table td {
+      padding: .65em;
+      font-size: .85em;
+      vertical-align: top
+    }
+
+    table td {
+      letter-spacing: .01em;
+      color: var(--table-text);
+      vertical-align: middle
+    }
+
+    table td.status-td {
+      max-width: 175px
+    }
+
+    table td.anchor-text-td {
+      max-width: 200px
+    }
+
+    table select {
+      font-size: .9em
+    }
+
+    label {
+      vertical-align: top
+    }
+
+    label small {
+      display: block
+    }
+
+    input:not([type=submit]) {
+      padding: .35em .5em;
+      color: var(--input-text);
+      font-weight: 700;
+      background: var(--inputs);
+      border: 1px solid var(--input-border);
+      outline: none;
+      transition: border .2s;
+      border-radius: 3px
+    }
+
+    input:not([type=submit])::placeholder {
+      color: var(--gray);
+      transition: color .2s
+    }
+
+    input:not([type=submit]):hover,
+    input:not([type=submit]) :focus {
+      border-color: var(--black);
+      color: var(--black);
+      background: 0 0
+    }
+
+    input:not([type=submit]):hover::placeholder,
+    input:not([type=submit]) :focus::placeholder {
+      color: #666
+    }
+
+    select[multiple=multiple] {
+      resize: both
+    }
+
+    input[type=submit] {
+      border: 0;
+      background: var(--submit-btn);
+      color: #fff;
+      font-weight: 700;
+      padding: 5px 15px;
+      margin: 5px 0;
+      cursor: pointer;
+      border-radius: 3px
+    }
+
+    input[type=submit]:hover {
+      background: var(--submit-btn-hover)
+    }
+
+    .app-version {
+      text-align: right;
+      font-size: .65em;
+      padding: 50px 5px;
+      color: #666;
+      position: relative
+    }
+
+    .circular-chart {
+      display: block;
+      margin: 10px auto;
+      max-width: 35%;
+      max-height: 250px
+    }
+
+    .circle-bg {
+      fill: none;
+      stroke: rgba(255, 255, 255, .12);
+      stroke-width: 1.5
+    }
+
+    .circle {
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: square;
+      animation: progress 1s ease-out forwards
+    }
+
+    @keyframes progress {
+      0% {
+        stroke-dasharray: 0 100
+      }
+    }
+
+    .circular-chart.orange .circle {
+      stroke: #ff9f00
+    }
+
+    .circular-chart.green .circle {
+      stroke: #2dad78
+    }
+
+    .circular-chart.red .circle {
+      stroke: #d04949
+    }
+
+    .number,
+    .verbiage {
+      fill: #fff;
+      font-family: sans-serif;
+      font-size: .45em;
+      text-anchor: middle
+    }
+
+    .verbiage {
+      font-size: .22em;
+      color: rgba(255, 255, 255, .65)
+    }
+
+    .nothing {
+      text-align: center;
+      color: gray
+    }
+
+    .hidden-field {
+      display: none
+    }
+
+    .delete_btn {
+      text-decoration: none;
+      border-bottom: 0
+    }
+
+    .half {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 5px
+    }
+
+    .new-order-div.hidden {
+      display: none
+    }
+
+    .tooltip {
+      position: relative;
+      cursor: help
+    }
+
+    .tooltip:after {
+      content: "✽"
+    }
+
+    .tooltip .tip {
+      position: absolute;
+      background: rgba(0, 0, 0, .8);
+      color: #fff;
+      border-radius: 5px;
+      padding: 5px 10px;
+      bottom: -80%;
+      left: 30%;
+      font-size: 12px;
+      height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: bottom .2s;
+      cursor: initial
+    }
+
+    .tooltip:hover .tip {
+      opacity: 1;
+      height: auto;
+      bottom: -50%
+    }
+
+    .categories {
+      display: flex;
+      flex-wrap: wrap
+    }
+
+    .categories input {
+      display: none
+    }
+
+    .categories label {
+      width: calc(25% - 5px);
+      line-height: 1em;
+      margin: 2px 5px 2px 0;
+      cursor: pointer;
+      user-select: none
+    }
+
+    .categories label:hover small {
+      color: var(--black)
+    }
+
+    .categories small {
+      display: inline-block;
+      position: relative;
+      padding-left: 20px
+    }
+
+    .categories small:after {
+      content: "";
+      border: 1px solid;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      position: absolute;
+      left: 0;
+      top: 0
+    }
+
+    .categories small:before {
+      content: "";
+      height: 12px;
+      width: 12px;
+      background: var(--gray);
+      transform: scale(0);
+      transition: transform .2s cubic-bezier(1, -.65, .69, 1.86);
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      border-radius: 50%
+    }
+
+    .categories input:checked+small:before {
+      transform: scale(1)
+    }
+
+    .new-link-bg {
+      background: rgba(0, 0, 0, .5);
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      left: 0;
+      top: 0;
+      z-index: 12
+    }
+
+    .new-link-bg.inactive {
+      display: none
+    }
+
+    .new-link-bg .new-link {
+      z-index: 1;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--table-bg);
+      border: 1px solid var(--gray);
+      padding: 1em 2em
+    }
+
+    .new-link-bg .new-link h3 {
+      margin: 0;
+      font-weight: 700
+    }
+
+    .edit-link-bg {
+      background: rgba(0, 0, 0, .5);
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      left: 0;
+      top: 0;
+      z-index: 12
+    }
+
+    .edit-link-bg.inactive {
+      display: none
+    }
+
+    .edit-link-bg .edit-link {
+      z-index: 1;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--table-bg);
+      border: 1px solid var(--gray);
+      padding: 1em 2em
+    }
+
+    .edit-link-bg .edit-link h3 {
+      margin: 0;
+      font-weight: 700
+    }
+
+    .check-input {
+      border: 1px solid;
+      width: 16px;
+      height: 16px;
+      display: inline-block;
+      border-radius: 50%;
+      text-align: center;
+      overflow: hidden;
+      user-select: none;
+      vertical-align: baseline;
+      position: relative;
+      cursor: pointer;
+      margin-right: 1em;
+    }
+
+    .check-input input {
+      display: none
+    }
+
+    .check-input span {
+      height: 12px;
+      width: 12px;
+      background: var(--black);
+      transform: scale(0) translate(-11%, -8%);
+      transition: transform .2s cubic-bezier(1, -.65, .69, 1.86);
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      border-radius: 50%
+    }
+
+    .check-input input:checked+span {
+      transform: scale(1) translate(-11%, -8%)
+    }
+
+    .autocomplete {
+      display: block;
+      margin: 0 auto;
+      position: relative
+    }
+
+    .autocomplete:hover .list-wrapper {
+      height: 190px;
+      overflow-y: scroll;
+      border-bottom: 1px solid #969696
+    }
+
+    .autocomplete ul {
+      padding: 0;
+      margin: 0
+    }
+
+    .autocomplete .selected-items {
+      padding: 0;
+      display: block;
+      vertical-align: top;
+      text-align: left
+    }
+
+    .autocomplete .selected-items li {
+      list-style: none;
+      background-color: var(--lit-blue);
+      color: var(--white);
+      border-radius: 4px;
+      padding: 5px 10px;
+      display: inline-block;
+      margin: 4px 2px 0;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      font-size: .8em;
+      transition: font-size .15s, padding .15s;
+      user-select: none
+    }
+
+    .autocomplete .selected-items li.hide {
+      display: none
+    }
+
+    .autocomplete .selected-items li:hover {
+      font-size: .7em;
+      padding: 11px 13.5px 2px
+    }
+
+    .autocomplete .selected-items li:hover:before {
+      top: 3px
+    }
+
+    .autocomplete .selected-items li:before {
+      content: 'Remove';
+      width: 100%;
+      position: absolute;
+      top: -100%;
+      left: 0;
+      color: var(--white);
+      text-align: center;
+      font-weight: 700;
+      font-size: .7em;
+      line-height: 1em;
+      transition: top .15s
+    }
+
+    .autocomplete .selected-items:hover~.input-wrapper .clear-search {
+      right: 0
+    }
+
+    .autocomplete .selected-input-wrapper {
+      border: solid 1px var(--input-border);
+      border-radius: 3px
+    }
+
+    .autocomplete .selected-input-wrapper:hover {
+      border-color: #5f5f5f
+    }
+
+    .autocomplete .input-wrapper {
+      position: relative;
+      vertical-align: top;
+      overflow: hidden
+    }
+
+    .autocomplete .input-wrapper input::-webkit-input-placeholder {
+      color: gray
+    }
+
+    .autocomplete .input-wrapper input::-moz-placeholder {
+      color: gray
+    }
+
+    .autocomplete .input-wrapper input::placeholder {
+      color: gray
+    }
+
+    .autocomplete .input-wrapper input:hover~.clear-search,
+    .autocomplete .input-wrapper input:focus~.clear-search {
+      right: 0
+    }
+
+    .autocomplete .search-input {
+      width: 100%;
+      max-width: 100%;
+      border: none;
+      display: block;
+      padding: 10px 75px 10px 10px;
+      box-sizing: border-box;
+      color: var(--black);
+      font-size: .8em
+    }
+
+    .autocomplete .search-input:hover {
+      background: var(--white);
+      color: var(--gray)
+    }
+
+    .autocomplete .search-input:focus {
+      border: none;
+      outline: none;
+      color: var(--gray)
+    }
+
+    .autocomplete .clear-search {
+      color: var(--white);
+      position: absolute;
+      top: 0;
+      right: -100%;
+      background: var(--lit-blue);
+      height: 100%;
+      padding: 10px 5px 0;
+      font-size: .8em;
+      transition: right .2s;
+      cursor: pointer
+    }
+
+    .autocomplete .clear-search:hover {
+      right: 0
+    }
+
+    .autocomplete .list-wrapper {
+      z-index: 9;
+      background: var(--white);
+      overflow: hidden;
+      border-left: 1px solid #969696;
+      border-right: 1px solid #969696;
+      position: absolute;
+      width: 100%;
+      height: 0;
+      transition: height .2s
+    }
+
+    .autocomplete .list-wrapper li {
+      list-style: none;
+      padding: 5px;
+      text-align: left;
+      font-size: .9em;
+      position: relative
+    }
+
+    .autocomplete .list-wrapper li:hover {
+      background-color: var(--blue-dark);
+      color: var(--white);
+      cursor: pointer;
+      border-bottom: 1px solid #969696
+    }
+
+    .autocomplete .list-wrapper li:hover:after {
+      right: 10px
+    }
+
+    .autocomplete .list-wrapper li:after {
+      content: "Click to Select";
+      position: absolute;
+      right: -100%;
+      color: var(--white);
+      font-size: .85em;
+      transition: right .25s
+    }
+
+    .autocomplete .list-wrapper li.hide {
+      display: none
+    }
+
+    .flashes {
+      position: fixed;
+      left: 50%;
+      transform: translate(-50%);
+      background: var(--flash-bg);
+      padding: 5px;
+      max-width: 300px;
+      width: 100%;
+      z-index: 100;
+      border-bottom: 1px solid var(--black);
+      border-left: 1px solid var(--black);
+      border-right: 1px solid var(--black);
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px
+    }
+
+    .flashes p {
+      text-align: center;
+      font-size: .9em;
+      font-weight: 700;
+      padding: 8px;
+      margin: 0
+    }
+
+    .flashes p span {
+      font-size: 2em;
+      line-height: 1em;
+      position: absolute;
+      left: 3px;
+      top: 50%;
+      transform: translate(0, -50%)
+    }
+
+    .flashes[data-animation-style=false] {
+      top: 0;
+      animation: showFlashFalse .5s linear
+    }
+
+    @keyframes showFlashFalse {
+      0% {
+        top: -300px
+      }
+
+      100% {
+        top: 0
+      }
+    }
+
+    .flashes[data-animation-style=true] {
+      top: -300px;
+      animation: showFlashTrue 5s linear
+    }
+
+    @keyframes showFlashTrue {
+
+      0%,
+      100% {
+        top: -300px
+      }
+
+      5%,
+      95% {
+        top: 0
+      }
+    }
+
+    .flashes .notice {
+      color: var(--flash-notice)
+    }
+
+    .flashes .notice span {
+      display: none
+    }
+
+    .flashes .warning {
+      color: var(--flash-warning)
+    }
+
+    .flashes .warning span {
+      color: var(--flash-warning)
+    }
+
+    .flashes .alert {
+      color: #cc2020
+    }
+
+    .flashes .alert span {
+      color: #cc2020
+    }
+
+    .pm-voting a {
+      padding: 0 2px;
+      border: 1px solid #ccc;
+      text-decoration: none;
+      color: #ccc;
+      background: #fff
+    }
+
+    .pm-voting a:hover {
+      color: #fff
+    }
+
+    .pm-voting a.down-vote:hover {
+      color: red;
+      border-color: red
+    }
+
+    .pm-voting a.up-vote:hover {
+      color: green;
+      border-color: green
+    }
+
+    .pm-voting a:first-child {
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px
+    }
+
+    .pm-voting a:last-child {
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px
+    }
+
+    .price-range-slider,
+    .da-range-slider {
+      position: relative;
+      padding: 15px 0 50px
+    }
+
+    .rangeValues {
+      position: absolute;
+      top: -13px;
+      left: 0
+    }
+
+    .price-range-slider input[type=range],
+    .da-range-slider input[type=range] {
+      pointer-events: none;
+      position: absolute;
+      -webkit-appearance: none;
+      -webkit-tap-highlight-color: transparent;
+      border: none;
+      border-radius: 14px;
+      box-shadow: inset 0 1px 0 0 #cdc6c6, inset 0 -1px 0 0 #d9d4d4;
+      -webkit-box-shadow: inset 0 1px 0 0 #cdc6c6, inset 0 -1px 0 0 #d9d4d4;
+      overflow: hidden;
+      left: 0;
+      width: 250px;
+      outline: none;
+      height: 20px;
+      margin: 0;
+      padding: 0
+    }
+
+    .price-range-slider input[type=range]:hover,
+    .da-range-slider input[type=range]:hover {
+      background: 0 0
+    }
+
+    .price-range-slider input[type=range]::-webkit-slider-thumb,
+    .da-range-slider input[type=range]::-webkit-slider-thumb {
+      pointer-events: all;
+      position: relative;
+      z-index: 1;
+      outline: 0;
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer
+    }
+
+    .price-range-slider input[type=range]::-moz-range-thumb,
+    .da-range-slider input[type=range]::-moz-range-thumb {
+      pointer-events: all;
+      position: relative;
+      z-index: 10;
+      -moz-appearance: none;
+      width: 20px;
+      height: 20px;
+      border: none;
+      border-radius: 14px;
+      background-image: radial-gradient(to bottom, #dad8da 0, #413F41 100%)
+    }
+
+    .price-range-slider input[type=range]::-ms-thumb,
+    .da-range-slider input[type=range]::-ms-thumb {
+      pointer-events: all;
+      position: relative;
+      z-index: 10;
+      -ms-appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 14px;
+      border: 0;
+      background-image: radial-gradient(to bottom, #dad8da 0, #413F41 100%)
+    }
+
+    .price-range-slider input[type=range]::-moz-range-track,
+    .da-range-slider input[type=range]::-moz-range-track {
+      position: relative;
+      z-index: -1;
+      background-color: #000;
+      border: 0
+    }
+
+    .price-range-slider input[type=range]:last-of-type::-moz-range-track,
+    .da-range-slider input[type=range]:last-of-type::-moz-range-track {
+      -moz-appearance: none;
+      background: none transparent;
+      border: 0
+    }
+
+    .price-range-slider input[type=range]::-moz-focus-outer,
+    .da-range-slider input[type=range]::-moz-focus-outer {
+      border: 0
+    }
+
+    .link-type-selector {
+      position: absolute;
+      top: -120%;
+      left: 50%;
+      transform: translate(-50%);
+      min-width: 200px;
+      padding: 25px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: #fff;
+      transition: top .5s;
+      box-shadow: 1px 1px 55px rgba(0, 0, 0, .2)
+    }
+
+    .link-type-selector.open {
+      top: 0
+    }
+
+    .link-type-selector a {
+      text-align: center
+    }
+
+    .link-type-selector .half {
+      grid-gap: 15px
+    }
+
+    .link-type-selector .half a {
+      padding: 5px;
+      border: 1px solid #ccc;
+      transition: color .25s, background .25s;
+      font-weight: 700;
+      text-decoration: none
+    }
+
+    .link-type-selector .half a:hover {
+      background: var(--blue-dark);
+      color: #fff
+    }
+
+    .user-settings input {
+      padding: 5px
+    }
+
+    .ordering-list-table {
+      width: 100%;
+      background: var(--table-bg);
+      border-radius: 5px;
+      box-shadow: 5px 7px 12px rgba(14, 14, 14, .075);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .ordering-list-table tr:first-child {
+      border-bottom-left-radius: 5px
+    }
+
+    .ordering-list-table tr:last-child {
+      border-bottom-right-radius: 5px
+    }
+
+    .ordering-list-table th:first-child {
+      border-top-left-radius: 5px
+    }
+
+    .ordering-list-table th:last-child {
+      border-top-right-radius: 5px
+    }
+
+    .ordering-list-table th a {
+      text-decoration: none;
+      font-size: .8em;
+      margin-left: 10px;
+      color: #fff;
+      border-bottom: 0;
+      float: right
+    }
+
+    .ordering-list-table input[type=checkbox] {
+      cursor: pointer
+    }
+
+    .ordering-list-table .report-link {
+      text-decoration: none;
+      opacity: 0;
+      width: 0;
+      overflow: hidden;
+      filter: grayscale(1);
+      transition: opacity .5s, filter .5s;
+      border-bottom: 0
+    }
+
+    .ordering-list-table .report-link:hover {
+      filter: grayscale(0)
+    }
+
+    .ordering-list-table td a[target=_blank] {
+      position: relative;
+      padding-left: 0;
+      transition: padding .1s;
+      font-weight: 600
+    }
+
+    .ordering-list-table td a[target=_blank]:visited,
+    .ordering-list-table td a[target=_blank]:active,
+    .ordering-list-table td a[target=_blank]:focus,
+    .ordering-list-table td a[target=_blank]:focus-within {
+      padding-left: 15px
+    }
+
+    .ordering-list-table td a[target=_blank]:visited:before,
+    .ordering-list-table td a[target=_blank]:active:before,
+    .ordering-list-table td a[target=_blank]:focus:before,
+    .ordering-list-table td a[target=_blank]:focus-within:before {
+      height: 0;
+      width: 0;
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      border-top: 7px solid transparent;
+      border-bottom: 7px solid transparent;
+      border-left: 10px solid #238ec5;
+      transform: translate(0, -40%)
+    }
+
+    .ordering-list-table tr:hover .report-link {
+      opacity: 1;
+      width: 100%
+    }
+
+    .link-count {
+      color: var(--black);
+      border: 1px solid var(--gray);
+      display: inline-block;
+      text-align: center;
+      margin-left: 1em;
+      padding: .1em .5em;
+      border-radius: 3px;
+      font-size: .65em;
+      vertical-align: top;
+      position: relative;
+      cursor: default
+    }
+
+    .link-count span {
+      display: none;
+      text-align: left;
+      border-radius: 3px;
+      padding: 1em 1.5em;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, .25);
+      background: var(--table-tooltip);
+      color: var(--black);
+      border: 1px solid #555;
+      font-size: 1.2em;
+      position: absolute;
+      z-index: 4;
+      white-space: nowrap
+    }
+
+    .link-count:hover span {
+      display: block
+    }
+
+    .report-modal {
+      opacity: 0;
+      transition: opacity .5s
+    }
+
+    .report-modal:not(.open) .modal-body {
+      top: 20%;
+      transition: top .5s
+    }
+
+    .report-modal.open {
+      opacity: 1
+    }
+
+    .report-modal.open .modal-body {
+      position: fixed;
+      top: 50%;
+      opacity: 1;
+      width: 100%;
+      max-width: 450px;
+      left: 50%;
+      background: var(--white);
+      border: 1px solid var(--gray);
+      padding: 10px;
+      transform: translate(-50%, -50%);
+      z-index: 11
+    }
+
+    .report-modal.open .modal-body h3 {
+      margin: 0;
+      border-bottom: 1px solid var(--gray)
+    }
+
+    .report-modal.open .modal-body p {
+      font-size: 1em
+    }
+
+    .report-modal.open .modal-body input {
+      vertical-align: top
+    }
+
+    .report-modal.open .modal-body label {
+      display: block;
+      cursor: pointer;
+      font-size: .8em
+    }
+
+    .report-modal.open .modal-body .labels {
+      display: grid;
+      grid-template-columns: 1fr 1fr
+    }
+
+    .report-modal.open .modal-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, .5);
+      z-index: 10
+    }
+
+    .link-cats {
+      max-width: 125px;
+      overflow: auto;
+      white-space: nowrap;
+    }
+
+    .link-cats span {
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: .75em;
+      margin: 2px;
+      cursor: default;
+      display: -webkit-inline-box;
+      color: var(--categories);
+      border: 1px solid
+    }
+
+    .link-cats.smaller span {
+      font-size: .5em
+    }
+
+    .link-urls {
+      max-width: 300px
+    }
+
+    .link-urls a {
+      max-width: 90%;
+      overflow: auto;
+      white-space: nowrap;
+      display: inline-block
+    }
+
+    .not-indexed {
+      background: #fff;
+      padding: 2px 3px;
+      border: 1px solid #049cb5;
+      color: #049cb5;
+      border-radius: 5px;
+      font-size: 7.5px;
+      margin: 0 1px;
+      cursor: default;
+      font-weight: 700
+    }
+
+    .ordering {
+      position: fixed;
+      bottom: -150px;
+      transition: bottom .25s;
+      right: 15px;
+      background: var(--main-bg-lit);
+      z-index: 99;
+      border-top: 1px solid #000;
+      border-right: 1px solid #000;
+      border-left: 1px solid #000
+    }
+
+    .ordering.show-checkout {
+      bottom: 0
+    }
+
+    .ordering .order-list {
+      max-height: calc(6.5 * 44px);
+      overflow: auto;
+      background: var(--main-bg-lit);
+      transition: height .15s linear
+    }
+
+    .ordering .order-list:not(.show) {
+      height: 0 !important
+    }
+
+    .ordering .order-list p {
+      padding: 5px 10px;
+      margin: 0;
+      border-bottom: 1px solid #ccc;
+      position: relative;
+      overflow: hidden
+    }
+
+    .ordering .order-list p:hover {
+      background: var(--table-highlight)
+    }
+
+    .ordering .order-list p:hover a {
+      right: 0
+    }
+
+    .ordering .order-list a {
+      position: absolute;
+      top: 0;
+      cursor: pointer;
+      transition: right .2s;
+      right: -10%;
+      height: 100%;
+      padding: 0 10px;
+      color: #fff;
+      border-bottom: 0;
+      font-size: 1em;
+      background: #a70202
+    }
+
+    .ordering .order-list a:before {
+      content: "CLEAR";
+      position: absolute;
+      transform: rotate(90deg) translate(-17%, -27%);
+      top: 50%;
+      font-size: .5em;
+      left: -8px;
+      font-weight: 700
+    }
+
+    .ordering .order-list small {
+      display: block
+    }
+
+    .ordering .order-data-links {
+      text-align: center;
+      margin-bottom: 0
+    }
+
+    .ordering .show-more {
+      display: block;
+      text-align: center;
+      background: #3d5c89;
+      color: #fff;
+      padding: 2px 0;
+      margin-bottom: .25em;
+      font-size: .8em
+    }
+
+    .ordering .show-more:hover {
+      background: #17396d
+    }
+
+    .ordering .total {
+      font-weight: 400;
+      font-size: 1.25em
+    }
+
+    .ordering .total,
+    .ordering .checkout {
+      transition: width .3s;
+      min-width: 200px;
+      text-align: center;
+      color: var(--black);
+      font-weight: 400
+    }
+
+    .ordering .total.hide a,
+    .ordering .checkout.hide a {
+      display: none
+    }
+
+    .ordering .total .order-data,
+    .ordering .checkout .order-data {
+      display: inline-block
+    }
+
+    .ordering .total a,
+    .ordering .checkout a {
+      color: #fff;
+      border-bottom: 0;
+      text-decoration: none;
+      border-radius: 3px;
+      font-weight: 700;
+      display: inline-block;
+      padding: .5em 2em;
+      margin: 5px 0;
+      margin-bottom: .75em
+    }
+
+    .ordering .total a:hover,
+    .ordering .checkout a:hover {
+      color: #fff
+    }
+
+    .rejected-order-status,
+    .rejected_updated-order-status,
+    .live_failed-order-status {
+      background: rgba(199, 48, 23, .2) !important
+    }
+
+    .accepted-order-status,
+    .live_confirmed_pm-order-status,
+    .request_post-order-status {
+      background: rgba(245, 255, 245, .1) !important
+    }
+
+    .queued-order-status {
+      background: rgba(99, 99, 255, .2) !important
+    }
+
+    .completed_paid-order-status {
+      background: rgba(255, 214, 0, .2) !important
+    }
+
+    .cancelled-order-status {
+      background: rgba(0, 0, 0, .2) !important;
+      text-decoration: line-through
+    }
+
+    .category-selection {
+      position: absolute;
+      top: -150%;
+      left: 50%;
+      transform: translate(-50%);
+      width: 100%;
+      max-width: 640px;
+      padding: 25px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: #fff;
+      transition: top .5s;
+      text-align: center;
+      z-index: 9;
+      box-shadow: 1px 1px 55px rgba(0, 0, 0, .2)
+    }
+
+    .category-selection h2 {
+      text-align: left
+    }
+
+    .category-selection h3 {
+      text-align: left;
+      margin-top: 0
+    }
+
+    .category-selection.open {
+      top: 0
+    }
+
+    .category-selection label {
+      text-align: left;
+      cursor: context-menu;
+      font-size: .8em
+    }
+
+    .category-selection label input {
+      margin-right: 5px
+    }
+
+    .category-selection .new-cats {
+      text-align: center;
+      width: 150px;
+      border: 0;
+      color: #fff;
+      padding: 5px 10px;
+      margin: 5px auto;
+      display: block;
+      cursor: pointer;
+      text-decoration: none;
+      background: var(--blue-dark)
+    }
+
+    .include {
+      border: 0;
+      background: 0 0;
+      padding: 0 2px;
+      font-size: .7em;
+      border-radius: 0;
+      border-bottom: 1px dotted #fff;
+      margin-right: 4px;
+      outline: none;
+      color: #ccc
+    }
+
+    .include:hover {
+      background: 0 0
+    }
+
+    .keyword-search {
+      position: relative;
+      overflow: hidden
+    }
+
+    .keyword-search input {
+      width: 100%;
+      padding: 10px;
+      font-size: .8em;
+      color: var(--black);
+      border: 1px solid var(--input-border)
+    }
+
+    .keyword-search input:hover {
+      color: var(--black);
+      background: 0 0
+    }
+
+    .keyword-search input:hover::placeholder {
+      color: #666
+    }
+
+    .search-bar {
+      background: var(--main-bg-lit);
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, .125);
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: stretch
+    }
+
+    .search-bar.client-select.subclients>div:nth-child(2),
+    .search-bar.subclients>div:nth-child(2) {
+      display: inline-block
+    }
+
+    .search-bar.client-select>div:not(:first-child),
+    .search-bar>div:nth-child(2) {
+      display: none
+    }
+
+    .search-bar.client-select:not(.subclients)>div:first-child {
+      border-right: 0
+    }
+
+    .search-bar.client-select.subclients>div:nth-child(2) {
+      border-right: 0
+    }
+
+    .search-bar>* {
+      padding: .75em 1.5em;
+      align-items: center;
+      display: flex
+    }
+
+    .search-bar>*:not(:last-child) {
+      border-right: 1px solid var(--lit-gray)
+    }
+
+    .search-bar strong {
+      margin-right: .25em;
+      font-weight: 400;
+      color: var(--gray)
+    }
+
+    .search-bar .autocomplete {
+      display: inline-block;
+      vertical-align: middle
+    }
+
+    .search-bar .keyword-search {
+      display: inline-block;
+      vertical-align: middle
+    }
+
+    .search-bar input {
+      padding: .5em;
+      border-radius: 3px;
+      font-size: 13px
+    }
+
+    .search-bar input:hover {
+      border-color: var(--input-border)
+    }
+
+    .search-bar .new-cats {
+      text-decoration: none;
+      padding: .5em 2em;
+      border-radius: 3px;
+      font-size: .8em;
+      font-weight: 600;
+      border: 1px solid
+    }
+
+    .search-bar .hidden-filter {
+      display: none
+    }
+
+    .search-bar .more-less-filters a {
+      cursor: pointer;
+      font-size: .85em
+    }
+
+    .order-table {
+      width: 100%;
+      background: var(--table-bg);
+      border-radius: 5px;
+      border: 1px solid var(--table-border-outer);
+      box-shadow: 5px 7px 8px rgba(0, 0, 0, .125)
+    }
+
+    .order-table .rejected {
+      color: red
+    }
+
+    .order-table .rejected select {
+      border-color: #de0505;
+      color: #fff;
+      font-weight: 800;
+      background-color: #c12;
+      background-image: linear-gradient(45deg, transparent 50%, #fff 50%), linear-gradient(135deg, #fff 50%, transparent 50%), linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5))
+    }
+
+    .order-table input:not([type=submit]):not([type=checkbox]):not([type=range]) {
+      width: 100%;
+      width: 250px
+    }
+
+    .order-table input:not([type=range]),
+    .order-table select {
+      margin-bottom: 5px
+    }
+
+    .order-table .hide-date {
+      display: none
+    }
+
+    .order-table tr:hover .hide-date {
+      display: inline-block;
+      padding-left: 15px
+    }
+
+    .order-table .not-live {
+      padding: 1px 4px;
+      background: #c10000;
+      color: #fff;
+      font-weight: 700;
+      font-size: .6em
+    }
+
+    .order-table .delete-link {
+      text-decoration: none;
+      color: red;
+      padding: 1px 3px;
+      visibility: hidden
+    }
+
+    .order-table tr:hover .delete-link {
+      visibility: visible
+    }
+
+    .order-table .hide {
+      opacity: 0;
+      transition: opacity .25s
+    }
+
+    .order-table tr:hover .hide {
+      opacity: 1
+    }
+
+    .order-table:not(.order-completion):not(.admin) select {
+      background: #289668;
+      color: #fff;
+      border: 1px solid #289668;
+      background-image: linear-gradient(45deg, transparent 50%, #fff 50%), linear-gradient(135deg, #fff 50%, transparent 50%), linear-gradient(to right, var(--gray), var(--gray));
+      background-position: calc(100% - 10px) calc(.5em + 5px), calc(100% - 5px) calc(.5em + 5px), calc(100% - 1.7em) .35em;
+      background-size: 5px 5px, 5px 5px, 1px 1.5em;
+      background-repeat: no-repeat
+    }
+
+    .order-table.admin .locked-tr {
+      background: var(--table-deep-red)
+    }
+
+    .more-info-popup {
+      position: relative;
+      display: inline-block
+    }
+
+    .more-info-popup:hover i {
+      background: #000;
+      z-index: 1
+    }
+
+    .more-info-popup:hover small {
+      display: block;
+      z-index: 2
+    }
+
+    .more-info-popup span,
+    .more-info-popup i {
+      cursor: pointer;
+      padding: 0 7px;
+      font-weight: 700;
+      font-style: normal;
+      border-radius: 50%;
+      position: relative;
+      z-index: 1
+    }
+
+    .more-info-popup i {
+      font-size: 1.2em;
+      padding: 2px 5px;
+      font-family: monospace;
+      border: 1px solid var(--black)
+    }
+
+    .more-info-popup small {
+      display: none;
+      background: var(--white);
+      position: absolute;
+      top: -1px;
+      left: 100%;
+      opacity: 1;
+      padding: 3px 10px 5px;
+      width: max-content
+    }
+
+    .order-completion input:not([type=checkbox]) {
+      width: 100% !important;
+      max-width: 100%
+    }
+
+    .copied {
+      position: relative;
+      visibility: hidden
+    }
+
+    .copied:before {
+      visibility: visible;
+      position: absolute;
+      content: "Copied!"
+    }
+
+    .ordered-tr td {
+      text-align: center;
+      color: green;
+      font-weight: 700
+    }
+
+    .reject-reason {
+      display: inline-block;
+      width: 72%;
+      min-width: 150px;
+      vertical-align: middle
+    }
+
+    .reject-reason.hidden-field {
+      display: none
+    }
+
+    .pm-td-status {
+      font-size: .75em;
+      font-weight: 700;
+      white-space: nowrap
+    }
+
+    .pm-td-status p {
+      width: 100px;
+      max-width: 100%;
+      height: 10px;
+      border-radius: 10px;
+      padding: 0;
+      margin: 0;
+      position: relative;
+      display: inline-block;
+      color: #fff;
+      background: var(--gray);
+      overflow: hidden
+    }
+
+    .pm-td-status p span {
+      position: absolute;
+      left: 0;
+      top: 0;
+      content: "";
+      height: 100%;
+      border-radius: 5px;
+      animation: animateWidth 1.5s ease-in-out
+    }
+
+    @keyframes animateWidth {
+      0% {
+        width: 0
+      }
+    }
+
+    .price-td {
+      position: relative;
+      text-align: right
+    }
+
+    .price-td .discount {
+      color: red;
+      text-align: right
+    }
+
+    .price-change-modal {
+      background: #4e4e4e;
+      text-align: left;
+      color: #fff;
+      border-radius: 5px;
+      padding: 0 8px;
+      position: absolute;
+      bottom: 100%;
+      transform: translate(-50%);
+      display: inline-block;
+      height: 0;
+      opacity: 0;
+      transition: height .25s, opacity .25s, bottom .25s;
+      z-index: -1
+    }
+
+    .price-change-modal.open-modal {
+      opacity: 1;
+      height: auto;
+      z-index: 1;
+      bottom: 90%
+    }
+
+    .price-change-modal small {
+      color: #fff;
+      font-weight: 700;
+      white-space: nowrap
+    }
+
+    section>.admin-menu {
+      padding: 0 10px 25px
+    }
+
+    .admin-menu {
+      text-align: center;
+      padding-bottom: 25px
+    }
+
+    .admin-menu a {
+      margin: 0 10px;
+      text-decoration: none
+    }
+
+    .admin-menu a.onpage,
+    .admin-menu a:hover {
+      color: var(--black)
+    }
+
+    .admin-total td {
+      background: var(--table-bg);
+      color: var(--black)
+    }
+
+    .slice text {
+      font-size: 12px
+    }
+
+    .stats-section table {
+      margin-bottom: 10px
+    }
+
+    .stats-section table tr:not(:last-child) td:first-child {
+      border-left: 1px solid var(--table-border-inner)
+    }
+
+    .stats-section table tr:not(:last-child) td:last-child {
+      border-right: 1px solid var(--table-border-inner)
+    }
+
+    .agreement {
+      font-size: 1.2em;
+      max-width: 1000px
+    }
+
+    .agreement small {
+      font-size: .55em
+    }
+
+    .agreement h3 {
+      font-weight: 700;
+      margin-top: 35px;
+      display: inline-block;
+      background-clip: text;
+      -webkit-background-clip: text;
+      text-fill-color: transparent;
+      -webkit-text-fill-color: transparent
+    }
+
+    .agreement li {
+      font-size: .8em
+    }
+
+    .agreement form {
+      text-align: center;
+      margin-top: 50px
+    }
+
+    .agreement button {
+      cursor: pointer;
+      background: var(--lit-blue);
+      color: #fff;
+      border: 0;
+      font-size: .8em;
+      border-radius: 5px;
+      padding: 5px 20px
+    }
+
+    .login {
+      width: 100%;
+      height: calc(100% - 50)
+    }
+
+    .login>div {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 25px;
+      width: 100%;
+      max-width: 300px;
+      color: #fff;
+      background: rgba(255, 255, 255, .2);
+      border: 1px solid #ccc;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, .1)
+    }
+
+    .login h1 {
+      text-align: center
+    }
+
+    .login a {
+      color: #fff
+    }
+
+    .login input:not([type=checkbox]) {
+      padding: 5px;
+      width: 100%
+    }
+
+    .forgot {
+      width: 100%;
+      height: calc(100% - 50)
+    }
+
+    .forgot>div {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 25px;
+      width: 100%;
+      max-width: 300px;
+      background: #fff;
+      border: 1px solid #ccc;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, .1)
+    }
+
+    .forgot h1 {
+      text-align: center
+    }
+
+    .forgot input:not([type=checkbox]) {
+      padding: 5px;
+      width: 100%
+    }
+
+    .box {
+      font-size: 1.75em;
+      color: white;
+      line-height: .85em;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      text-align: center;
+      display: inline-block;
+      padding: 0 .15em;
+      background: rgba(255, 255, 255, 0.075);
+      cursor: pointer;
+      border-radius: 100em;
+      transition: ease all .075s;
+      user-select: none;
+    }
+
+    .box:hover {
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    table th:hover {
+      background: rgb(31, 114, 186);
+      cursor: pointer;
+    }
+
+    td.link-prov {
+      overflow: auto;
+      white-space: nowrap;
+    }
+    .invisible {display:none;}
+    .selectorColumn {
+      text-align: center;
+    }
+    .selectorColumn .check-input {margin:0;}
+
+    /* Styles for Zillow Modifier Popup */
+    .modifierPopup {
+        border-radius: 3px;
+        position: absolute;
+        top: 3em;
+        background: #3d3f41;
+        width: 150%;
+        box-shadow: 0 0 15px black;
+    border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .dropSelect {display:inline-block;color: white;cursor: pointer;font-size: .85em;font-weight: 700;border: 1px solid var(--gray);background: var(--inputs);background-image: linear-gradient(45deg, transparent 50%, var(--gray) 50%), linear-gradient(135deg, var(--gray) 50%, transparent 50%), linear-gradient(to right, var(--gray), var(--gray));background-position: calc(100% - 10px) calc(.5em + 5px), calc(100% - 5px) calc(.5em + 5px), calc(100% - 1.7em) .35em;background-size: 5px 5px, 5px 5px, 1px 1.5em;background-repeat: no-repeat;padding: .5em 0;padding-right: 4em;padding-left: 1em;}
+
+  </style>
+</head>
+
+<body>
+  <div class="at-a-glance first-nav"></div>
+  <div class="at-a-glance">
+    <div class="container starting">
+      <div>
+        <h1>Search Results</h1>
+        <p>
+          <strong>8 Results</strong>
+          in
+          <a href="/start-order/guest" onclick="switchLoadType(this, 'guest', 'sponsored')" title="Switch to Guest links">
+            Sponsored Links</a>
+        </p>
+      </div>
+      <div><a class="back-to-dash" href="/">Back to Dashboard</a></div>
+    </div>
+  </div>
+  <div class="search-parent">
+    <div class="search-bar all-filters">
+<div>
+<strong>Client:</strong>
+<select name="cs" id="cs" onchange="clientSelect(this)"><option value="">SELECT A CLIENT</option><option data-test="0" data-has-subs="false" value="344"></option>
+<option data-test="0" data-has-subs="false" value="149">Acton Implants</option>
+<option data-test="0" data-has-subs="false" value="148">Barnes Law Firm</option>
+<option data-test="0" data-has-subs="false" value="6">Baumgartner Law Firm</option>
+<option data-test="0" data-has-subs="false" value="7">Benenati Law Firm</option>
+<option data-test="0" data-has-subs="false" value="17">Colwell Law Group</option>
+<option data-test="0" data-has-subs="false" value="18">CPR Law</option>
+<option data-test="0" data-has-subs="false" value="21">Divorce Matters</option>
+<option data-test="0" data-has-subs="false" value="216">Duffy Law</option>
+<option data-test="0" data-has-subs="false" value="27">Evan Braunstein</option>
+<option data-test="0" data-has-subs="false" value="31">Gloria Nilson</option>
+<option data-test="0" data-has-subs="false" value="33">Groth Law Firm</option>
+<option data-test="0" data-has-subs="false" value="343">Kemp, Ruge and Green</option>
+<option data-test="0" data-has-subs="false" value="147">Lockett Law</option>
+<option data-test="0" data-has-subs="false" value="51">Metal Master Shop</option>
+<option data-test="0" data-has-subs="false" value="60">Navads</option>
+<option data-test="0" data-has-subs="false" value="109">OrthoPro</option>
+<option data-test="0" data-has-subs="false" value="62">Pacific Health Law Group</option>
+<option data-test="154" data-has-subs="true" value="213">PatientPop</option>
+<option data-test="0" data-has-subs="false" value="150">Peak Family Dental</option>
+<option data-test="0" data-has-subs="false" value="68">Quirk Law Firm</option>
+<o<option data-test="0" data-has-subs="false" value="76">Sattiraju Law Firm</option>
+<option data-test="0" data-has-subs="false" value="77">Schultz &amp; Myers</option>
+<option data-test="0" data-has-subs="false" value="78">Shouse Law Group</option>
+<option data-test="0" data-has-subs="false" value="85">The Peck Law Firm</option>
+<option data-test="0" data-has-subs="false" value="93">Walker Morgan</option>
+</select>
+</div>
+<div></div>
+<div style="
+    border: none;
+    padding-right: 0;
+">
+<strong style="
+    border: 1px solid var(--gray);
+    padding: 0.25em .5em;
+    border-radius: 3px;
+    cursor: pointer;
+    color: white;
+">Price: Any</strong>
+
+</div>
+<div>
+<strong style="border: 1px solid var(--gray);padding: 0.25em .5em;border-radius: 3px;cursor: pointer;color: white;">DR: Any</strong>
+
+</div>
+
+
+<div class="extra-filter" style="
+    border: none;
+    padding-right: 0;
+">
+
+
+<div style="position:relative;">
+<span onclick="showProviderBox(this)" id="providerList" class="dropSelect">All Providers</span>
+
+<div id="selectProviders" class="modifierPopup" style="display:none;"><input type="text" placeholder="search" style="width:100%;border: none;border-bottom: 1px solid rgba(255,255,255,0.2);"><a href="#" style="font-size: .75em;margin: 0 0.5em;margin-top: 0px;margin-top: .5em;display: inline-block;">Select All</a><a href="#" style="font-size: .75em;margin: 0 0.5em;margin-top: .5em;display: inline-block;">Select None</a>
+  <div style="padding:0.75em">
+<div style="display:block;margin-bottom: .25em;"><input type="checkbox" id="one"><label for="one">Stella Astor</label></div>
+<div style="display:block;margin-bottom: .25em;"><input type="checkbox" id="two"><label for="two">Andrew Dominick</label></div>
+<div style="display:block"><input type="checkbox" id="three"><label for="three">Anna Freud</label></div>
+</div>
+  <div style="background: #2076bf;padding: .75em;text-align: right;border-radius: 0 0 3px 3px;"><button style="background: white;border: none;padding: .5em 1em;border-radius: 3px;font-family: lato;font-size: 14px;letter-spacing: .03em;color: #2076bf;">Done</button></div></div>
+</div>
+</div>
+
+
+<div class="extra-filter">
+
+<select name="pr" id="pr" style="
+    width: 125px;
+"><option value="">All Categories</option>
+<option value="13">Lifestyle</option>
+<option value="22">Automotive</option>
+<option value="83">Money</option>
+<option value="70">Finance</option>
+<option value="8">General</option>
+<option value="130">Arts</option>
+<option value="15">Family</option>
+<option value="131">Health</option>
+<option value="91">Legal</option>
+<option value="132">Opinions</option>
+<option value="66">Moms</option>
+</select>
+</div>
+
+<div class="extra-filter">
+
+
+<div class="keyword-search">
+<input type="text" placeholder="Search" onkeyup="submitSearchForm(event)" value="" style="
+    border: none;
+    border-bottom: 1px dotted rgba(255,255,255,0.35);
+    border-radius: 0;
+    width: 150px;
+">
+</div>
+</div></div>
+  </div>
+  <section>
+    <div class="report-modal"></div>
+    <p>
+      <small><strong>Prices have a pre-applied x4.4 modifier.</strong></small><br>
+      <a href="/copy-links" onclick="copyResults(event, this)" title="Copies all link urls.">Copy All Links</a>
+
+      <a href="" style="cursor:pointer;float:right;margin-right:5px;" onclick="addToOrder()" title="Will clear all selected items in your order.">Clear Selected Links</a>
+    </p>
+    <table cellspacing="0" width="100%" class="ordering-list-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th data-type="text" onclick="sortTable(1, this)">Domain <span style="float:right;margin-right:1em;">▼</span></th>
+          <th data-type="number" onclick="sortTable(2, this)">DR </th>
+          <th data-type="number" onclick="sortTable(3, this)">Rank </th>
+          <th data-type="number" onclick="sortTable(4, this)">Cost </th>
+          <th data-type="number" onclick="sortTable(5, this)">Content Surcharge</th>
+          <th data-type="text" onclick="sortTable(6, this)">Provider </th>
+          <th data-type="text" onclick="sortTable(7, this)">Categories</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-link="38300" style="background: rgba(255,255,255,0.05);">
+          <td width="35" class="selectorColumn" style="
+    text-align: center;
+">
+            <div onclick="toggleOptions()" class="box">–</div>
+          </td>
+          <td class="link-urls" width="350">
+
+            <a target="_blank" href="https://www.tgdaily.com/">https://www.<span class="highlight">tgdaily.com</span>/</a>
+            <span class="link-count">1x<span>This link has been ordered 1 times.</span></span>
+          </td>
+          <td width="1">
+            <div class="more-info-popup">
+              <span>76</span>
+              <small>
+                Last Checked: <strong>15 days</strong>
+              </small>
+            </div>
+          </td>
+          <td width="1">
+            <div class="more-info-popup">
+              <span>24,953</span>
+              <small>
+                Last Checked: <strong>15 days</strong>
+              </small>
+            </div>
+          </td>
+          <td width="50" style="
+    overflow: auto;
+    white-space: nowrap;
+    font-weight: 800;
+                      "><span style="
+    font-weight: 800;
+    border-bottom: 1px dotted;
+"><sup>$</sup>396–968</span></td>
+          <td width="10">$10-$60</td>
+          <td width="100" class="link-prov" data-link-prov="16"><span style="
+    border-bottom: 1px dotted;
+    font-weight: 800;
+">7 Providers</span></td>
+          <td width="50" class="link-cats" data-link-cats="[&quot;7&quot;, &quot;14&quot;, &quot;24&quot;, &quot;27&quot;, &quot;29&quot;, &quot;46&quot;, &quot;51&quot;, &quot;65&quot;, &quot;69&quot;, &quot;70&quot;, &quot;71&quot;]"><span
+              title="Business">Business</span><span title="Entertainment">Entertainment</span><span title="Games">Games</span><span title="Graphic Design">Graphic Design</span><span title="Health">Health</span><span
+              title="Marketing">Marketing</span><span title="Music">Music</span><span title="Science">Science</span><span title="Sports">Sports</span><span title="Startup">Startup</span><span title="Technology">Technology</span></td>
+          <td width="1"><a class="report-link" title="Report this link" data-remote="true" href="/report_link?link_id=38300">⛳</a></td>
+        </tr>
+        <tr data-link="40692" style="background: rgba(0,0,0,0.1);" class="">
+          <td width="35" class="selectorColumn">
+
+          </td>
+          <td class="link-urls" width="450">
+            <label class="check-input">
+              <input type="checkbox" name="link-order" id="link-order" value="40692" onclick="addToOrder(40692, 792, this.parentNode.parentNode.parentNode, '20', 'https://www.tgdaily.com/')">
+              <span></span>
+
+            </label>
+            <a target="_blank" href="https://www.tgdaily.com/">https://www.<span class="highlight">tgdaily.com</span>/</a>
+          </td>
+          <td width="1">
+            <div class="more-info-popup">
+              <span style="
+"></span>
+              <small>
+                Last Checked: <strong>15 days</strong>
+              </small>
+            </div>
+          </td>
+          <td width="1">
+            <div class="more-info-popup">
+              <span style="
+"></span>
+              <small>
+                Last Checked: <strong>15 days</strong>
+              </small>
+            </div>
+          </td>
+          <td width="50"><sup>$</sup>792</td>
+          <td width="10">$10</td>
+          <td width="100" class="link-prov" data-link-prov="20">Willson Anovic</td>
+          <td width="50" class="link-cats" data-link-cats="[&quot;71&quot;]"><span title="Technology">Technology</span></td>
+          <td width="1"><a class="report-link" title="Report this link" data-remote="true" href="/report_link?link_id=40692">⛳</a></td>
+        </tr>
+        <tr data-link="52495" style="background: rgba(0,0,0,0.1);">
+          <td width="35" class="selectorColumn">
+
+          </td>
+          <td class="link-urls" width="450">
+            <label class="check-input">
+              <input type="checkbox" name="link-order" id="link-order" value="40692" onclick="addToOrder(40692, 792, this.parentNode.parentNode.parentNode, '20', 'https://www.tgdaily.com/')">
+              <span></span>
+
+            </label>
+            <a target="_blank" href="https://www.tgdaily.com">https://www.<span class="highlight">tgdaily.com</span></a>
+          </td>
+          <td width="1">
+            <div class="more-info-popup">
+              <span></span>
+              <small>
+                Last Checked: <strong>15 days</strong>
+              </small>
+            </div>
+          </td>
+          <td width="1">
+            <div class="more-info-popup">
+              <span></span>
+              <small>
+                Last Checked: <strong>15 days</strong>
+              </small>
+            </div>
+          </td>
+          <td width="50"><sup>$</sup>660</td>
+          <td width="10">$10</td>
+          <td width="100" class="link-prov" data-link-prov="67">Ramdas Chakraborty</td>
+          <td width="50" class="link-cats" data-link-cats="[&quot;71&quot;]"><span title="Technology">Technology</span></td>
+          <td width="1"><a class="report-link" title="Report this link" data-remote="true" href="/report_link?link_id=52495">⛳</a></td>
+        </tr>
+        <tr data-link="45114" style="background: rgba(0,0,0,0.1);" class="">
+          <td width="35" class="selectorColumn">
+
+          </td>
+          <td class="link-urls" width="450">
+            <label class="check-input">
+              <input type="checkbox" name="link-order" id="link-order" value="40692" onclick="addToOrder(40692, 792, this.parentNode.parentNode.parentNode, '20', 'https://www.tgdaily.com/')">
+              <span></span>
+
+            </label>
+            <a target="_blank" href="https://www.tgdaily.com/">https://www.<span class="highlight">tgdaily.com</span>/</a>
+            <span class="link-count">1x<span>This link has been ordered 1 times.</span></span>
+          </td>
+          <td width="1">
+            <div class="more-info-popup">
+              <span></span>
+              <small>
+                Last Checked: <strong>15 days</strong>
+              </small>
+            </div>
+          </td>
+          <td width="1">
+            <div class="more-info-popup">
+              <span></span>
+              <small>
+                Last Checked: <strong>15 days</strong>
+              </small>
+            </div>
+          </td>
+          <td width="50"><sup>$</sup>968</td>
+          <td width="10">$10</td>
+          <td width="100" class="link-prov" data-link-prov="59">David Tomas</td>
+          <td width="50" class="link-cats" data-link-cats="[&quot;7&quot;, &quot;14&quot;, &quot;29&quot;, &quot;36&quot;, &quot;65&quot;, &quot;71&quot;]"><span title="Business">Business</span><span title="Entertainment">Entertainment</span><span
+              title="Health">Health</span><span title="Internet Service">Internet Service</span><span title="Science">Science</span><span title="Technology">Technology</span></td>
+          <td width="1"><a class="report-link" title="Report this link" data-remote="true" href="/report_link?link_id=45114">⛳</a></td>
+        </tr>
+        <tr data-link="52330" style="background: rgba(0,0,0,0.1);">
+          <td width="35" class="selectorColumn">
+
+          </td>
+          <td class="link-urls" width="450">
+            <label class="check-input">
+              <input type="checkbox" name="link-order" id="link-order" value="40692" onclick="addToOrder(40692, 792, this.parentNode.parentNode.parentNode, '20', 'https://www.tgdaily.com/')">
+              <span></span>
+
+            </label>
+            <a target="_blank" href="https://www.tgdaily.com">https://www.<span class="highlight">tgdaily.com</span></a>
+          </td>
+          <td width="1">
+            <div class="more-info-popup">
+              <span></span>
+              <small>
+                Last Checked: <strong>15 days</strong>
+              </small>
+            </div>
+          </td>
+          <td width="1">
+            <div class="more-info-popup">
+              <span></span>
+              <small>
+                Last Checked: <strong>15 days</strong>
+              </small>
+            </div>
+          </td>
+          <td width="50"><sup>$</sup>528</td>
+          <td width="10">$30</td>
+          <td width="100" class="link-prov" data-link-prov="13">Abdul Mateen</td>
+          <td width="50" class="link-cats" data-link-cats="[&quot;46&quot;, &quot;71&quot;]"><span title="Marketing">Marketing</span><span title="Technology">Technology</span></td>
+          <td width="1"><a class="report-link" title="Report this link" data-remote="true" href="/report_link?link_id=52330">⛳</a></td>
+        </tr>
+        <tr data-link="44889" style="background: rgba(0,0,0,0.1);">
+          <td width="35" class="selectorColumn">
+
+          </td>
+          <td class="link-urls" width="450">
+            <label class="check-input">
+              <input type="checkbox" name="link-order" id="link-order" value="40692" onclick="addToOrder(40692, 792, this.parentNode.parentNode.parentNode, '20', 'https://www.tgdaily.com/')">
+              <span></span>
+
+            </label>
+            <a target="_blank" href="https://www.tgdaily.com/">https://www.<span class="highlight">tgdaily.com</span>/</a>
+          </td>
+          <td width="1">
+            <div class="more-info-popup">
+              <span></span>
+              <small>
+                Last Checked: <strong>15 days</strong>
+              </small>
+            </div>
+          </td>
+          <td width="1">
+            <div class="more-info-popup">
+              <span></span>
+              <small>
+                Last Checked: <strong>15 days</strong>
+              </small>
+            </div>
+          </td>
+          <td width="50"><sup>$</sup>704</td>
+          <td width="10">$60</td>
+          <td width="100" class="link-prov" data-link-prov="60">Judson Simmons</td>
+          <td width="50" class="link-cats"
+            data-link-cats="[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;, &quot;7&quot;, &quot;10&quot;, &quot;12&quot;, &quot;13&quot;, &quot;14&quot;, &quot;16&quot;, &quot;17&quot;, &quot;18&quot;, &quot;19&quot;, &quot;20&quot;, &quot;21&quot;, &quot;24&quot;, &quot;29&quot;, &quot;30&quot;, &quot;32&quot;, &quot;34&quot;, &quot;37&quot;, &quot;39&quot;, &quot;43&quot;, &quot;45&quot;, &quot;46&quot;, &quot;47&quot;, &quot;48&quot;, &quot;49&quot;, &quot;50&quot;, &quot;51&quot;, &quot;52&quot;, &quot;53&quot;, &quot;58&quot;, &quot;64&quot;, &quot;66&quot;, &quot;67&quot;, &quot;68&quot;, &quot;69&quot;, &quot;71&quot;, &quot;72&quot;, &quot;73&quot;]">
+            <span title="Arts">Arts</span><span title="Automotive">Automotive</span><span title="Baby">Baby</span><span title="Beauty">Beauty</span><span title="Business">Business</span><span title="Cooking">Cooking</span><span
+              title="Culture">Culture</span><span title="Education">Education</span><span title="Entertainment">Entertainment</span><span title="Events">Events</span><span title="Family">Family</span><span title="Fashion">Fashion</span><span
+              title="Finance">Finance</span><span title="Fitness">Fitness</span><span title="Food">Food</span><span title="Games">Games</span><span title="Health">Health</span><span title="Home">Home</span><span title="Hotel">Hotel</span><span
+              title="Insurance">Insurance</span><span title="Investment">Investment</span><span title="Kids">Kids</span><span title="Lifestyle">Lifestyle</span><span title="Lifestyle Men">Lifestyle Men</span><span
+              title="Marketing">Marketing</span><span title="Marriage">Marriage</span><span title="Medical">Medical</span><span title="Moms">Moms</span><span title="Money">Money</span><span title="Music">Music</span><span
+              title="News">News</span><span title="Nutrition">Nutrition</span><span title="Photography">Photography</span><span title="Reviews">Reviews</span><span title="SEO">SEO</span><span title="Shopping">Shopping</span><span
+              title="Social Media">Social Media</span><span title="Sports">Sports</span><span title="Technology">Technology</span><span title="Travel">Travel</span><span title="Wedding">Wedding</span></td>
+          <td width="1"><a class="report-link" title="Report this link" data-remote="true" href="/report_link?link_id=44889">⛳</a></td>
+        </tr>
+        <tr data-link="60688" style="background: rgba(0,0,0,0.1);">
+          <td width="35" class="selectorColumn">
+
+          </td>
+          <td class="link-urls" width="450">
+            <label class="check-input">
+              <input type="checkbox" name="link-order" id="link-order" value="40692" onclick="addToOrder(40692, 792, this.parentNode.parentNode.parentNode, '20', 'https://www.tgdaily.com/')">
+              <span></span>
+
+            </label>
+            <a target="_blank" href="https://www.tgdaily.com/">https://www.<span class="highlight">tgdaily.com</span>/</a>
+          </td>
+          <td width="1">
+            <div class="more-info-popup">
+              <span></span>
+              <small>
+                Last Checked: <strong>15 days</strong>
+              </small>
+            </div>
+          </td>
+          <td width="1">
+            <div class="more-info-popup">
+              <span></span>
+              <small>
+                Last Checked: <strong>15 days</strong>
+              </small>
+            </div>
+          </td>
+          <td width="50"><sup>$</sup>396</td>
+          <td width="10">$40</td>
+          <td width="100" class="link-prov" data-link-prov="127">Sarah Scott</td>
+          <td width="50" class="link-cats" data-link-cats="[&quot;26&quot;]"><span title="General">General</span></td>
+          <td width="1"><a class="report-link" title="Report this link" data-remote="true" href="/report_link?link_id=60688">⛳</a></td>
+        </tr>
+        <tr data-link="70198" style="background: rgba(0,0,0,0.1);">
+          <td width="35" class="selectorColumn">
+
+          </td>
+          <td class="link-urls" width="450">
+            <label class="check-input">
+              <input type="checkbox" name="link-order" id="link-order" value="40692" onclick="addToOrder(40692, 792, this.parentNode.parentNode.parentNode, '20', 'https://www.tgdaily.com/')">
+              <span></span>
+
+            </label>
+            <a target="_blank" href="https://www.tgdaily.com/">https://www.<span class="highlight">tgdaily.com</span>/</a>
+          </td>
+          <td width="1">
+            <div class="more-info-popup">
+              <span></span>
+              <small>
+                Last Checked: <strong>15 days</strong>
+              </small>
+            </div>
+          </td>
+          <td width="1">
+            <div class="more-info-popup">
+              <span></span>
+              <small>
+                Last Checked: <strong>15 days</strong>
+              </small>
+            </div>
+          </td>
+          <td width="50"><sup>$</sup>506</td>
+          <td width="10">$50</td>
+          <td width="100" class="link-prov" data-link-prov="174">Kaylee Hall</td>
+          <td width="50" class="link-cats" data-link-cats="[&quot;26&quot;]"><span title="General">General</span></td>
+          <td width="1"><a class="report-link" title="Report this link" data-remote="true" href="/report_link?link_id=70198">⛳</a></td>
+        </tr>
+        <tr data-link="59837">
+<td width="35" class="selectorColumn">
+<label class="check-input">
+<input type="checkbox" name="link-order" id="link-order" value="59837" onclick="addToOrder(59837, 440, this.parentNode.parentNode.parentNode, '124', 'https://www.yeartearm.com/')">
+<span></span>
+
+</label>
+</td>
+<td class="link-urls" width="450">
+
+<a target="_blank" href="https://www.yeartearm.com/">https://www.yeartearm.com/</a>
+</td>
+<td width="1">
+<div class="more-info-popup">
+<span>14</span>
+<small>
+Last Checked: <strong>16 days</strong>
+</small>
+</div>
+</td>
+<td width="1">
+<div class="more-info-popup">
+<span>12,937,192</span>
+<small>
+Last Checked: <strong>16 days</strong>
+</small>
+</div>
+</td>
+<td width="50"><sup>$</sup>440</td>
+<td width="10">$10</td>
+<td width="100" class="link-prov" data-link-prov="124">Asim Bhattacharya</td>
+<td width="50" class="link-cats" data-link-cats="[&quot;26&quot;]"><span title="General">General</span></td>
+<td width="1"><a class="report-link" title="Report this link" data-remote="true" href="/report_link?link_id=59837">⛳</a></td>
+</tr>
+<tr data-link="59839">
+<td width="35" class="selectorColumn">
+<label class="check-input">
+<input type="checkbox" name="link-order" id="link-order" value="59839" onclick="addToOrder(59839, 440, this.parentNode.parentNode.parentNode, '124', 'http://adgglobalsupply.com/')">
+<span></span>
+
+</label>
+</td>
+<td class="link-urls" width="450">
+
+<a target="_blank" href="http://adgglobalsupply.com/">http://adgglobalsupply.com/</a>
+</td>
+<td width="1">
+<div class="more-info-popup">
+<span>4</span>
+<small>
+Last Checked: <strong>16 days</strong>
+</small>
+</div>
+</td>
+<td width="1">
+<div class="more-info-popup">
+<span>29,062,280</span>
+<small>
+Last Checked: <strong>16 days</strong>
+</small>
+</div>
+</td>
+<td width="50"><sup>$</sup>440</td>
+<td width="10">$10</td>
+<td width="100" class="link-prov" data-link-prov="124">Asim Bhattacharya</td>
+<td width="50" class="link-cats" data-link-cats="[&quot;26&quot;]"><span title="General">General</span></td>
+<td width="1"><a class="report-link" title="Report this link" data-remote="true" href="/report_link?link_id=59839">⛳</a></td>
+</tr>
+<tr data-link="59841">
+<td width="35" class="selectorColumn">
+<label class="check-input">
+<input type="checkbox" name="link-order" id="link-order" value="59841" onclick="addToOrder(59841, 440, this.parentNode.parentNode.parentNode, '124', 'https://www.eight7teen.com/')">
+<span></span>
+
+</label>
+</td>
+<td class="link-urls" width="450">
+
+<a target="_blank" href="https://www.eight7teen.com/">https://www.eight7teen.com/</a>
+</td>
+<td width="1">
+<div class="more-info-popup">
+<span>23</span>
+<small>
+Last Checked: <strong>16 days</strong>
+</small>
+</div>
+</td>
+<td width="1">
+<div class="more-info-popup">
+<span>7,050,544</span>
+<small>
+Last Checked: <strong>16 days</strong>
+</small>
+</div>
+</td>
+<td width="50"><sup>$</sup>440</td>
+<td width="10">$10</td>
+<td width="100" class="link-prov" data-link-prov="124">Asim Bhattacharya</td>
+<td width="50" class="link-cats" data-link-cats="[&quot;26&quot;]"><span title="General">General</span></td>
+<td width="1"><a class="report-link" title="Report this link" data-remote="true" href="/report_link?link_id=59841">⛳</a></td>
+</tr>
+<tr data-link="59842">
+<td width="35" class="selectorColumn">
+<label class="check-input">
+<input type="checkbox" name="link-order" id="link-order" value="59842" onclick="addToOrder(59842, 440, this.parentNode.parentNode.parentNode, '124', 'http://goupbd.com/')">
+<span></span>
+
+</label>
+</td>
+<td class="link-urls" width="450">
+
+<a target="_blank" href="http://goupbd.com/">http://goupbd.com/</a>
+</td>
+<td width="1">
+<div class="more-info-popup">
+<span>12</span>
+<small>
+Last Checked: <strong>16 days</strong>
+</small>
+</div>
+</td>
+<td width="1">
+<div class="more-info-popup">
+<span>14,142,240</span>
+<small>
+Last Checked: <strong>16 days</strong>
+</small>
+</div>
+</td>
+<td width="50"><sup>$</sup>440</td>
+<td width="10">$10</td>
+<td width="100" class="link-prov" data-link-prov="124">Asim Bhattacharya</td>
+<td width="50" class="link-cats" data-link-cats="[&quot;26&quot;]"><span title="General">General</span></td>
+<td width="1"><a class="report-link" title="Report this link" data-remote="true" href="/report_link?link_id=59842">⛳</a></td>
+</tr>
+<tr data-link="59843">
+<td width="35" class="selectorColumn">
+<label class="check-input">
+<input type="checkbox" name="link-order" id="link-order" value="59843" onclick="addToOrder(59843, 440, this.parentNode.parentNode.parentNode, '124', 'http://greecefriends.de/')">
+<span></span>
+
+</label>
+</td>
+<td class="link-urls" width="450">
+
+<a target="_blank" href="http://greecefriends.de/">http://greecefriends.de/</a>
+</td>
+<td width="1">
+<div class="more-info-popup">
+<span>22</span>
+<small>
+Last Checked: <strong>16 days</strong>
+</small>
+</div>
+</td>
+<td width="1">
+<div class="more-info-popup">
+<span>7,600,444</span>
+<small>
+Last Checked: <strong>16 days</strong>
+</small>
+</div>
+</td>
+<td width="50"><sup>$</sup>440</td>
+<td width="10">$10</td>
+<td width="100" class="link-prov" data-link-prov="124">Asim Bhattacharya</td>
+<td width="50" class="link-cats" data-link-cats="[&quot;26&quot;]"><span title="General">General</span></td>
+<td width="1"><a class="report-link" title="Report this link" data-remote="true" href="/report_link?link_id=59843">⛳</a></td>
+</tr>
+<tr data-link="59840">
+<td width="35" class="selectorColumn">
+<label class="check-input">
+<input type="checkbox" name="link-order" id="link-order" value="59840" onclick="addToOrder(59840, 440, this.parentNode.parentNode.parentNode, '124', 'http://www.dustjacketreview.com/')">
+<span></span>
+
+</label>
+</td>
+<td class="link-urls" width="450">
+
+<a target="_blank" href="http://www.dustjacketreview.com/">http://www.dustjacketreview.com/</a>
+</td>
+<td width="1">
+<div class="more-info-popup">
+<span>9</span>
+<small>
+Last Checked: <strong>16 days</strong>
+</small>
+</div>
+</td>
+<td width="1">
+<div class="more-info-popup">
+<span>18,763,569</span>
+<small>
+Last Checked: <strong>16 days</strong>
+</small>
+</div>
+</td>
+<td width="50"><sup>$</sup>440</td>
+<td width="10">$10</td>
+<td width="100" class="link-prov" data-link-prov="124">Asim Bhattacharya</td>
+<td width="50" class="link-cats" data-link-cats="[&quot;26&quot;]"><span title="General">General</span></td>
+<td width="1"><a class="report-link" title="Report this link" data-remote="true" href="/report_link?link_id=59840">⛳</a></td>
+</tr>
+<tr data-link="59844">
+<td width="35" class="selectorColumn">
+<label class="check-input">
+<input type="checkbox" name="link-order" id="link-order" value="59844" onclick="addToOrder(59844, 440, this.parentNode.parentNode.parentNode, '124', 'http://www.help-out.net/')">
+<span></span>
+
+</label>
+</td>
+<td class="link-urls" width="450">
+
+<a target="_blank" href="http://www.help-out.net/">http://www.help-out.net/</a>
+</td>
+<td width="1">
+<div class="more-info-popup">
+<span>7</span>
+<small>
+Last Checked: <strong>16 days</strong>
+</small>
+</div>
+</td>
+<td width="1">
+<div class="more-info-popup">
+<span>21,062,507</span>
+<small>
+Last Checked: <strong>16 days</strong>
+</small>
+</div>
+</td>
+<td width="50"><sup>$</sup>440</td>
+<td width="10">$10</td>
+<td width="100" class="link-prov" data-link-prov="124">Asim Bhattacharya</td>
+<td width="50" class="link-cats" data-link-cats="[&quot;26&quot;]"><span title="General">General</span></td>
+<td width="1"><a class="report-link" title="Report this link" data-remote="true" href="/report_link?link_id=59844">⛳</a></td>
+</tr>
+<tr data-link="59845">
+<td width="35" class="selectorColumn">
+<label class="check-input">
+<input type="checkbox" name="link-order" id="link-order" value="59845" onclick="addToOrder(59845, 440, this.parentNode.parentNode.parentNode, '124', 'http://www.hyrondelle.net/')">
+<span></span>
+
+</label>
+</td>
+<td class="link-urls" width="450">
+
+<a target="_blank" href="http://www.hyrondelle.net/">http://www.hyrondelle.net/</a>
+</td>
+<td width="1">
+<div class="more-info-popup">
+<span>7</span>
+<small>
+Last Checked: <strong>16 days</strong>
+</small>
+</div>
+</td>
+<td width="1">
+<div class="more-info-popup">
+<span>21,215,926</span>
+<small>
+Last Checked: <strong>16 days</strong>
+</small>
+</div>
+</td>
+<td width="50"><sup>$</sup>440</td>
+<td width="10">$10</td>
+<td width="100" class="link-prov" data-link-prov="124">Asim Bhattacharya</td>
+<td width="50" class="link-cats" data-link-cats="[&quot;26&quot;]"><span title="General">General</span></td>
+<td width="1"><a class="report-link" title="Report this link" data-remote="true" href="/report_link?link_id=59845">⛳</a></td>
+</tr>
+<tr data-link="59848">
+<td width="35" class="selectorColumn">
+<label class="check-input">
+<input type="checkbox" name="link-order" id="link-order" value="59848" onclick="addToOrder(59848, 440, this.parentNode.parentNode.parentNode, '124', 'http://rebuildingfamilies.org/')">
+<span></span>
+
+</label>
+</td>
+<td class="link-urls" width="450">
+
+<a target="_blank" href="http://rebuildingfamilies.org/">http://rebuildingfamilies.org/</a>
+</td>
+<td width="1">
+<div class="more-info-popup">
+<span>1</span>
+<small>
+Last Checked: <strong>16 days</strong>
+</small>
+</div>
+</td>
+<td width="1">
+<div class="more-info-popup">
+<span>52,147,887</span>
+<small>
+Last Checked: <strong>16 days</strong>
+</small>
+</div>
+</td>
+<td width="50"><sup>$</sup>440</td>
+<td width="10">$10</td>
+<td width="100" class="link-prov" data-link-prov="124">Asim Bhattacharya</td>
+<td width="50" class="link-cats" data-link-cats="[&quot;26&quot;]"><span title="General">General</span></td>
+<td width="1"><a class="report-link" title="Report this link" data-remote="true" href="/report_link?link_id=59848">⛳</a></td>
+</tr>
+      </tbody>
+    </table>
+  </section>
+  <div class="ordering">
+    <div class="order-list show" style="height:calc(0 * 44px)"></div>
+    <a href="show-more" class="show-more" data-triggered="true" onclick="showMoreBtn(event, this)">Hide Details</a>
+    <div class="total">
+      Total: <sup>$</sup>
+      <div class="order-data">0</div>
+    </div>
+    <p class="order-data-links">0 Links</p>
+    <div class="checkout hide">
+      <a href="#">Checkout</a>
+    </div>
+  </div>
+  <script type="text/javascript">
+    function clientSelect(elem) {
+      let searchBar = document.querySelector(".search-bar");
+      if (elem.id == "cs") {
+        if (elem.selectedIndex == 0) {
+          searchBar.classList.add('client-select');
+        } else {
+          if (elem.options[elem.selectedIndex].dataset.hasSubs == "true") {
+            searchBar.classList.add('subclients');
+            searchBar.classList.add('client-select');
+          } else {
+            document.querySelector("#sub").value = 0;
+            searchBar.classList.remove('subclients');
+            searchBar.classList.remove('client-select');
+          }
+        }
+      } else if (elem.id == "sub") {
+        if (elem.selectedIndex == 0) {
+          searchBar.classList.add('client-select');
+        } else {
+          searchBar.classList.remove('client-select');
+        }
+      }
+    }
+
+    function moreLessFilters(elem) {
+      elem.textContent = (!!~elem.textContent.indexOf("More")) ? elem.textContent.replace("More", "Less") : elem.textContent.replace("Less", "More");
+      document.querySelectorAll(".extra-filter").forEach(function(filter) {
+        filter.classList.toggle("hidden-filter");
+      });
+      document.querySelector(".search-bar").classList.toggle("all-filters");
+    }
+
+    function copyResults(e, elem) {
+      e.preventDefault();
+
+      let copyDataToClipboard = "https://www.tgdaily.com/\nhttps://www.tgdaily.com/\nhttps://www.tgdaily.com\nhttps://www.tgdaily.com/\nhttps://www.tgdaily.com\nhttps://www.tgdaily.com/\nhttps://www.tgdaily.com/\nhttps://www.tgdaily.com/";
+
+      const el = document.createElement('textarea');
+      el.value = copyDataToClipboard;
+      el.setAttribute('readonly', '');
+      el.style.position = 'absolute';
+      el.style.left = '-9999px';
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      elem.classList.add('copied');
+      document.body.removeChild(el);
+    }
+
+    // function for the link reporting
+    function showOther(show) {
+      var otherReason = document.querySelector(".other-reason");
+      if (show == "yes") {
+        otherReason.classList.add("show");
+      } else {
+        otherReason.classList.remove("show");
+      }
+    }
+
+    // check for localstorage on load
+    if (localStorage.getItem("checkout") != null && localStorage.getItem("checkout") != "") {
+      var obj = JSON.parse(localStorage.getItem("checkout"));
+      var build = "";
+      var urlBuild = "";
+      var price = 0;
+
+      let clientSelect = document.querySelector("#cs");
+      clientSelect = clientSelect.options[clientSelect.selectedIndex].value;
+
+      let providerSelect = document.querySelector("#pr");
+      providerSelect = (providerSelect.selectedIndex == 0) ? "" : "&pr=" + providerSelect.options[providerSelect.selectedIndex].value;
+      // loop for <tr> highlighting
+      for (var i = 0; i < obj.length; ++i) {
+        var findTr = document.querySelectorAll("tr");
+        // pricing addition
+        price += parseInt(obj[i][1]);
+        for (var j = 0; j < findTr.length; ++j) {
+          if (findTr[j].dataset.link == obj[i][0]) {
+            findTr[j].classList.add("selected");
+            findTr[j].querySelector("#link-order").checked = true;
+          }
+        }
+      }
+      // loop for checkout button
+      for (var i = 0; i < obj.length; ++i) {
+        build += "<p class=\"link-" + obj[i][0] + "\">" + obj[i][4] + "<small>$" + obj[i][1] + " - " + obj[i][3] + "</small><a href=\"/remove-link/" + obj[i][0] + "\" onclick=\"removeLink(event, " + obj[i][0] +
+          ", this.parentNode)\" title=\"Remove Link\"></a></p>";
+        urlBuild += obj[i][0] + ',';
+      }
+      // update list
+      document.querySelector(".order-list").innerHTML = build;
+      document.querySelector(".order-list").setAttribute("style", "height:calc(" + obj.length + " * 44px)");
+      // update pricing
+      document.querySelector(".order-data").innerHTML = price;
+      document.querySelector(".order-data-links").innerHTML = obj.length + " Links";
+      // update checkout button
+      if (price == 0) {
+        document.querySelector(".checkout").classList.add("hide");
+        document.querySelector(".checkout a").href = "#";
+        // show checkout
+        document.querySelector(".ordering").classList.remove("show-checkout");
+      } else {
+        document.querySelector(".checkout").classList.remove("hide");
+        document.querySelector(".checkout a").href = "/orders/new?ids=" + urlBuild + "&cs=" + clientSelect + providerSelect;
+        // show checkout
+        document.querySelector(".ordering").classList.add("show-checkout");
+      }
+    } else {
+      localStorage.setItem("checkout", "[]");
+    }
+
+    function submitSearchForm(e) {
+      if (e.keyCode === 13) document.querySelector(".new-cats").click();
+    }
+
+    function addCats(event, btn) {
+      event.preventDefault();
+
+      let getKeyword = document.querySelector(".keyword-search input").value;
+      let getCats = document.querySelectorAll(".categories .selected-items li");
+
+      let buildURL = "";
+      let catForm = document.querySelector(".new-cats");
+      let getDAs = document.querySelectorAll(".dr-low, .dr-high");
+      let getPrices = document.querySelectorAll(".price-low, .price-high");
+
+      let clientSelect = document.querySelector("#cs");
+      clientSelect = "&cs=" + clientSelect.options[clientSelect.selectedIndex].value;
+
+      let subClientSelect = document.querySelector("#sub");
+      console.log(subClientSelect.selectedIndex);
+      if (subClientSelect.selectedIndex > -1) {
+        subClientSelect = "&sub=" + subClientSelect.options[subClientSelect.selectedIndex].value;
+      } else {
+        subClientSelect = "";
+      }
+
+      let getKeywordInEx = document.querySelector(".keyword-inex");
+      getKeywordInEx = "&keyie=" + getKeywordInEx.options[getKeywordInEx.selectedIndex].value;
+
+      let getProviderInEx = document.querySelector(".provider-inex");
+      getProviderInEx = "&provie=" + getProviderInEx.options[getProviderInEx.selectedIndex].value;
+
+      let providerSelect = document.querySelector("#pr");
+      providerSelect = (providerSelect.selectedIndex == 0) ? "" : "&pr=" + providerSelect.options[providerSelect.selectedIndex].value;
+
+      let getCorrectValue = function(elem) {
+        if (elem.value) {
+          return elem.value;
+        } else {
+          return elem.dataset.default;
+        }
+      };
+
+      // Building DAs
+      // & making sure DA order is correct
+      let firstDA = parseInt(getCorrectValue(getDAs[0]));
+      let secondDA = parseInt(getCorrectValue(getDAs[1]));
+      if (firstDA > secondDA) {
+        buildURL += "&da=" + secondDA + "," + firstDA;
+      } else {
+        buildURL += "&da=" + firstDA + "," + secondDA;
+      }
+
+      // Building Prices
+      // & making sure Price order is correct
+      let firstPrice = parseInt(getCorrectValue(getPrices[0]));
+      let secondPrice = parseInt(getCorrectValue(getPrices[1]));
+      if (firstPrice > secondPrice) {
+        buildURL += "&price=" + secondPrice + "," + firstPrice;
+      } else {
+        buildURL += "&price=" + firstPrice + "," + secondPrice;
+      }
+
+      // Building keyword
+      buildURL += "&keyword=" + getKeyword;
+
+      // Building Categories
+      buildURL += "&cat=";
+      for (var i = 0; i < getCats.length; i++) {
+        buildURL += getCats[i].dataset.number + ",";
+      }
+
+      // Adding client & provider
+      buildURL += clientSelect + subClientSelect + providerSelect + getKeywordInEx + getProviderInEx;
+
+      // Setting up button and redirect to new page
+      btn.href = catForm.href + buildURL;
+      window.location.href = btn.href;
+    }
+
+    // global flag for setting vars in modal
+    let hasBeenRefined = false;
+
+    // open category modal
+    function openCat(event) {
+      event.preventDefault();
+
+      let firstDa = document.querySelector(".dr-low");
+      let firstPrice = document.querySelector(".price-low");
+
+      firstDa.value = firstDa.min;
+      document.querySelector(".dr-high").value = firstDa.max;
+
+      firstPrice.value = firstPrice.min;
+      document.querySelector(".price-high").value = firstPrice.max;
+
+      document.querySelector(".keyword-search input").value = "";
+
+      document.querySelectorAll(".selected-items li").forEach(function(li) {
+        li.click();
+      });
+
+      let modal = document.querySelector(".category-selection");
+      if (!modal.classList.contains("open")) {
+        window.scrollTo(0, 0);
+        modal.classList.toggle("open");
+      }
+
+      // trigger reset values
+      setValsOnLoad();
+
+      // change the flag back to false
+      hasBeenRefined = false;
+    }
+
+    function closeCat(event) {
+      event.preventDefault();
+
+      window.scrollTo(0, 0);
+      document.querySelector(".category-selection").classList.toggle("open");
+    }
+
+    // open category modal with values
+    function openRefineModal(das, prices, cats) {
+      if (prices) {
+        if (das != null) {
+          daArray = das.split(",");
+          document.querySelector(".dr-low").value = daArray[0];
+          document.querySelector(".dr-high").value = daArray[1];
+        }
+
+        if (prices != null) {
+          priceArray = prices.split(",");
+          document.querySelector(".price-low").value = priceArray[0];
+          document.querySelector(".price-high").value = priceArray[1];
+        }
+
+        if (cats != null) {
+          catsArray = cats.split(",");
+          catsArray.forEach(function(cat) {
+            if (cat != "")
+              document.querySelector(".list-wrapper li[data-number='" + cat + "']:not(.hide)").click();
+          });
+        }
+
+        // trigger reset values
+        setValsOnLoad();
+      }
+    }
+    openRefineModal('-1,100', '10,10000', '');
+
+    function showMoreBtn(event, triggerElem) {
+      event.preventDefault();
+
+      // if false (false is default)
+      if (triggerElem.dataset.triggered == "false") {
+        document.querySelector(".show-more").innerHTML = "Hide Details";
+        document.querySelector(".order-list").classList.add("show");
+        triggerElem.dataset.triggered = "true";
+      } else {
+        document.querySelector(".show-more").innerHTML = "Show Details";
+        document.querySelector(".order-list").classList.remove("show");
+        triggerElem.dataset.triggered = "false";
+      }
+    }
+
+    function addToOrder(id, price, parentElem, prov_id, url) {
+      // set provider name
+      let provider;
+      provArray.forEach(function(prov) {
+        if (prov[0] == parseInt(prov_id)) {
+          provider = prov[1];
+        }
+      });
+
+      // clear all function
+      if (id == null) {
+        localStorage.setItem("checkout", "[]");
+        return false;
+      }
+
+      // set scoped vars
+      var obj = [];
+      var duplicate = false;
+      var newPrice = 0;
+      var build = "";
+      var urlBuild = "";
+
+      let clientSelect = document.querySelector("#cs");
+      clientSelect = "&cs=" + clientSelect.options[clientSelect.selectedIndex].value;
+
+      let subClientSelect = document.querySelector("#sub");
+      if (subClientSelect.selectedIndex > -1) {
+        subClientSelect = "&sub=" + subClientSelect.options[subClientSelect.selectedIndex].value;
+      } else {
+        subClientSelect = "";
+      }
+
+      let getKeywordInEx = document.querySelector(".keyword-inex");
+      getKeywordInEx = "&keyie=" + getKeywordInEx.options[getKeywordInEx.selectedIndex].value;
+
+      let getProviderInEx = document.querySelector(".provider-inex");
+      getProviderInEx = "&provie=" + getProviderInEx.options[getProviderInEx.selectedIndex].value;
+
+      // check for localstorage
+      if (localStorage.getItem("checkout") != null && localStorage.getItem("checkout") != "") {
+        var obj = JSON.parse(localStorage.getItem("checkout"));
+      }
+
+      // initial loop through existing objs
+      for (var i = 0; i < obj.length; ++i) {
+        // get price total
+        newPrice = parseInt(obj[i][1]) + parseInt(newPrice);
+        // check if new data is duplicate
+        if (obj[i][0] == id) {
+          duplicate = true;
+          linkIndex = i;
+        }
+      }
+
+      if (!duplicate) {
+        // pricing addition
+        newPrice = newPrice + parseInt(price);
+        // adding new data to obj
+        obj.push([id, price, parentElem, provider, url]);
+        // saving localstorage obj
+        localStorage.setItem("checkout", JSON.stringify(obj));
+        // highlight
+        parentElem.classList.add("selected");
+      } else {
+        if (linkIndex != null) {
+          // remove duplicate from array
+          obj.splice(linkIndex, 1);
+          // saving localstorage obj
+          localStorage.setItem("checkout", JSON.stringify(obj));
+        }
+        // pricing subtraction
+        newPrice = newPrice - parseInt(price);
+        // highlight
+        parentElem.classList.remove("selected");
+      }
+
+      for (var i = 0; i < obj.length; ++i) {
+        // building listed items
+        build += "<p class=\"link-" + obj[i][0] + "\">" + obj[i][4] + "<small>$" + obj[i][1] + " - " + obj[i][3] + "</small><a href=\"/remove-link/" + obj[i][0] + "\" onclick=\"removeLink(event, " + obj[i][0] +
+          ", this.parentNode)\" title=\"Remove Link\"></a></p>";
+        urlBuild += obj[i][0] + ',';
+      }
+
+      // update list
+      document.querySelector(".order-list").innerHTML = build;
+      document.querySelector(".order-list").setAttribute("style", "height:calc(" + obj.length + " * 44px)");
+      // update pricing
+      document.querySelector(".order-data").innerHTML = newPrice;
+      document.querySelector(".order-data-links").innerHTML = obj.length + " Links";
+      // update checkout button
+      if (newPrice == 0) {
+        document.querySelector(".checkout").classList.add("hide");
+        document.querySelector(".checkout a").href = "#";
+        // hide checkout
+        document.querySelector(".ordering").classList.remove("show-checkout");
+      } else {
+        document.querySelector(".checkout").classList.remove("hide");
+        document.querySelector(".checkout a").href = "/orders/new?ids=" + urlBuild + clientSelect + subClientSelect + getKeywordInEx + getProviderInEx;
+        // show checkout
+        document.querySelector(".ordering").classList.add("show-checkout");
+      }
+    }
+
+    function removeLink(event, id, elem) {
+      event.preventDefault();
+
+      if (document.querySelector("tr[data-link='" + id + "'] input[type=checkbox]")) {
+        document.querySelector("tr[data-link='" + id + "'] input[type=checkbox]").click();
+      } else {
+        // Remove id's array from local storage
+        let getStorage = JSON.parse(localStorage.getItem("checkout"));
+        getStorage.forEach(function(item, i) {
+          if (item[0] == id) {
+            getStorage.splice(i, 1);
+          }
+        });
+        // then set the new localstorage
+        localStorage.setItem("checkout", JSON.stringify(getStorage));
+
+        elem.remove();
+        document.querySelector(".order-list").setAttribute("style", "height:calc(" + getStorage.length + " * 44px)");
+      }
+    }
+
+    function sortTable(n, header) {
+
+      const headers = document.querySelectorAll(".sorted")
+      headers.forEach(title => title.classList.remove("sorted"))
+
+      header.classList.add("sorted")
+
+      dataType = header.getAttribute("data-type")
+
+      var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+      table = document.querySelector(".ordering-list-table");
+      switching = true;
+      // Set the sorting direction to ascending:
+      dir = "asc";
+      /* Make a loop that will continue until
+      no switching has been done: */
+      while (switching) {
+        // Start by saying: no switching is done:
+        switching = false;
+        rows = table.rows;
+        /* Loop through all table rows (except the
+        first, which contains table headers): */
+        for (i = 1; i < (rows.length - 1); i++) {
+          // Start by saying there should be no switching:
+          shouldSwitch = false;
+          /* Get the two elements you want to compare,
+          one from current row and one from the next: */
+          x = rows[i].getElementsByTagName("TD")[n];
+          y = rows[i + 1].getElementsByTagName("TD")[n];
+
+          xNum = x.innerText
+          if (xNum.match(/\d+/g) == null) {
+            xInt = 0
+          } else {
+            xInt = xNum.match(/\d+/g).join('')
+          }
+          // xInt = xNum.match(/\d+/g);
+          numberX = Number(xInt)
+
+          yNum = y.innerText
+          if (yNum.match(/\d+/g) == null) {
+            yInt = 0
+          } else {
+            yInt = yNum.match(/\d+/g).join('')
+          }
+          // yInt = yNum.match(/\d+/g);
+          numberY = Number(yInt)
+
+          /* Check if the two rows should switch place,
+          based on the direction, asc or desc: */
+          if (dataType == "text" && dir == "asc") {
+            if (x.innerText.trim() > y.innerText.trim()) {
+              // If so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
+          } else if (dataType == "number" && dir == "asc") {
+            if (numberX > numberY) {
+              // If so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
+          } else if (dataType == "text" && dir == "desc") {
+            if (x.innerText.trim() < y.innerText.trim()) {
+              // If so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
+          } else if (dataType == "number" && dir == "desc") {
+            if (numberX < numberY) {
+              // If so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
+          }
+        }
+        if (shouldSwitch) {
+          /* If a switch has been marked, make the switch
+          and mark that a switch has been done: */
+          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+          switching = true;
+          // Each time a switch is done, increase this count by 1:
+          switchcount++;
+        } else {
+          /* If no switching has been done AND the direction is "asc",
+          set the direction to "desc" and run the while loop again. */
+          if (switchcount == 0 && dir == "asc") {
+            dir = "desc";
+            switching = true;
+          }
+        }
+      }
+    }
+
+    function getVals() {
+      // Get slider values
+      var parent = this.parentNode;
+      var slides = parent.querySelectorAll("input[type=range]");
+      var slide1 = parseFloat(slides[0].value);
+      var slide2 = parseFloat(slides[1].value);
+      var ifPrice = parent.classList.contains("price-range-slider");
+      // Neither slider will clip the other, so make sure we determine which is larger
+      if (slide1 > slide2) {
+        var tmp = slide2;
+        slide2 = slide1;
+        slide1 = tmp;
+      }
+
+      var displayElement = parent.querySelector(".rangeValues");
+      if (ifPrice) {
+        displayElement.innerHTML = "$" + slide1 + " - $" + slide2;
+      } else {
+        displayElement.innerHTML = slide1 + " - " + slide2;
+      }
+    }
+
+    window.onload = setValsOnLoad();
+
+    function setValsOnLoad() {
+      var sliderSections = document.querySelectorAll(".da-range-slider, .price-range-slider");
+      for (var x = 0; x < sliderSections.length; x++) {
+        var sliders = sliderSections[x].querySelectorAll("input[type=range]");
+        for (var y = 0; y < sliders.length; y++) {
+          if (sliders[y].type === "range") {
+            sliders[y].oninput = getVals;
+            // Manually trigger event first time to display values
+            sliders[y].oninput();
+          }
+        }
+      }
+    }
+
+    function switchLoadType(elem, getType, currentType) {
+      let urlParams = window.location.href.split("?")[1].split(currentType)[1];
+      elem.setAttribute("href", window.location.origin + "/start-order?link_type=" + getType + urlParams);
+    }
+
+
+    // get all providers
+    // let provArray = [[1,"Stella Astor"],[3,"Eliza Halse"],[4,"Lambodar Sahu"],[6,"James Hendrickson"],[10,"Joy Blanca"],[5,"Debbie Tom"],[8,"Andrew Dobrow"],[12,"Lemari Parker"],[15,"Anna Freud"],[16,"Michelle Turner"],[19,"Maya Denette"],[20,"Willson Anovic"],[22,"Amit Onweb"],[23,"Rahul Kumar"],[26,"John Miller"],[2,"Quality Guest Post"],[7,"George Bluff"],[25,"Kobi Klaf"],[91,"Anton Langer"],[9,"Jenn Quillen"],[62,"Vinay Mall"],[63,"Jason"],[64,"Mandi "],[66,"Aparna Shukla"],[68,"Greg Davis"],[70,"Andrew Anthoney"],[71,"Ariana Ostrow"],[72,"Scott"],[73,"Morgan"],[74,"Rani Mukherjee"],[75,"Cody Obrian"],[76,"Lindsay"],[77,"Tyler Thursby"],[78,"Taylor C. "],[79,"Gizelle Marie"],[80,"Troy Redstone"],[81,"Jackson Miller"],[82,"Sam L."],[83,"Amy Miester"],[65,"Zing Xiong"],[67,"Ramdas Chakraborty"],[61,"Eliza Graham"],[59,"David Tomas"],[84,"Vivek Baghel"],[69,"NIck Erices"],[85,"Chris Goldman"],[86,"Mandy Chau"],[87,"Kalth Harry"],[24,"Revati Shahu"],[13,"Abdul Mateen"],[60,"Judson Simmons"],[21,"Niels Andersen"],[129,"Kajal Singhania"],[88,"David Clarke"],[89,"Mark Evans"],[127,"Sarah Scott"],[14,"Jenna"],[90,"Pamela Lee"],[125,"Jack Vidal"],[126,"Benjamin Logan"],[124,"Asim Bhattacharya"],[17,"Zainab Sajjad"],[131,"Anthony Middleton"],[11,"Keith Osullivan"],[130,"Andrew Dominik"],[134,"Emma Lannarilli"],[132,"Anuja Singh"],[133,"Kartik Paramanik"],[135,"Claire Rocks"],[128,"Brett Farmiloe"],[18,"Sandra Daigle"],[138,"Mellissa Williams"],[137,"Lucy Mitchell"],[136,"Sam"],[139,"Georgina Grogan "],[140,"Louise Hegarty"],[173,"Becky Ward"],[174,"Kaylee Hall"],[175,"Isabella Miller"],[176,"David Leach"],[178,"Sam Hilbers"],[179,"Christine Berry"],[177,"Waqas Anwar"]];
+    // // apply categories based on the data attributes
+    // let provTDs = document.querySelectorAll("td.link-prov");
+    // let findProv;
+    // for(var i=0;i<provTDs.length;i++){
+    //   let getData = provTDs[i].dataset.linkProv;
+    //   if(getData == ""){
+    //   	findProv = "<em><small>Provider Empty</small></em>";
+    //   } else {
+    //     provArray.forEach(function(prov){
+    //     	if(prov[0] == parseInt(getData)){
+    //     		findProv = prov[1];
+    //     	}
+    //     });
+    // }
+    //   provTDs[i].innerHTML = findProv;
+    // }
+
+    // get all categories
+    let catArray = [
+      [1, "Arts"],
+      [2, "Automotive"],
+      [3, "Baby"],
+      [4, "Beauty"],
+      [5, "Birthday"],
+      [6, "Blog"],
+      [7, "Business"],
+      [8, "Careers"],
+      [9, "Commercial"],
+      [10, "Cooking"],
+      [11, "Crime"],
+      [12, "Culture"],
+      [13, "Education"],
+      [14, "Entertainment"],
+      [15, "Environment"],
+      [16, "Events"],
+      [17, "Family"],
+      [18, "Fashion"],
+      [19, "Finance"],
+      [20, "Fitness"],
+      [21, "Food"],
+      [22, "Funny"],
+      [23, "Gambling"],
+      [24, "Games"],
+      [25, "Garden"],
+      [26, "General"],
+      [27, "Graphic Design"],
+      [28, "Green Energy"],
+      [29, "Health"],
+      [30, "Home"],
+      [31, "Home Improvement"],
+      [32, "Hotel"],
+      [33, "Industrial"],
+      [34, "Insurance"],
+      [35, "Interior Designing"],
+      [36, "Internet Service"],
+      [37, "Investment"],
+      [38, "Jobs"],
+      [39, "Kids"],
+      [40, "Legal"],
+      [41, "Life"],
+      [42, "Lifehacks"],
+      [43, "Lifestyle"],
+      [45, "Lifestyle Men"],
+      [44, "Lifestyle Women"],
+      [46, "Marketing"],
+      [47, "Marriage"],
+      [48, "Medical"],
+      [49, "Moms"],
+      [50, "Money"],
+      [51, "Music"],
+      [52, "News"],
+      [53, "Nutrition"],
+      [54, "Opinion"],
+      [55, "Outdoors"],
+      [56, "Parenting"],
+      [57, "Pets"],
+      [58, "Photography"],
+      [60, "Politics"],
+      [74, "Profile"],
+      [59, "Programming"],
+      [61, "Real Estate"],
+      [62, "Recreation"],
+      [63, "Religion"],
+      [64, "Reviews"],
+      [65, "Science"],
+      [66, "SEO"],
+      [67, "Shopping"],
+      [68, "Social Media"],
+      [69, "Sports"],
+      [70, "Startup"],
+      [71, "Technology"],
+      [72, "Travel"],
+      [73, "Wedding"]
+    ];
+    // apply categories based on the data attributes
+    let catTDs = document.querySelectorAll("td.link-cats");
+    // // set random colors to each category
+    // for(var i=0;i<catArray.length;i++){
+    // 	// random color generator
+    // 	//let getColor = "#"+((1<<24)*Math.random()|0).toString(16);
+    // 	//catArray[i].push(getColor);
+
+    // 	// random rainbow color generator
+    // 	const red   = sin_to_hex(i, 0, catArray.length);
+    // 	const blue  = sin_to_hex(i, 1, catArray.length);
+    // 	const green = sin_to_hex(i, 2, catArray.length);
+    // 	catArray[i].push("#"+ red + green + blue);
+    // }
+    // add categories to their TDs
+    for (var i = 0; i < catTDs.length; i++) {
+      let getData = catTDs[i].dataset.linkCats;
+      let filtered = getData.split("\"").filter(function(el) {
+        return el != "" && el != ", " && el != "[" && el != "]";
+      });
+      let strArray = filtered.map(Number).map(x => {
+        let getValue = catArray.find(el => x == el[0])
+        if (getValue == undefined) {
+          return [x, "black"];
+        } else {
+          return [getValue[1], getValue[2]];
+        }
+      });
+      let buildHtml = "";
+      for (var y = 0; y < strArray.length; y++) {
+        // buildHtml += "<span style='border:1px solid "+ strArray[y][1] +";color:"+ strArray[y][1] +"' title='"+ strArray[y][0] +"'>"+ strArray[y][0] +"</span>";
+        buildHtml += "<span title='" + strArray[y][0] + "'>" + strArray[y][0] + "</span>";
+        // buildHtml += "<span style='border-color:"+ strArray[y][1] +";color:"+ strArray[y][1] +"'>"+ strArray[y][0] +"</span>";
+      }
+
+      catTDs[i].innerHTML = buildHtml;
+    }
+
+    function toggleOptions() {
+      let item1 = document.querySelector("[data-link='40692']")
+      let item2 = document.querySelector("[data-link='52495']")
+      let item3 = document.querySelector("[data-link='45114']")
+      let item4 = document.querySelector("[data-link='52330']")
+      let item5 = document.querySelector("[data-link='44889']")
+      let item6 = document.querySelector("[data-link='60688']")
+      let item7 = document.querySelector("[data-link='70198']")
+      let button = document.querySelector(".box")
+
+      if (button.innerText =="–") {
+        button.innerText = "+"
+      } else {
+        button.innerText = "–"
+      }
+
+      item1.classList.toggle("invisible")
+      item2.classList.toggle("invisible")
+      item3.classList.toggle("invisible")
+      item4.classList.toggle("invisible")
+      item5.classList.toggle("invisible")
+      item6.classList.toggle("invisible")
+      item7.classList.toggle("invisible")
+
+    }
+
+    function showProviderBox(button) {
+
+      if (button.style.backgroundColor = "#2076bf") {
+        console.log("true")
+        button.style.backgroundColor = "transparent"
+      } else {
+        console.log("false")
+      }
+  button.style.backgroundColor = "#2076bf"
+
+
+  const theBox = document.getElementById("selectProviders");
+  if (theBox.style.display==="none") {
+  theBox.style.display="block";} else {
+    theBox.style.display="none";
+  }
+}
+
+  </script>
+  <div class="app-version">
+    <section>
+      <span style="float:left;text-align:left;">NEW: Contact order owners directly.<br>Questions about billing? Email us <a href="mailto:link@niftymarketing.com">here</a>.</span>
+      Logged in as
+      <a href="/profile">Amador Chavez</a>
+      | <a data-confirm="Are you sure you want to logout?" rel="nofollow" data-method="delete" href="/users/sign_out">Logout</a><br>
+      App v1.6.4.8
+      <form style="display:inline-block;" action="/home/save_profile?id=3&amp;user%5Bdarkmode%5D=false&amp;user%5Bid%5D=3" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method"
+          value="patch"><input type="hidden" name="authenticity_token" value="iutqbqbgYZPrBX8SlNxq9/qRupOrZk8bCNntiXdcDWnLMEpkKMnF3KASMe6s7diJ09/0cwGnuEp/g8ryTbMUDA==">
+        <a href="/profile/darkmode" title="Change dark mode setting" style="border-bottom:0;" onclick="event.preventDefault();this.parentNode.submit()">✷</a>
+      </form>
+    </section>
+  </div>
+
+
+</body>
+
+</html>

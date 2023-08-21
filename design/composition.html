@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.1 Principles & Elements of Design</title>
+  <style>
+    html, body {margin:0;padding: 0;}
+    body {line-height:1.5em;font-family:Roboto;font-weight:200;color:#444;font-size:1.4em;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;}
+    footer{background: #100;padding:1em;text-align: center;font-size: 18px;font-weight: 400;color:#777;}
+    .content{padding:1em;margin:0 auto;max-width:30em;}
+    .header{background: #222;width: 100%;color: white;border-bottom: 5px solid #333;}
+    .download {background: #c55a11;margin-top: -1em;font-size: .5em;padding: 1em 2em;color: white;text-align: center;}
+    /*.menu {position: absolute;top: 1.7em;left: 70%;font-size: 18px;}*/
+    .menu {display:inline-block;float:right;margin-top:1.25em;}
+    .menu span{padding-right: 2em;}
+    .menu a {color:white;text-decoration: none;transition: ease-in all 150ms;}
+    .menu a:hover {border-bottom:1px dotted #fff;transition: ease-in all 150ms;}
+    .pricing {width:20%;background:#eee;color:#444;padding:.5em;text-align:center;float:left;margin-left:1em;border-radius:3px;}
+    h2 {color:#00BC4E;}
+    h1 {margin: 0em 0em 0.5em 0em;line-height:1.15em;}
+    p {margin-bottom:1.5em;}
+    .download a {color: white;text-decoration: none;border: 1px solid;padding: .5em 1.5em;border-radius: 3px;font-size: 14px;display: inline-block;margin-right: 1em;transition: all 150ms ease-in;}
+    .download a:hover {background:white;color:#c55a11;transition: all 150ms ease-in;}
+    li {margin-bottom:.5em;color:#777;border-left:1px solid #ccc;padding-left:1em;list-style: none;}
+    .button {padding: 1em 3em;background: #00BC4E;color: white;margin: 1em 0;display: inline-block;text-decoration: none;transition: all 150ms ease-in;}
+    .assignment {border:1px solid #00be63;border-radius:3px;background:#fff;font-family:Roboto;padding:1em 2em;border-left:2.5em solid #00be63;display:block;max-width:23em;width:100%;margin:0 auto;box-shadow:0px 5px 30px #ddd;}
+    .assignment h2 {letter-spacing:.05em;text-transform:uppercase;color:#00be63;font-weight:500}
+    .assignment p {color:#777;font-weight: 400;}
+    .submitbutton {text-decoration:none;color:white;background:#00be63;padding:.5em 1em;transition: ease-in all 150ms;border-radius: 3px;}
+    .submitbutton:hover {background:#00ad52;transition: ease-in all 150ms;box-shadow: 0px 2px 15px #ddd;}
+    .assignmentbox {border:1px solid #00be63;padding:1em;font-family:Roboto;color:#777;}
+    .modulen {margin: 1em 0em 0.5em 0em;font-size: 1em;letter-spacing: .03em;text-transform: uppercase;font-weight: 100;color: #00be63;display: block;}
+    .content img {width: 100%;border: 1px solid #ccc;padding: .5em;background: white;}
+    .mistake {padding:1em 2em;background:none;border-radius:5px;color:#c12;border:1px solid #c12;border-left:70px solid #c12;}
+    .note {padding:1em 2em;background:#fafafa;border:1px solid #ccc;border-radius:5px;border-left:70px solid #ccc;}
+  </style>
+</head>
+
+<body>
+  <div class="header">
+  <img src="assets/Logo.png" style="padding: 0.5em 0em 0em 1em;">
+  <div class="menu">
+  <span><a href="module-overview.html">Lessons</a></span><span><a href="extras.html">Extras</a></span><span><a href="#">Support</a></span>
+  </div>
+  </div>
+
+  <div class="content">
+
+    <span class="modulen">Module 1.1</span>
+    <h1 id="composition-organization">Composition &amp; Organization</h1>
+      <p>How do you organize your things? Some people have elaborate systems. Others just throw things around, yet still know where everything is. And others do something in between the two extremes.</p>
+      <p><img src="composition/messy-organized.jpg"></p>
+      <p>Personal methods of organization vary from person to person.</p>
+      <p>But, when it comes to design, you must be aware that you're creating something for other people. Thus, there are certain rules of composition and organization.</p>
+      <p>These rules will help you compose designs that are not only more understandable, but also more appealing. They help you create a good structure without restricting your creativity.</p>
+      <p>The rules will help you answer questions like:</p>
+      <ul>
+      <li>Where should you place items in a design?</li>
+      <li>How big should each item be?</li>
+      <li>How much space should you use to separate items?</li>
+      </ul>
+      <p>Decisions regarding space, size, and placement of the components within your design shouldn't be random. Rather, you should create structured systems. Let's analyze several of the systems you should create.</p>
+      <h2 id="the-canvas">The Canvas</h2>
+      <p>The first composition choice you make is determining the ratio and size of your canvas.</p>
+      <p>Your <em>canvas</em> refers to the container that will hold your design. This can be a piece of paper, a screen, or a postcard. Many times, your canvas will be dictated by the medium.</p>
+      <p>For example, if you're creating a resume, the canvas will be the sheet of paper (8.5 x 11 inches). If you're creating a slide, it will likes be a rectangle with a 16:9 ratio.</p>
+      <p>Purely digital designs mean you can set your own custom canvas size. Whatever size you choose will influence the rest of the composition choices you make, as well as how your design is perceived.</p>
+      <p>Below are some common canvas sizes:</p>
+      <p><img src="composition/canvas.png"></p>
+      <h2 id="alignment">Alignment</h2>
+      <p>Aligning objects relative to each other creates structure and harmony within your design.</p>
+      <p>One way to do this is to use a grid system (though many tools, including PowerPoint, have built in alignment tools).</p>
+      <p>A good way to think of this is with a <strong>grid</strong>. Remember graph paper in your high school math class. Many websites also use grid layouts. Aligning objects creates organization with lines. You can have organized columns. Breaking alignment can draw attention. But do it too much - and you get a cluttered mess. As with all contrast factors, you need consistency.</p>
+      <p>Compare the two design below. Notice how one design has individual components randomly placed, while the others has everything aligned.</p>
+      <p><img src="composition/alignment.jpg"></p>
+      <h2 id="proximity-grouping">Proximity + Grouping</h2>
+      <p>Placing items closer together make them seem related. This is the concept of grouping. Below is an example of poor grouping. All of the button on the elevator are close together. So which button is which?</p>
+      <p><img src="composition/which-button.jpg"></p>
+      <p>It's hard to tell, isn't it? There are a couple of potential fixes here. First, we could have both buttons on one side and the labels on the other. Alternatively, adding space either horizontally or vertically would also solve the issue.</p>
+      <h2 id="proportion">Proportion</h2>
+      <p>Proportion is probably the most important aspect of composition. Proportion refers to the different size relationships within a design.</p>
+      <p>The sizes of objects, as well as the amount of space in between objects should be purposeful. They should be based on a replicable system.</p>
+      <p>We have proportional systems in many other areas of our lives besides design. For instance, we have preset measurements for recipes such as the 1/8, 1/4, 1/2, and 1 tsp divisions. We also have rulers divided up into standard units of measure with the smallest measurement being 1/16th of an inch. Or consider a piano, which has keys that have equal divisions of pitch/frequency.</p>
+      <p>Rather than using random sizes, spaces, and divisions, you need to have a similarly structured system. So how do you create this system?</p>
+      <p>The most basic way is to create a set list of sizes and use them consistently throughout the design.</p>
+      <p>The simplest proportion is dividing things in half - a.k.a centering. This results in perfect symmetry.</p>
+      <p>Asymmetrical designs also work and can catch the eye. For example, lets consider a three-column brochure. It would look weird to have random column widths. One way to divide it proportionally would be to divide it into three equal parts.</p>
+      <p>A more sophisticated example would be a website. Websites in the past were usually divided up into 6 or 12 equal columns. These 12 columns could be divided up into sidebars and main content sections. The content sections may take up 8 of the 12 columns. But none on the sections take up half-columns. This keeps the website looking proportional.</p>
+      <p>Proportion goes beyond the overall layout of a design. The space between a heading and a paragraph should be equal to the height of the heading. The font sizes you use should be based on a proportional system.</p>
+      <p>Many designers use preset proportions based on common ratios such as the golden ratio or a 3:4 ratio. Using such presets can help you make good designs without stressing about math.</p>
+      <h2 id="conclusion">Conclusion</h2>
+      <p>Composition &amp; Organization is the hardest principle to master because there is so much that goes into it. All objects within a design should be proportional. They should also be aligned to each other. Beyond that, related objects should be grouped together. There is only one more pice to the puzzle that is missing: White Space. This is an extremely important concept and has its own dedicated module.</p>
+</div>
+  </div>
+
+
+
+
+
+  </div>
+
+</body>
+
+  <footer>
+    Copyright(C) 2017. Design For Content Marketers.
+  </footer>
+
+</html>

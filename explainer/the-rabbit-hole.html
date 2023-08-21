@@ -1,0 +1,471 @@
+<html>
+  <head>
+     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+      body {font-family:Rajdhani;}
+      table {width:100%;table-layout:fixed;border-collapse:collapse;border:1px solid #aaa;}
+      th {background:#383a53;color:white;text-align:left;}
+      th, td {padding:.75em;font-weight:600;}
+      tr:nth-child(odd) {background:#ccc;}
+      a {text-decoration:none;color:#d32e4b;border-bottom:1px dotted;}
+      p {padding:0;margin-top:0;margin-bottom:0.25em;}
+      </style>
+
+  </head>
+
+<div style="max-width:960px;padding:1em;margin:0 auto;">
+  <h1>Amador's Tool & Resource List</h1>
+<h2>Browsers</h2>
+
+<table>
+  <tr>
+    <th>Resource Links</th>
+    <th>Notes</th>
+  </tr>
+  <tr>
+    <td>
+      <a href="https://github.com/Eloston/ungoogled-chromium">https://github.com/Eloston/ungoogled-chromium</a>
+    </td>
+    <td>Chrome without Google</td>
+  </tr>
+  <tr>
+    <td>
+      <p><a href="https://spyware.neocities.org/guides/firefox.html">https://spyware.neocities.org/guides/firefox.html</a></p>
+      <p><a href="https://github.com/arkenfox/user.js">https://github.com/arkenfox/user.js</a></p>
+      <p><a href="https://github.com/pyllyukko/user.js/issues/94">https://github.com/pyllyukko/user.js/issues/94</a></p>
+    </td>
+    <td>Firefox hardening tutorials. Also consider Firefox policies in place of user.js files (<a href="https://github.com/mozilla/policy-templates/blob/master/README.md">https://github.com/mozilla/policy-templates/blob/master/README.md</a>).</td>
+  </tr>
+  <tr>
+    <td><a href="https://gist.github.com/0XDE57/fbd302cef7693e62c769">https://gist.github.com/0XDE57/fbd302cef7693e62c769</a></td>
+    <td>Firefox Guide to about:config</td>
+    </tr>
+    <tr>
+      <td><a href="https://12bytes.org/articles/tech/firefox/ublock-origin-suggested-settings/">https://12bytes.org/articles/tech/firefox/ublock-origin-suggested-settings/</a></td>
+      <td>Ublock Origin Settings</td>
+    </tr>
+</table>
+
+<h2>Network Control</h2>
+
+<table>
+  <tr>
+    <th>Tool</th>
+    <th>Notes</th>
+  </tr>
+  <tr>
+    <td>
+      <a href="https://github.com/AdguardTeam/AdGuardHome">https://github.com/AdguardTeam/AdGuardHome</a>
+    </td>
+    <td>Network-Wide Blocking</td>
+  </tr>
+  <tr>
+    <td>
+      <p><a href="https://www.dowse.eu/">https://www.dowse.eu/</a></p>
+    </td>
+    <td>Turn off internet for specific devices</td>
+  </tr>
+  <tr>
+    <td><a href="https://pi-hole.net/">https://pi-hole.net/</a></td>
+    <td>Network-Wide Blocking</td>
+    </tr>
+</table>
+
+<h2>Operating System Hardening</h2>
+
+<table>
+  <tr>
+    <th>Tool</th>
+    <th>Description</th>
+    <th>Supported OS</th>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/sveinbjornt/Sloth">https://github.com/sveinbjornt/Sloth</a></td>
+    <td>See what resources apps use.</td>
+    <td>Mac OS</td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/karek314/macOS-home-call-drop">https://github.com/karek314/macOS-home-call-drop</a></td>
+    <td>Disable calls to Apple servers</td>
+    <td>Mac OS</td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/evilsocket/opensnitch">https://github.com/evilsocket/opensnitch</a></td>
+    <td>Control internet access system-wide</td>
+    <td>Linux</td>
+  </tr>
+  <tr>
+    <td><a href="https://www.tripmode.ch/">https://www.tripmode.ch/</a></td>
+    <td>Control internet access system-wide</td>
+    <td>Mac OS</td>
+  </tr>
+  <tr>
+    <td><a href="https://www.obdev.at/products/littlesnitch/index.html/">https://www.obdev.at/products/littlesnitch/index.html</a></td>
+    <td>Control internet access system-wide</td>
+    <td>Mac OS</td>
+  </tr>
+  <tr>
+    <td><a href="https://objective-see.com/products/lulu.html">https://objective-see.com/products/lulu.html</a></td>
+    <td>Free outbound firewall</td>
+    <td>Mac OS</td>
+  <tr>
+    <td><a href="https://safing.io/portmaster/">https://safing.io/portmaster/</a></td>
+    <td>Control internet access system-wide</td>
+    <td>Windows, Linux</td>
+  </tr>
+  <tr>
+    <td><a href="https://wpd.app/">https://wpd.app/</a></td>
+    <td>Tool to maximize privacy settings on Windows 10</td>
+    <td>Windows</td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/feross/SpoofMAC">https://github.com/feross/SpoofMAC</a></td>
+    <td>Tool to change MAC address of computer</td>
+    <td>Windows, Mac OS, Linux</td>
+  </tr>
+  <tr>
+    <td><a href="https://www.veracrypt.fr/en/Home.html">https://github.com/feross/SpoofMAC</a></td>
+    <td>Tool to create encrypted Containers</td>
+    <td>Windows, Mac OS, Linux</td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/hephaest0s/usbkill">https://github.com/hephaest0s/usbkill</a></td>
+    <td>Disable Computer with kill switch USB</td>
+    <td>Mac OS, Linux</td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/feross/SpoofMAC">https://github.com/feross/SpoofMAC</a></td>
+    <td>Tool to change MAC address of computer</td>
+    <td>Windows, Mac OS, Linux</td>
+  </tr>
+</table>
+
+<h2>Miscellaneous Browser-Based Tools</h2>
+
+<table>
+  <tr>
+    <th>URL</th>
+    <th>What It Does</th>
+    <th>Defense Type</th>
+  </tr>
+  <tr>
+    <td><a href="http://sandlab.cs.uchicago.edu/fawkes/">http://sandlab.cs.uchicago.edu/fawkes/</a></td>
+    <td>Overlay images with near invisible noise to break facial recognition.</td>
+    <td>Distortion</td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/firstlookmedia/dangerzone">https://github.com/firstlookmedia/dangerzone</a></td>
+    <td>Protect yourself from unsafe PDF files with this sanitizer.</td>
+    <td>Blocking</td>
+  </tr>
+  <tr>
+    <td><a href="https://www.irongeek.com/homoglyph-attack-generator.php">https://www.irongeek.com/homoglyph-attack-generator.php</a></td>
+    <td>Create unparseable text with character swapping</td>
+    <td>Distortion</td>
+  </tr>
+  <tr>
+    <td><a href="https://everestpipkin.github.io/image-scrubber/">https://everestpipkin.github.io/image-scrubber/</a></td>
+    <td>Remove image metadata and blur faces</td>
+    <td>Blocking, Distortion</td>
+  </tr>
+  <tr>
+    <td><a href="https://decentraleyes.org/">https://decentraleyes.org/</a></td>
+    <td>Use cached versions of third-party resources</td>
+    <td>Blocking</td>
+  </tr>
+  <tr>
+    <td><a href="https://codeberg.org/nobody/LocalCDN">LocalCDN</a></td>
+    <td>Use cached versions of third-party resources</td>
+    <td>Blocking</td>
+  <tr>
+    <td><a href="https://github.com/Smile4ever/Neat-URL">https://github.com/Smile4ever/Neat-URL</a><p>https://github.com/ClearURLs/Addon/</p></td>
+    <td>Automatic Stripping of URL parameters</td>
+    <td>Blocking</td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/dhowe/AdNauseam">https://github.com/dhowe/AdNauseam</a></td>
+    <td>Extension to randomly engage ads in the background so that profile is inaccurate</td>
+    <td>Distortion</td>
+  </tr>
+  <tr>
+    <td><a href="https://thispersondoesnotexist.com/">https://thispersondoesnotexist.com/</a></td>
+    <td>AI-Generated faces if creating fake profile</td>
+    <td>Distortion</td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/sh-dv/hat.sh">https://github.com/sh-dv/hat.sh</a></td>
+    <td>Browser-based file encryption</td>
+    <td>Blocking</td>
+  </tr>
+  <tr>
+    <td><a href="https://www.mailinator.com/">https://www.mailinator.com/</a></td>
+    <td>Temporary fake email to get past sign-up walls</td>
+    <td>Distortion</td>
+  </tr>
+  <tr>
+    <td>
+      <p><a href="https://protectiid.com/">https://protectiid.com/</a>
+      <p><a href="https://relay.firefox.com/">https://relay.firefox.com/</a>
+    <td>Unique email addresses per site</td>
+    <td>Distortion</td>
+  </tr>
+  <tr>
+    <td><a href="http://bugmenot.com/">http://bugmenot.com/</a></td>
+    <td>Shared logins for select sites</td>
+    <td>Distortion</td>
+  </tr>
+  <tr>
+    <td><a href="https://cliqz.com/en/magazine/re-consent">https://cliqz.com/en/magazine/re-consent</a></td>
+    <td>Expose privacy controls on websites</td>
+    <td>Blocking</td>
+  </tr>
+  <tr>
+    <td><a href="https://generated.photos/anonymizer">https://generated.photos/anonymizer</a></td>
+    <td>Create fake face for social media</td>
+    <td>Distortion</td>
+</table>
+
+<h2>Testing Tools</h2>
+
+<table>
+  <tr>
+    <th>URL</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><a href="https://www.immuniweb.com/mobile/">https://www.immuniweb.com/mobile/</a></td>
+    <td>Test mobile apps for privacy & security vulnerabilities</td>
+  </tr>
+  <tr>
+    <td><a href="https://www.hurlit.com/#">https://www.hurlit.com/#</a></td>
+    <td>HTTP Request Tester</td>
+  </tr>
+  <tr>
+    <td><a href="https://mothersruin.com/software/SuspiciousPackage/">https://mothersruin.com/software/SuspiciousPackage/</a></td>
+    <td>Inspect Mac Installer Packages for what is actually installed</td>
+  </tr>
+  <tr>
+    <td><a href="https://www.timdoug.com/unpkg/">https://www.timdoug.com/unpkg/</a></td>
+    <td>Inspect Mac Installer Packages for what is actually installed</td>
+  </tr>
+  <tr>
+    <td><a href="https://pwnedkeys.com/">https://pwnedkeys.com/</a></td>
+    <td>Check for exposed/leaked passwords</td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/smicallef/spiderfoot">https://github.com/smicallef/spiderfoot</a></td>
+    <td>Tool used for automated reconnaisance</td>
+  </tr>
+  <tr>
+    <td><a href="https://themarkup.org/blacklight/">https://themarkup.org/blacklight/</a></td>
+    <td>Audit for select third-party trackers on websites</td>
+  </tr>
+  <tr>
+    <td><a href="https://pagexray.fouanalytics.com/">https://pagexray.fouanalytics.com/</a></td>
+    <td>Visualize resources called by website</td>
+  <tr>
+    <td><a href="https://github.com/dstotijn/hetty">https://github.com/dstotijn/hetty</a></td>
+    <td>HTTP toolkit for security research. In other words, see what data websites send and receive.</td>
+  </tr>
+  <tr>
+    <td>
+      <p><a href="https://which.nameserve.rs/">https://which.nameserve.rs/</a></p>
+      <p><a href="https://github.com/redirect2me/which-dns">https://github.com/redirect2me/which-dns</a></p>
+    </td>
+    <td>Test which DNS server provider you are using</td>
+  </tr>
+  <tr>
+    <td><a href="https://www.encryptlab.tech">https://www.encryptlab.tech</a></td>
+    <td>Developer learning ground for implementing encryption in apps</td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/nccgroup/solitude">https://github.com/nccgroup/solitude</a></td>
+    <td>MITM Proxy to see what apps are sending out</td>
+  </tr>
+  <tr>
+    <td><a href="https://mitmproxy.org/">https://mitmproxy.org/</a></td>
+    <td>MITM Proxy</td>
+  </tr>
+</table>
+
+<h2>Fingerprint Testers</h2>
+
+<table>
+  <tr>
+    <th>URL</th>
+    <th>Notes</th>
+  </tr>
+  <tr>
+    <td><a href="http://yourbrowser.is/">http://yourbrowser.is/</a></td>
+    <td>.</td>
+  </tr>
+  <tr>
+    <td><a href="https://www.nothingprivate.ml/">https://www.nothingprivate.ml/</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><a href="https://amiunique.org/">https://amiunique.org</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><a href="http://uniquemachine.org/">http://uniquemachine.org/</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><a href="http://ifconfig.io/">http://ifconfig.io</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><a href="https://panopticlick.eff.org/">https://panopticlick.eff.org/</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><a href="https://ifconfig.co/">https://ifconfig.co/</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><a href="https://inteltechniques.com/logger/">https://inteltechniques.com/logger/</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><a href="https://ipinfo.io/">https://ipinfo.io/</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><a href="https://browserleaks.com/">https://browserleaks.com/</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><a href="https://schemeflood.com/">https://schemeflood.com/</td>
+      <td></td>
+    </tr>
+
+</table>
+
+
+<h2>Big Corp IP Lists</h2>
+
+<table>
+  <tr>
+    <th>URL</th>
+    <th>Notes</th>
+  </tr>
+  <tr>
+    <td><a href="https://www.microsoft.com/en-us/download/details.aspx?id=53602">https://www.microsoft.com/en-us/download/details.aspx?id=53602</a></td>
+    <td>Microsoft IP List</td>
+  </tr>
+  <tr>
+    <td><a href="https://support.apple.com/en-us/HT210060">https://support.apple.com/en-us/HT210060/</a></td>
+    <td>Apple IP List</td>
+  </tr>
+  <tr>
+    <td>
+      <a href="https://www.gstatic.com/ipranges/goog.json">https://www.gstatic.com/ipranges/goog.json</a>
+      <a href="https://support.google.com/a/answer/10026322?hl=en">https://support.google.com/a/answer/10026322?hl=en</a>
+      <a href="https://ipinfo.io/AS15169">https://ipinfo.io/AS15169</a>
+    </td>
+    <td>Google IP List</td>
+  </tr>
+</table>
+
+
+<h2>Other Interesting Tools & Notes</h2>
+<ul>
+<li><a href="https://apparition47.github.io/MailTrackerBlocker/">https://apparition47.github.io/MailTrackerBlocker/</a>: Block tracking email pixels</li>
+<li><a href="https://github.com/JHurst97/SteganograhyProject">https://github.com/JHurst97/SteganograhyProject</a>: Hide encrypted info in image</li>
+<li><a href="https://jstrieb.github.io/projects/hidden-bookmarks/">https://jstrieb.github.io/projects/hidden-bookmarks/</a>: Use JS to track "knocks" and show/hide information </li>
+</ul>
+
+<h2>Roll Your Own VPN</h2>
+<ul>
+  <li>https://nomadgate.com/10-min-vpn-server/</li>
+  <li>https://drexl.me/guides/wireguard-pihole-vpn-setup.html</li>
+  <li>https://dev.to/yashints/let-s-setup-a-vpn-server-for-free-on-aws-under-5-min-1mg4</li>
+  <li>https://medium.com/@tatianaensslin/how-to-create-a-free-personal-vpn-in-the-cloud-using-ec2-openvpn-626c40e96dab</li>
+  <li>https://www.mozilla.org/en-US/products/vpn/</li>
+</ul>
+
+<h2>Run Your Own Cloud</h2>
+<ul>
+  <li>https://nextcloud.com/hub/</li>
+  <li>https://github.com/sovereign/sovereign</li>
+  <li>https://github.com/cullum/dank-selfhosted</li>
+  <li>https://thehelm.com/</li>
+  <li>https://github.com/technomada/cloud-from-scratch</li>
+  <li>https://freedombox.org/</li>
+  <li>https://www.markozivanovic.com/screw-it-ill-host-it-myself/</li>
+  <li>https://winstonprivacy.com/pages/privacytool-fd1-pt1?utm_source=facebook&utm_medium=cpc&utm_campaign=Open%2025-60&utm_content=Fewer%20Ads%20-%20Dark%20Variant&fbclid=IwAR0hNHz4OmoWxCZfc993G_snRPbhnwPPGzpnXyqLll3j0FvbYGBOPh4bdNQ</li>
+</ul>
+
+<h2>Personal Cloud Work</h2>
+<ul>
+<li>https://news.ycombinator.com/item?id=24474309</li>
+<li>https://gitlab.com/bztsrc/usbimager/</li>
+<li>https://github.com/IAmStoxe/wirehole</li>
+<li>https://news.ycombinator.com/item?id=24425424</li>
+<li>https://kamila.is//teaching/how-routers-work/</li>
+<li>https://news.ycombinator.com/item?id=24435454</li>
+<li>https://haydenjames.io/home-lab-beginners-guide-hardware/ | https://news.ycombinator.com/item?id=24270116</li>
+<li>https://arstechnica.com/gadgets/2020/08/understanding-dns-anatomy-of-a-bind-zone-file/</li>
+<li>https://www.groovypost.com/howto/free-parental-control-net-monitoring-netgear/</li>
+<li>https://news.ycombinator.com/item?id=23958599 personal email server</li>
+<li>https://actionsflow.github.io/docs/</li>
+<li>https://blog.alexgleason.me/run-your-own-server/</li>
+<li><a href="https://labzilla.io/blog/force-dns-pihole">https://labzilla.io/blog/force-dns-pihole</a> DNS routing </li>
+</ul>
+
+<h2>Other Guides and Recommendation Lists</h2>
+<ul>
+  <li>https://backgroundchecks.org/justdeleteme/</li>
+<li>https://joindeleteme.com/help/diy-free-opt-out-guide/</li>
+<li>https://github.com/pluja/awesome-privacy</li>
+<li>https://saymine.com/</li>
+<li>https://prism-break.org/en/</li>
+<li>https://www.privacytools.io/</li>
+<li>https://securitycheckli.st/</li>
+<li>https://github.com/drduh/macOS-Security-and-Privacy-Guide</li>
+<li>https://www.popularmechanics.com/technology/security/a32851975/police-surveillance-tools-protest-guide/</li>
+<li>https://github.com/Penetrum-Security/Security-List</li>
+<li><a href="https://0data.app/">https://0data.app/</a>
+</ul>
+
+<h2>Messaging</h2>
+<ul>
+  <li>https://github.com/berty/berty</li>
+  <li>https://send.tresorit.com/</li>
+  <li>https://cabal.chat/</li>
+  <li>https://scuttlebutt.nz/about/</li>
+</ul>
+
+<h2>Secure File Transfers</h2>
+<ul>
+  <li>https://sendfiles.dev/</li>
+  <li>https://www.sharedrop.io/</li>
+  <li>https://fileparty.co/</li>
+  <li>https://send.tresorit.com/</li>
+  <li>mega.co.nz</li>
+  <li>https://bitwarden.com/products/send/</li>
+  <li>https://wormhole.app/</li>
+  <li>https://github.com/timvisee/send Self Hosted</li>
+  <li>https://skytransfer.hns.siasky.net/#/</li>
+  <li>https://siasky.net/ Hosting</li>
+</ul>
+
+<h2>Data Aggregator Opt-Outs</h2>
+<ul>
+  <li><a href="https://optout.geico.com">optout.geico.com</a></li>
+  <li><a href="https://files.consumerfinance.gov/f/documents/cfpb_consumer-reporting-companies-list.pdf">List of Consumer Reporting Companies (CFPB)</a></li>
+  <li><a href="https://consumer.risk.lexisnexis.com/">LexisNexis CLUE Report</a>. See also: <a href="https://portal.ct.gov/CID/Consumer-Resources/Frequently-Asked-Questions-About-CLUE">1</a>, <a href="https://www.insurance.wa.gov/clue-comprehensive-loss-underwriting-exchange#:~:text=CLUE%20is%20a%20claims%2Dinformation,and%20personal%2Dproperty%20claims%20history">2</a></li>
+  <li><a href="https://www.optoutprescreen.com/">https://www.optoutprescreen.com/</a></li>
+  <li><a href="https://www.consumer.ftc.gov/articles/0148-prescreened-credit-and-insurance-offers">https://www.consumer.ftc.gov/articles/0148-prescreened-credit-and-insurance-offers</a></li>
+  <li><a href="https://www.consumer.ftc.gov/topics/limiting-unwanted-calls-emails">https://www.consumer.ftc.gov/topics/limiting-unwanted-calls-emails</a></li>
+  <li><a href="https://www.annualcreditreport.com/generalQuestions.action">https://www.annualcreditreport.com/generalQuestions.action</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/Fair_Credit_Reporting_Act">https://en.wikipedia.org/wiki/Fair_Credit_Reporting_Act</a></li>
+  <li><a href="https://support.google.com/websearch/troubleshooter/3111061?hl=en">Remove PII from Google Search Results</a></li>
+  <li><a href="https://www.producthunt.com/posts/ethi">https://www.producthunt.com/posts/ethi</a> Tool to see what Facebook and others know and delete it</li>
+</ul>
+
+
+
+</div>
+</html>

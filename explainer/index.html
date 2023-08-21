@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Web Privacy Explainer Concept</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+ <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /*BoilerPlate CSS*/
+        html, body {padding: 0;margin: 0;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;height:100%;}
+        h1, h2, h3, h4, h5, h6 {font-weight: 400;margin: 0;padding: 0;}
+        ::placeholder {color: rgba(20,0,0,1);opacity:1;}
+        *:focus {outline: none;}
+
+        /* Enter New CSS*/
+        html {scroll-behavior: smooth;scroll-snap-type: y mandatory;overflow: hidden;}
+        body {color:white;font-family:Jura}
+
+        h2 {letter-spacing: .25em;color:rgba(255,255,255,.9);font-size: 1.25em;text-transform: uppercase;}
+        h1 {font-weight:600;text-transform: uppercase;}
+
+        .screen {height:100vh;scroll-snap-align: start;padding:2em;overflow-y: scroll;position: relative;}
+        #one {background: #ff0c3a;}
+        #two {background: #3452cf;}
+        #three {background: #074293}
+        #four {background:#42486a}
+        #five {background: #341f4d}
+
+        .navigation {backdrop-filter:blur(5px);background:rgba(0,0,0,0.5);border-top:1px solid rgba(0,0,0,0.5);width:100%;position: fixed;bottom:0;display:flex;justify-content:space-between;align-items: center;z-index:9999;}
+        .navigation a {background:transparent;color:white;display: inline-block;text-decoration: none;padding:1em;width:100%;border-right:1px solid rgba(255,255,255,0.15);text-align: center;text-transform: uppercase;letter-spacing: .03em;transition: ease all .25s;}
+        .navigation a:hover {background: rgba(0,0,0,0.5);}
+
+        .yellowNote {padding: 1em;background: yellow;color: black;border-radius: 7px;text-transform: uppercase;letter-spacing: .1em;width: 200px;text-align: center;}
+
+        .ridge {transition: ease all .25s;}
+        .ridge:hover {fill:#F73D28;cursor:pointer;}
+
+        .screen a, .screen a:visited {color:lime;}
+
+        #noise {animation: overlay 4.25s ease-in .25s infinite;}
+        @keyframes overlay {
+          0% {transform:translatex(0);}
+          50% {transform:translatex(-355px);}
+          100% {transform:translatex(-355px);}
+        }
+
+
+    </style>
+</head>
+
+<body>
+  <div class="navigation">
+    <a href="#one">Character Swapping</a>
+    <a href="#two">Invisible Overlays</a>
+    <a href="#three">Encrypted Containers</a>
+    <a href="#four">Understanding Fingerprinting</a>
+    <a href="#five">Data Exposed On The Web</a>
+  </div>
+
+  <div class="screen" id="one">
+    <h2>DISTORTION TECHNIQUE</h2>
+    <h1>Character Swapping</h1>
+
+    <p style="font-size:3em;letter-spacing:.5em;">AΑАᎪᗅᴀꓮꭺＡ𖽀</p>
+    <p style="font-size:3em;letter-spacing:0.5em">CϹСᏟꓚＣ</p>
+    <p style="font-size:3em;letter-spacing:0.5em">T⊤⟙ꓔꭲＴ𐊗𐊱𐌕𖼊𝖳</p>
+
+    <p style="font-size:3em;letter-spacing:.5em;">CAT</p>
+    <p style="font-size:3em;letter-spacing:.5em;">Ｃ𖽀𐌕</p>
+
+    <div style="position:absolute;top:5em;right:5em;background:#333;padding:1em;">
+      <p>These letters look the same, but aren’t.</p>
+      <a href="https://www.irongeek.com/homoglyph-attack-generator.php">Example Tool</a>
+    </div>
+
+    <div style="position:absolute;top:15em;right:5em;" class="yellowNote">
+      <p>Easily sanitizable</p>
+      <p>If characters match any of these, categorize it as "A"</p>
+      <p>It’s an arms war</p>
+    </div>
+
+  </div>
+
+  <div class="screen" id="two">
+    <h2>DISTORTION TECHNIQUE</h2>
+    <h1 style="margin-bottom:1em;">Invisible Overlays</h1>
+    <img src="headshot.jpg" width="350px">
+    <img id="noise" src="noise.png" width="350px">
+
+    <!-- https://mindmatters.ai/2020/01/how-to-fool-face-recognition/ -->
+
+    <p>Example Implementation: <a href="https://github.com/natanielruiz/disrupting-deepfakes">https://github.com/natanielruiz/disrupting-deepfakes</a></p>
+    <p>More Information: <a href="https://arxiv.org/pdf/1710.08864.pdf">https://arxiv.org/pdf/1710.08864.pdf</a></p>
+
+    <div style="position:absolute;top:15em;right:5em;background:#333;padding:1em;width:300px;">
+    Shifting pixels can break recognition algorithms.
+  </div>
+
+  </div>
+
+  <div class="screen" id="three">
+    <h2>DISTORTION TECHNIQUE</h2>
+    <h1>Encrypted Containers</h1>
+
+    Any raw file can be analyzed for text, faces, copyright infringement,
+    Encrypted ZIP file means none of the inside files can be parsed
+
+  </div>
+
+  <div class="screen" id="four">
+    <h2>EXPLAINER</h2>
+    <h1>Understanding Fingerprinting</h1>
+
+    <svg style="margin:1em 0" height="200px" width="500px" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="75 0 100 100" style="enable-background:new 0 0 100 100;fill: ;" xml:space="preserve">
+      <g><g><g><path class="ridge" id="fp1" d="M23.8,13.8c0.9-0.6,1.8-1,2.8-1.5c0.5-0.2,0.9-0.4,1.4-0.7c0.1-0.1,0.9-0.4,0.6-0.3c-0.3,0.2,0.2-0.1,0.2-0.1     c0.2-0.1,0.4-0.2,0.7-0.3c1.3-0.5,2.7-1,4.1-1.4c7.9-2.4,16.3-3.1,24.6-1.9c6.4,1,12.7,3.1,18.4,6c1.1,0.6,2.5,0.3,3.1-0.8     c0.6-1,0.3-2.6-0.8-3.1C68.9,4.7,57.7,2,46.4,2.7c-7.3,0.5-14.4,2.2-21,5.2c-1.3,0.6-2.6,1.2-3.8,2c-1,0.7-1.5,2-0.8,3.1     C21.3,14,22.8,14.5,23.8,13.8L23.8,13.8z"/>
+        <line id="line" stroke-width="1.5" fill="none" style="stroke-dasharray: 2.5;stroke: white;" y1="10" y2="10" x2="100" x1="225"></line>
+      </g></g><g><g>
+      <path class="ridge" id="fp2" d="M18.7,79.9c-1.1-2.7-1.7-5.5-2.2-8.4c-0.1-0.6-0.2-1.3-0.3-1.9c0-0.1-0.1-0.7,0,0c0-0.2,0-0.3-0.1-0.5     c0-0.4-0.1-0.8-0.1-1.2c-0.2-1.5-0.2-3-0.2-4.6c0-1.6,0.1-3.3,0.3-4.9c0-0.2,0-0.4,0.1-0.6c-0.1,0.5,0-0.1,0-0.2     c0.1-0.4,0.1-0.8,0.2-1.2c0.2-0.9,0.3-1.8,0.6-2.6c1-3.6,2.2-6.5,4.4-9.6c1-1.4,2.2-2.8,3.6-4.1c1.6-1.5,3.2-2.8,5.1-4     c4.7-3,10.1-5.1,15.7-5.6c6.1-0.6,12.2,0.3,17.9,2.5c4.5,1.7,8.6,4.3,11.9,7.8c1.8,1.8,3.2,3.9,4.5,6.1c0.7,1.2,1.4,2.5,2,3.8     c0.3,0.7,0.7,1.4,1,2.1c-0.2-0.4-0.1-0.1,0,0c0.3,0.7,0.5,1.4,0.7,2.1c0.2,0.6,0.3,1.2,0.4,1.8c0.1,0.3,0.1,0.7,0.2,1.1     c0,0.2,0.1,0.4,0.1,0.6c-0.1-0.6,0,0.3,0,0.4c0.1,0.8,0.1,1.6,0.1,2.5c0,0.4,0,0.8,0,1.3c0,0.2,0,0.4,0,0.7c0,0.2,0,0.3,0,0.4     c0-0.2,0-0.2,0,0c-0.3,2-0.7,3.1-1.9,4.7c0.2-0.3-0.2,0.3-0.2,0.3c-0.2,0.2-0.3,0.3-0.5,0.5c-0.3,0.3-0.6,0.6-0.8,0.7     c-1,0.8-2.2,1.3-3.4,1.6c-2.6,0.8-5.6,0.6-8.1-0.7c-1.9-1-3.3-2.4-4.3-4.3c-0.2-0.4-0.3-0.6-0.5-1.2c-0.1-0.3-0.2-0.7-0.2-1     c-0.1-0.4-0.4-1.2,0-0.3c-0.2-0.5,0-1.2-0.1-1.7c0-0.8-0.2-1.6-0.3-2.5c-2.2-11-17.9-14.4-25-6.2c-5.4,6.2-3.9,15.3-1,22.3     c3.3,8.1,9.6,14.5,17.4,18.4c2.5,1.3,5.2,2.3,7.9,3.2c2.8,0.9,4-3.5,1.2-4.4c-4.8-1.6-9.7-3.9-13.5-7.1c-3.2-2.6-5.4-5.4-7.4-8.9     c-0.4-0.8-0.8-1.6-1.2-2.4c-0.2-0.4,0.1,0.2-0.1-0.2c-0.1-0.2-0.2-0.4-0.2-0.5c-0.2-0.4-0.3-0.8-0.4-1.2     c-0.5-1.4-0.9-2.9-1.2-4.4c-0.1-0.7-0.2-1.3-0.3-1.9c0-0.2,0-0.3-0.1-0.4c-0.1-0.5,0,0.2,0,0c0-0.3-0.1-0.6-0.1-0.9     c-0.3-2.5,0.1-5,1.4-7.2c2.8-4.6,8.3-5.4,12.9-3.5c1.7,0.7,3.3,1.9,4.3,3.5c1.2,1.9,1.1,4,1.4,6.3c0.1,0.6,0,0.2,0,0.1     c0,0.3,0.1,0.5,0.1,0.8c0.1,0.3,0.1,0.7,0.2,1c0.2,0.7,0.5,1.5,0.8,2.1c0.3,0.7,0.8,1.5,1.3,2.1c1.9,2.5,4.5,4.3,7.6,5.2     c5.4,1.6,12,0.2,15.7-4.2c4.5-5.4,4-13.3,1.9-19.7c-1.4-4.2-3.8-8.2-6.5-11.6c-3-3.9-6.8-7.2-11.2-9.5c-11.4-6-25.1-6.8-36.8-1.4     c-8.1,3.7-15.1,10-18.6,18.3c-2.7,6.4-3.5,13.5-2.8,20.5c0.4,4.2,1.2,8.4,2.6,12.4c0.1,0.2,0.2,0.4,0.2,0.6     c0.5,1.2,1.5,2,2.8,1.6C18.2,82.5,19.2,81.1,18.7,79.9L18.7,79.9z"/>
+      <line id="line" stroke-width="1.5" fill="none" style="stroke-dasharray: 2.5;stroke: white;" y1="35" y2="35" x2="100" x1="225"></line>
+    </g></g><g><g>
+      <path class="ridge" id="fp3" d="M11.5,38.1c0.1-0.2,0.2-0.3,0.4-0.5c0.2-0.2,0.3-0.4,0.4-0.6c0.1-0.2,0.5-0.6,0,0c0.1-0.2,0.3-0.3,0.4-0.5     c1.3-1.6,2.8-3.2,4.3-4.7c2.3-2.2,4.3-3.8,6.9-5.5c3.1-2,6.4-3.7,9.8-4.9c4-1.4,8.2-2.3,12.5-2.6c1.9-0.1,3.8-0.1,5.6,0     c0.9,0,1.9,0.1,2.8,0.1c0.5,0,1.1,0.1,1.6,0.2c0.3,0,0.6,0.1,0.9,0.1c0.6,0.1-0.5-0.1,0.1,0c0.2,0,0.4,0,0.5,0.1     c3,0.5,6,1.2,8.9,2.2c8.6,3,16.3,9.1,21.8,16.6c0.7,1,2,1.5,3.1,0.8c1-0.6,1.5-2.1,0.8-3.1c-5.4-7.5-12.5-13.6-21-17.3     c-5.7-2.5-11.8-3.9-18-4.2c-5.9-0.3-12,0.1-17.7,1.7c-7.4,2.1-14.2,6-20,11c-2.9,2.6-5.8,5.5-7.9,8.8C6,38.3,9.9,40.6,11.5,38.1     L11.5,38.1z"/>
+      <line id="line" stroke-width="1.5" fill="none" style="stroke-dasharray: 2.5;stroke: white;" y1="60" y2="60" x2="100" x1="225"></line>
+    </g></g><g><g>
+      <path class="ridge" id="fp4" d="M47.5,62.6c-0.1,4.3,1.4,8.6,3.5,12.3c3,5.4,7.8,9.6,13.7,11.4c4.6,1.4,9.2,1.2,14,0.7c1.2-0.1,2.3-1,2.3-2.3     c0-1.2-1-2.4-2.3-2.3c-3.9,0.4-7.8,0.7-11.4-0.2c-1.6-0.4-2.7-0.8-3.9-1.4c-0.6-0.3-1.2-0.7-1.8-1c-0.3-0.2-0.5-0.4-0.8-0.5     c-0.2-0.1-0.3-0.2-0.4-0.3c-0.1-0.1-0.1-0.1,0,0c-0.1-0.1-0.2-0.1-0.2-0.2c-1-0.8-2-1.8-2.8-2.8c-0.2-0.2-0.4-0.5-0.6-0.7     c0.3,0.3-0.3-0.4-0.3-0.5c-0.4-0.5-0.7-1.1-1.1-1.6c-0.6-1-1.1-2-1.6-3.1c0-0.1-0.1-0.2-0.1-0.3c0.2,0.5,0.1,0.2,0,0.1     c-0.1-0.3-0.2-0.5-0.3-0.8c-0.2-0.5-0.3-1-0.5-1.5c-0.3-0.9-0.5-1.8-0.7-2.7c0-0.1-0.1-0.8-0.1-0.3c0.1,0.5,0-0.2,0-0.3     c0-0.6,0-1.2,0-1.8C52.1,59.7,47.6,59.7,47.5,62.6L47.5,62.6z"/>
+      <line id="line" stroke-width="1.5" fill="none" style="stroke-dasharray: 2.5;stroke: white;" y1="70" y2="70" x2="100" x1="225"></line>
+    </g></g><g><g>
+      <path class="ridge" id="fp5" d="M76.7,62.8c0.2-5.8-2.1-11.5-5.7-16c-5.7-7.2-15.7-10.6-24.7-9.4c-8.7,1.1-17.3,7-20.9,15.1c-2.3,5.3-2.7,11.1-1.9,16.7     c1.5,10.2,6.8,19.5,14.2,26.6c2.1,2,5.3-1.2,3.2-3.2c-6.2-6-10.8-13.5-12.6-22c-0.2-0.7-0.3-1.4-0.4-2c0-0.1,0-0.3-0.1-0.4     c-0.1-0.6,0.1,0.5,0-0.1c0-0.3-0.1-0.7-0.1-1c-0.1-0.9-0.2-1.9-0.2-2.8c0-2,0.2-3.9,0.6-5.8c0.8-3.7,2.6-7.1,5.2-9.7     c1.3-1.3,2.3-2,3.6-3c1.8-1.2,3.6-2.2,5.7-2.9c4.8-1.6,9.8-1.4,14.5,0.1c3.5,1.1,6.5,2.9,8.9,5.4c1.3,1.3,2,2.2,3,3.9     c0.4,0.6,0.7,1.3,1,2c0.1,0.2,0.2,0.3,0.2,0.5c0.2,0.5-0.1-0.3,0.1,0.2c0.1,0.3,0.3,0.7,0.4,1c0.4,1.2,0.8,2.4,1,3.7     c0,0.3,0.1,0.5,0.1,0.8c-0.1-0.8,0,0,0,0.2c0.1,0.8,0.1,1.6,0.1,2.3C72.1,65.8,76.7,65.8,76.7,62.8L76.7,62.8z"/>
+      <line id="line" stroke-width="1.5" fill="none" style="stroke-dasharray: 2.5;stroke: white;" y1="85" y2="85" x2="100" x1="225"></line>
+    </g></g></g></svg>
+
+
+  </div>
+
+  <div class="screen" id="five">
+    <h2>EXPLAINER</h2>
+    <h1>How The Internet Works</h1>
+
+    <img style="display:block;margin-bottom:2em;" src="address.png">
+    <img style="display:block;margin-bottom:2em;" src="letter.png">
+    <img style="display:block;margin-bottom:2em;" src="info.png">
+    <img style="display:block;margin-bottom:2em;" src="multiples.png">
+
+    <img src="fox-headers.png">
+    <img src="chrome-header-1.png">
+
+
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+<form method="post">
+  <div style="border:1px solid #ccc;box-shadow:0px 1px 10px rgba(0,0,0,0.15);padding:2em 3.6em;max-width:720px;border-radius:5px;font-family:Cadillac Sans;text-align:left;background:white;margin:5% auto;">
+<div class="close">&times;</div>
+ <h2 style="letter-spacing:.1em;font-weight:100;margin-top:2em;margin-bottom:.25em;">Name Each Class:</h2>
+  <p style="margin-bottom:1em;"><label style="margin-right:.75em;">Class 1</label><input type="text"> <span style="margin-left:.75em;width:10px;height:10px;background:#ac1234;border-radius:100px;display:inline-block;border:1px solid black;"></span></p>
+  <p style="margin-bottom:1em;"><label style="margin-right:.75em;">Class 2</label><input type="text"><span style="margin-left:.75em;width:10px;height:10px;background:#183;border-radius:100px;display:inline-block;border:1px solid black;"></span></p>
+  <p  style="margin-bottom:1em;"><label style="margin-right:.75em;">Class 3</label><input type="text"><span style="margin-left:.75em;width:10px;height:10px;background:#214;border-radius:100px;display:inline-block;border:1px solid black;"></span></p>
+<input type="submit" id="eventSubmit" value="Submit" />
+  </form>
+</div>
+
+<script>
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    // modal.style.display = "none";
+    modal.classList.remove('modalShow');
+}
+</script>

@@ -1,0 +1,921 @@
+      <!DOCTYPE html>
+      <html>
+        <head>
+            <meta charset="utf-8" />
+            <title>WordPress Considerations</title>
+            <style>.markdown-preview:not([data-use-github-style]) { padding: 2em; font-size: 1.2em; color: rgb(171, 178, 191); background-color: rgb(40, 44, 52); overflow: auto; }
+.markdown-preview:not([data-use-github-style]) > :first-child { margin-top: 0px; }
+.markdown-preview:not([data-use-github-style]) h1, .markdown-preview:not([data-use-github-style]) h2, .markdown-preview:not([data-use-github-style]) h3, .markdown-preview:not([data-use-github-style]) h4, .markdown-preview:not([data-use-github-style]) h5, .markdown-preview:not([data-use-github-style]) h6 { line-height: 1.2; margin-top: 1.5em; margin-bottom: 0.5em; color: rgb(255, 255, 255); }
+.markdown-preview:not([data-use-github-style]) h1 { font-size: 2.4em; font-weight: 300; }
+.markdown-preview:not([data-use-github-style]) h2 { font-size: 1.8em; font-weight: 400; }
+.markdown-preview:not([data-use-github-style]) h3 { font-size: 1.5em; font-weight: 500; }
+.markdown-preview:not([data-use-github-style]) h4 { font-size: 1.2em; font-weight: 600; }
+.markdown-preview:not([data-use-github-style]) h5 { font-size: 1.1em; font-weight: 600; }
+.markdown-preview:not([data-use-github-style]) h6 { font-size: 1em; font-weight: 600; }
+.markdown-preview:not([data-use-github-style]) strong { color: rgb(255, 255, 255); }
+.markdown-preview:not([data-use-github-style]) del { color: rgb(124, 135, 156); }
+.markdown-preview:not([data-use-github-style]) a, .markdown-preview:not([data-use-github-style]) a code { color: rgb(82, 139, 255); }
+.markdown-preview:not([data-use-github-style]) img { max-width: 100%; }
+.markdown-preview:not([data-use-github-style]) > p { margin-top: 0px; margin-bottom: 1.5em; }
+.markdown-preview:not([data-use-github-style]) > ul, .markdown-preview:not([data-use-github-style]) > ol { margin-bottom: 1.5em; }
+.markdown-preview:not([data-use-github-style]) blockquote { margin: 1.5em 0px; font-size: inherit; color: rgb(124, 135, 156); border-color: rgb(75, 83, 98); border-width: 4px; }
+.markdown-preview:not([data-use-github-style]) hr { margin: 3em 0px; border-top: 2px dashed rgb(75, 83, 98); background: none; }
+.markdown-preview:not([data-use-github-style]) table { margin: 1.5em 0px; }
+.markdown-preview:not([data-use-github-style]) th { color: rgb(255, 255, 255); }
+.markdown-preview:not([data-use-github-style]) th, .markdown-preview:not([data-use-github-style]) td { padding: 0.66em 1em; border: 1px solid rgb(75, 83, 98); }
+.markdown-preview:not([data-use-github-style]) code { color: rgb(255, 255, 255); background-color: rgb(58, 63, 75); }
+.markdown-preview:not([data-use-github-style]) pre.editor-colors { margin: 1.5em 0px; padding: 1em; font-size: 0.92em; border-radius: 3px; background-color: rgb(49, 54, 63); }
+.markdown-preview:not([data-use-github-style]) kbd { color: rgb(255, 255, 255); border-width: 1px 1px 2px; border-style: solid; border-color: rgb(75, 83, 98) rgb(75, 83, 98) rgb(62, 68, 81); border-image: initial; background-color: rgb(58, 63, 75); }
+.markdown-preview[data-use-github-style] { font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif; line-height: 1.6; overflow-wrap: break-word; padding: 30px; font-size: 16px; color: rgb(51, 51, 51); background-color: rgb(255, 255, 255); overflow: scroll; }
+.markdown-preview[data-use-github-style] > :first-child { margin-top: 0px !important; }
+.markdown-preview[data-use-github-style] > :last-child { margin-bottom: 0px !important; }
+.markdown-preview[data-use-github-style] a:not([href]) { color: inherit; text-decoration: none; }
+.markdown-preview[data-use-github-style] .absent { color: rgb(204, 0, 0); }
+.markdown-preview[data-use-github-style] .anchor { position: absolute; top: 0px; left: 0px; display: block; padding-right: 6px; padding-left: 30px; margin-left: -30px; }
+.markdown-preview[data-use-github-style] .anchor:focus { outline: none; }
+.markdown-preview[data-use-github-style] h1, .markdown-preview[data-use-github-style] h2, .markdown-preview[data-use-github-style] h3, .markdown-preview[data-use-github-style] h4, .markdown-preview[data-use-github-style] h5, .markdown-preview[data-use-github-style] h6 { position: relative; margin-top: 1em; margin-bottom: 16px; font-weight: bold; line-height: 1.4; }
+.markdown-preview[data-use-github-style] h1 .octicon-link, .markdown-preview[data-use-github-style] h2 .octicon-link, .markdown-preview[data-use-github-style] h3 .octicon-link, .markdown-preview[data-use-github-style] h4 .octicon-link, .markdown-preview[data-use-github-style] h5 .octicon-link, .markdown-preview[data-use-github-style] h6 .octicon-link { display: none; color: rgb(0, 0, 0); vertical-align: middle; }
+.markdown-preview[data-use-github-style] h1:hover .anchor, .markdown-preview[data-use-github-style] h2:hover .anchor, .markdown-preview[data-use-github-style] h3:hover .anchor, .markdown-preview[data-use-github-style] h4:hover .anchor, .markdown-preview[data-use-github-style] h5:hover .anchor, .markdown-preview[data-use-github-style] h6:hover .anchor { padding-left: 8px; margin-left: -30px; text-decoration: none; }
+.markdown-preview[data-use-github-style] h1:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h2:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h3:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h4:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h5:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h6:hover .anchor .octicon-link { display: inline-block; }
+.markdown-preview[data-use-github-style] h1 tt, .markdown-preview[data-use-github-style] h2 tt, .markdown-preview[data-use-github-style] h3 tt, .markdown-preview[data-use-github-style] h4 tt, .markdown-preview[data-use-github-style] h5 tt, .markdown-preview[data-use-github-style] h6 tt, .markdown-preview[data-use-github-style] h1 code, .markdown-preview[data-use-github-style] h2 code, .markdown-preview[data-use-github-style] h3 code, .markdown-preview[data-use-github-style] h4 code, .markdown-preview[data-use-github-style] h5 code, .markdown-preview[data-use-github-style] h6 code { font-size: inherit; }
+.markdown-preview[data-use-github-style] h1 { padding-bottom: 0.3em; font-size: 2.25em; line-height: 1.2; border-bottom: 1px solid rgb(238, 238, 238); }
+.markdown-preview[data-use-github-style] h1 .anchor { line-height: 1; }
+.markdown-preview[data-use-github-style] h2 { padding-bottom: 0.3em; font-size: 1.75em; line-height: 1.225; border-bottom: 1px solid rgb(238, 238, 238); }
+.markdown-preview[data-use-github-style] h2 .anchor { line-height: 1; }
+.markdown-preview[data-use-github-style] h3 { font-size: 1.5em; line-height: 1.43; }
+.markdown-preview[data-use-github-style] h3 .anchor { line-height: 1.2; }
+.markdown-preview[data-use-github-style] h4 { font-size: 1.25em; }
+.markdown-preview[data-use-github-style] h4 .anchor { line-height: 1.2; }
+.markdown-preview[data-use-github-style] h5 { font-size: 1em; }
+.markdown-preview[data-use-github-style] h5 .anchor { line-height: 1.1; }
+.markdown-preview[data-use-github-style] h6 { font-size: 1em; color: rgb(119, 119, 119); }
+.markdown-preview[data-use-github-style] h6 .anchor { line-height: 1.1; }
+.markdown-preview[data-use-github-style] p, .markdown-preview[data-use-github-style] blockquote, .markdown-preview[data-use-github-style] ul, .markdown-preview[data-use-github-style] ol, .markdown-preview[data-use-github-style] dl, .markdown-preview[data-use-github-style] table, .markdown-preview[data-use-github-style] pre { margin-top: 0px; margin-bottom: 16px; }
+.markdown-preview[data-use-github-style] hr { height: 4px; padding: 0px; margin: 16px 0px; background-color: rgb(231, 231, 231); border: 0px none; }
+.markdown-preview[data-use-github-style] ul, .markdown-preview[data-use-github-style] ol { padding-left: 2em; }
+.markdown-preview[data-use-github-style] ul.no-list, .markdown-preview[data-use-github-style] ol.no-list { padding: 0px; list-style-type: none; }
+.markdown-preview[data-use-github-style] ul ul, .markdown-preview[data-use-github-style] ul ol, .markdown-preview[data-use-github-style] ol ol, .markdown-preview[data-use-github-style] ol ul { margin-top: 0px; margin-bottom: 0px; }
+.markdown-preview[data-use-github-style] li > p { margin-top: 16px; }
+.markdown-preview[data-use-github-style] dl { padding: 0px; }
+.markdown-preview[data-use-github-style] dl dt { padding: 0px; margin-top: 16px; font-size: 1em; font-style: italic; font-weight: bold; }
+.markdown-preview[data-use-github-style] dl dd { padding: 0px 16px; margin-bottom: 16px; }
+.markdown-preview[data-use-github-style] blockquote { padding: 0px 15px; color: rgb(119, 119, 119); border-left: 4px solid rgb(221, 221, 221); }
+.markdown-preview[data-use-github-style] blockquote > :first-child { margin-top: 0px; }
+.markdown-preview[data-use-github-style] blockquote > :last-child { margin-bottom: 0px; }
+.markdown-preview[data-use-github-style] table { display: block; width: 100%; overflow: auto; word-break: keep-all; }
+.markdown-preview[data-use-github-style] table th { font-weight: bold; }
+.markdown-preview[data-use-github-style] table th, .markdown-preview[data-use-github-style] table td { padding: 6px 13px; border: 1px solid rgb(221, 221, 221); }
+.markdown-preview[data-use-github-style] table tr { background-color: rgb(255, 255, 255); border-top: 1px solid rgb(204, 204, 204); }
+.markdown-preview[data-use-github-style] table tr:nth-child(2n) { background-color: rgb(248, 248, 248); }
+.markdown-preview[data-use-github-style] img { max-width: 100%; box-sizing: border-box; }
+.markdown-preview[data-use-github-style] .emoji { max-width: none; }
+.markdown-preview[data-use-github-style] span.frame { display: block; overflow: hidden; }
+.markdown-preview[data-use-github-style] span.frame > span { display: block; float: left; width: auto; padding: 7px; margin: 13px 0px 0px; overflow: hidden; border: 1px solid rgb(221, 221, 221); }
+.markdown-preview[data-use-github-style] span.frame span img { display: block; float: left; }
+.markdown-preview[data-use-github-style] span.frame span span { display: block; padding: 5px 0px 0px; clear: both; color: rgb(51, 51, 51); }
+.markdown-preview[data-use-github-style] span.align-center { display: block; overflow: hidden; clear: both; }
+.markdown-preview[data-use-github-style] span.align-center > span { display: block; margin: 13px auto 0px; overflow: hidden; text-align: center; }
+.markdown-preview[data-use-github-style] span.align-center span img { margin: 0px auto; text-align: center; }
+.markdown-preview[data-use-github-style] span.align-right { display: block; overflow: hidden; clear: both; }
+.markdown-preview[data-use-github-style] span.align-right > span { display: block; margin: 13px 0px 0px; overflow: hidden; text-align: right; }
+.markdown-preview[data-use-github-style] span.align-right span img { margin: 0px; text-align: right; }
+.markdown-preview[data-use-github-style] span.float-left { display: block; float: left; margin-right: 13px; overflow: hidden; }
+.markdown-preview[data-use-github-style] span.float-left span { margin: 13px 0px 0px; }
+.markdown-preview[data-use-github-style] span.float-right { display: block; float: right; margin-left: 13px; overflow: hidden; }
+.markdown-preview[data-use-github-style] span.float-right > span { display: block; margin: 13px auto 0px; overflow: hidden; text-align: right; }
+.markdown-preview[data-use-github-style] code, .markdown-preview[data-use-github-style] tt { padding: 0.2em 0px; margin: 0px; font-size: 85%; background-color: rgba(0, 0, 0, 0.04); border-radius: 3px; }
+.markdown-preview[data-use-github-style] code::before, .markdown-preview[data-use-github-style] tt::before, .markdown-preview[data-use-github-style] code::after, .markdown-preview[data-use-github-style] tt::after { letter-spacing: -0.2em; content: " "; }
+.markdown-preview[data-use-github-style] code br, .markdown-preview[data-use-github-style] tt br { display: none; }
+.markdown-preview[data-use-github-style] del code { text-decoration: inherit; }
+.markdown-preview[data-use-github-style] pre > code { padding: 0px; margin: 0px; font-size: 100%; word-break: normal; white-space: pre; background: transparent; border: 0px; }
+.markdown-preview[data-use-github-style] .highlight { margin-bottom: 16px; }
+.markdown-preview[data-use-github-style] .highlight pre, .markdown-preview[data-use-github-style] pre { padding: 16px; overflow: auto; font-size: 85%; line-height: 1.45; background-color: rgb(247, 247, 247); border-radius: 3px; }
+.markdown-preview[data-use-github-style] .highlight pre { margin-bottom: 0px; word-break: normal; }
+.markdown-preview[data-use-github-style] pre { overflow-wrap: normal; }
+.markdown-preview[data-use-github-style] pre code, .markdown-preview[data-use-github-style] pre tt { display: inline; max-width: initial; padding: 0px; margin: 0px; overflow: initial; line-height: inherit; overflow-wrap: normal; background-color: transparent; border: 0px; }
+.markdown-preview[data-use-github-style] pre code::before, .markdown-preview[data-use-github-style] pre tt::before, .markdown-preview[data-use-github-style] pre code::after, .markdown-preview[data-use-github-style] pre tt::after { content: normal; }
+.markdown-preview[data-use-github-style] kbd { display: inline-block; padding: 3px 5px; font-size: 11px; line-height: 10px; color: rgb(85, 85, 85); vertical-align: middle; background-color: rgb(252, 252, 252); border-width: 1px; border-style: solid; border-color: rgb(204, 204, 204) rgb(204, 204, 204) rgb(187, 187, 187); border-image: initial; border-radius: 3px; box-shadow: rgb(187, 187, 187) 0px -1px 0px inset; }
+.markdown-preview[data-use-github-style] a { color: rgb(51, 122, 183); }
+.markdown-preview[data-use-github-style] code { color: inherit; }
+.markdown-preview[data-use-github-style] pre.editor-colors { padding: 0.8em 1em; margin-bottom: 1em; font-size: 0.85em; border-radius: 4px; overflow: auto; }
+.markdown-preview pre.editor-colors { user-select: auto; }
+.scrollbars-visible-always .markdown-preview pre.editor-colors .vertical-scrollbar, .scrollbars-visible-always .markdown-preview pre.editor-colors .horizontal-scrollbar { visibility: hidden; }
+.scrollbars-visible-always .markdown-preview pre.editor-colors:hover .vertical-scrollbar, .scrollbars-visible-always .markdown-preview pre.editor-colors:hover .horizontal-scrollbar { visibility: visible; }
+.markdown-preview .task-list-item input[type="checkbox"] { position: absolute; margin: 0.25em 0px 0px -1.4em; }
+.markdown-preview .task-list-item { list-style-type: none; }
+.bracket-matcher .region {
+  border-bottom: 1px dotted lime;
+  position: absolute;
+}
+.line-number.bracket-matcher.bracket-matcher {
+  color: #abb2bf;
+  background-color: #3a3f4b;
+}
+
+.spell-check-misspelling .region {
+  border-bottom: 2px dotted rgba(255, 51, 51, 0.75);
+}
+.spell-check-corrections {
+  width: 25em !important;
+}
+
+pre.editor-colors {
+  background-color: #282c34;
+  color: #abb2bf;
+}
+pre.editor-colors .line.cursor-line {
+  background-color: rgba(153, 187, 255, 0.04);
+}
+pre.editor-colors .invisible {
+  color: #abb2bf;
+}
+pre.editor-colors .cursor {
+  border-left: 2px solid #528bff;
+}
+pre.editor-colors .selection .region {
+  background-color: #3e4451;
+}
+pre.editor-colors .bracket-matcher .region {
+  border-bottom: 1px solid #528bff;
+  box-sizing: border-box;
+}
+pre.editor-colors .invisible-character {
+  color: rgba(171, 178, 191, 0.15);
+}
+pre.editor-colors .indent-guide {
+  color: rgba(171, 178, 191, 0.15);
+}
+pre.editor-colors .wrap-guide {
+  background-color: rgba(171, 178, 191, 0.15);
+}
+pre.editor-colors .find-result .region.region.region,
+pre.editor-colors .current-result .region.region.region {
+  border-radius: 2px;
+  background-color: rgba(82, 139, 255, 0.24);
+  transition: border-color 0.4s;
+}
+pre.editor-colors .find-result .region.region.region {
+  border: 2px solid transparent;
+}
+pre.editor-colors .current-result .region.region.region {
+  border: 2px solid #528bff;
+  transition-duration: .1s;
+}
+pre.editor-colors .gutter .line-number {
+  color: #636d83;
+  -webkit-font-smoothing: antialiased;
+}
+pre.editor-colors .gutter .line-number.cursor-line {
+  color: #abb2bf;
+  background-color: #3a3f4b;
+}
+pre.editor-colors .gutter .line-number.cursor-line-no-selection {
+  background-color: transparent;
+}
+pre.editor-colors .gutter .line-number .icon-right {
+  color: #abb2bf;
+}
+pre.editor-colors .gutter:not(.git-diff-icon) .line-number.git-line-removed.git-line-removed::before {
+  bottom: -3px;
+}
+pre.editor-colors .gutter:not(.git-diff-icon) .line-number.git-line-removed::after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  width: 25px;
+  border-bottom: 1px dotted rgba(224, 82, 82, 0.5);
+  pointer-events: none;
+}
+pre.editor-colors .gutter .line-number.folded,
+pre.editor-colors .gutter .line-number:after,
+pre.editor-colors .fold-marker:after {
+  color: #abb2bf;
+}
+.syntax--comment {
+  color: #5c6370;
+  font-style: italic;
+}
+.syntax--comment .syntax--markup.syntax--link {
+  color: #5c6370;
+}
+.syntax--entity.syntax--name.syntax--type {
+  color: #e5c07b;
+}
+.syntax--entity.syntax--other.syntax--inherited-class {
+  color: #e5c07b;
+}
+.syntax--keyword {
+  color: #c678dd;
+}
+.syntax--keyword.syntax--control {
+  color: #c678dd;
+}
+.syntax--keyword.syntax--operator {
+  color: #c678dd;
+}
+.syntax--keyword.syntax--other.syntax--special-method {
+  color: #61afef;
+}
+.syntax--keyword.syntax--other.syntax--unit {
+  color: #d19a66;
+}
+.syntax--storage {
+  color: #c678dd;
+}
+.syntax--storage.syntax--type.syntax--annotation,
+.syntax--storage.syntax--type.syntax--primitive {
+  color: #c678dd;
+}
+.syntax--storage.syntax--modifier.syntax--package,
+.syntax--storage.syntax--modifier.syntax--import {
+  color: #abb2bf;
+}
+.syntax--constant {
+  color: #d19a66;
+}
+.syntax--constant.syntax--variable {
+  color: #d19a66;
+}
+.syntax--constant.syntax--character.syntax--escape {
+  color: #56b6c2;
+}
+.syntax--constant.syntax--numeric {
+  color: #d19a66;
+}
+.syntax--constant.syntax--other.syntax--color {
+  color: #56b6c2;
+}
+.syntax--constant.syntax--other.syntax--symbol {
+  color: #56b6c2;
+}
+.syntax--variable {
+  color: #e06c75;
+}
+.syntax--variable.syntax--interpolation {
+  color: #be5046;
+}
+.syntax--variable.syntax--parameter {
+  color: #abb2bf;
+}
+.syntax--string {
+  color: #98c379;
+}
+.syntax--string > .syntax--source,
+.syntax--string .syntax--embedded {
+  color: #abb2bf;
+}
+.syntax--string.syntax--regexp {
+  color: #56b6c2;
+}
+.syntax--string.syntax--regexp .syntax--source.syntax--ruby.syntax--embedded {
+  color: #e5c07b;
+}
+.syntax--string.syntax--other.syntax--link {
+  color: #e06c75;
+}
+.syntax--punctuation.syntax--definition.syntax--comment {
+  color: #5c6370;
+}
+.syntax--punctuation.syntax--definition.syntax--method-parameters,
+.syntax--punctuation.syntax--definition.syntax--function-parameters,
+.syntax--punctuation.syntax--definition.syntax--parameters,
+.syntax--punctuation.syntax--definition.syntax--separator,
+.syntax--punctuation.syntax--definition.syntax--seperator,
+.syntax--punctuation.syntax--definition.syntax--array {
+  color: #abb2bf;
+}
+.syntax--punctuation.syntax--definition.syntax--heading,
+.syntax--punctuation.syntax--definition.syntax--identity {
+  color: #61afef;
+}
+.syntax--punctuation.syntax--definition.syntax--bold {
+  color: #e5c07b;
+  font-weight: bold;
+}
+.syntax--punctuation.syntax--definition.syntax--italic {
+  color: #c678dd;
+  font-style: italic;
+}
+.syntax--punctuation.syntax--section.syntax--embedded {
+  color: #be5046;
+}
+.syntax--punctuation.syntax--section.syntax--method,
+.syntax--punctuation.syntax--section.syntax--class,
+.syntax--punctuation.syntax--section.syntax--inner-class {
+  color: #abb2bf;
+}
+.syntax--support.syntax--class {
+  color: #e5c07b;
+}
+.syntax--support.syntax--type {
+  color: #56b6c2;
+}
+.syntax--support.syntax--function {
+  color: #56b6c2;
+}
+.syntax--support.syntax--function.syntax--any-method {
+  color: #61afef;
+}
+.syntax--entity.syntax--name.syntax--function {
+  color: #61afef;
+}
+.syntax--entity.syntax--name.syntax--class,
+.syntax--entity.syntax--name.syntax--type.syntax--class {
+  color: #e5c07b;
+}
+.syntax--entity.syntax--name.syntax--section {
+  color: #61afef;
+}
+.syntax--entity.syntax--name.syntax--tag {
+  color: #e06c75;
+}
+.syntax--entity.syntax--other.syntax--attribute-name {
+  color: #d19a66;
+}
+.syntax--entity.syntax--other.syntax--attribute-name.syntax--id {
+  color: #61afef;
+}
+.syntax--meta.syntax--class {
+  color: #e5c07b;
+}
+.syntax--meta.syntax--class.syntax--body {
+  color: #abb2bf;
+}
+.syntax--meta.syntax--method-call,
+.syntax--meta.syntax--method {
+  color: #abb2bf;
+}
+.syntax--meta.syntax--definition.syntax--variable {
+  color: #e06c75;
+}
+.syntax--meta.syntax--link {
+  color: #d19a66;
+}
+.syntax--meta.syntax--require {
+  color: #61afef;
+}
+.syntax--meta.syntax--selector {
+  color: #c678dd;
+}
+.syntax--meta.syntax--separator {
+  color: #abb2bf;
+}
+.syntax--meta.syntax--tag {
+  color: #abb2bf;
+}
+.syntax--underline {
+  text-decoration: underline;
+}
+.syntax--none {
+  color: #abb2bf;
+}
+.syntax--invalid.syntax--deprecated {
+  color: #523d14 !important;
+  background-color: #e0c285 !important;
+}
+.syntax--invalid.syntax--illegal {
+  color: white !important;
+  background-color: #e05252 !important;
+}
+.syntax--markup.syntax--bold {
+  color: #d19a66;
+  font-weight: bold;
+}
+.syntax--markup.syntax--changed {
+  color: #c678dd;
+}
+.syntax--markup.syntax--deleted {
+  color: #e06c75;
+}
+.syntax--markup.syntax--italic {
+  color: #c678dd;
+  font-style: italic;
+}
+.syntax--markup.syntax--heading {
+  color: #e06c75;
+}
+.syntax--markup.syntax--heading .syntax--punctuation.syntax--definition.syntax--heading {
+  color: #61afef;
+}
+.syntax--markup.syntax--link {
+  color: #56b6c2;
+}
+.syntax--markup.syntax--inserted {
+  color: #98c379;
+}
+.syntax--markup.syntax--quote {
+  color: #d19a66;
+}
+.syntax--markup.syntax--raw {
+  color: #98c379;
+}
+.syntax--source.syntax--cs .syntax--keyword.syntax--operator {
+  color: #c678dd;
+}
+.syntax--source.syntax--css .syntax--property-name,
+.syntax--source.syntax--css .syntax--property-value {
+  color: #828997;
+}
+.syntax--source.syntax--css .syntax--property-name.syntax--support,
+.syntax--source.syntax--css .syntax--property-value.syntax--support {
+  color: #abb2bf;
+}
+.syntax--source.syntax--elixir .syntax--source.syntax--embedded.syntax--source {
+  color: #abb2bf;
+}
+.syntax--source.syntax--elixir .syntax--constant.syntax--language,
+.syntax--source.syntax--elixir .syntax--constant.syntax--numeric,
+.syntax--source.syntax--elixir .syntax--constant.syntax--definition {
+  color: #61afef;
+}
+.syntax--source.syntax--elixir .syntax--variable.syntax--definition,
+.syntax--source.syntax--elixir .syntax--variable.syntax--anonymous {
+  color: #c678dd;
+}
+.syntax--source.syntax--elixir .syntax--parameter.syntax--variable.syntax--function {
+  color: #d19a66;
+  font-style: italic;
+}
+.syntax--source.syntax--elixir .syntax--quoted {
+  color: #98c379;
+}
+.syntax--source.syntax--elixir .syntax--keyword.syntax--special-method,
+.syntax--source.syntax--elixir .syntax--embedded.syntax--section,
+.syntax--source.syntax--elixir .syntax--embedded.syntax--source.syntax--empty {
+  color: #e06c75;
+}
+.syntax--source.syntax--elixir .syntax--readwrite.syntax--module .syntax--punctuation {
+  color: #e06c75;
+}
+.syntax--source.syntax--elixir .syntax--regexp.syntax--section,
+.syntax--source.syntax--elixir .syntax--regexp.syntax--string {
+  color: #be5046;
+}
+.syntax--source.syntax--elixir .syntax--separator,
+.syntax--source.syntax--elixir .syntax--keyword.syntax--operator {
+  color: #d19a66;
+}
+.syntax--source.syntax--elixir .syntax--variable.syntax--constant {
+  color: #e5c07b;
+}
+.syntax--source.syntax--elixir .syntax--array,
+.syntax--source.syntax--elixir .syntax--scope,
+.syntax--source.syntax--elixir .syntax--section {
+  color: #828997;
+}
+.syntax--source.syntax--gfm .syntax--markup {
+  -webkit-font-smoothing: auto;
+}
+.syntax--source.syntax--gfm .syntax--link .syntax--entity {
+  color: #61afef;
+}
+.syntax--source.syntax--ini .syntax--keyword.syntax--other.syntax--definition.syntax--ini {
+  color: #e06c75;
+}
+.syntax--source.syntax--java .syntax--storage.syntax--modifier.syntax--import {
+  color: #e5c07b;
+}
+.syntax--source.syntax--java .syntax--storage.syntax--type {
+  color: #e5c07b;
+}
+.syntax--source.syntax--java .syntax--keyword.syntax--operator.syntax--instanceof {
+  color: #c678dd;
+}
+.syntax--source.syntax--java-properties .syntax--meta.syntax--key-pair {
+  color: #e06c75;
+}
+.syntax--source.syntax--java-properties .syntax--meta.syntax--key-pair > .syntax--punctuation {
+  color: #abb2bf;
+}
+.syntax--source.syntax--ts .syntax--keyword.syntax--operator {
+  color: #56b6c2;
+}
+.syntax--source.syntax--flow .syntax--keyword.syntax--operator {
+  color: #56b6c2;
+}
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--dictionary.syntax--json > .syntax--string.syntax--quoted.syntax--json {
+  color: #e06c75;
+}
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--dictionary.syntax--json > .syntax--string.syntax--quoted.syntax--json > .syntax--punctuation.syntax--string {
+  color: #e06c75;
+}
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--dictionary.syntax--json > .syntax--value.syntax--json > .syntax--string.syntax--quoted.syntax--json,
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--array.syntax--json > .syntax--value.syntax--json > .syntax--string.syntax--quoted.syntax--json,
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--dictionary.syntax--json > .syntax--value.syntax--json > .syntax--string.syntax--quoted.syntax--json > .syntax--punctuation,
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--array.syntax--json > .syntax--value.syntax--json > .syntax--string.syntax--quoted.syntax--json > .syntax--punctuation {
+  color: #98c379;
+}
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--dictionary.syntax--json > .syntax--constant.syntax--language.syntax--json,
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--array.syntax--json > .syntax--constant.syntax--language.syntax--json {
+  color: #56b6c2;
+}
+.syntax--ng.syntax--interpolation {
+  color: #e06c75;
+}
+.syntax--ng.syntax--interpolation.syntax--begin,
+.syntax--ng.syntax--interpolation.syntax--end {
+  color: #61afef;
+}
+.syntax--ng.syntax--interpolation .syntax--function {
+  color: #e06c75;
+}
+.syntax--ng.syntax--interpolation .syntax--function.syntax--begin,
+.syntax--ng.syntax--interpolation .syntax--function.syntax--end {
+  color: #61afef;
+}
+.syntax--ng.syntax--interpolation .syntax--bool {
+  color: #d19a66;
+}
+.syntax--ng.syntax--interpolation .syntax--bracket {
+  color: #abb2bf;
+}
+.syntax--ng.syntax--pipe,
+.syntax--ng.syntax--operator {
+  color: #abb2bf;
+}
+.syntax--ng.syntax--tag {
+  color: #56b6c2;
+}
+.syntax--ng.syntax--attribute-with-value .syntax--attribute-name {
+  color: #e5c07b;
+}
+.syntax--ng.syntax--attribute-with-value .syntax--string {
+  color: #c678dd;
+}
+.syntax--ng.syntax--attribute-with-value .syntax--string.syntax--begin,
+.syntax--ng.syntax--attribute-with-value .syntax--string.syntax--end {
+  color: #abb2bf;
+}
+.syntax--source.syntax--php .syntax--class.syntax--bracket {
+  color: #abb2bf;
+}
+/*
+   This defines styling rules for syntax classes.
+
+   See the naming conventions for a list of syntax classes:
+   https://flight-manual.atom.io/hacking-atom/sections/syntax-naming-conventions
+
+   When styling rules conflict:
+   - The last rule overrides previous rules.
+   - The rule with most classes and pseudo-classes overrides the last rule.
+*/
+.syntax--keyword {
+  color: #c678dd;
+}
+.syntax--keyword.syntax--type {
+  color: #56b6c2;
+}
+.syntax--keyword.syntax--function {
+  color: #e06c75;
+}
+.syntax--keyword.syntax--variable {
+  color: #e06c75;
+}
+.syntax--entity {
+  color: #abb2bf;
+}
+.syntax--entity.syntax--parameter {
+  color: #abb2bf;
+}
+.syntax--entity.syntax--support {
+  color: #e06c75;
+}
+.syntax--entity.syntax--decorator:last-child {
+  color: #61afef;
+}
+.syntax--entity.syntax--label {
+  text-decoration: underline;
+}
+.syntax--entity.syntax--function {
+  color: #61afef;
+}
+.syntax--entity.syntax--operator {
+  color: #61afef;
+}
+.syntax--entity.syntax--operator.syntax--symbolic {
+  color: #abb2bf;
+}
+.syntax--entity.syntax--type {
+  color: #56b6c2;
+}
+.syntax--entity.syntax--tag {
+  color: #e06c75;
+}
+.syntax--entity.syntax--attribute {
+  color: #d19a66;
+}
+.syntax--punctuation {
+  color: #abb2bf;
+}
+.syntax--punctuation.syntax--accessor {
+  color: #abb2bf;
+}
+.syntax--punctuation.syntax--accessor.syntax--member,
+.syntax--punctuation.syntax--accessor.syntax--scope {
+  color: #c678dd;
+}
+.syntax--punctuation.syntax--embedded {
+  color: #c678dd;
+}
+.syntax--string {
+  color: #98c379;
+}
+.syntax--string.syntax--immutable {
+  color: #98c379;
+}
+.syntax--string.syntax--part {
+  color: #56b6c2;
+}
+.syntax--string.syntax--interpolation {
+  color: #c678dd;
+}
+.syntax--string.syntax--regexp {
+  color: #98c379;
+}
+.syntax--string.syntax--regexp.syntax--language {
+  color: #c678dd;
+}
+.syntax--string.syntax--regexp.syntax--variable {
+  color: #61afef;
+}
+.syntax--string.syntax--regexp.syntax--punctuation {
+  color: #c678dd;
+}
+.syntax--constant {
+  color: #d19a66;
+}
+.syntax--constant.syntax--character {
+  color: #98c379;
+}
+.syntax--constant.syntax--character.syntax--escape {
+  color: #98c379;
+}
+.syntax--constant.syntax--character.syntax--code {
+  color: #56b6c2;
+}
+.syntax--text {
+  color: #abb2bf;
+}
+.syntax--markup.syntax--heading {
+  color: #e06c75;
+}
+.syntax--markup.syntax--list.syntax--punctuation {
+  color: #e06c75;
+}
+.syntax--markup.syntax--quote {
+  color: #5c6370;
+  font-style: italic;
+}
+.syntax--markup.syntax--bold {
+  color: #d19a66;
+  font-weight: bold;
+}
+.syntax--markup.syntax--italic {
+  color: #c678dd;
+  font-style: italic;
+}
+.syntax--markup.syntax--underline {
+  color: #56b6c2;
+  text-decoration: underline;
+}
+.syntax--markup.syntax--strike {
+  color: #e06c75;
+}
+.syntax--markup.syntax--raw {
+  color: #98c379;
+}
+.syntax--markup.syntax--link {
+  color: #56b6c2;
+}
+.syntax--markup.syntax--alt {
+  color: #61afef;
+}
+.syntax--markup.syntax--inserted {
+  color: #98c379;
+}
+.syntax--markup.syntax--inserted .syntax--punctuation {
+  color: #98c379;
+}
+.syntax--markup.syntax--highlighted {
+  color: #98c379;
+}
+.syntax--markup.syntax--highlighted .syntax--punctuation {
+  color: #98c379;
+}
+.syntax--markup.syntax--deleted {
+  color: #e06c75;
+}
+.syntax--markup.syntax--deleted .syntax--punctuation {
+  color: #e06c75;
+}
+.syntax--markup.syntax--changed {
+  color: #c678dd;
+}
+.syntax--markup.syntax--changed .syntax--punctuation {
+  color: #c678dd;
+}
+.syntax--markup.syntax--commented {
+  color: #5c6370;
+}
+.syntax--markup.syntax--commented .syntax--punctuation {
+  color: #5c6370;
+}
+.syntax--comment {
+  color: #5c6370;
+  font-style: italic;
+}
+.syntax--comment.syntax--caption {
+  color: #6a7181;
+  font-weight: bold;
+}
+.syntax--comment.syntax--term {
+  color: #707989;
+}
+.syntax--comment.syntax--punctuation {
+  color: #5c6370;
+  font-weight: normal;
+}
+.syntax--invalid:not(.syntax--punctuation).syntax--illegal {
+  color: white !important;
+  background-color: #e05252 !important;
+}
+.syntax--invalid:not(.syntax--punctuation).syntax--deprecated {
+  color: #523d14 !important;
+  background-color: #e0c285 !important;
+}
+.syntax--source.syntax--css .syntax--entity.syntax--function {
+  color: #828997;
+}
+.syntax--source.syntax--css .syntax--entity.syntax--function.syntax--support {
+  color: #56b6c2;
+}
+.syntax--source.syntax--css .syntax--entity.syntax--selector {
+  color: #d19a66;
+}
+.syntax--source.syntax--css .syntax--entity.syntax--selector.syntax--tag {
+  color: #e06c75;
+}
+.syntax--source.syntax--css .syntax--entity.syntax--selector.syntax--id {
+  color: #61afef;
+}
+.syntax--source.syntax--css .syntax--entity.syntax--property {
+  color: #828997;
+}
+.syntax--source.syntax--css .syntax--entity.syntax--property.syntax--support {
+  color: #abb2bf;
+}
+.syntax--source.syntax--css .syntax--entity.syntax--variable {
+  color: #e06c75;
+}
+.syntax--source.syntax--css .syntax--constant {
+  color: #828997;
+}
+.syntax--source.syntax--css .syntax--constant.syntax--support {
+  color: #abb2bf;
+}
+.syntax--source.syntax--css .syntax--constant.syntax--numeric {
+  color: #d19a66;
+}
+.syntax--source.syntax--css .syntax--constant.syntax--media {
+  color: #d19a66;
+}
+.syntax--source.syntax--css .syntax--constant.syntax--color {
+  color: #d19a66;
+}
+.syntax--source.syntax--css .syntax--constant.syntax--offset {
+  color: #abb2bf;
+}
+.syntax--source.syntax--css .syntax--constant.syntax--attribute-value {
+  color: #98c379;
+}
+.syntax--source.syntax--css .syntax--punctuation.syntax--selector {
+  color: #d19a66;
+}
+.syntax--source.syntax--css .syntax--punctuation.syntax--selector.syntax--wildcard {
+  color: #e06c75;
+}
+.syntax--source.syntax--css .syntax--punctuation.syntax--selector.syntax--id {
+  color: #61afef;
+}
+.syntax--source.syntax--css .syntax--punctuation.syntax--selector.syntax--attribute {
+  color: #abb2bf;
+}
+</style>
+        </head>
+        <body class='markdown-preview' data-use-github-style><h1 id="nifty-wordpress-standards-2022">Nifty WordPress Standards: 2022</h1>
+<h2 id="minimum-browser-support">Minimum Browser Support</h2>
+<p>What browsers do we want to support? Modern CSS and JavaScript features makes development easier and more performant, but we can't take advantage of them if we need to cater towards older browsers.</p>
+<p><strong>My Recommendation:</strong> Safari 14 on iOS or later. No Internet Explorer considerations.</p>
+<p>If we decide to support earlier browsers, we need to use fallbacks when possible, but this means code bloat and some loss of performance.</p>
+<h3 id="modern-feature-support">Modern Feature Support</h3>
+<table>
+<tbody><tr>
+<th>Feature</th>
+<th>Minimum Browser</th>
+<th>Benefit</th>
+</tr>
+<tr>
+<td>Intersection Observer</td>
+<td>Safari 12, No IE</td>
+<td>Better performance for scrolling triggers in JS</td>
+</tr>
+<tr>
+<td>WebP</td>
+<td>Safari 16 on Desktop, Safari 14 on iOS, No IE</td>
+<td>Smaller images, faster loading time</td>
+</tr>
+<tr>
+<td>CSS Grid</td>
+<td>iOS 10</td>
+<td>Easier layouts</td>
+</tr>
+</tbody></table>
+
+<h2 id="slimming-wordpress">Slimming WordPress</h2>
+<h3 id="remove-global-css-defaults">Remove Global CSS Defaults</h3>
+<p>Source: <a href="https://github.com/WordPress/gutenberg/issues/36834">https://github.com/WordPress/gutenberg/issues/36834</a></p>
+<pre class="editor-colors lang-a"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar">// Remove Global CSS Defaults</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar">function remove_global_css() {</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">    </span>remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">    </span>remove_action( 'wp_body_open', 'wp_global_styles_render_svg_filters' );</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar">}</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar">add_action('init', 'remove_global_css');</span></div></pre>
+<h3 id="remove-emojis">Remove Emojis</h3>
+<p>Source: <a href="https://stackoverflow.com/questions/29960915/strange-text-before-my-header-wordpress">https://stackoverflow.com/questions/29960915/strange-text-before-my-header-wordpress</a></p>
+<pre class="editor-colors lang-a"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar">// Disable Emojis</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar">function disable_wp_emojicons() {</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">  </span>// all actions related to emojis</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">  </span>remove_action( 'admin_print_styles', 'print_emoji_styles' );</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">  </span>remove_action( 'wp_head', 'print_emoji_detection_script', 7 );</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">  </span>remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">  </span>remove_action( 'wp_print_styles', 'print_emoji_styles' );</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">  </span>remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">  </span>remove_filter( 'the_content_feed', 'wp_staticize_emoji' );</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">  </span>remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">  </span>// filter to remove TinyMCE emojis</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">  </span>add_filter( 'tiny_mce_plugins', 'disable_emojicons_tinymce' );</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar">}</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar">add_action( 'init', 'disable_wp_emojicons' );</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar">function disable_emojicons_tinymce( $plugins ) {</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">  </span>if ( is_array( $plugins ) ) {</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">    </span>return array_diff( $plugins, array( 'wpemoji' ) );</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">  </span>} else {</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">    </span>return array();</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">  </span>}</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar">}</span></div></pre>
+<h2 id="css--js-refactoring">CSS &amp; JS Refactoring</h2>
+<p>We need to refactor our custom CSS and JavaScript to make use of latest technologies to minimize impact on page speed and performance. We also need to make them more modular so we don't have unnecessary features being added to sites.</p>
+<h3 id="lazy-loading-images-only-with-intersection-observer">Lazy Loading Images Only with Intersection Observer</h3>
+<pre class="editor-colors lang-a"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar">&lt;script&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">    </span>// Lazy loading for images &amp; iframes.</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">    </span>let lazyObserver = new IntersectionObserver(processImages, {rootMargin: "0px 0px 200px 0px", threshold: 0});</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">    </span>function processImages(entries, observer) {</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">      </span>entries.forEach(entry =&gt; {</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">          </span>if(entry.isIntersecting){</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">        </span>if (entry.target.hasAttribute("data-url")) {</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">          </span>entry.target.src = entry.target.dataset.url;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">                </span>observer.unobserve(entry.target);</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">        </span>}</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">          </span>}</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">    </span>})</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">    </span>}</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">      </span>document.querySelectorAll('img, iframe').forEach(img =&gt; { lazyObserver.observe(img) });</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar">&lt;/script&gt;</span></div></pre>
+<h3 id="lazy-loading-images-and-background-images-with-intersection-observer">Lazy Loading Images and Background Images with Intersection Observer</h3>
+<pre class="editor-colors lang-a"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar">&lt;script&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">    </span>// Lazy loading for image tags, background images &amp; iframes.</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">    </span>// The class 'lazyload' is for background images specifically &amp; should use 'data-bg-img'</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">    </span>let lazyObserver = new IntersectionObserver(processImages, {rootMargin: "0px 0px 200px 0px", threshold: 0});</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">    </span>function processImages(entries, observer) {</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">      </span>entries.forEach(entry =&gt; {</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">          </span>if(entry.isIntersecting){</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">        </span>if (entry.target.hasAttribute("data-url")) {</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">          </span>entry.target.src = entry.target.dataset.url;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">                </span>observer.unobserve(entry.target);</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">        </span>} else if (entry.target.hasAttribute("data-bg-img")) {</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">          </span>oldStyles = entry.target.getAttribute("style")</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">          </span>entry.target.setAttribute("style", `background-image:url('${entry.target.getAttribute("data-bg-img")}');${oldStyles}`)</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">                </span>observer.unobserve(entry.target);</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">            </span>}</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">          </span>}</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">    </span>})</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">    </span>}</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">      </span>document.querySelectorAll('img, iframe, .lazyload').forEach(img =&gt; { lazyObserver.observe(img) });</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar">&lt;/script&gt;</span></div></pre>
+<h3 id="loading-multiple-analytics-scripts">Loading Multiple Analytics Scripts</h3>
+<pre class="editor-colors lang-a"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar">&lt;script class="load-my-google" data-google-url="https://www.googletagmanager.com/gtag/js?id=G-9KXEWFH42V"&gt;&lt;/script&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar">&lt;script class="load-my-google" data-google-url="https://www.googletagmanager.com/gtag/js?id=UA-43214009-1"&gt;&lt;/script&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar">&lt;script class="load-my-google" data-google-url="https://www.googletagmanager.com/gtag/js?id=AW-998508717"&gt;&lt;/script&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar">&lt;script&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">    </span>window.addEventListener("load", function(){</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">        </span>let googleInit = 0;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">        </span>window.addEventListener("scroll", function(){</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">            </span>if(googleInit == 0){</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">                </span>const google = document.querySelectorAll(".load-my-google");</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">                </span>google.forEach((script) =&gt; {</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">                    </span>const loadSrc = script.getAttribute("data-google-url");</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">                    </span>script.setAttribute("src", loadSrc);</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">                    </span>script.classList.remove("data-google-url");</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">                </span>});</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">        </span>window.dataLayer = window.dataLayer || [];</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">        </span>function gtag(){dataLayer.push(arguments);}</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">        </span>gtag('js', new Date());</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">        </span>gtag('config', 'G-9KXEWFH42V');</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">        </span>gtag('config', 'UA-43214009-1');</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">        </span>gtag('config', 'AW-998508717');</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">                </span>googleInit = 1;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">            </span>}</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">        </span>});</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">    </span>});</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar">&lt;/script&gt;</span></div></pre>
+<h2 id="plug-ins-or-theme-level-customization">Plug-Ins or Theme-Level Customization</h2>
+<p>How can we better implement the custom Gravity Forms spam filter I've created? We need to make it easy to update the block list.</p>
+<h3 id="gravityforms-spam-filter">GravityForms Spam Filter</h3>
+<pre class="editor-colors lang-a"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar">// Ban Multiple Email Addresses</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar">add_filter( 'gform_field_validation', 'check_email_blacklist', 10, 4 );</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar">function check_email_blacklist( $result, $value, $form, $field){</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">    </span>$cleanedInput = str_replace('.', '', $value);</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">    </span>if ( $result['is_valid'] ) {</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">        </span>$email_blockerlist = array(</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">            </span>'acelakhani@gmailcom',</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">            </span>'Henryric',</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">            </span>'Duangpornthiengwatanatham00@gmailcom',</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">            </span>'noreply2342243@noreply323422com'</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">        </span>);</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">        </span>if ( in_array( $cleanedInput, $email_blockerlist ) ) {</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">            </span>$result['is_valid'] = false;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">            </span>$result['message']  = 'You Are Ineligible To Submit This Form.';</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">        </span>}</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">        </span>if (preg_match("/.*(\.ru|\.kp|\.it|\.ua|\.cn|http|ContactRobotPro)/", $value)) {</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">            </span>$result['is_valid'] = false;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">            </span>$result['message']  = 'You Are Ineligible To Submit This Form.';</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">        </span>}</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">    </span>}</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">    </span>return $result;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar">}</span></div></pre>
+<h2 id="stack-support">Stack Support</h2>
+<p>There are multiple "stacks" we can build on. Can we keep them separate, or do we have to find a way to make a unified stack?</p>
+<p>Potential stacks/contexts:</p>
+<ul>
+<li>Speed</li>
+<li>AMP</li>
+<li>Dark Mode</li>
+<li>ADA</li>
+</ul>
+<h3 id="the-speed-stack">The Speed Stack</h3>
+<ul>
+<li>WPEngine allows us to have them automatically strip out all HTML comments. Ex: <a href="https://naqvilaw.com/wp-admin/admin.php?page=wpengine-common&amp;tab=site-settings">https://naqvilaw.com/wp-admin/admin.php?page=wpengine-common&amp;tab=site-settings</a></li>
+<li>Use explicit heights and widths to lower <code style="font-family: &quot;Operator Mono&quot;, Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">CLS</code> metrics</li>
+<li>Combine all font loading into a single CSS file and minify it.</li>
+<li>Google recommendations don't mean everything, and not all metrics are equal. Use the calculator to see what you should focus on most: <a href="https://googlechrome.github.io/lighthouse/scorecalc/#FCP=1735&amp;TTI=5848&amp;SI=1836&amp;TBT=142&amp;LCP=3604&amp;CLS=0.08&amp;FMP=2055&amp;device=mobile&amp;version=9.6.6">https://googlechrome.github.io/lighthouse/scorecalc/#FCP=1735&amp;TTI=5848&amp;SI=1836&amp;TBT=142&amp;LCP=3604&amp;CLS=0.08&amp;FMP=2055&amp;device=mobile&amp;version=9.6.6</a></li>
+</ul>
+<h4 id="performant-css-selection">Performant CSS Selection</h4>
+<ul>
+<li><a href="https://css-tricks.com/efficiently-rendering-css/">https://css-tricks.com/efficiently-rendering-css/</a></li>
+<li><a href="https://web.dev/reduce-the-scope-and-complexity-of-style-calculations/">https://web.dev/reduce-the-scope-and-complexity-of-style-calculations/</a></li>
+</ul>
+<h4 id="choosing-proper-fallback-fonts">Choosing Proper Fallback Fonts</h4>
+<ul>
+<li><a href="https://meowni.ca/font-style-matcher/">https://meowni.ca/font-style-matcher/</a></li>
+</ul>
+<h3 id="ada-compliant-stack">ADA Compliant Stack</h3>
+<p>We need to identify a list of modular code pieces we can have in our library to plug-and-play with our theme.</p>
+<h4 id="skip-to-main-content">Skip to Main Content</h4>
+<p>CSS</p>
+<pre class="editor-colors lang-a"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar">#skip-link {</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">  </span>position:absolute;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">  </span>transform: translateY(-100px);</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">  </span>transition:ease all .25s;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">  </span>width:100%;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">  </span>top:0;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">  </span>left:0;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">  </span>padding:1em 0;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">  </span>text-align:center;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">  </span>user-select:none;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar">}</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar">#skip-link:focus {</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">  </span>transform:unset;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar">}</span></div></pre>
+<p>HTML</p>
+<pre class="editor-colors lang-a"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar">&lt;a id="skip-link" href="#main-content"&gt;Skip to main content&lt;/a&gt;</span></div></pre>
+<h3 id="the-amp-stack">The AMP Stack</h3>
+<p>AMP severely limits us</p>
+<ul>
+<li>GA4 is still not officially supported: <a href="https://github.com/ampproject/amphtml/issues/24621">https://github.com/ampproject/amphtml/issues/24621</a></li>
+<li>The Background Image hack doesn’t work</li>
+<li>We need to communicate that other JS scripts don’t work</li>
+<li>We need an AMP-only tracking number if we need call tracking</li>
+<li>Any custom widgets need to be recreated in AMP</li>
+</ul>
+<h4 id="example-if-statement-to-check-for-amp">Example If Statement To Check for AMP</h4>
+<p>We need to use an if statement to check if the AMP-checking function exists, otherwise, disabling AMP breaks the site completely.</p>
+<pre class="editor-colors lang-a"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar">&lt;?php if ( function_exists( 'amp_is_request' ) &amp;&amp; amp_is_request() ){ ?&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">  </span>&lt;!-- HTML GOES HERE --&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar">&lt;?php } ?&gt;</span></div></pre>
+<h4 id="example-amp-widget-with-custom-js">Example AMP Widget with Custom JS</h4>
+<pre class="editor-colors lang-a"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar">&lt;?php if( amp_is_request() ){ ?&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">  </span>&lt;meta name="amp-script-src" content="sha384-SwSqy8zFxbfk0-L6KXC78EVBS5vhr2El49D_au7dw7EG40Zh9XsLG-iTio2nm2mV"&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">      </span>&lt;amp-state id="attorneyData"&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">          </span>&lt;script type="application/json"&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">          </span>{</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">          </span>"naqvi": {</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">              </span>"name": "Farhan Naqvi",</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">              </span>"url": "2022/09/farhan-naqvi-1.webp",</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">              </span>"bio": "Farhan Naqvi has been practicing law since 2003 and in 2018 celebrated the 10th anniversary of Naqvi Injury Law. Farhan is one of Nevada’s most successful personal injury attorneys and has litigated more than 1,000 cases before the Eighth Judicial District Court of Clark County, Nevada and the United States District Court, District of Nevada since 2003. He has achieved more than $150 million for his clients in verdicts and settlements.",</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">              </span>"title": "Owner"</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">              </span>},</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">          </span>"coleman": {</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">              </span>"name": "Elizabeth Coats",</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">              </span>"url": "2019/05/coleman.png",</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">              </span>"bio": "Elizabeth Coats is an extremely gifted lawyer. She is a fierce settlement negotiator and excels in the areas of legal research, writing, and client relations. Elizabeth’s efforts litigating and arbitrating the firm’s cases has resulted in millions of dollars’ worth of settlements for Naqvi Injury Law clients. Elizabeth is a graduate of the William S. Boyd School of Law, where she received the highest score of any student in her class in the areas of Pretrial Litigation and </span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar">              Trial Advocacy. In her spare time, Elizabeth enjoys exercising and attending music festivals.",</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">              </span>"title": "Attorney"</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">              </span>}</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">          </span>}</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">          </span>&lt;/script&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">      </span>&lt;/amp-state&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">  </span>&lt;section class="meet-team" style="background:url('https://naqvilaw.com/wp-content/uploads/2019/06/gray-office-background.jpg');height:auto;padding:2em 0;"&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">  </span>&lt;div style="position:relative;display: flex;justify-content: center;align-items: center;"&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">  </span>&lt;div class="flex" style="width: 45%;height: auto;border-bottom: 2px solid #f90;display: flex;transition: transform .5s,opacity .5s;transition-delay: .2s;order:1;" id="Ralph"&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">                              </span>&lt;div class="attorney-info" style="width:50%;align-self:flex-end;margin-top:0;"&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">                                  </span>&lt;h2 class="name" [text]="attorneyData[current].name"&gt;Farhan Naqvi&lt;/h2&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">                                  </span>&lt;p class="title" [text]="attorneyData[current].title"&gt;Owner&lt;/p&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">                                  </span>&lt;div class="line"&gt;&lt;/div&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">                                  </span>&lt;div class="about" [text]="attorneyData[current].bio"&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">                                      </span>&lt;div class="awards"&gt;&lt;div&gt;&lt;img src="&lt;?= wp_get_attachment_image_src(8931, 'full')[0]; ?&gt;" alt="best of vegas yeards award"&gt;&lt;/div&gt;&lt;/div&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">                                      </span>Farhan Naqvi has been practicing law since 2003 and in 2018 celebrated the 10th anniversary of Naqvi Injury Law. Farhan is one of Nevada’s most successful personal injury attorneys and has litigated more than 1,000 cases before the Eighth Judicial District Court of Clark County, Nevada and the United States District Court, District of Nevada since 2003. He has achieved more than $150 million for his clients in verdicts and settlements.</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">                                  </span>&lt;/div&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">                                  </span>&lt;a tabindex="1" href="&lt;?= get_permalink(1827); ?&gt;" class="button attorney-bio-button"&gt;VIEW FULL BIO&lt;/a&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">                              </span>&lt;/div&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">                              </span>&lt;div style="width:50%;align-self:flex-end;"&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">                                  </span>&lt;amp-img layout="intrinsic" height="499" width="324" src="https://naqvilaw.com/wp-content/uploads/2022/09/farhan-naqvi-1.webp" [src]="'https://naqvilaw.com/wp-content/uploads/' + attorneyData[current].url"&gt;&lt;/amp-img&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">      </span>&lt;/div&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">                          </span>&lt;/div&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">      </span>&lt;div style="width:43%;"&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">          </span>&lt;amp-script layout="container" script="state-script"&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">              </span>&lt;p class="list-name" id="naqvi"&gt;Farhan Naqvi&lt;/p&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">              </span>&lt;p class="list-name" id="coleman"&gt;Elizabeth Coleman&lt;/p&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">          </span>&lt;/amp-script&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">                      </span>&lt;script id="state-script" type="text/plain" target="amp-script"&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">                      </span>const attorneys = document.querySelectorAll('.list-name')</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">                      </span>attorneys.forEach(attorney =&gt; {</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">                      </span>attorney.addEventListener('click', switchIt)</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">                      </span>})</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">                      </span>function switchIt(e) {</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">                          </span>AMP.setState({ current: e.target.id })</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">                          </span>e.target.style.color = "white"</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">                      </span>}</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">                      </span>&lt;/script&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">      </span>&lt;/div&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">      </span>&lt;/div&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span class="leading-whitespace">  </span>&lt;/section&gt;</span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar">&lt;?php } ?&gt;</span></div></pre>
+<h2 id="better-base-css">Better Base CSS</h2>
+<p><a href="https://www.w3schools.com/cssref/css_default_values.asp">https://www.w3schools.com/cssref/css_default_values.asp</a></p>
+<h3 id="typography">Typography</h3>
+<ul>
+<li><a href="https://www.toptal.com/designers/typography/web-typography-infographic">https://www.toptal.com/designers/typography/web-typography-infographic</a></li>
+<li><a href="https://www.pierrickcalvez.com/journal/a-five-minutes-guide-to-better-typography">https://www.pierrickcalvez.com/journal/a-five-minutes-guide-to-better-typography</a></li>
+<li><a href="https://www.fluid-type-scale.com/">https://www.fluid-type-scale.com/</a></li>
+<li><a href="https://utopia.fyi/type/calculator/">https://utopia.fyi/type/calculator/</a></li>
+</ul>
+<h3 id="can-we-use-responsive-font-sizes">Can We Use Responsive Font Sizes?</h3>
+<ul>
+<li><a href="https://levelup.gitconnected.com/responsive-font-size-using-vanilla-css-51f81fe999db">https://levelup.gitconnected.com/responsive-font-size-using-vanilla-css-51f81fe999db</a></li>
+<li><a href="https://css-tricks.com/snippets/css/fluid-typography/">https://css-tricks.com/snippets/css/fluid-typography/</a></li>
+<li><a href="https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/">https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/</a></li>
+<li><a href="https://www.edraflame.com/blog/css-responsive-font-size/">https://www.edraflame.com/blog/css-responsive-font-size/</a></li>
+<li><a href="https://stackoverflow.com/questions/15649244/responsive-font-size-in-css">https://stackoverflow.com/questions/15649244/responsive-font-size-in-css</a></li>
+<li><a href="https://stackoverflow.com/questions/40863049/dynamic-font-size-in-css-with-calc">https://stackoverflow.com/questions/40863049/dynamic-font-size-in-css-with-calc</a></li>
+<li><a href="https://stackoverflow.com/questions/71558336/how-to-understand-css-calc-with-responsive-font-size-this-code-does-not-seem-to">https://stackoverflow.com/questions/71558336/how-to-understand-css-calc-with-responsive-font-size-this-code-does-not-seem-to</a></li>
+<li><a href="https://stackoverflow.com/questions/72451468/i-would-like-to-achieve-css-responsive-design-focused-font-size">https://stackoverflow.com/questions/72451468/i-would-like-to-achieve-css-responsive-design-focused-font-size</a></li>
+<li><a href="https://blog.logrocket.com/the-elements-of-responsive-typography/">https://blog.logrocket.com/the-elements-of-responsive-typography/</a></li>
+</ul></body>
+      </html>

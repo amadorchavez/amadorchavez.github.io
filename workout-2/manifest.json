@@ -1,0 +1,30 @@
+{
+  "name": "Workout Manager",
+  "display": "standalone",
+  "start_url": "index.html",
+  "short_name": "Workout Manager",
+  "theme_color": "#ac1234",
+  "description": "Keep track of your workouts",
+  "orientation": "portrait",
+  "background_color": "#ac1234",
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "android/android-512.png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "android/android-192.png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "android/android-48.png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "android/android-24.png",
+      "sizes": "24x24"
+    }
+  ]
+}

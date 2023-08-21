@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+	<title>Workout App</title>
+  <meta name="viewport" content="initial-scale=1, viewport-fit=cover, user-scalable=no, width=device-width">
+  <meta name="apple-mobile-web-app-title" content="Workout Manager">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name=”apple-mobile-web-app-capable” content=”yes”>
+  <meta name="theme-color" content="#AC1234">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link href="splashes/xr-splash.png" sizes="828x1792" rel="apple-touch-startup-image" />
+  <link href="splashes/x-splash.png" sizes="1125x2436" rel="apple-touch-startup-image" />
+  <link href="splashes/ipod-touch-splash.png" sizes="640x1136" rel="apple-touch-startup-image" />
+  <link href="splashes/11-pro-max-splash.png" sizes="1242x2688" rel="apple-touch-startup-image" />
+  <link href="splashes/6s-plus-splash.png" sizes="1080x1920" rel="apple-touch-startup-image" />
+
+  <style>
+    html, body {background:#313131;padding:0;margin:0;color:white;font-family:Blender Pro;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+    input {background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.25);padding:.75em;width:auto;color:white;text-align:center;font-size:24px;transition:ease all .25s;border-radius:3px;letter-spacing:.03em;}
+    input:focus {border:1px solid rgba(255,255,255,0.5);background:none;outline:none;}
+    h3 {margin-top:3em;padding:0 2em;}
+    a {color:white;text-decoration: none;}
+
+    /* iOS fixes to prevent long press popups on links, tap highlighitng, selectibility of content, & rubberband scrolling */
+    body {-webkit-touch-callout: none; -webkit-tap-highlight-color: transparent; -webkit-user-select: none;-webkit-overflow-scrolling: auto;padding-top: env(safe-area-inset-top);padding-bottom: env(safe-area-inset-bottom);}
+    *::-webkit-scrollbar {width: 0px;}
+
+    /* Navigation */
+    .clippedDiv {background: #C8102E;clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);padding: 2em 1.25em;padding-bottom: 4em;-webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);text-align:center;}
+    .navButton {font-size:50px;display:inline-block;font-weight:800;color:white;transition:ease all .35s}
+    .navButton:hover {filter:drop-shadow(2px 2px 5px rgba(0,0,0,0.35));transform:scale(1.05);}
+    .pageTitle {text-transform:uppercase;font-family:Blender Pro;margin:0;padding:0;}
+    .headingContainer {display:inline-block;max-width:300px;margin-left:1.5em;text-align:left;position:relative;top:5px;}
+
+    /* Heading Stylings */
+    .dayContainer {background:rgba(255,255,255,0.025);display:inline-block;max-width:320px;width:100%;border-radius:5px;border:1px dotted rgba(255,255,255,0.25);padding:1em 0;margin-bottom:1em;transition: ease all .5s;position: relative;}
+    .dayContainer:hover {box-shadow:0px 0px 10px rgba(255,255,255,0.15);}
+    .day {margin:0;padding:0;font-family:Blender Pro;text-transform:uppercase;letter-spacing:.03em;font-size:32px;color:white;}
+    .muscleGroup {margin:0;padding:0;font-family:Blender Pro;text-transform:uppercase;font-size:18px;color:rgba(255,255,255,0.75);}
+    .exerciseLength {margin:0;padding:0;margin-top:1em;}
+    .subHeadRotated {margin-bottom: 2.75em;transform: rotate(-4deg);text-transform: uppercase;font-family: Blender Pro;letter-spacing: .03em;text-align:center;font-weight:100;}
+
+    /* Progess Bar Styling */
+    #progressContainer {max-width:520px;width: 100%;background:#242629;border:1px solid rgba(255,255,255,0.15);position: fixed;bottom:0;}
+    #progress {width: 0%;height: 35px;background-color: #183;transition: cubic-bezier(.43,.78,0,1) all .5s;}
+    #percentVisible {position: absolute;text-align: center;line-height: 35px;overflow: hidden;color: #fff;right: 0;left: 0;top: 0;text-transform:uppercase;}
+    sup {font-size:.75em;padding-left:.15em;position: relative;top:3px;}
+
+    /*Animations*/
+    body {animation: fadein 1s;}
+    @keyframes fadein {from { opacity: 0; } to   { opacity: 1; }}
+
+    .dayContainer:not(#thisDay) {opacity:.5;}
+    #thisDay {border: 1px solid rgba(255,255,255,0.15);background: radial-gradient(at 50% 150%, rgba(255,255,255,0.075), rgba(255,255,255,0.00125));box-shadow: 2px 2px 10px rgba(0,0,0,0.15);}
+    #thisDay::before {content: ">";position: absolute;left: -50px;top: 35px;font-size: 48px;color: #00ff9b;text-shadow:-1px 1px 3px rgba(0,0,0,0.35)}
+
+    /*Hamburger Menu*/
+    #menuToggle {
+      display: inline-block;
+      position: relative;
+      top: 50px;
+      right: 5%;
+      z-index: 1;
+      -webkit-user-select: none;
+      user-select: none;
+      float: right;
+      transform: rotate(-3deg);
+    }
+
+    #menuToggle input {
+      display: block;
+      width: 40px;
+      height: 32px;
+      position: absolute;
+      top: -7px;
+      left: -5px;
+      cursor: pointer;
+      opacity: 0;
+      /* hide this */
+      z-index: 2;
+      /* and place it over the hamburger */
+      -webkit-touch-callout: none;
+    }
+
+    /*
+   * Just a quick hamburger
+   */
+    #menuToggle span {
+      display: block;
+      height: 2px;
+      margin-bottom: 5px;
+      position: relative;
+      background: #fee;
+      border-radius: 0px;
+      z-index: 1;
+      transform-origin: 4px 0px;
+      transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), opacity 0.55s ease, width .65s ease;
+    }
+
+    #menuToggle span:nth-child(2) {
+      transform-origin: 0% 0%;
+      width: 25px;
+      left: 5px;
+    }
+
+    #menuToggle span:nth-child(3) {
+      width: 15px;
+      left: 15px;
+    }
+
+    #menuToggle span:nth-last-child(2) {
+      transform-origin: 0% 100%;
+      width: 30px;
+    }
+
+    /*
+   * Transform all the slices of hamburger
+   * into a crossmark.
+   */
+    #menuToggle input:checked~span {
+      opacity: 1;
+      transform: rotate(45deg) translate(-8px, -1px);
+      background: #fee;
+      width: 30px;
+    }
+
+    /*
+   * But let's hide the middle one.
+   */
+    #menuToggle input:checked~span:nth-last-child(3) {
+      opacity: 0;
+      transform: rotate(0deg) scale(0.2, 0.2);
+    }
+
+    /*
+   * Ohyeah and the last one should go the other direction
+   */
+    #menuToggle input:checked~span:nth-last-child(2) {
+      opacity: 1;
+      transform: rotate(-45deg) translate(0, -1px);
+    }
+
+    /*
+   * Make this absolute positioned
+   * at the top left of the screen
+   */
+    #menu {
+      position: absolute;
+      width: 230px;
+      margin: -100px 0 0 -280px;
+      padding: 50px;
+      padding-top: 125px;
+      background: #C8102E;
+      border: 3px solid rgba(0, 0, 0, 0.25);
+      list-style-type: none;
+      transform-origin: 0% 0%;
+      transform: translate(0, -100%);
+      transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+      box-shadow: -2px -2px 10px rgba(0, 0, 0, 0.1);
+      text-transform: uppercase;
+      text-align:right;
+      letter-spacing: .25em;
+    }
+
+    #menu li {
+      padding: 10px 0;
+      font-size: 22px;
+      transition: ease all .5s;
+    }
+
+    #menu li:hover {text-shadow:0 0 7px rgba(255,255,255,0.65)}
+
+    /*
+   * And let's fade it in from the left
+   */
+    #menuToggle input:checked~ul {
+      transform: scale(1.0, 1.0);
+      opacity: 1;
+    }
+
+
+  </style>
+</head>
+<body ontouchstart="">
+
+<div style="text-align:center;max-width:520px;margin:0 auto;width:100%;background:url('hexagons-subtle.png'),radial-gradient(circle,#156cce,#021933);min-height:640px;overflow:hidden;">
+
+  <div id="menuToggle">
+    <input type="checkbox" />
+    <span></span>
+    <span></span>
+    <span></span>
+    <ul id="menu">
+      <a href="diederich.html">
+        <li>Theory</li>
+      </a>
+      <a href="baumgartner.html">
+        <li>Diet</li>
+      </a>
+      <a href="sattiraju.html">
+        <li style="padding-bottom:1em;">Gear</li>
+      </a>
+      <a href="#">
+        <li style="padding-bottom:1em;">Library</li>
+      </a>
+      <a href="#">
+        <li style="padding-top:1em;border-top:1px solid rgba(255,255,255,0.25);">Settings</li>
+      </a>
+    </ul>
+  </div>
+
+  <div class="clippedDiv">
+<h1 style="transform:rotate(-3deg);text-transform:uppercase;margin-bottom:0;">Workout Manager</h1>
+<p style="transform:rotate(-3deg);text-transform:uppercase;color:rgba(255,255,255,0.65)">An App by Amador</p>
+</div>
+
+
+
+<h2>Week A</h2>
+  <a href="monday-a.html"><div class="dayContainer" data-id="mondayA">
+    <h3 class="day">Monday</h3>
+    <p class="muscleGroup">Chest & Biceps</p>
+    <p class="exerciseLength">6 Exercises</p>
+  </div></a>
+
+  <a href="tuesday-a.html"><div class="dayContainer" data-id="tuesdayA">
+    <h3 class="day">Tuesday</h3>
+    <p class="muscleGroup">Maintenance</p>
+    <p class="exerciseLength">6 Exercises</p>
+  </div></a>
+
+  <a href="wednesday-a.html"><div class="dayContainer" data-id="wednesdayA">
+    <h3 class="day">Wednesday</h3>
+    <p class="muscleGroup">Compound Plus</p>
+    <p class="exerciseLength">5 Exercises</p>
+  </div></a>
+
+  <a href="thursday-a.html"><div class="dayContainer" data-id="thursdayA">
+    <h3 class="day">Thursday</h3>
+    <p class="muscleGroup">Maintenance</p>
+    <p class="exerciseLength">6 Exercises</p>
+  </div></a>
+
+  <a href="friday-a.html"><div class="dayContainer" data-id="fridayA">
+    <h3 class="day">Friday</h3>
+    <p class="muscleGroup">Triceps</p>
+    <p class="exerciseLength">5 Exercises</p>
+  </div></a>
+
+  <h2>Week B</h2>
+    <a href="monday-b.html"><div class="dayContainer" data-id="mondayB">
+      <h3 class="day">Monday</h3>
+      <p class="muscleGroup">Chest Isolated</p>
+      <p class="exerciseLength">3 Exercises</p>
+    </div></a>
+
+    <a href="tuesday-b.html"><div class="dayContainer" data-id="tuesdayB">
+      <h3 class="day">Tuesday</h3>
+      <p class="muscleGroup">Maintenance</p>
+      <p class="exerciseLength">6 Exercises</p>
+    </div></a>
+
+    <a href="wednesday-b.html"><div class="dayContainer" data-id="wednesdayB">
+      <h3 class="day">Wednesday</h3>
+      <p class="muscleGroup">Legs & Back</p>
+      <p class="exerciseLength">5 Exercises</p>
+    </div></a>
+
+    <a href="thursday-b.html"><div class="dayContainer" data-id="thursdayB">
+      <h3 class="day">Thursday</h3>
+      <p class="muscleGroup">Maintenance</p>
+      <p class="exerciseLength">6 Exercises</p>
+    </div></a>
+
+    <a href="friday-b.html"><div class="dayContainer" data-id="fridayB">
+      <h3 class="day">Friday</h3>
+      <p class="muscleGroup">Shoulders</p>
+      <p class="exerciseLength">5 Exercises</p>
+    </div></a>
+
+</body>
+
+<script type='text/javascript'>
+  const appData = window.localStorage
+  window.onload = setTimeout(autoScroll, 750);
+
+  function autoScroll() {
+    var dateContainer = new Date();
+    var dayMap = new Array(7);
+    dayMap[0] =  "sunday";
+    dayMap[1] = "monday";
+    dayMap[2] = "tuesday";
+    dayMap[3] = "wednesday";
+    dayMap[4] = "thursday";
+    dayMap[5] = "friday";
+    dayMap[6] = "saturday";
+
+    var today = dayMap[dateContainer.getDay()];
+
+  // Get the flag for today
+    switch (true) {
+      case today == "sunday":
+        flag = appData.getItem("mondayFlag") || "A"   // returns first value if 'truthy', second value if 'falsey'
+        dayFlag = "monday"+flag
+        dayMatch(dayFlag);
+        break;
+      case today == "monday":
+        flag = appData.getItem("mondayFlag") || "A"   // returns first value if 'truthy', second value if 'falsey'
+        dayFlag = today+flag
+        dayMatch(dayFlag);
+        break;
+      case today == "tuesday":
+        flag = appData.getItem("tuesdayFlag") || "A"   // returns first value if 'truthy', second value if 'falsey'
+        dayFlag = today+flag
+        dayMatch(dayFlag);
+        break;
+      case today == "wednesday":
+        flag = appData.getItem("wednesdayFlag") || "A"   // returns first value if 'truthy', second value if 'falsey'
+        dayFlag = today+flag
+        dayMatch(dayFlag);
+        break;
+      case today == "thursday":
+        flag = appData.getItem("thursdayFlag") || "A"   // returns first value if 'truthy', second value if 'falsey'
+        dayFlag = today+flag
+        dayMatch(dayFlag);
+        break;
+      case today == "friday":
+        flag = appData.getItem("fridayFlag") || "A"   // returns first value if 'truthy', second value if 'falsey'
+        dayFlag = today+flag
+        dayMatch(dayFlag);
+        break;
+      case today == "saturday":
+        flag = appData.getItem("saturdayFlag") || "A"   // returns first value if 'truthy', second value if 'falsey'
+        dayFlag = "friday"+flag
+        dayMatch(dayFlag);
+        break;
+      }
+
+  // Match the flag to corresponding data attribute and add id="thisDay"
+      function dayMatch(dayFlag) {
+        const allDays = document.querySelectorAll(".dayContainer");
+        for (var i = 0; i < allDays.length; i++) {
+          if (allDays[i].getAttribute('data-id') == dayFlag) {allDays[i].setAttribute('id', 'thisDay')}
+        }
+      }
+
+    document.getElementById('thisDay').scrollIntoView({block: 'center', behavior: 'smooth'});
+  }
+
+</script>
+
+<script src="installer.js"></script>
+</html>

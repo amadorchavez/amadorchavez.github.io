@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Enter Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <style>
+        /*BoilerPlate CSS*/
+        html, body {padding: 0;margin: 0;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;height:100%;}
+        h1, h2, h3, h4, h5, h6 {font-weight: 400;margin: 0;padding: 0;}
+        ::placeholder {color: rgba(20,0,0,1);opacity:1;}
+        *:focus {outline: none;}
+
+        /* Enter New CSS*/
+
+        body{
+          background:#3f51b5;
+        }
+
+        .menu-open{
+          display:none;
+        }
+        .menu-item{
+          background:#183;
+          border-radius:100%;
+          width:80px;
+          height:80px;
+          margin-left:-40px;
+          position:absolute;
+          top:20px;
+          color:white;
+          text-align:center;
+          line-height:80px;
+          transform:translate3d(0,0,0);
+          transition:transform ease-out 200ms;
+        }
+        .hamburger{
+          width:25px;
+          height:3px;
+          background:white;
+          display:block;
+          position:absolute;
+          top:50%;
+          left:50%;
+          margin-left:-12.5;
+          margin-top:-1.5;
+          transition:transform 200ms;
+        }
+        .hamburger-1{
+          transform:translate3d(-13px,-8px,0);
+        }
+        .hamburger-2{
+          transform:translate3d(-13px,0,0);
+        }
+        .hamburger-3{
+          transform:translate3d(-13px,8px,0);
+        }
+
+        .menu-open:checked + .menu-open-button .hamburger-1 {
+          transform:translate3d(-13px,0,0) rotate(45deg);
+        }
+
+        .menu-open:checked + .menu-open-button .hamburger-2{
+          transform:translate3d(-13px,0,0) scale(0.1,1);
+        }
+
+        .menu-open:checked + .menu-open-button .hamburger-3 {
+          transform:translate3d(-13px,0,0) rotate(-45deg);
+        }
+
+
+
+
+        .menu{
+          filter:url('#shadowed-goo');
+          position: fixed;
+          right: 1em;
+          bottom: 2em;
+          width: 100px;
+          height: 150px;
+          box-sizing: border-box;
+          font-size: 20px;
+          text-align: left;
+        }
+
+
+        .menu-item:hover {
+            background:white;
+            color:#ff4081;
+          }
+
+
+        .menu-open-button{
+          background:#c12;
+          border-radius:100%;
+          width:80px;
+          height:80px;
+          margin-left:-40px;
+          position:absolute;
+          top:20px;
+          color:white;
+          text-align:center;
+          line-height:80px;
+          transform:translate3d(0,0,0);
+          transition:transform ease-out 200ms;
+          z-index:2;
+          transition-timing-function:cubic-bezier(0.175, 0.885, 0.320, 1.275);
+          transition-duration:400ms;
+          transform:scale(1.1,1.1) translate3d(0,0,0);
+          cursor:pointer;
+        }
+        .menu-open-button:hover{
+          transform:scale(1.2,1.2) translate3d(0,0,0);
+        }
+        .menu-open:checked+.menu-open-button{
+          transition-timing-function:linear;
+          transition-duration:200ms;
+          transform:scale(0.8,0.8) translate3d(0,0,0);
+        }
+
+        .menu-open:checked~.menu-item{
+          transition-timing-function:cubic-bezier(0.935, 0.000, 0.340, 1.330);
+        }
+
+        .menu-open:checked ~ .menu-item:nth-child(3) {
+          transition-duration: 160ms;
+          transform: translate3d(-85.95587px, 76.39757px, 0);
+        }
+
+        .menu-open:checked ~ .menu-item:nth-child(4) {
+          transition-duration: 240ms;
+          transform: translate3d(-114.99594px, -0.96683px, 0);
+        }
+
+        .menu-open:checked ~ .menu-item:nth-child(5) {
+          transition-duration: 320ms;
+          transform: translate3d(-84.65918px, -77.83202px, 0);
+        }
+
+        .menu-open:checked ~ .menu-item:nth-child(6) {
+          transition-duration: 400ms;
+          transform: translate3d(-10.60962px, -114.50954px, 0);
+        }
+
+        .menu-open:checked ~ .menu-item:nth-child(7) {
+          transition-duration: 480ms;
+          transform: translate3d(68.91808px, -92.06138px, 0);
+        }
+
+    </style>
+</head>
+
+<body>
+  <div class="menu">
+  <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open"/>
+  <label class="menu-open-button" for="menu-open">
+    <span class="hamburger hamburger-1"></span>
+    <span class="hamburger hamburger-2"></span>
+    <span class="hamburger hamburger-3"></span>
+  </label>
+
+  <a href="#" class="menu-item"> <i class="fa fa-bar-chart"></i> </a>
+  <a href="#" class="menu-item"> <i class="fa fa-plus"></i> </a>
+  <a target="_blank" href="https://zoom.us/j/6706829630" class="menu-item"> <i class="fa fa-video-camera"></i> </a>
+  <a href="#" class="menu-item"> <i class="fa fa-phone"></i> </a>
+  <a href="#" class="menu-item"> <i class="fa fa-cog"></i> </a>
+
+</div>
+
+
+<!-- filters -->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <defs>
+      <filter id="shadowed-goo">
+
+          <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+          <feGaussianBlur in="goo" stdDeviation="3" result="shadow" />
+          <feColorMatrix in="shadow" mode="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 -0.2" result="shadow" />
+          <feOffset in="shadow" dx="1" dy="1" result="shadow" />
+          <feBlend in2="shadow" in="goo" result="goo" />
+          <feBlend in2="goo" in="SourceGraphic" result="mix" />
+      </filter>
+      <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+          <feBlend in2="goo" in="SourceGraphic" result="mix" />
+      </filter>
+    </defs>
+</svg>
+</body>
+
+
+</html>

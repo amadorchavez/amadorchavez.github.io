@@ -1,0 +1,38 @@
+WEBRTC Dynamic
+
+https://stackoverflow.com/questions/28315879/is-it-possible-pass-data-between-two-
+different-browsers
+https://en.wikipedia.org/wiki/WebSocket
+https://blog.printf.net/articles/2013/05/17/webrtc-without-a-signaling-server/
+https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Simple_RTCDataChannel_sample
+https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Signaling_and_video_calling
+https://flaviocopes.com/webrtc/
+https://www.html5rocks.com/en/tutorials/webrtc/infrastructure/
+https://www.wowza.com/blog/webrtc-signaling-servers
+https://www.researchgate.net/publication/275277453_WebRTC_using_JSON_via_XMLHttpRequest_and_SIP_over_WebSocket_Initial_Signalling_Overhead_Findings
+https://codelabs.developers.google.com/codelabs/webrtc-web/#6
+
+
+Modifiers
+Roller
+
+https://rpg.stackexchange.com/questions/60300/dungeon-world-dm-companion-app
+https://www.reddit.com/r/DungeonWorld/comments/9ebw9u/whats_the_best_way_to_play_online/
+https://medium.com/@hcigamesgroup/dungeon-worlds-dice-system-is-the-core-of-good-game-design-and-user-experience-8b9db8dcef49
+https://roll20.net/
+
+
+APP:
+Character Specific Enhancements
+Gray out level up, until ready
+Show options to level up
+Track health
+
+Auto-updated health bars for each character
+Personal Inventory Lists.
+Available Moves.
+Level Up.
+
+
+https://dungeonscrawl.com/
+https://github.com/OpenDiablo2/OpenDiablo2

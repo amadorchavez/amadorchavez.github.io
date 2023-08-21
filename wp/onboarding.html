@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Wealthprint: Your Blueprint to Financial Success</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /*BoilerPlate CSS*/
+        html, body {padding: 0;margin: 0;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;height:100%;}
+        h1, h2, h3, h4, h5, h6 {font-weight: 400;margin: 0;padding: 0;}
+        ::placeholder {color: rgba(20,0,0,1);opacity:1;}
+        *:focus {outline: none;}
+
+        /* Enter New CSS*/
+        html {scroll-behavior: smooth;scroll-snap-type: y mandatory;overflow: hidden;}
+        body {color:#333;font-family:Josefin Sans}
+
+        h2 {letter-spacing: .25em;color:rgba(0,0,0,.35);font-size: 1.25em;text-transform: uppercase;}
+        h1 {font-weight:600;text-transform: uppercase;}
+
+        .screen {height:100vh;scroll-snap-align: start;padding:0;overflow-y: scroll;}
+        #one {background: #fafaff;}
+        #two {background: #fafaff;}
+        #three {background: #fafaff;}
+        #four {background:#fafaff;}
+        #five {background: #fafaff;}
+
+        input[type=text], input[type=number] {padding:1em;font-size: 1.5em;font-family:Josefin Sans;border-radius:5px;border:1px solid rgba(0,0,0,0.25);width:150px;text-align:center;}
+        label {padding:1em;font-size: 1.5em;font-family:Josefin Sans;}
+
+        .navigation {background:rgba(0,0,0,0.5);border-top:1px solid rgba(0,0,0,0.5);width:100%;position: fixed;bottom:0;display:flex;justify-content:space-between;align-items: center;}
+        .navigation a {background:transparent;color:white;display: inline-block;text-decoration: none;padding:1em;width:100%;border-right:1px solid rgba(255,255,255,0.15);text-align: center;text-transform: uppercase;letter-spacing: .03em;transition: ease all .25s;}
+        .navigation a:hover {background: rgba(0,0,0,0.5);}
+
+        blockquote {margin:0;padding:1em;background:#0584f5;font-weight:700;color:white;margin-top:1em;display:block;max-width:480px;border-radius:5px;}
+
+
+        /* Modals */
+        .closeButton {text-transform:uppercase;letter-spacing:.2em;margin-top:1em;cursor:pointer;transition: ease all .4s;text-shadow:0 0 10px transparent;opacity:0.75;background:#183;color:white;border:none;padding:1em;display:block;margin:0 auto;font-weight:800;}
+        .closeButton:hover {opacity:1;}
+        .disclaimerModalInner {
+          position:relative;
+          top:10%;
+          width:calc(100% - 22em);
+          height:calc(100% - 8em);
+          max-height:800px;
+          max-width:1020px;
+          margin:0 auto;
+          background:#fff;
+          border-radius: 15px 15px 3px 3px;
+          box-shadow: 0 0 15px rgba(0,0,0,0.15);
+          overflow:scroll;
+          text-align: center;
+          color: black;
+        }
+
+        #disclaimerModal {width:100%;height:100%;position:fixed;top:0;left:0;background:rgba(0,0,0,0.5);backdrop-filter:blur(5px);}
+        #stuff {padding:2em 4em;text-align: left;}
+
+        .screen p {font-weight:700;font-size:1.5em;}
+
+    </style>
+</head>
+
+<body>
+
+  <div id="disclaimerModal">
+    <div class="disclaimerModalInner">
+    <div style="background:#c00000;padding:1em;color:white;padding-top:1.5em;position:sticky;top:0;">
+      <svg height='40px' width='40px'  fill="#ffffff" xmlns:x="http://ns.adobe.com/Extensibility/1.0/" xmlns:i="http://ns.adobe.com/AdobeIllustrator/10.0/" xmlns:graph="http://ns.adobe.com/Graphs/1.0/" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve"><g><g i:extraneous="self"><g><path d="M5273.1,2400.1v-2c0-2.8-5-4-9.7-4s-9.7,1.3-9.7,4v2c0,1.8,0.7,3.6,2,4.9l5,4.9c0.3,0.3,0.4,0.6,0.4,1v6.4     c0,0.4,0.2,0.7,0.6,0.8l2.9,0.9c0.5,0.1,1-0.2,1-0.8v-7.2c0-0.4,0.2-0.7,0.4-1l5.1-5C5272.4,2403.7,5273.1,2401.9,5273.1,2400.1z      M5263.4,2400c-4.8,0-7.4-1.3-7.5-1.8v0c0.1-0.5,2.7-1.8,7.5-1.8c4.8,0,7.3,1.3,7.5,1.8C5270.7,2398.7,5268.2,2400,5263.4,2400z"></path><path d="M5268.4,2410.3c-0.6,0-1,0.4-1,1c0,0.6,0.4,1,1,1h4.3c0.6,0,1-0.4,1-1c0-0.6-0.4-1-1-1H5268.4z"></path><path d="M5272.7,2413.7h-4.3c-0.6,0-1,0.4-1,1c0,0.6,0.4,1,1,1h4.3c0.6,0,1-0.4,1-1C5273.7,2414.1,5273.3,2413.7,5272.7,2413.7z"></path><path d="M5272.7,2417h-4.3c-0.6,0-1,0.4-1,1c0,0.6,0.4,1,1,1h4.3c0.6,0,1-0.4,1-1C5273.7,2417.5,5273.3,2417,5272.7,2417z"></path></g><path d="M96.1,77.3L60.2,11.5c-2.1-3.8-5.9-6.1-10.3-6.1c0,0,0,0,0,0c-4.4,0-8.2,2.3-10.3,6.1L3.9,77.3c-2,3.7-1.9,8,0.2,11.6    c2.1,3.6,5.9,5.7,10.1,5.7h71.5c4.2,0,8-2.1,10.1-5.7C98,85.3,98.1,80.9,96.1,77.3z M45.6,34.5c1.1-1.2,2.7-1.9,4.3-1.9    c3.2,0,5.8,2.6,5.8,5.8c0,0.3,0,0.5,0,0.8l-3,24c-0.9-0.3-1.8-0.4-2.8-0.4c-0.9,0-1.9,0.1-2.7,0.4l-3-24    C44,37.4,44.6,35.8,45.6,34.5z M49.9,79.1c-3.2,0-5.8-2.6-5.8-5.8c0-3.2,2.6-5.8,5.8-5.8c3.2,0,5.8,2.6,5.8,5.8    C55.8,76.5,53.2,79.1,49.9,79.1z"></path></g></g></svg>
+      <h1 style="font-size:1.5em;letter-spacing:.1em;display:inline-block;position:relative;top:-8px;margin-left:.5em;">Disclaimer</h1>
+    </div>
+      <div id="stuff">
+        <p>When it comes to money and finances, the United States government has implemented specific rules and regulations regarding financial advice and products. These rules were designed to protect Americans from fraudulent and risky schemes, such as ones masterminded Bernie Madoff.</p>
+        <p>Due to these regulations, it is important to realize the limitations of this tool and the actions recommended by it. Following all of the steps recommended by this tool will not make you rich, get you out of debt, or prevent you from going into debt. Investing in the specific accounts or funds will not result in any guaranteed returns. The formulas and actions recommended by this tool are not guaranteed to result in specific gains, returns, or financial well-being. There may be a likely a higher probability of these things, but to reiterate, there is no guarantee. In the market, there are ups and downs, times of underperformance and times of incredible gains. In the world of finance, nothing is guaranteed or static. Historical data and charts do not indicate future results. </p>
+        <p>This tool is meant to educate you about different investment vehicles, US laws regarding investments and retirement accounts, and financial strategy. Each recommendation should be treated as a starting point, or “item to consider”. Recommendations are based on several assumptions and there may be some assumptions made that are inaccurate. Some advice may not be ideal for your particular situation. It is your responsibility to do your due diligence. This app is meant to be a starting point in your quest to develop a financial plan specific to you. It does not replace a financial advisor. This tool provides general advice based on hypothetical analyses and third-party data based on assumptions selected and inputted by you (the user). This app relies on several assumptions and formulas developed by myself, and is thusly an opinion. I am not a certified financial advisor. I am just a researcher biased to what has worked for me.</p>
+        <p>We do our best to maintain the accuracy of information on this tool, but cannot guarantee 100% accuracy, as there may be inadvertent errors. Laws change quickly. You have a responsibility to verify all data presented here. You are still responsible for your money. Investing involves inherent risks. Decisions based on information contained on this site are the sole responsibility of you (the user), and in exchange for using this tool, you agree to hold Wealthprint harmless against any claims for damages arising from any decision you make based on such information. </p>
+        <p>If you want custom financial advice tailored specific to your situation, as well as someone you can hold accountable, consult a licensed financial advisor. This app will not and cannot be held liable for any actions you take as a result of anything you read here.</p>
+        <p>To conclude, our main goal is to make you aware of different financial instruments, their restrictions, and give you a way to keep track of your different accounts. </p>
+        <p style="color:#777;font-size:.75em;line-height:1em;margin-bottom:2em;"><i>* All institutions, funds, and providers recommended by this app have been vetted by me and are recommended because I believe them to be the best in their class. However, it is impossible for me to say I have vetted every single financial product and have identified the absolute best. I can only recommend that which I have used. All recommended products are recommended because of their intrinsic value. I do not get a kickback or affiliate payment for my recommendations. I am not affiliated with any of the companies listed. There is no benefit to me if you open an account. </i></p>
+      </div>
+      <div style="position:sticky;bottom:0;background:white;padding:1em;border-top:1px solid rgba(0,0,0,0.25);"><button class="closeButton" onclick="dismissModal()">I Understand & Accept These Terms</button></div>
+    </div>
+  </div>
+
+  <div class="navigation">
+    <a href="#one">Basic Info</a>
+    <a href="#two">Employment Status</a>
+    <a href="#three">Family Status</a>
+    <a href="#four">Goals</a>
+    <a href="#five">Connect Accounts</a>
+  </div>
+
+  <div class="screen" id="one">
+    <div style="background:#0584f5;padding:1em;color:white;">
+      <svg style="float:left;stroke: white;stroke-width: 0.35;" height='100px' width='100px'  fill="#ffffff" xmlns:x="http://ns.adobe.com/Extensibility/1.0/" xmlns:i="http://ns.adobe.com/AdobeIllustrator/10.0/" xmlns:graph="http://ns.adobe.com/Graphs/1.0/" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 90 78" enable-background="new 0 0 90 54.727" xml:space="preserve"><g><g i:extraneous="self"><path d="M89.997,21.398c-0.004-0.01-0.012-0.021-0.023-0.031c-0.012-0.012-0.027-0.021-0.045-0.029L45.015,0.018    c-0.012-0.006-0.025-0.01-0.041-0.014C44.96,0.002,44.944,0,44.927,0c-0.016,0-0.031,0.002-0.045,0.004    c-0.016,0.002-0.029,0.008-0.041,0.014l-44.77,21.32c-0.02,0.008-0.033,0.018-0.045,0.029c-0.012,0.01-0.018,0.021-0.023,0.033    c-0.004,0.01-0.004,0.021,0,0.031c0.004,0.012,0.012,0.021,0.021,0.029l45.076,33.225c0.02,0.014,0.041,0.023,0.064,0.031    c0.021,0.006,0.047,0.01,0.07,0.01c0.025,0,0.049-0.004,0.072-0.01c0.023-0.008,0.045-0.018,0.064-0.031l44.604-33.225    c0.012-0.008,0.02-0.018,0.023-0.029C90.001,21.422,90.001,21.41,89.997,21.398z M66.858,17.223l6.031-3.785l7.967,3.787    l-5.963,4.053L66.858,17.223l-0.227-0.113l-7.496-3.781l6.081-3.539h0.001l7.447,3.541l-6.033,3.779L66.858,17.223z     M44.837,21.398l-7.512,4.361l-7.02-4.361l7.498-4.064L44.837,21.398z M38.015,17.221l6.988-3.789l7.029,3.791l-6.984,4.055    L38.015,17.221z M45.05,21.521l7.559,4.369l-7.508,4.701l-7.563-4.699L45.05,21.521z M45.261,21.398l6.982-4.063L59.78,21.4    l-6.961,4.357L45.261,21.398z M52.442,17.221l6.51-3.785l7.496,3.787l-6.473,4.055L52.442,17.221z M52.229,17.107L45.2,13.324    l6.529-3.539l7.01,3.543L52.229,17.107z M45.003,13.219l-6.572-3.537l6.533-3.316l6.568,3.32L45.003,13.219z M44.806,13.326    l-6.988,3.779l-6.561-3.783l6.977-3.541L44.806,13.326z M37.606,17.221l-7.498,4.057l-6.529-4.059l7.467-3.789L37.606,17.221z     M29.882,21.398l-8.063,4.363l-6.477-4.363l8.01-4.064L29.882,21.398z M30.079,21.521l7.02,4.371l-8.102,4.703l-6.982-4.701    L30.079,21.521z M37.31,26.023l7.563,4.711l-8.119,5.084l-7.545-5.08L37.31,26.023z M45.103,30.877l8.174,5.09l-8.115,5.516    l-8.18-5.51L45.103,30.877z M45.329,30.734l7.508-4.711l8.146,4.707l-7.479,5.082l0.123,0.077l-0.125-0.077L45.329,30.734z     M53.048,25.891l6.959-4.369l8.1,4.367l-6.914,4.699L53.048,25.891z M60.204,21.398l6.471-4.061l8.039,4.063l-6.412,4.357    L60.204,21.398z M57.831,6.277l-6.115,3.309l0.197,0.1l6.115-3.314l6.98,3.318l-6.086,3.531l-7.01-3.535l-0.197-0.1l-6.568-3.314    l6.131-3.111L57.831,6.277z M44.929,0.141l6.164,2.932L44.962,6.18l-6.168-3.113L44.929,0.141z M38.61,3.156l6.168,3.115    l-6.533,3.311l-6.158-3.314L38.61,3.156z M31.89,6.361l6.158,3.32l-6.977,3.533l-6.133-3.537L31.89,6.361z M24.728,9.777    l6.135,3.545l-7.467,3.783l-6.092-3.785L24.728,9.777z M17.079,13.426l6.09,3.793l-8.01,4.059l-6.027-4.061L17.079,13.426z     M0.366,21.398l8.525-4.066l6.025,4.066l-8.615,4.365L0.366,21.398z M6.481,25.896l8.619-4.375l6.475,4.373L12.88,30.6    L6.481,25.896z M13.073,30.74l8.697-4.715l6.98,4.713l-8.762,5.086L13.073,30.74z M20.198,35.979l8.764-5.098l7.545,5.092    l-8.813,5.518L20.198,35.979z M27.923,41.658l8.813-5.531l8.18,5.523l-8.836,6.004L27.923,41.658z M45.235,54.385l-8.908-6.549    l8.836-6.018l8.9,6.008L45.235,54.385z M54.31,47.643l-8.898-5.992l8.113-5.529l8.863,5.52L54.31,47.643z M62.614,41.473    l-8.861-5.506l-0.001-0.001l7.478-5.093l8.805,5.088L62.614,41.473z M70.241,35.807l-8.803-5.076l6.912-4.709l8.729,4.705    L70.241,35.807z M77.272,30.584l-8.727-4.695l6.41-4.367l8.639,4.365L77.272,30.584z M83.772,25.756L75.136,21.4l5.961-4.061    l8.539,4.061L83.772,25.756z"></path></g></g></svg>
+      <h1>WealthPrint</h1>
+      <p style="margin:0;">Your Blueprint to Financial Success</p>
+    </div>
+
+    <div style="padding:2em">
+      <h2>STEP 1</h2>
+      <h1>Basic Info</h1>
+
+    <p>How Old Are You?</p>
+    <input type="text"></input>
+    <blockquote>
+      <svg style="float:left;margin-right:1em;margin-bottom:1em;height:100%;" height='50px' width='50px'  fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="13 15 75 75" style="enable-background:new 0 0 100 100;" xml:space="preserve"><g><circle cx="50.401" cy="37.282" r="3.506"></circle><g><path d="M50.401,19.842c17.629,0,31.972,14.343,31.972,31.972S68.03,83.786,50.401,83.786    S18.428,69.444,18.428,51.814S32.771,19.842,50.401,19.842 M50.401,16.29c-19.62,0-35.525,15.905-35.525,35.525    s15.905,35.525,35.525,35.525s35.525-15.905,35.525-35.525S70.02,16.29,50.401,16.29L50.401,16.29z"></path><rect x="47.914" y="45.569" width="4.973" height="24.284"></rect></g></g></svg>Your age helps helps determine the best type of retirement accounts, retirement contribution limits, recommended diversification levels, when you must take RMDs, and more.</blockquote>
+
+    <p>Do you have any preexisting health conditions?</p>
+    <input type="radio" id="yes"><label for="yes">Yes</label>
+    <input type="radio" id="no"><label for="no">No</label>
+    <blockquote>This information is used to determine whether an HSA account would be a good idea for you to consider</blockquote>
+
+    <p>Do You Drive a Car?</p>
+    <input type="radio" id="yes1"><label for="yes1">Yes</label>
+    <input type="radio" id="no1"><label for="no1">No</label>
+    <blockquote>This helps us determine whether to provide recommendations regarding car insurance.</blockquote>
+
+    <p>What is your housing status?</p>
+    <input type="radio" id="own"><label for="own">Own</label>
+    <input type="radio" id="rent"><label for="rent">Rent</label>
+        <input type="radio" id="other"><label for="other">Other</label>
+    <blockquote>This helps us determine whether we need to factor in home ownership expenses and taxes into our recommendations.</blockquote>
+
+    <p>What is your risk tolerance?</p>
+    <input type="radio" id="low"><label for="low">Low</label>
+    <input type="radio" id="medium"><label for="medium">Medium</label>
+        <input type="radio" id="high"><label for="high">High</label>
+    <blockquote>This helps us determine what types of investments and funds you would be most comfortable with.</blockquote>
+  </div>
+
+
+  </div>
+
+  <div class="screen" id="two">
+    <h2>STEP 2</h2>
+    <h1>Employment Status</h1>
+
+    <p>What is your employment status?</p>
+    <input type="text"></input>
+    <blockquote>Your employment status helps determine specific tax optimizations you may be able to make.</blockquote>
+
+    <p>What was your total income for 2019?</p>
+    <input type="text"></input>
+    <blockquote>This helps us determine reasonable recommendations for savings and investment.</blockquote>
+
+
+  </div>
+
+  <div class="screen" id="three">
+    <h2>STEP 3</h2>
+    <h1>Family Status</h1>
+
+    <p>Are You Married?</p>
+    <input type="text"></input>
+    <blockquote>Your marital status helps determine whether you should consider term-life insurance</blockquote>
+
+    <p>Do You Have Kids?</p>
+    <input type="text"></input>
+    <blockquote>This information is used to determine whether you should consider opening a 529 Account to save for college expenses</blockquote>
+
+  </div>
+
+  <div class="screen" id="four">
+    <h2>STEP 4</h2>
+    <h1>Your Goals</h1>
+
+    <p>What financial goals do you have?</p>
+    <input type="text"></input>
+    <blockquote>This helps us gear our recommendations towards your desired outcomes.</blockquote>
+
+
+  </div>
+
+  <div class="screen" id="five">
+    <h2>STEP 5</h2>
+    <h1>Add Your Accounts</h1>
+
+    <p>You're almost finished. Your last step is to connect all of your current bank accounts.</p>
+    <p>Select all the types of accounts you already have</p>
+
+
+  </div>
+
+  <script>
+  function dismissModal() {
+    document.getElementById("disclaimerModal").style.display = "none"
+  }
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+	<title>Monday Workout: Variant A</title>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <style>
+      html, body {background:#313131;padding:0;margin:0;color:white;font-family:PFDin;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+      input {background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.25);padding:.75em;width:auto;color:white;text-align:center;font-size:24px;transition:ease all .25s;border-radius:3px;letter-spacing:.03em;}
+      input:focus {border:1px solid rgba(255,255,255,0.5);background:none;outline:none;}
+      h3 {margin-top:3em;padding:0 2em;}
+
+      /* Navigation */
+      .clippedDiv {background: #C8102E;clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);padding: 2em 1.25em;padding-bottom: 4em;-webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);text-align:left;background: linear-gradient(45deg, #c8102e, #ac1234);}
+      .navButton {font-size:50px;display:inline-block;font-weight:800;color:white;transition:ease all .35s}
+      .navButton:hover {filter:drop-shadow(3px -3px 10px rgba(0,0,0,0.2));transform:scale(1.05);}
+      .pageTitle {text-transform:uppercase;font-family:Blender Pro;margin:0;padding:0;}
+      .headingContainer {display:inline-block;max-width:300px;margin-left:1.5em;text-align:left;position:relative;top:5px;}
+
+      /* Heading Stylings */
+      .dayContainer {background:rgba(255,255,255,0.025);display:inline-block;max-width:320px;width:100%;border-radius:5px;border:1px dotted rgba(255,255,255,0.25);padding:1em 0;margin-bottom:1em;}
+      .day {margin:0;padding:0;font-family:Blender Pro;text-transform:uppercase;letter-spacing:.03em;font-size:32px;color:white;}
+      .muscleGroup {margin:0;padding:0;font-family:Blender Pro;text-transform:uppercase;font-size:18px;color:rgba(255,255,255,0.75);}
+      .exerciseLength {margin:0;padding:0;margin-top:1em;}
+      .subHeadRotated {margin-bottom: 2.75em;transform: rotate(-4deg);text-transform: uppercase;font-family: Blender Pro;letter-spacing: .03em;text-align:center;font-weight:100;}
+
+      /* Progess Bar Styling */
+      #progressContainer {max-width:520px;width: 100%;background:#242629;border:1px solid rgba(255,255,255,0.15);position: fixed;bottom:0;}
+      #progress {width: 0%;height: 50px;background-color: #183;transition: cubic-bezier(.43,.78,0,1) all .5s;}
+      #percentVisible {position: absolute;text-align: center;line-height: 50px;overflow: hidden;color: #fff;right: 0;left: 0;top: 0;text-transform:uppercase;font-size:18px;letter-spacing: .03em;text-shadow:2px 2px 5px rgba(0,0,0,0.35);}
+      sup {font-size:.75em;padding-left:.15em;position: relative;top:3px;}
+
+      /* Custom Checkboxes */
+      input[type="checkbox"] {display: none;}
+      .container {margin-bottom: 1.25em;margin-left:2.5em;text-align:left;padding-left:3em;}
+      .container label {position: relative;color:#ee1144;font-size:1.25em;-moz-user-select: none;-webkit-user-select: none;user-select: none;}
+      .container label:hover {color:#ff2255;cursor: pointer;}
+      .container span::before,.container span::after {content: '';position: absolute;top: 0;bottom: 0;margin: auto;}
+      .container span.checkbox::before {width: 25px;height: 25px;background-color: rgba(255,255,255,0.05);left: -35px;box-sizing: border-box;border: 1px solid rgba(255, 34, 85,0.5);transition: ease-in all .15s;border-radius:3px;}
+      .container span.checkbox:hover::before {border: 1px solid rgba(255,34,85,0.75);background-color: rgba(255,255,255,0.1);cursor: pointer;}
+      .container span.checkbox::after {content: '\f00c';font-family: 'FontAwesome';left: -31px;top: 3px;color: transparent;transition: color .2s;font-size:18px;}
+      input[type="checkbox"]:checked + label span.checkbox::after {color: #313131;}
+      input[type="checkbox"]:checked + label span.checkbox::before {background:white;border-radius: 50px;transform: scale(1.1);}
+      input[type="checkbox"]:checked + label {color: rgba(255,255,255,0.35);}
+
+      /*Animations*/
+      .clippedDiv {animation: slideRight .35s; }
+      @keyframes slideRight {from { transform:translateX(-600px); } to   { transform:translateY(0px);}}
+
+      .animationContainer {animation: slideLeft .35s;}
+      @keyframes slideLeft {from { transform:translateX(600px); } to   { transform:translateY(0px); }}
+
+}
+
+</style>
+</head>
+<body>
+
+<div style="text-align:center;max-width:520px;margin:0 auto;width:100%;background:#242629;min-height:640px;">
+  <div class="clippedDiv">
+    <a class="navButton" href="index.html"><i class="fa fa-chevron-circle-left"></i></a>
+    <div class="headingContainer">
+      <h1 class="pageTitle">Monday</h1>
+      <p class="muscleGroup">Variant A: Chest & Biceps</p>
+    </div>
+</div>
+
+<div class="animationContainer">
+<h2 class="subHeadRotated">Today's Exercises</h2>
+
+<div class="container">
+        <input type="checkbox" name="group2" id="checkbox-1" onclick="checkedOne()">
+        <label for="checkbox-1"><span class="checkbox">Bench Press</span></label>
+      </div>
+
+<div class="container">
+        <input type="checkbox" name="group2" id="checkbox-2" onclick="checkedOne()">
+        <label for="checkbox-2"><span class="checkbox">Fly Machine</span></label>
+      </div>
+
+<div class="container">
+        <input type="checkbox" name="group2" id="checkbox-3" onclick="checkedOne()">
+        <label for="checkbox-3"><span class="checkbox">Bicep Machine</span></label>
+      </div>
+
+<div class="container">
+        <input type="checkbox" name="group2" id="checkbox-4" onclick="checkedOne()">
+        <label for="checkbox-4"><span class="checkbox">Chinups</span></label>
+      </div>
+
+<div class="container">
+      <input type="checkbox" name="group2" id="checkbox-5" onclick="checkedOne()">
+      <label for="checkbox-5"><span class="checkbox">Dumbell Curls</span></label>
+    </div>
+
+<div class="container" style="padding-bottom:5em;">
+        <input type="checkbox" name="group2" id="checkbox-6" onclick="checkedOne()">
+        <label for="checkbox-6"><span class="checkbox">Floor Curls w/ Attachment</span></label>
+      </div>
+</div>
+
+<div id="progressContainer">
+ <div id="progress"></div>
+ <div id="percentVisible"></div>
+</div>
+
+</div>
+
+
+</body>
+
+<script type='text/javascript'>
+window.onload = checkedOne()
+
+  function checkedOne() {
+    var totalChecked = document.querySelectorAll('input[type="checkbox"]:checked').length;
+    var total = document.querySelectorAll('input[type="checkbox"]').length;
+    var percentage = (totalChecked/total)*100;
+      progress.style.width = percentage+"%";
+      if (percentage == 100) {
+        document.getElementById('percentVisible').innerHTML="Done!";
+        progress.style.backgroundColor = "#183";
+      } else if  (percentage < 50) {
+        document.getElementById('percentVisible').innerHTML=Math.round(percentage)+"<sup>%</sup>";
+        progress.style.backgroundColor = "#ac1234";
+      }
+      else {
+      document.getElementById('percentVisible').innerHTML=Math.round(percentage)+"<sup>%</sup>";
+      progress.style.backgroundColor = "rgb(236, 127, 6)";
+    }
+  }
+
+  var dateContainer = new Date();
+  var dayMap = new Array(7);
+  dayMap[0] =  "sunday";
+  dayMap[1] = "monday";
+  dayMap[2] = "tuesday";
+  dayMap[3] = "wednesday";
+  dayMap[4] = "thursday";
+  dayMap[5] = "friday";
+  dayMap[6] = "saturday";
+
+  var today = dayMap[dateContainer.getDay()];
+
+  var dayList = [];
+  (function(){
+      var elements = document.querySelectorAll(".day");
+      for (var i = 0; i < elements.length; i++) {
+          dayList.push(elements[i].innerText.toLowerCase());
+      }
+  })();
+
+  switch (true) {
+      case today == dayMap[0]:
+          console.log("Bam");
+          break;
+      case today == dayMap[1]:
+          console.log("B");
+          break;
+}
+  //Go through list of days. If one of the days in the lists == today, add a class to it.
+</script>
+
+</html>

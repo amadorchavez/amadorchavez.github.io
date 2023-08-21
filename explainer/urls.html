@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>URL Tracking</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+
+    <style>
+        /*BoilerPlate CSS*/
+        html, body {padding: 0;margin: 0;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;height:100%;}
+        h1, h2, h3, h4, h5, h6 {font-weight: 400;margin: 0;padding: 0;}
+        ::placeholder {color: rgba(20,0,0,1);opacity:1;}
+        *:focus {outline: none;}
+
+        /* Enter New CSS*/
+        body {color:white;font-family:Lato;background:#111;font-size:16px;}
+        table {border-collapse: collapse;border:1px solid rgba(255,255,255,0.25);table-layout: fixed;width:100%;margin:2em 0;max-width:720px;}
+        th, td {padding:.5em 1em;text-align: left;vertical-align: top;word-break: break-word;}
+        th {background:#c12;color:white;text-transform:uppercase;font-weight:600}
+        tr {border-bottom:1px solid rgba(255,255,255,0.25);}
+
+        .note {padding:1em;border-radius:15px;background:rgba(255,255,255,0.1);display:inline-block;}
+        a {color:yellow;}
+        code {color:yellow;}
+
+
+        </style>
+    </head>
+
+    <body>
+      <div style="padding:2em;background:#333;height:100vh;max-width:720px;margin:0 auto;">
+
+        <h1>URL Tracking</h1>
+        <p>The usage of custom URLs, formally known as <a href="https://en.wikipedia.org/wiki/Query_string">Query Strings</a> or URL Parameters, can also be a threat to privacy.</p>
+        <p>As with most technology, there are legitimate uses for URL Parameters, but the technology has the potential to be used for tracking.</p>
+        <p>Have you ever clicked on a link in an email and been taken to a really long, complex URL?</p>
+        <p>That long complex URL is meant to monitor if you clicked, and show you relevant information to you.</p>
+        <p>There are two types of URL tracking. Redirect pages and Parameters.</p>
+        <p><strong>Redirect Pages:</strong> You visit a page on a website, but that page then redirects you to another page. Still, the server knows that you hit the first page (which redirects) and logs innformation about the visitor in the server log. You cannot really defend against server redirects</p>
+        <p><strong>Parameters:</strong> Parameters can be added to any url. Anything following a "?" sign is considered parameter data. Anything can be added there and the browser/server can then use that data. Consider the note below:</p>
+
+
+        <div class="note">
+        <p>Hi <span id="name"></span>,</p>
+        <p>I saw that you bought <strong><span id="product"></span></strong> and want to thank you for your purchase.</p>
+        </div>
+
+        <p>We can change what the note says by modifying the URL parameters. Try clicking on the example URLs and notice how the URL changes.</p>
+
+        <p><a href="https://amadorchavez.github.io/explainer/urls.html?user=rIORISuroaue&stats=daoserdaseusr">https://amadorchavez.github.io/urls.html?user=rIORISuroaue&stats=daoserdaseusr</a></p>
+        <p><a href="https://amadorchavez.github.io/explainer/urls.html?user=0afu9l7oeuioeu&stats=2rd089aodu0">https://amadorchavez.github.io/urls.html?user=0afu9l7oeuioeu&stats=2rd089aodu0</a></p>
+        <a href="https://amadorchavez.github.io/explainer/urls.html?user=yp0danecea9y4oe&stats=l9f4l9doeu2">https://amadorchavez.github.io/urls.html?user=yp0danecea9y4oe&stats=l9f4l9doeu2</a>
+
+
+
+        <p>What is happening is that the webpage is extracting the parameters and checking to see if they match a specific name and product in the database. Here is a table of the database</p>
+
+        <table>
+          <tr>
+            <th>Real Name</th>
+            <th>Encoded Name</th>
+            <th>Real Product</th>
+            <th>Encoded Product</th>
+          </tr>
+          <tr>
+            <td>John Doe</td>
+            <td>rIORISuroaue</td>
+            <td>Tom Cruise Photos</td>
+            <td>daoserdaseusr</td>
+          </tr>
+          <tr>
+            <td>Alimar</td>
+            <td>0afu9l7oeuioeu</td>
+            <td>Serpent's Tears</td>
+            <td>2rd089aodu0</td>
+          </tr>
+          <tr>
+            <td>Gwen</td>
+            <td>yp0danecea9y4oe</td>
+            <td>Enigmatic Cylynder</td>
+            <td>l9f4l9doeu2</td>
+          </tr>
+
+        </table>
+
+        <p>Using JavaScript we are calling <code>window.location.search</code> to get the URL parameters. We are then comparing obfuscated URL parameters to a database to see if there is a match, if so, we are display the unobfuscated version.
+
+        <h2>Example Use Cases</h2>
+          <p>Span the range from legitimate to shady</p>
+        <ul>
+          <li>Search Queries</li>
+          <li>Marketing Research; non identifiable, where am I getting traffic from?</li>
+          <li>Hyperpersonalized tracking that enable a business to email saying "I noticed you didn't buy x".</li>
+          <li>Easier registration. Rode includes Serial number in the URL generated by QR Code</li>
+        </ul>
+
+        <h2>Defenses</h2>
+        <h3>Block</h3>
+        <p>You can erase URL parameters, or use a browser extension to intercept the URL and delete queries. Some sites will break — for example: searches</p>
+        <h3>Distort</h3>
+        <p>Alternatively, you can put fake data in parameters to poison marketer attempts</p>
+        <p>There is no universal solution as some sites would not benefit from blocking and distortion.</p>
+
+        <h2>Browser Control Over Parameters</h2>
+        <p>Google Chrome recently introduced a new URL feature called <strong>Search Fragments</strong>. This parameter allows a browser to jump directly to the relevant portion of a website that contains the information a person is searching for. From a privacy perspective, this means sites (and third parties) can log what you search for.</p>
+        <p>Thus Chrome has blocked it from being extracted, though other browsers like Firefox and Safari return it. There is currently a bug in Chrome that allows extraction through an alternative method: <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=1096983">https://bugs.chromium.org/p/chromium/issues/detail?id=1096983</a>. It is actively being exploited by marketers: <a href="https://twitter.com/SimoAhava/status/1273654215882215425">https://twitter.com/SimoAhava/status/1273654215882215425</a>
+
+
+      </div>
+    </body>
+
+
+    <script>
+      const urlObject = window.location.search
+      const urlParameterStore = new URLSearchParams(urlObject);
+      window.onload = fillItObscure()
+
+      function getUrlDeets() {
+        console.log(urlParameterStore.get("user"))
+      }
+
+      function fillIt() {
+        const nameHolder = document.getElementById("name")
+        const productHolder = document.getElementById("product")
+        nameHolder.innerText = urlParameterStore.get("user");
+        productHolder.innerText = urlParameterStore.get("stats");
+      }
+
+      function fillItObscure() {
+        const nameHolder = document.getElementById("name")
+        const productHolder = document.getElementById("product")
+        const userValue = urlParameterStore.get("user");
+        const productValue = urlParameterStore.get("stats");
+
+        switch (userValue) {
+          case '0afu9l7oeuioeu':
+          trueUser = "Alimar"
+          break;
+          case 'rIORISuroaue':
+          trueUser = "John Doe"
+          break;
+          case 'yp0danecea9y4oe':
+          trueUser = "Gwen"
+          break;
+          default:
+          trueUser = "null"
+        }
+
+        switch (productValue) {
+          case '2rd089aodu0':
+          trueProduct = "Serpent's Tears"
+          break;
+          case 'daoserdaseusr':
+          trueProduct = "Tom Cruise Photos"
+          break;
+          case 'l9f4l9doeu2':
+          trueProduct = "Enigmatic Cylynder"
+          break;
+          default:
+          trueProduct = "null"
+        }
+
+        nameHolder.innerText = trueUser;
+        productHolder.innerText = trueProduct
+
+      }
+
+
+    </script>

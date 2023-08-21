@@ -1,0 +1,175 @@
+<head>
+  <style>
+    fieldset {display:flex;flex-flow:column;gap:1em;width:300px;padding:1em;border-radius:5px;border:1px solid rgba(0,0,0,0.25)}
+    legend {font-weight:800;letter-spacing:.03em;}
+    .field {display:flex;flex-flow:column;width:150px;}
+
+    /* Account Boxes */
+    .accountBox {animation:zoomFade ease .65s;display: inline-block;width: 100%;max-width: 320px;min-height: 200px;margin: 0.5em;border-radius: 5px;box-shadow: 0 0 7px var(--shadow-color);text-align: center;border: 1px solid #ccc;background: var(--layer-color);transition:ease all .5s;transform-origin: top;}
+    .accountBox.hidden {display:none;}
+
+    .accountBox h2 {margin:1em 0;text-transform:uppercase;letter-spacing:0.05em;opacity:0.65;font-size:1.15em;}
+    .accountSummary {position:relative;z-index:99;}
+    .accountButton {border:none;background: linear-gradient(0deg,#d3dded,#e4e4fd);color: #35383c;padding: 0.5em 0;font-weight: 600;display: block;width: 100%;text-decoration: none;transition: ease all .15s;border-top: 1px solid var(--border-subtle-color);border-radius: 0 0 5px 5px;}
+    .accountButton:hover {background:#2E8864;color:white;}
+
+    .accountImage {height:70px;background-color:#003971;border-radius:5px 5px 0 0;background-repeat: no-repeat;background-size: 45%;background-position: center;}
+    .accountTotal {text-align: center;font-size: 30px;padding: 0;margin: 0;font-weight:500;}
+    .accountTotal span {border-bottom:1px dotted transparent;transition: ease border .15s;}
+    .accountTotal span:hover {border-bottom:1px dotted;cursor: pointer;}
+
+    .chartContainer {position: relative; height:auto; width:100%;margin-top:-3em;z-index: 9;}
+    #myChart {display: block; width: 100% !important; height: 100px !important;}
+
+  </style>
+</head>
+
+<form>
+  <fieldset>
+    <legend>Basic Information</legend>
+      <div class="field"><label for="accountName">Account Name</label><input id="accountName"></div>
+      <div class="field">
+        <label for="institution">Bank</label>
+        <select id="institution">
+          <option value="">--Choose Option</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="accountType">Account Type</label>
+        <select id="accountType">
+          <option value="">--Choose Option</option>
+          <option value="liquid">Checking</option>
+          <option value="liquid">Saving</option>
+          <option value="debt">Credit Card</option>
+          <option value="debt">Loan</option>
+          <option value="retirement">Retirement</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div class="field"><label for="currentBalance">Current Balance</label><input id="currentBalance"></div>
+      <div class="field"><label for="intRate">Interest Rate</label><input id="intRate"></div>
+  </fieldset>
+  <button onclick="event.preventDefault();createAccount()">Add</button>
+</form>
+
+<div id="result"></div>
+
+<script>
+  const accounts = [] || appData.getItem('accountList')
+
+  const specialAccounts = {
+    cash: {
+      balance: 493,
+      transactions: {}
+    },
+    deposits: {
+      balance: 200,
+      items: 
+        [{
+          name:"Rent",
+          amount: 600
+        }
+        ]
+    }
+  }
+
+  const banks = {
+    us_bank: {
+      logo: "svgs/usb.svg",
+      color: "#de1628"
+    },
+    capital_one: {
+      logo: "svgs/capital-one-white.svg",
+      color: "#003971"
+    },
+    paypal: {
+      logo: "svgs/paypal.svg",
+      color: "#0d3685"
+    },
+    chase: {
+      logo: "svgs/chase.svg",
+      color: "#0d3685"
+    },
+    amex: {
+      logo: "svgs/amex.svg",
+      color: "#ccd"
+    },
+    vanguard: {
+      logo: "svgs/vanguard.svg",
+      color: "#96151d"
+    },
+    td_ameritrade: {
+      logo: "svgs/tdAmeritrade.svg",
+      color: "#3fae49"
+    },
+    dl_evans: {
+      logo: "svgs/dl-evans.svg",
+      color: "#081F3F"
+    },
+    ideal: {
+      logo: "svgs/ideal.svg",
+      color: "#f4b242"
+    },
+    lively: {
+      logo: "svgs/lively.svg",
+      color: "#19A69D"
+    },
+    amazon: {
+      logo: "svgs/amazon.svg",
+      color: "#333"
+    }
+  }
+
+  window.onload = startup()
+
+  function startup() {
+    const list = document.getElementById('institution')
+    Object.keys(banks).forEach(key => list.insertAdjacentHTML('beforeend', `<option value="${key}">${key}</option>`))
+  }
+
+  function createAccount () {
+    let account = {}
+    account.id = String(accounts.length + 1).padStart(2, '0');
+    account.balance = document.getElementById("currentBalance").value
+    account.name = document.getElementById("accountName").value
+    account.institution = document.getElementById("institution").value
+    account.type = document.getElementById("accountType").value
+    account.intRate = document.getElementById("intRate").value
+    account.rewards = {
+      balance: 200,
+      rates: [['Food', .05],['Gas', .05],['Groceries', .05]]
+    }
+    account.transactions = {
+      name: "Chick Fil A",
+      date: "02/03/21",
+      amount: 459.00,
+      tags: ['Food', 'Vacation']
+    }
+    accounts.push(account)
+    render(account)
+  }
+
+  // accounts.forEach(account => render(account))
+
+  function render(account) {
+    container = document.getElementById("result")
+    const template = `<div class="accountBox" data-accountID="${account.id}">
+      <div class="accountImage" style="background-image:url(${banks[account.institution].logo});background-color:${banks[account.institution].color};"></div>
+      <div class="accountSummary">
+        <h2>${account.name}</h2>
+        <p class="accountTotal"><sup>$</sup><span onClick="updateBalance(event, this)">${account.balance}</span></p>
+      </div>
+      <div class="chartContainer"><canvas id="myChart" width="400" height="400"></canvas></div>
+      <button onclick="showModal(event, transactionLog)" class="accountButton">View Details</button>
+    </div>`
+    container.innerHTML += template
+    // if account.type == "spending" => append to spending div
+  }
+
+  function findObjInArray(targetArray, key, value) {
+    targetArray.find(obj => obj['id'] == value)
+    //console.log(inventory.find(obj => obj.name == 'table'));
+  }
+
+// "Edit Form" grab by ID, append a data-id of account, auto-populate form with object stats
+</script>

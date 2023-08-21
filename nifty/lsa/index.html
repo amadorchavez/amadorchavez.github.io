@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nifty LSA Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <style>
+    /*BoilerPlate CSS*/
+    html,
+    body {
+      padding: 0;
+      margin: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      height: 100%;
+      font-family:avenir, sans-serif;
+      width:100%;
+      overflow:hidden;
+    }
+
+    sup {
+      font-size: .75em;
+      vertical-align: top;
+      margin: 0 0.1em;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    ::placeholder {
+      color: rgba(20, 0, 0, 1);
+      opacity: 1;
+    }
+
+    *:focus {
+      outline: none;
+    }
+
+    * {
+      font-family: inherit;
+      box-sizing: border-box;
+    }
+
+    /* Variables */
+    :root {
+      --brandColor: #7030A0;
+      --secondaryColor: #333F50;
+    }
+
+    /* Other CSS */
+    h1, h2, p {
+      margin:0;
+      padding:0;
+    }
+
+    .mainBar {
+      background:#eee;
+      display:flex;
+      padding:1em 2em;
+      justify-content:space-between;
+      align-items:center;
+      color: var(--brandColor)
+    }
+
+    .mainBar button {
+      border:1px solid rgba(0,0,0,0.25);
+      padding:.5em 1.5em;
+      text-transform:uppercase;
+      letter-spacing: .1em;
+    }
+
+    .filterBar {
+      background: var(--secondaryColor);
+      color:white;
+      padding:1em;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:2em;
+      flex-wrap: wrap;
+    }
+
+    .filterBar input, .filterBar select {
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.5);
+      padding:.5em;
+      color:white;
+      font-family:inherit;
+      width:150px;
+    }
+
+    select option {color:black}
+
+    .tableContainer {
+      height:60vh;
+      width:90vw;
+      margin:1em auto;
+      display: flex;
+      background:#eee;
+      border:2px solid rgba(0,0,0,0.15);
+      border-radius:7px;
+      flex-flow:column;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .tableContainer.valid {
+      overflow: scroll;
+      align-items: baseline;
+      justify-content: start;
+    }
+
+    .tableContainer table {
+      table-layout: fixed;
+      border-collapse: collapse;
+      width:100%;
+      min-width: 1200px;
+    }
+
+    .tableContainer th, td {
+      padding: 0.75em;
+      text-align:center;
+    }
+
+    .tableContainer th {
+      background: #eee;
+    }
+
+    .tableContainer td {
+      background: #fff;
+      white-space: nowrap;
+      overflow: scroll;
+      /* text-overflow: ellipsis; */
+    }
+
+    .tableContainer td:first-child, .tableContainer th:first-child {
+      text-align:left;
+      width:250px;
+    }
+
+    .tableContainer tr {
+      border-bottom: 1px solid #ccc;
+    }
+
+    .modal {
+      border:1px solid;
+      padding:2em;
+      display:inline-block;
+      box-shadow: 0 0 25px rgba(0,0,0,0.35);
+      max-width:320px;
+      transform: translateX(580px);
+      transition: ease all .35s;
+      opacity:0;
+      position:absolute;
+      top:0;
+      right:0;
+      background:white;
+      height:100vh;
+    }
+
+    .modal.visible {
+      transform: translateX(0px);
+      opacity:1;
+    }
+
+    .modalUI {
+      float:right;
+      font-size:2em;
+      cursor:pointer;
+    }
+
+
+    button.action {
+      background: var(--brandColor);
+      color:white;
+      padding:.5em 1em;
+      border: 1px solid rgba(255,255,255,0.5);
+      border-radius: 3px;
+      text-transform: uppercase;
+      font-weight:800;
+      cursor: pointer;
+      transition: ease all .5s;
+    }
+
+    button.action:hover {
+      border: 1px solid white;
+    }
+
+    button.action:disabled {
+      opacity:.85;
+      color: rgba(255,255,255,0.5);
+      cursor: not-allowed;
+    }
+
+    .spinner {
+      animation: 2s linear infinite spin;
+      width:150px;
+    }
+
+    .path {
+      stroke: var(--secondaryColor);
+      stroke-linecap: round;
+      stroke-dasharray: 90, 450;
+    }
+
+    .alert {
+      position: absolute;
+      bottom: 0;
+      background: #9d2020;
+      padding: 1em;
+      color: white;
+      border-radius: 0 5px 5px 0;
+      border: 2px solid;
+      outline: 3px solid #9d2020;
+      animation: slideIn ease 1s forwards;
+    }
+
+    @keyframes slideIn {
+      0% {transform:translateX(-300px);}
+      100% {transform:translateX(0px);}
+    }
+    @keyframes spin {
+          0% {transform:rotate(0deg)}
+          100% {transform:rotate(360deg)}
+        }
+
+  </style>
+
+</head>
+
+<body>
+  <div>
+    <div class="mainBar">
+      <h2>Nifty LSA Dashboard</h2>
+      <button onclick="addClass()">API Key Settings</button>
+    </div>
+    <div class="filterBar">
+      <div>
+        <label for="mAccount">
+          Manager Account
+        </label>
+        <input id="mAccount" type="text" value="6961488723,3347416247,9175971727">
+      </div>
+      <div>
+        <label for="clientID">
+          Client
+        </label>
+        <select style="max-width:250px;" id="cids"></select>
+      </div>
+      <div>
+        <label for="sDate">
+          Start Date
+        </label>
+        <input id="sDate" type="date">
+      </div>
+      <div>
+        <label for="eDate">
+          End Date
+        </label>
+        <input id="eDate" type="date">
+      </div>
+      <button class="action" onclick="fetchData(event)">Update</button>
+    </div>
+
+    <input type="text" oninput="searchIt(event)" placeholder="Search" style="margin:1em auto;display:block;padding:1em;width:calc(100% - 2em);max-width:720px;"></input>
+
+    <div class="tableContainer">
+      <h2>No Data Available</h2>
+      <p>Check API Key Settings or Adjust Filters</p>
+    </div>
+  </div>
+  <p style="text-align: center">Last Updated: <span id="tableDate">Never</span></p>
+
+  <div style="display:none;">
+    <h2>App v1.0.0</h2>
+    <h3>Changelog</h3>
+    <h4>V1 - Initial Release</h4>
+    <p>- Concatenated data responses from 3 separate target Manager IDs</p>
+    <p>- Modularized table building and caching of client data</p>
+    <p>- Formatted percentages and currencies properly</p>
+    <p>- Added Ability to Filter by Client Name</p>
+    <p>- Added Basic Error Handling</p>
+    <p>- Added Date Filters</p>
+  </div>
+
+  <div class="modal" id="apiSettings">
+    <span class="modalUI" onclick="addClass()">&times;</span>
+    <h2>API Settings</h2>
+    <p>Google API Keys expires every hour. Click the button to reset the API key using your Refresh token. <i>Please note the refresh token expires whenever the Google account password changes.</i></p>
+    <div style="display:block;margin: 1em 0;">
+      <label for="key">Current API Key</label>
+      <input type="text" id="key" value="ya29.a0ARrdaM92jOU6aVNATuFP0wT82DlskonmnDLhyCeYLbT_nRYonyIcXwUmVvMetuYP-goaLP2srW4ini0pat5c8nyDisfxKfHMeUIo5Y5_kZham2TqZNhjVPh8mAm5ZtZqM9Vt9UCs-v_MnznLPFXPi4ZAUrz6">
+    </div>
+    <hr>
+    <table>
+        <tbody><tr>
+          <td>client_id</td>
+          <td><input id="cid" type="text" value="943210621113-0cl5kodu93hmief4g6gf1ib77vtgssmd.apps.googleusercontent.com"></td>
+        </tr>
+        <tr>
+          <td>client_secret</td>
+          <td><input id="secret" type="text" value="my8afwKkGtfH0wIt9ie5V1v2"></td>
+        </tr>
+        <tr>
+          <td>refresh_token</td>
+          <td><input id="rToken" type="text" value="1//06WqjRxndqVXwCgYIARAAGAYSNwF-L9IrF3fhoVWiVcXpZrZATHfvvpQ7rYtF8raltCyhm6yfxNGDnbWNHoViiVYwWFwFC_ad-4c"></td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+      <button onclick="resetToken()">Renew API Key</button>
+    </div>
+</body>
+
+<script>
+appData = window.localStorage
+window.onload = startup()
+var config
+
+function startup() {
+  config = JSON.parse(appData.getItem('lsaConfig'))
+  if (config == null) {
+    config = {
+      keyExpired: false,
+      renewDate: null,
+      currentKey: `ya29.a0ARrdaM_thnjgu87Zp-lihCLugvkVG16LezGlcLK1hE5eA2Nck7byzsjtAZQg0_U3vmIBtpf_uptmkmgng2w76Yzd8yiJ-GAfW2eYWFIPfb-KYZ3IX0ul1cju9XkvlkoA2RAcDXD0Za1YBIvNlhCVWfnXtpwJ`,
+      retryBoolean: true,
+      tableDate: null,
+      midTotal: 0,
+      midCounter: 1,
+      clients: [],
+      lastStartDate: null,
+      lastEndDate: null
+    }
+  }
+  updateConfig()
+  if (!config.clients.length == 0) {renderTable()} else {renderTable("error")}
+  if (config.lastStartDate == null && config.lastEndDate == null) {
+    config.lastEndDate = new Date()
+    config.lastStartDate = new Date(new Date(config.lastEndDate).setDate(config.lastEndDate.getDate() - 30))
+    document.getElementById('sDate').value = `${config.lastStartDate.getFullYear()}-${config.lastStartDate.getMonth()+1}-${config.lastStartDate.getDate()}`
+    document.getElementById('eDate').value = `${config.lastEndDate.getFullYear()}-${config.lastEndDate.getMonth()+1}-${String(config.lastEndDate.getDate()).padStart(2, '0')}`
+  } else {
+    document.getElementById('sDate').value = `${new Date(config.lastStartDate).getFullYear()}-${new Date(config.lastStartDate).getMonth()+1}-${String(new Date(config.lastStartDate).getDate()).padStart(2, '0')}`
+    document.getElementById('eDate').value = `${new Date(config.lastEndDate).getFullYear()}-${new Date(config.lastEndDate).getMonth()+1}-${String(new Date(config.lastEndDate).getDate()).padStart(2, '0')}`
+  }
+
+}
+
+function updateConfig() {
+  appData.setItem('lsaConfig', JSON.stringify(config))
+  const keyHolder = document.getElementById('key')
+  keyHolder.value = config.currentKey
+
+  const mycids = document.getElementById('cids')
+
+
+  if (config.clients.length > 0) {
+    let clientList = ``
+
+    config.clients.forEach(client => {
+      clientList +=`<option id="${client.accountId}">${client.businessName}</option>`
+    })
+    mycids.innerHTML = `<option value="" default>Select Client</option>${clientList}`
+  }
+}
+
+function resetToken() {
+  const cid = document.getElementById('cid').value
+  const secret = document.getElementById('secret').value
+  const token = document.getElementById('rToken').value
+  const url = `https://oauth2.googleapis.com/token?client_id=${cid}&client_secret=${secret}&grant_type=refresh_token&refresh_token=${token}`
+
+  postRequest(url).then((data) => {
+    console.log(data)
+    if (data.error) {
+      renderError(data.error_description)
+    } else {
+      config.currentKey = data.access_token
+      updateConfig()
+    }
+  })
+}
+
+  function renderError(message, fix) {
+    document.body.insertAdjacentHTML('beforeend', `<div class="alert"><strong>Error: </strong>${message} ${fix}</div>`)
+  }
+
+  function addClass() {
+    const filer = document.getElementById('apiSettings');
+    filer.classList.toggle('visible');
+  }
+
+  function fetchData(e) {
+    e.target.setAttribute('disabled', '')
+
+    config.lastEndDate = new Date(`${document.getElementById('eDate').value}T00:00:00`)
+    config.lastStartDate = new Date(`${document.getElementById('sDate').value}T00:00:00`)
+
+    const startDate = `&startDate.day=${config.lastStartDate.getDate()}&startDate.month=${config.lastStartDate.getMonth()+1}&startDate.year=${config.lastStartDate.getFullYear()}` // Default date = first day of current/month year
+    const endDate = `&endDate.day=${config.lastEndDate.getDate()}&endDate.month=${config.lastEndDate.getMonth()+1}&endDate.year=${config.lastEndDate.getFullYear()}` // Default date = today's date
+
+    const mcid = document.getElementById('mAccount').value.split(",")
+    const ccid = document.getElementById('cids').value
+    const key = document.getElementById('key').value
+
+    config.midTotal = mcid.length
+
+    renderTable("waiting")
+
+    mcid.forEach(item => {
+      getRequest(`https://localservices.googleapis.com/v1/accountReports:search?query=manager_customer_id:${item}${startDate}${endDate}`, config.currentKey).then((data) => {
+        console.log(data, config.midCounter)
+
+        if (config.midCounter == 1) {
+          config.clients = data.accountReports
+        } else {
+          config.clients = config.clients.concat(data.accountReports)
+        }
+        if (config.midCounter == config.midTotal) {
+          config.midCounter = 1
+          config.tableDate = new Date().toString()
+          updateConfig()
+          renderTable()
+          e.target.removeAttribute('disabled')
+        }
+        config.midCounter += 1
+      }).catch((error) => {
+        renderError(error)
+        renderTable("error")
+        e.target.removeAttribute('disabled')
+      })
+    })
+
+  }
+
+
+  function renderTable(flag) {
+    const container = document.querySelector('.tableContainer')
+
+    if (flag == "waiting") {
+      container.classList.remove('valid')
+      container.innerHTML = `<svg class="spinner" viewBox="0 0 50 50"><circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="3"></circle></svg><h2>Loading Data</h2><p>Please Wait</p>`
+    }
+    else if (flag == "error") {
+      container.classList.remove('valid')
+      container.innerHTML = `<h2>Error Getting Data</h2><p>Check API Key Settings or Adjust Filters</p>`
+    }
+    else {
+      container.classList.add('valid')
+      container.innerHTML = `<table id="clientData">
+        <tbody><tr>
+          <th>Client</th>
+          <th>Account ID</th>
+          <th>Average Weekly Budget</th>
+          <th>Charged Leads</th>
+          <th>Total Phone Calls</th>
+          <th>Connected Calls</th>
+          <th>Missed Calls</th>
+          <th>Phone Lead Responsiveness</th>
+          <th>Total Cost</th>
+          <th>Cost Per Lead</th>
+        </tr>
+      </tbody></table>`
+      const theTable = document.getElementById('clientData').querySelector('tbody')
+
+      config.clients.forEach( client => {
+        const name = client.businessName;
+        const id = client.accountId;
+        const budget = "<sup>$</sup>" + client.averageWeeklyBudget.toLocaleString();
+        const leads = client.currentPeriodChargedLeads;
+        const totalCalls = Number(client.currentPeriodPhoneCalls);
+        const answered = Number(client.currentPeriodConnectedPhoneCalls);
+        const missedCalls = totalCalls - answered
+        const responsiveness = `${Math.round(client.phoneLeadResponsiveness * 100)}%`
+        const cost = `<sup>$</sup>${client.currentPeriodTotalCost.toLocaleString()}`
+        const cpl = `$${(client.currentPeriodTotalCost/Number(leads)).toFixed(2)}`
+
+        const row = `<tr><td class="clientName">${name}</td><td>${id}</td><td>${budget}</td><td>${leads}</td><td>${totalCalls}</td><td>${answered}</td><td>${missedCalls}</td><td>${responsiveness}</td><td>${cost}</td><td>${cpl}</td></tr>`
+        theTable.insertAdjacentHTML('beforeend', row)
+      })
+
+      document.getElementById('tableDate').innerText = config.tableDate
+    }
+  }
+
+
+  // FETCH FUNCTIONS
+  async function postRequest(url = '') {
+    const response = await fetch(url, {
+  	    method: 'POST',
+  	    cache: 'no-cache',
+  	    headers: {
+  	      'Content-Type': 'application/x-www-form-urlencoded'
+  	    }
+  	  });
+  	  return await response.json();
+  }
+
+  async function getRequest(url = '', key) {
+    const response = await fetch(url, {
+        method: 'GET',
+        cache: 'no-cache',
+        headers: {
+          'Authorization': `Bearer ${key}`,
+        }
+      });
+      if (response.ok) {
+        console.log('Success: 200')
+        config.retryBoolean = true
+        return await response.json();
+      }
+      if (config.retryBoolean == true) {
+        console.log("failed and retrying")
+        resetToken()
+        config.retryBoolean = false
+        return getRequest(url, key)
+      }
+    }
+
+    //https://markmichon.com/automatic-retries-with-fetch
+
+    function searchIt(e) {
+      const query = e.target.value.toLowerCase()
+      const rows = document.getElementById('clientData').querySelectorAll('.clientName')
+      rows.forEach(item => {
+        let value = item.innerText.toLowerCase().trim()
+        let container = item.closest('tr')
+        if (!value.includes(query)) {
+          container.style.display = "none"
+        } else {
+          container.style.display = "table-row"
+        }
+      })
+    }
+
+</script>
+
+</html>

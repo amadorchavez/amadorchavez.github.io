@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Nifty Links </title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="shortcut icon" type="image/x-icon" href="https://niftystreet.com/assets/favicon-65691c5ff8ebfb4d4cc225658f41f2731f54c1f867898c44d4a0e9b079e1d083.png" />
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="6FMZLLtAMn60nw0wMMXij6hMP2kZx7tTuNuJ4lF/jO2hCZb4GNWj+uMi4IAaXzOH5u1jY341EpZeWM0YVYV+kw==" />
+<link href="https://fonts.googleapis.com/css?family=Lato|Roboto" rel="stylesheet">
+<link rel="stylesheet" media="all" href="https://niftystreet.com/assets/application-9711ea942a91a5308e200a9b5cec4b6b741cb8886712f65168e68aa658a32889.css" />
+<script src="/assets/application-d292375853784be884939e9b464c3962fc11d08c0d5ee63d357129f8e2fed405.js"></script>
+<style>
+        :root{
+          /* DARKMODE */
+          --main-bg: #252729;
+          --main-bg-lit: #2b2d2f;
+          --main-text: white;
+          --inputs: #303234;
+          --input-text: white;
+          --input-border: rgba(255, 255, 255, 0.25);
+          --white: black;
+          --black: white;
+          --logo-fill: white;
+
+          --light-blue: #5fc9ff;
+          --blue-dark: #86c0fb;
+          --lit-blue: #63b6ff;
+          --submit-btn: #289668;
+          --submit-btn-hover: #007142;
+          --gray: rgba(255, 255, 255, 0.5);
+          --lit-gray: rgba(255,255,255,.25);
+          --categories: rgba(255,255,255,.35);
+          --flash-bg: rgba(255, 255, 255, .5);
+          --flash-notice: #75ff75;
+          --flash-warning: #ffc986;
+
+          --table-bg: #333537;
+          --table-border-outer: #333537;
+          --table-text: white;
+          --table-border-inner: rgba(224, 224, 224, .1);
+          --table-highlight: rgba(255, 255, 255, 0.025);
+          --table-row-select: rgba(220, 236, 251, .15);
+          --table-row-select-hover: rgba(220, 236, 251, .18);
+          --table-tooltip: #3d3f42;
+          --table-deep-red: #373333;
+        }
+
+        /* Cards */
+        .card h2, .card p {margin:0;padding:0;margin-bottom:.35em;white-space: nowrap;overflow: scroll;text-transform: capitalize;}
+        .cardContainer {display:inline-block;padding:2em;border:1px solid var(--input-border);border-radius:5px;box-shadow:0 0 10px rgba(0,0,0,0.15);background:var(--inputs);}
+        .card {display:flex;flex-flow:column;text-align:center;}
+
+        button {border-radius:5px;margin:.25em;border:none;cursor:pointer;font-weight:800;font-size:14px;padding:.5em 1em;}
+        .mainCTA {background: #289668;color: white;border: 1px solid rgba(255,255,255,0.25);box-shadow: 0 0 5px rgb(0 0 0 / 25%);border-radius: 3px;}
+        .secondaryCTA {background:rgba(255,255,255,0.75);border:1px solid;font-weight:400;}
+        h2, p {margin:0;padding:0;margin-bottom:.35em;}
+
+        .at-a-glance .container {padding: 0 2em;}
+
+        hr {border:1px solid var(--input-border)}
+
+        .search-bar.client-select>div:not(:first-child), .search-bar>div:nth-child(2) {display: block;}
+      </style>
+</head>
+<body>
+<div class="at-a-glance first-nav"></div>
+<div class="at-a-glance">
+<div class="container starting">
+<div>
+<h1>Clients</h1>
+<p>PM: Amador Chavez</p>
+</div>
+<div><a class="back-to-dash" href="/">Back to Dashboard</a></div>
+</div>
+</div>
+
+<div style="background: var(--main-bg-lit);display:flex;justify-content: center;padding:1em;">
+  <input placeholder="Search to Filter" id="search" type="text" style="width:500px;padding:1em;font-size:14px;margin-right:2em;">
+  <button class="mainCTA">Add Client</button>
+</div>
+
+
+<section>
+<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(0, 300px));padding:1em;grid-gap:.75em;justify-content:center;">
+
+  <div class="cardContainer">
+    <div class="card">
+      <h2 class="clientName">Peck Law Firm</h2>
+      <p>Budget: $1,500</p>
+      <p><span id="linkCount">10</span> links Live</p>
+      <p>5 links pending</p>
+      <button class="mainCTA">New Order</button>
+      <button class="secondaryCTA">Profile</button>
+    </div>
+  </div>
+
+  <div class="cardContainer">
+    <div class="card">
+      <h2 class="clientName">Social Security Law Group</h2>
+      <p>Budget: $1,500</p>
+      <p><span id="linkCount">10</span> links Live</p>
+      <p>5 links pending</p>
+      <button class="mainCTA">New Order</button>
+      <button class="secondaryCTA">Profile</button>
+    </div>
+  </div>
+
+  <div class="cardContainer">
+    <div class="card">
+      <h2 class="clientName">Benenati Law Firm</h2>
+      <p>Budget: $1,500</p>
+      <p><span id="linkCount">10</span> links Live</p>
+      <p>5 links pending</p>
+      <button class="mainCTA">New Order</button>
+      <button class="secondaryCTA">Profile</button>
+    </div>
+  </div>
+
+  <div class="cardContainer">
+    <div class="card">
+      <h2 class="clientName">Duffy Law</h2>
+      <p>Budget: $1,500</p>
+      <p><span id="linkCount">10</span> links Live</p>
+      <p>5 links pending</p>
+      <button class="mainCTA">New Order</button>
+      <button class="secondaryCTA">Profile</button>
+    </div>
+  </div>
+
+  <div class="cardContainer">
+    <div class="card">
+      <h2 class="clientName">Sattiraju Law Firm</h2>
+      <p>Budget: $1,500</p>
+      <p><span id="linkCount">10</span> links Live</p>
+      <p>5 links pending</p>
+      <button class="mainCTA">New Order</button>
+      <button class="secondaryCTA">Profile</button>
+    </div>
+  </div>
+
+  <div class="cardContainer">
+    <div class="card">
+      <h2 class="clientName">Peak Family Dental Care</h2>
+      <p>Budget: $1,500</p>
+      <p><span id="linkCount">10</span> links Live</p>
+      <p>5 links pending</p>
+      <button class="mainCTA">New Order</button>
+      <button class="secondaryCTA">Profile</button>
+    </div>
+  </div>
+
+  <div class="cardContainer">
+    <div class="card">
+      <h2 class="clientName">Sullivan & Galleshaw</h2>
+      <p>Budget: $1,500</p>
+      <p><span id="linkCount">10</span> links Live</p>
+      <p>5 links pending</p>
+      <button class="mainCTA">New Order</button>
+      <button class="secondaryCTA">Profile</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  document.getElementById('search').addEventListener('input', function(e) {
+    const query = e.target.value.toLowerCase();
+    const targets = document.querySelectorAll('.clientName')
+    targets.forEach((item) => {
+      let value = item.innerText.toLowerCase()
+      if(!value.includes(query)) {
+        item.closest('.cardContainer').style.display = 'none';
+      } else {
+        item.closest('.cardContainer').style.display = "inline-block"
+      }
+    })
+  }, true)
+</script>
+
+
+
+</section>
+
+<div class="app-version">
+<section>
+<span style="float:left;text-align:left;">NEW: Contact order owners directly.<br>Questions about billing? Email us <a href="/cdn-cgi/l/email-protection#87ebeee9ecc7e9eee1f3feeae6f5ece2f3eee9e0a9e4e8ea">here</a>.</span>
+Logged in as
+<a href="/profile">Amador Chavez</a>
+| <a data-confirm="Are you sure you want to logout?" rel="nofollow" data-method="delete" href="/users/sign_out">Logout</a><br>
+App v1.6.4.8
+<form style="display:inline-block;" action="/home/save_profile?id=3&amp;user%5Bdarkmode%5D=false&amp;user%5Bid%5D=3" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="_method" value="patch" /><input type="hidden" name="authenticity_token" value="/KLvs2/QFN1JGWgsoi/ZBkXWLG4B38I9s82hI/MlQiOUf3sOag4vwJOWyFUKGI7xLx2yneZpecDDiuP2cWfJqA==" />
+<a href="/profile/darkmode" title="Change dark mode setting" style="border-bottom:0;" onclick="event.preventDefault();this.parentNode.submit()">✷</a>
+</form> </section>
+</div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>

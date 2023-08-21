@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Real-Time KSL Monitoring</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /*BoilerPlate CSS*/
+        html, body {padding: 0;margin: 0;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;height:100%;}
+        h1, h2, h3, h4, h5, h6 {font-weight: 400;margin: 0;padding: 0;}
+        ::placeholder {color: rgba(20,0,0,1);opacity:1;}
+        *:focus {outline: none;}
+
+        /* Enter New CSS*/
+        body {background:#002d65;color:#fff;font-family:Lato;}
+        .contentContainer {padding:2em;max-width:960px;margin:0 auto;text-align: center;}
+        h1 {font-weight:700;color:#3276de}
+
+        .searchItem {display:flex;margin:2em 0;justify-content: center;}
+        .searchItem div {padding:0 1em;}
+
+        input {width:calc(100% - 2em);font-size: 18px;padding:1em;color:white;border:2px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);border-radius:3px;}
+        input::placeholder {color:rgba(255,255,255,0.7);font-style:italic;}
+        input:focus {box-shadow: 0 0 5px rgba(255,255,255,0.5)}
+        input:valid {background-image:url('https://cdn.onlinewebfonts.com/svg/img_143294.png');background-size:25px;background-position: 95% 50%;background-repeat: no-repeat;}
+        button {padding: 1em 2em;background: #14a252;border: 1px solid;cursor: pointer;border-radius: 5px;font-size: 18px;color: white;}
+        button:disabled {opacity:0.75;cursor:not-allowed;}
+
+        input[type=number] {width:30%;display:inline;}
+
+        .selectorList {list-style-type: none;padding: 0;margin: 0;text-align: left;height:50vh;overflow: scroll;display:none;}
+        .selectorList li  {
+          border: 1px solid rgba(255,255,255,0.1);
+          margin-top: -1px; /* Prevent double borders */
+          background-color: rgba(255,255,255,0.05); /* Grey background color */
+          padding: .5em;
+          font-size: 18px; /* Increase the font-size */
+          color: white; /* Add a black text color */
+          display: block; /* Make it into a block element to fill the whole list */
+          transition: ease all .15s;
+        }
+        .searchItem ul li:hover {background:rgba(255,255,255,0.15)}
+
+        .parameterForm {border-collapse: collapse;}
+        .parameterForm td {vertical-align: top;padding: 1em;text-align:left;}
+        .parameterForm h2, .parameterForm p {margin:0;}
+
+    </style>
+</head>
+
+<body>
+  <div class="contentContainer">
+    <a href="#" style="float:right;color:white;text-decoration:none;border-bottom:1px dotted;padding-bottom:.15em;">Login</a>
+    <h1>Real-Time KSL Monitoring</h1>
+    <p>Get email alerts the moment an item you're looking for is posted on KSL</p>
+    <h2>Get started for <strong>FREE</strong> by choosing a category and subcategory</h2>
+
+
+    <div class="searchItem">
+      <div>
+      <input type="text" id="mainCategoryInput" placeholder="Choose a Main Category" onkeyup="filterCategories()" onfocus="showOptions()" onblur="hideOptions()"></input>
+        <ul class="selectorList" id="mainCategoryList">
+          <li>Announcements</li>
+          <li>Appliances</li>
+          <li>Auto Parts and Accessories</li>
+          <li>Baby</li>
+          <li>Books and Media</li>
+          <li>Clothing and Apparel</li>
+          <li>Computers</li>
+          <li>Cycling</li>
+          <li>Electronics</li>
+          <li>For Trade or Barter</li>
+          <li>FREE</li>
+          <li>Furniture</li>
+          <li>General</li>
+          <li>Home and Garden</li>
+          <li>Hunting and Fishing</li>
+          <li>Industrial</li>
+          <li>Musical Instruments</li>
+          <li>Other Real Estate</li>
+          <li>Outdoors and Sporting</li>
+          <li>Pets and Livestock</li>
+          <li>Recreational Vehicles</li>
+          <li>Services</li>
+          <li>Tickets</li>
+          <li>Toys</li>
+          <li>Water Sports</li>
+          <li>Weddings</li>
+          <li>Winter Sports</li>
+        </ul>
+      </div>
+
+      <div>
+      <input type="text" id="subCategoryInput" placeholder="Choose a Sub-Category" onkeyup="filterSubCategories()" onfocus="showSubOptions()" onblur="hideSubOptions()"></input>
+        <ul class="selectorList" id="subCategoryList">
+          <li>Android Tablets and Accessories</li>
+          <li>Apple Hardware and Accessories</li>
+          <li>Apple iPads and Accessories</li>
+          <li>Apple Laptops/Desktops</li>
+          <li>Desktop Hardware and Accessories</li>
+        </ul>
+      </div>
+
+      <div>
+        <button disabled>Next →</button>
+      </div>
+
+    </div>
+
+
+
+  </div>
+</body>
+
+<script>
+  function filterCategories() {
+    const searchInput = document.getElementById('mainCategoryInput')
+    const sanitizedInput = searchInput.value.toUpperCase();
+    const categoryList = document.getElementById('mainCategoryList')
+    const individualCategories = categoryList.getElementsByTagName('li')
+
+    for (i = 0; i < individualCategories.length; i++) {
+    a = individualCategories[i].innerText;
+    if (a.toUpperCase().indexOf(sanitizedInput) > -1) {
+      individualCategories[i].style.display = "";
+    } else {
+      individualCategories[i].style.display = "none";
+    }
+  }
+  }
+
+  function showOptions() {
+    const options = document.getElementById('mainCategoryList')
+    options.style.display = "block";
+  }
+
+  function hideOptions() {
+    const options = document.getElementById('mainCategoryList')
+    options.style.display = "none";
+  }
+
+  function filterSubCategories() {
+    const searchInput = document.getElementById('subCategoryInput')
+    const sanitizedInput = searchInput.value.toUpperCase();
+    const categoryList = document.getElementById('subCategoryList')
+    const individualCategories = categoryList.getElementsByTagName('li')
+
+    for (i = 0; i < individualCategories.length; i++) {
+    a = individualCategories[i].innerText;
+    if (a.toUpperCase().indexOf(sanitizedInput) > -1) {
+      individualCategories[i].style.display = "";
+    } else {
+      individualCategories[i].style.display = "none";
+    }
+  }
+  }
+
+  function showSubOptions() {
+    const options = document.getElementById('subCategoryList')
+    options.style.display = "block";
+  }
+
+  function hideSubOptions() {
+    const options = document.getElementById('subCategoryList')
+    options.style.display = "none";
+  }
+</script>
+
+</html>

@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+	<title>Bench Press Log</title>
+  <meta name="viewport" content="initial-scale=1, viewport-fit=cover, user-scalable=no, width=device-width">
+  <meta name="theme-color" content="#AC1234">
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="manifest" href="manifest.json">
+
+  <style>
+      html, body {background:#313131;padding:0;margin:0;color:white;font-family:PFDin;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+
+      /* iOS fixes to prevent long press popups on links, tap highlighitng, selectibility of content, & rubberband scrolling */
+      body {-webkit-touch-callout: none; -webkit-tap-highlight-color: transparent; -webkit-user-select: none;-webkit-overflow-scrolling: auto;padding-top: env(safe-area-inset-top);padding-bottom: env(safe-area-inset-bottom);}
+      *::-webkit-scrollbar {width: 0px;}
+
+      /* Input Fields */
+      input {background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.25);padding:.75em;width:auto;color:white;text-align:center;font-size:24px;transition:ease all .25s;border-radius:3px;letter-spacing:.03em;}
+      input:valid {color: #57bb63;border: 1px solid rgba(87, 187, 99, 0.65);background: linear-gradient(180deg,transparent,rgba(87, 187, 99, 0.075));}
+      input:focus {border:1px solid rgba(255,255,255,0.5);background:none;outline:none;}
+      input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {-webkit-appearance: none; margin: 0; }
+      input[type=number] {-moz-appearance:textfield;width:3em;}
+
+      .weightCell input {text-align: left; }
+      .weightCell {position:relative;}
+      .weightCell label {display:none}
+      .weightCell input:valid + label {display:block;position: absolute;top: 47%;right: 22%;font-size: 12px;color: rgb(87, 187, 99);user-select:none;}
+
+      ul {margin:0;padding:0;opacity:0;animation: 1.5s ease fade .15s forwards;}
+      li {margin-bottom:.5em;list-style: none;}
+
+      .flash {animation: .15s ease flash}
+
+      /* Confirmation Buttons */
+      /* Custom Checkboxes */
+      input[type="checkbox"] {display: none;}
+      .container {text-align:left;margin-left:2em;position:relative;top:-9px;}
+      .container label {position: absolute;color:#ee1144;font-size:1.25em;-moz-user-select: none;-webkit-user-select: none;user-select: none;}
+      .container label:hover {color:#ff2255;cursor: pointer;}
+      .container span::before,.container span::after {content: '';position: absolute;top: 0;bottom: 0;margin: auto;}
+      .container span.checkbox::before {width: 25px;height: 25px;background-color: rgba(255,255,255,0.05);left: -35px;box-sizing: border-box;border: 1px solid rgb(87, 187, 98);transition: ease-in all .15s;border-radius:50px;}
+      .container span.checkbox:hover::before {border: 1px solid rgba(255,255,255,0.25);background-color: rgba(255,255,255,0.1);cursor: pointer;}
+      .container span.checkbox::after {content: url("checkmark.svg");left: -32px;top: -8px;opacity: 0;transition: opacity .2s;}
+      input[type="checkbox"]:checked + label span.checkbox::after {opacity:1;}
+      input[type="checkbox"]:checked + label span.checkbox::before {background:#57bb63;border-radius: 50px;transform: scale(1.1);animation: .15s ease flash}
+      input[type="checkbox"]:checked + label {color: rgba(255,255,255,0.35);}
+
+      .confirmLabel {
+        position: absolute;
+        top: 18px;
+        left: -42px;
+        font-size: 14px;
+        color: white;
+      }
+
+      .confirm {visibility: hidden;}
+
+      .screenContainer {text-align:center;max-width:520px;margin:0 auto;width:100%;background:#252830;background:url('hexagons-subtle.png'),radial-gradient(circle,#156cce,#021933);height:100vh;overflow-x:hidden;}
+
+      .workoutItem {
+        text-align: left;
+        padding: 1em;
+        background: rgba(255, 255, 255, 0.035);
+        border: 1px solid rgba(255,255,255,0.125);
+        width: 30%;
+        margin: 1em;
+        display: inline-block;
+        max-width: 250px;
+        border-radius: 15px;
+        background: radial-gradient(at 50% 150%, rgba(255,255,255,0.05), rgba(255,255,255,0.00125));
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.125);
+      }
+
+      /* Modal Styles */
+      .modal {
+       display: none;
+       position: fixed;
+       z-index: 1;
+       left: 0;
+       top: 0;
+       width: 100%;
+       height: 100%;
+       background-color: rgba(0,0,0,0.4);
+      }
+
+      .modal-content {
+       margin: 5% auto;
+       padding: 2em 3em;
+       border: 1px solid rgba(255,255,255,0.1);
+       width: calc(95% - 6em);
+       max-width:calc(500px - 6em);
+       height:80vh;
+       border-radius: 10px;
+       box-shadow:2px 2px 10px rgba(0,0,0,0.25);
+       text-align:left;
+       background: linear-gradient(225deg,#1c1e20 50%,rgba(28,30,32,0.85) 100%), url(dot.png), #1c1e20;
+       overflow: scroll;
+      }
+
+      .modalIn {animation: fadeUp ease .25s forwards;}
+      .modalOut {animation: fadeUp ease .25s reverse forwards;}
+
+      .exitButton {
+       color: rgba(255,255,255,0.5);
+       float: right;
+       font-size: 32px;
+       transition: ease all .35s;
+      }
+
+      .exitButton:hover, .exitButton:focus {
+       color: white;
+       text-decoration: none;
+       cursor: pointer;
+       transform: scale(1.25);
+      }
+
+      hr {border:1px solid rgba(255,255,255,0.075)}
+
+      .modal h2, .modal h3 {font-family:blender pro;letter-spacing:.03em;font-size:24px;font-weight: 500;text-transform:uppercase;margin:0;}
+      .modal h3 {font-size:18px;color:rgba(255,255,255,0.5);margin-top:-0.1em;}
+      .modal h4 {font-family:blender pro;letter-spacing:.03em;font-size:22px;font-weight: 500;text-transform:uppercase;margin-bottom:0.5em;margin-top: 1.5em;color:#e39d43;}
+
+      /* Muscle Highlighting Classes */
+      .primary {fill:#cc4e11;}
+      .secondary {fill:#e39d43}
+
+      /* Navigation */
+      .clippedDiv {background: #C8102E;clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);padding: 2em 1.25em;padding-bottom: 4em;-webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);text-align:left;background: linear-gradient(45deg, #c8102e, #ac1234);background:rgba(0,0,0,0.35)}
+      .navButton {font-size:50px;display:inline-block;font-weight:800;color:white;transition:ease all .35s;text-decoration:none;}
+      .navButton:hover {filter:drop-shadow(3px -3px 10px rgba(0,0,0,0.2));transform:scale(1.05);}
+      .pageTitle {text-transform:uppercase;font-family:Blender Pro;margin:0;padding:0;}
+      .headingContainer {display:inline-block;max-width:300px;margin-left:1.5em;text-align:left;position:relative;top:5px;}
+
+      /* Heading Stylings */
+      .dayContainer {background:rgba(255,255,255,0.025);display:inline-block;max-width:320px;width:100%;border-radius:5px;border:1px dotted rgba(255,255,255,0.25);padding:1em 0;margin-bottom:1em;}
+      .day {margin:0;padding:0;font-family:Blender Pro;text-transform:uppercase;letter-spacing:.03em;font-size:32px;color:white;}
+      .muscleGroup {margin:0;padding:0;font-family:Blender Pro;text-transform:uppercase;font-size:18px;color:rgba(255,255,255,0.75);}
+      .exerciseLength {margin:0;padding:0;margin-top:1em;}
+      .subHeadRotated {margin-bottom: 2.75em;transform: rotate(-4deg);text-transform: uppercase;font-family: Blender Pro;letter-spacing: .03em;text-align:center;font-weight:100;}
+
+      /* Bottom Bar */
+      #bottomBar {max-width:520px;width: 100%;position: fixed;bottom:0;display:flex;}
+      #bottomBar a {text-decoration: none;color: white;background: rgba(0,0,0,0.45);padding: 1em;text-transform: uppercase;letter-spacing: .075em;font-family: blender pro;width:50%;}
+      #bottomBar a:first-child {border-right:1px solid rgba(255,255,255,0.075);}
+      #bottomBar a:hover {background:rgba(0,0,0,0.25);}
+
+      /* Table Styles */
+
+      table {border-collapse:collapse;background:transparent;color:white;border-radius:5px;display:inline-block;margin: 0 auto;margin-top:1em;margin-bottom:2em;}
+      table tr td:first-child {text-align:right;}
+
+      #historyTable {border-collapse: collapse;
+background: rgba(255,255,255,0.025);color: white;border-radius: 5px;display: inline-block;margin: 0 auto;margin-bottom: 0px;margin-bottom: 5em;text-transform: uppercase;border: 1px solid rgba(255,255,255,0.075);box-shadow: 0 0 7px inset rgba(255,255,255,0.05);}
+      #historyTable caption {color: white;background: rgba(0,0,0,0.35);letter-spacing: .075em;text-align: center;text-transform: uppercase;padding: .5em 1em;border-radius: 5px 5px 0px 0px;border-bottom: 1px solid rgba(255,255,255,0.125);}
+      #historyTable th, td {padding:.5em 1em;}
+      #historyTable td:first-child {background:rgba(0,0,80,0.15);}
+      #historyTable th:first-child {border-radius:5px 0 0 0;}
+      #historyTable th:last-child {border-radius:0 5px 0 0;}
+      #historyTable thead {color: white;background: rgba(0,0,0,0.15);letter-spacing: .075em;}
+      #historyTable tr {border-bottom:1px solid rgba(255,255,255,0.075);}
+      #historyTable tr:last-child {border-bottom:1px solid transparent;border-radius:5px;}
+      #historyTable tr:last-child td:first-child {border-radius:0 0 0 5px;}
+      #historyTable small {font-size:.65em;margin-left:.25em;color:rgba(255,255,255,0.6);}
+
+      /*SVG*/
+      .progress {
+      display: block;
+      margin: 0 auto;
+      overflow: hidden;
+      transform: rotate(-90deg) rotateX(180deg);
+    }
+
+    .progress circle {
+    	stroke-dashoffset: 0;
+      	transition: stroke-dashoffset .5s cubic-bezier(0,1.07,.89,.99), fill .25s ease;
+      	stroke: #57bb63;
+      	stroke-width: 3px;
+    }
+
+    .progress .bar {
+    	stroke: #ccc;
+    }
+
+    .progressdiv {
+      position: relative;
+      float: right;
+      top: -6px;
+    }
+
+    .progressdiv:after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 20px;
+      transform: translate(-50%, -50%);
+      content: attr(data-percent) "%";
+    }
+
+      /*Animations*/
+      .clippedDiv {animation: slideRight .35s; }
+      @keyframes slideRight {from { transform:translateX(-600px); } to   { transform:translateY(0px);}}
+
+      .animationContainer {animation: slideLeft .35s;}
+      @keyframes slideLeft {from { transform:translateX(600px); } to   { transform:translateY(0px); }}
+
+      @keyframes flash {
+      0% {background:rgba(51,221,52,0.25);color:white;}
+      50% {background:transparent;color:#3d3}
+      70% {background:rgba(51,221,52,0.25);color:white;}
+      100% {background:transparent;color:#3d3;}
+      }
+
+      @keyframes fadeUp {
+        0% {opacity:0;transform:translateY(300px)}
+        100% {opacity:1;transform:translateY(0px)}
+      }
+      @keyframes fade {
+        0% {opacity:0;}
+        100% {opacity:1;}
+      }
+
+}
+
+</style>
+</head>
+<body ontouchstart="">
+
+<div class="screenContainer">
+  <div class="clippedDiv">
+    <a class="navButton" href="monday-a.html"><svg style="position:relative;top:3px;" height="42" width="42" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 78.415 78.416"><path d="M0 39.208c0 21.654 17.554 39.208 39.208 39.208 21.653 0 39.207-17.554 39.207-39.208S60.861 0 39.208 0C17.554 0 0 17.554 0 39.208zm24.924-2.392l18.511-18.512c.66-.66 1.525-.99 2.391-.99s1.731.33 2.391.99a3.38 3.38 0 010 4.777L32.088 39.209l16.128 16.125a3.384 3.384 0 010 4.777 3.374 3.374 0 01-4.775 0L24.924 41.598a3.382 3.382 0 010-4.782z"/></svg></a>
+
+    <div class="headingContainer">
+      <h1 class="pageTitle">Bench Press</h1>
+      <p class="muscleGroup">3 sets / 10 reps</p>
+    </div>
+
+    <div class="progressdiv"  data-percent="">
+    <svg class="progress" width="76" height="76" viewport="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <circle r="34" cx="38" cy="38" fill="transparent" stroke-dasharray="213.52" stroke-dashoffset="0" ></circle>
+    <circle class="bar" r="34" cx="38" cy="38" fill="transparent" stroke-dasharray="213.52" stroke-dashoffset="0"></circle>
+    </svg></div>
+  </div>
+
+  <div class="animationContainer">
+    <table id="exerciseTracker" data-id="bpData">
+    <thead>
+    <th></th>
+    <th>Reps</th>
+    <th>Weight</th>
+    <th></th>
+    </thead>
+    <tr data-id="ex1.1">
+    <td>Set 1</td>
+    <td><input data-id="ex1.1.R" inputmode="numeric" pattern="[0-9]*" type="number" required onkeyup="checkRow(this)" onclick="checkRow(this)"></input></td>
+    <td class="weightCell"><input data-id="ex1.1.W" inputmode="numeric" pattern="[0-9]*" type="number" required onkeyup="checkRow(this)" onclick="checkRow(this)"></input><label for="set'">LBS</label></td>
+    <td><div class="container confirm">
+          <input type="checkbox" name="group1" id="checkbox-1" onclick="progressUpdate();saveSet(this)">
+          <label for="checkbox-1"><span class="checkbox"></span><span class="confirmLabel">Confirm</span></label>
+        </div></td>
+    </tr>
+    <tr>
+
+    <tr data-id="ex1.2">
+    <td>Set 2</td>
+    <td><input data-id="ex1.2.R" inputmode="numeric" pattern="[0-9]*" type="number" required onkeyup="checkRow(this)" onclick="checkRow(this)"></input></td>
+    <td class="weightCell"><input data-id="ex1.2.W" inputmode="numeric" pattern="[0-9]*" type="number" required onkeyup="checkRow(this)" onclick="checkRow(this)"></input><label for="set'">LBS</label></td>
+    <td><div class="container confirm">
+          <input type="checkbox" name="group2" id="checkbox-2" onclick="progressUpdate();saveSet(this)">
+          <label for="checkbox-2"><span class="checkbox"></span><span class="confirmLabel">Confirm</span></label>
+        </div></td>
+    </tr>
+    <tr>
+
+    <tr data-id="ex1.3">
+    <td>Set 3</td>
+    <td><input data-id="ex1.3.R" inputmode="numeric" pattern="[0-9]*" type="number" required onkeyup="checkRow(this)" onclick="checkRow(this)"></input></td>
+    <td class="weightCell"><input data-id="ex1.3.W" inputmode="numeric" pattern="[0-9]*" type="number" required onkeyup="checkRow(this)" onclick="checkRow(this)"></input><label for="set'">LBS</label></td>
+    <td><div class="container confirm">
+          <input type="checkbox" name="group3" id="checkbox-3" onclick="progressUpdate();saveSet(this)">
+          <label for="checkbox-3"><span class="checkbox"></span><span class="confirmLabel">Confirm</span></label>
+        </div></td>
+    </tr>
+    <tr>
+  </table>
+
+
+  <table id="historyTable">
+  </table>
+</div>
+
+<div id="bottomBar">
+ <a href="#" onclick="showModal(technique)">Technique</a>
+ <a href="#" onclick="showModal(info)">Information</a>
+</div>
+
+<div id="technique" class="modal">
+  <div class="modal-content">
+    <span class="exitButton" onclick="closeWindow(this)">&times;</span>
+    <h2>Technique</h2>
+    <h3>Bench Press</h3>
+    <hr>
+    <h4>Step 1</h4>
+    <p>Lie down flat on bench</p>
+    <h4>Common Errors</h4>
+    <p>Not doing the full range of motion</p>
+  </div>
+</div>
+
+<div id="info" class="modal">
+  <div class="modal-content">
+    <span class="exitButton" onclick="closeWindow(this)">&times;</span>
+    <h2>Information</h2>
+    <h3>Bench Press</h3>
+    <hr>
+
+    <div style="display:flex;align-">
+    <svg style="max-width:215px;width:50%" viewBox="0 0 50 100" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" fill="rgba(255,255,255,0.85)">
+      <path id="leftFoot" d="M14.927 84.319c-.157.065-.215 1.306-.425 4.035-.057.733-.858 1.793-1.241 2.786-.218.568-.603 1.807-.388 2.253.082.169.548-.801.735-.604.095.1-.691 1.091-.442 1.214.299.148 1.006-1.273 1.154-1.149.231.193-1.189 1.301-.615 1.673.272.176.919-1.394 1.032-1.214.079.127-1.049 1.483-.408 1.739.603.24 1.045-2.679 1.157-2.616.133.074.087.338-.099.967-.225.76-.752 1.498-.601 2.045.117.423 1.122.9 1.234.698.32-.578 1.235-8.442 1.186-8.658-.082-.354-1.999-3.286-2.279-3.169z"/>
+      <path id="rightFoot" d="M34.974 84.319c.157.065.214 1.306.425 4.035.056.733.858 1.793 1.24 2.786.219.568.604 1.807.388 2.253-.082.169-.547-.801-.735-.604-.095.1.691 1.091.443 1.214-.299.148-1.006-1.273-1.154-1.149-.231.193 1.188 1.301.614 1.673-.271.176-.918-1.394-1.031-1.214-.08.127 1.049 1.483.408 1.739-.604.24-1.046-2.679-1.158-2.616-.133.074-.087.338.1.967.225.76.751 1.498.6 2.045-.116.423-1.122.9-1.233.698-.321-.578-1.236-8.442-1.186-8.658.081-.354 1.999-3.286 2.279-3.169z"/>
+      <g id="shins"><path d="M15.958 66.2s.669 2.686.606 4.543c-.069 2.038.518 15.855.518 15.855s.136-5.548.567-10.156c.223-2.386.826-5.647 1.086-6.281.53-1.297 1.253-2.413 1.253-2.413s-1.43.007-2.083-.244c-.672-.258-1.947-1.304-1.947-1.304z"/><path d="M33.942 66.2s-.669 2.686-.606 4.543c.069 2.038-.517 15.855-.517 15.855s-.137-5.548-.568-10.156c-.223-2.386-.826-5.647-1.085-6.281-.53-1.297-1.254-2.413-1.254-2.413s1.431.007 2.083-.244c.672-.258 1.947-1.304 1.947-1.304z"/></g>
+      <g id="calves"><path d="M19.106 69.859s-.769 3.835-.984 5.138c-.147.885-.24 1.33-.308 2.675-.055 1.084-.157 2.074-.157 2.074s.654-1.207.895-1.804c.295-.727 1.244-1.74 1.429-4.168.091-1.188.302-2.117.013-2.881-.145-.383-.888-1.034-.888-1.034z"/><path d="M16.18 70.61c.195-1.819-.217-2.359-.217-2.359s-1.415 3.482-1.746 7.435c-.294 3.516.473 7.514.758 8.083.918 1.834 1.868 2.483 1.868 2.483s-.508-6.42-.479-7.314c.116-3.528-.356-6.714-.184-8.328z"/><path d="M30.795 69.859s.769 3.835.984 5.138c.146.885.24 1.33.308 2.675.054 1.084.156 2.074.156 2.074s-.653-1.207-.895-1.804c-.295-.727-1.243-1.74-1.429-4.168-.091-1.188-.302-2.117-.012-2.881.145-.383.888-1.034.888-1.034z"/><path d="M33.72 70.61c-.195-1.819.218-2.359.218-2.359s1.415 3.482 1.745 7.435c.294 3.516-.472 7.514-.757 8.083-.918 1.834-1.869 2.483-1.869 2.483s.509-6.42.48-7.314c-.116-3.528.356-6.714.183-8.328z"/></g>
+      <g id="adductors"><path d="M18.212 40.947s1.002 5.975 1.523 7.955c.624 2.369 1.538 8.258 1.538 8.258s2.072-10.376 1.928-10.742c-.189-.484-1.94-1.419-2.744-2.301-.832-.912-2.245-3.17-2.245-3.17z"/><path d="M31.688 40.947s-1.002 5.975-1.523 7.955c-.623 2.369-1.538 8.258-1.538 8.258s-2.071-10.376-1.928-10.742c.19-.484 1.941-1.419 2.745-2.301.831-.912 2.244-3.17 2.244-3.17z"/></g>
+      <g id="quads"><path d="M17.838 40.873c-.194-.13-3.097 6.787-2.689 10.074.698 5.62.195 13.277.811 14.722.287.675 3.985 2.836 4.183 1.095.227-1.988 1.068-4.944.921-8.08-.208-4.448-1.545-9.214-2.022-11.733-.738-3.899-.994-5.937-1.204-6.078z"/><path d="M32.062 40.873c.195-.13 3.098 6.787 2.69 10.074-.698 5.62-.196 13.277-.811 14.722-.288.675-3.985 2.836-4.183 1.095-.227-1.988-1.069-4.944-.922-8.08.209-4.448 1.545-9.214 2.022-11.733.739-3.899.994-5.937 1.204-6.078z"/></g>
+      <g id="hands"><path d="M9.712 47.775c.134-1.418.089-2.359-1.086-3.038-1.162-.673-2.033-.053-2.417.168-.332.192-1.99 1.92-2.112 2.137-.301.53-1.565.63-1.274 1.133.246.426.953.231 1.496.052.66-.22 1.762-1.069 1.135.151-.113.221-2.386 3.584-1.701 3.919.554.271 2.081-3.223 2.335-3.083.036.019-.531.527-1.088 1.598-.54 1.039-1.263 2.563-.875 2.723.51.21.935-.823 1.366-1.767.408-.895.935-1.619.971-1.632.255-.091-1.791 3.249-1.123 3.463.391.125.797-.803 1.146-1.638.301-.723.576-1.484.809-1.576.49-.194-.245.862-.459 1.293-.293.59-.387 1.161-.236 1.221.5.2 1.583-2.564 1.959-2.879.804-.674 1.071-1.366 1.154-2.245z"/><path d="M40.208 47.775c-.134-1.418-.089-2.359 1.086-3.038 1.162-.673 2.033-.053 2.417.168.332.192 1.99 1.92 2.112 2.137.301.53 1.565.63 1.274 1.133-.246.426-.953.231-1.496.052-.66-.22-1.762-1.069-1.135.151.113.221 2.386 3.584 1.701 3.919-.554.271-2.081-3.223-2.335-3.083-.036.019.531.527 1.088 1.598.54 1.039 1.263 2.563.875 2.723-.51.21-.935-.823-1.366-1.767-.408-.895-.935-1.619-.971-1.632-.255-.091 1.791 3.249 1.123 3.463-.392.125-.797-.803-1.146-1.638-.301-.723-.576-1.484-.809-1.576-.49-.194.245.862.459 1.293.293.59.387 1.161.236 1.221-.5.2-1.583-2.564-1.959-2.879-.804-.674-1.071-1.366-1.154-2.245z"/></g>
+      <g id="forearms"><path d="M14.475 31.184s-1.851 2.503-2.198 3.035c-.355.542-.694 2.161-.904 2.862a248.896 248.896 0 01-2.139 6.786c-.38 1.12.63 1.97.63 1.97s2.377-5.498 2.778-6.905c.721-2.53 1.833-7.748 1.833-7.748z"/><path d="M11.039 30.591s-1.581 3.383-1.629 4.748c-.114 3.268-2.803 9.093-2.803 9.093s.707-.303 1.213-.255c.539.051.884.443 1.032.045.417-1.12 1.424-4.811 1.728-5.665.711-1.998 1.711-4.445 1.195-5.518-.874-1.816-.736-2.448-.736-2.448z"/><path d="M35.445 31.184s1.851 2.503 2.198 3.035c.355.542.694 2.161.904 2.862.683 2.282 1.649 5.34 2.139 6.786.379 1.12-.63 1.97-.63 1.97s-2.377-5.498-2.778-6.905c-.721-2.53-1.833-7.748-1.833-7.748z"/><path d="M38.88 30.591s1.582 3.383 1.63 4.748c.114 3.268 2.803 9.093 2.803 9.093s-.707-.303-1.213-.255c-.539.051-.884.443-1.032.045-.417-1.12-1.424-4.811-1.728-5.665-.711-1.998-1.711-4.445-1.195-5.518.874-1.816.735-2.448.735-2.448z"/></g>
+      <g id="abs"><path d="M24.748 33.333c.117.262.06 1.452.054 1.969-.013 1.184-.077 2.041-.252 2.129-.158.079-3.159.156-3.217-.184-.043-.255-.241-.955-.244-1.955-.002-.789-.079-1.582.058-1.876.049-.104.955-.063 1.847-.074.869-.01 1.726-.074 1.754-.009z"/><path d="M25.172 33.333c-.117.262-.06 1.452-.054 1.969.012 1.184.077 2.041.252 2.129.158.079 3.159.156 3.217-.184.043-.255.241-.955.244-1.955.002-.789.079-1.582-.058-1.876-.049-.104-.955-.063-1.847-.074-.869-.01-1.726-.074-1.754-.009z"/><path d="M24.803 29.637c-.123-.128-.993-.071-1.817-.055-.713.015-1.388-.027-1.575.055-.3.133-.391 3.128-.159 3.348.227.214 3.378.062 3.517-.067.103-.094.096-.928.097-1.782.002-.669.039-1.392-.063-1.499z"/><path d="M25.117 29.637c.123-.128.993-.071 1.817-.055.713.015 1.388-.027 1.574.055.301.133.391 3.128.159 3.348-.226.214-3.377.062-3.516-.067-.103-.094-.096-.928-.097-1.782-.002-.669-.039-1.392.063-1.499z"/><path d="M24.77 29.318s.055-1.827.061-2.647c.005-.643-2.307-.538-2.994.447-.313.449-.466 2.256-.466 2.256l3.399-.056z"/><path d="M25.15 29.318s-.055-1.827-.061-2.647c-.005-.643 2.307-.538 2.994.447.313.449.466 2.256.466 2.256l-3.399-.056z"/><path d="M21.333 37.597c.103-.084.508.104 1.537.128.891.021 1.86-.057 1.86-.057s.075 2.302.174 4.495c.093 2.071.198 4.156-.001 4.135-1.972-.208-2.119-2.652-2.714-4.102-.592-1.443-1.112-4.393-.856-4.599z"/><path d="M28.587 37.597c-.103-.084-.508.104-1.537.128-.891.021-1.86-.057-1.86-.057s-.075 2.302-.174 4.495c-.093 2.071-.198 4.156.001 4.135 1.972-.208 2.119-2.652 2.714-4.102.592-1.443 1.112-4.393.856-4.599z"/></g>
+      <g id="obliques"><path d="M17.753 31.687c-.123.823.284 6.875.423 7.521.203.941.951 2.76 1.743 3.806.783 1.035 2.801 2.76 3.009 2.472.289-.4-2.145-5.204-2.194-10.51-.043-4.637.806-7.985.599-8.633-.115-.358-.678-.424-1.017-.166-.355.271-2.438 4.671-2.563 5.51z"/><path d="M32.167 31.687c.123.823-.284 6.875-.423 7.521-.203.941-.951 2.76-1.743 3.806-.783 1.035-2.801 2.76-3.009 2.472-.289-.4 2.145-5.204 2.194-10.51.043-4.637-.806-7.985-.599-8.633.115-.358.678-.424 1.016-.166.356.271 2.439 4.671 2.564 5.51z"/></g>
+      <g id="serratusAnterior"><path d="M16.922 23.708c-.323.091.04 3.064.075 4.507.043 1.815.563 3.293.563 3.293s2.046-4.355 2.425-5.487c.089-.264-1.041-.611-1.78-1.133-.761-.538-1.128-1.224-1.283-1.18z"/><path d="M32.998 23.708c.323.091-.04 3.064-.075 4.507a11.892 11.892 0 01-.563 3.293s-2.046-4.355-2.425-5.487c-.089-.264 1.041-.611 1.78-1.133.761-.538 1.128-1.224 1.283-1.18z"/></g>
+      <g id="biceps"><path d="M12.351 33.47c.385 0 2.214-3.154 3.204-4.908.865-1.533 1.201-5.065.794-5.229-.531-.213-2.099.936-3.511 1.143-.104.016-1.883 3.322-1.602 5.484.309 2.369.875 3.51 1.115 3.51z"/><path d="M37.569 33.47c-.385 0-2.214-3.154-3.204-4.908-.865-1.533-1.201-5.065-.794-5.229.531-.213 2.099.936 3.511 1.143.104.016 1.883 3.322 1.602 5.484-.309 2.369-.875 3.51-1.115 3.51z"/></g>
+      <g class="secondary" id="shoulders"><path d="M18.344 17.048c-.781-.314-3.036.593-4.369 2.209-1.308 1.586-1.317 5.083-1.193 5.016.427-.233 1.318-.126 3.529-1.655.885-.613 2.206-2.891 2.455-4.063.196-.917.111-1.293-.422-1.507z"/><path d="M31.576 17.048c.781-.314 3.036.593 4.369 2.209 1.308 1.586 1.317 5.083 1.193 5.016-.427-.233-1.318-.126-3.529-1.655-.885-.613-2.206-2.891-2.455-4.063-.196-.917-.111-1.293.422-1.507z"/></g>
+      <g class="primary" id="pecs"><path d="M24.06 18.458c-.402-.063-.979-.086-2.236-.283-1.296-.203-2.349-.69-2.432-.381-.727 2.726-2.667 4.375-2.219 5.533.398 1.027 3.332 2.466 4.753 2.672 3.509.51 2.801-2.853 2.822-3.975.027-1.511.431-3.39-.688-3.566z"/><path d="M25.871 18.458c.401-.063.978-.086 2.235-.283 1.297-.203 2.349-.69 2.432-.381.727 2.726 2.667 4.375 2.219 5.533-.397 1.027-3.332 2.466-4.753 2.672-3.509.51-2.801-2.853-2.821-3.975-.028-1.511-.432-3.39.688-3.566z"/></g>
+      <g id="traps"><path d="M22.17 13.581l2.278 4.494c-3.235-.076-5.953-1.198-5.953-1.198s3.047-1.233 3.541-1.969c.214-.319.196-.88.134-1.327z"/><path d="M28.151 13.081c-.04.367-.127 1.516.252 1.955.572.663 3.194 1.903 3.194 1.903s-2.677.972-5.97 1.121l2.524-4.979z"/></g>
+      <path id="head" d="M25.262 2.482c2.755 0 5.055 3.046 4.853 4.97-.252 2.405-.057 5.897-4.991 5.935-4.319.033-4.723-3.381-4.991-5.935-.202-1.917 2.374-4.97 5.129-4.97z"/>
+      <path id="neck" d="M22.11 12.928c.371.113 2.004.594 2.899.603.803.008 2.293-.346 2.894-.497l-2.553 5.037-.629.008-2.611-5.151z"/>
+    </svg>
+    <div>
+      <h4>Muscles Worked</h4>
+      <ul>
+        <li><strong>Primary:</strong> <i>Pectoralis Muscles</i></li>
+        <li><strong>Secondary:</strong> <i>Anterior Deltoids</i></li>
+        <li><strong>Secondary:</strong> <i>Triceps</i></li>
+      </ul>
+      <h4>Equipment Needed</h4>
+      <ul>
+        <li>Bench</li>
+        <li>Barbell</li>
+      </ul>
+      <h4>Exercise Type</h4>
+      <ul>
+        <li>Compound</li>
+      </ul>
+    </div>
+  </div>
+
+
+  </div>
+</div>
+
+</body>
+
+<script>
+  // Declare Global Variable
+  const exerciseId = document.getElementById("exerciseTracker").getAttribute("data-id")
+
+  appData = window.localStorage
+  window.onload = loadData()
+
+  function loadData() {
+    const tableId = appData.getItem("tableId")
+    const tableContainer = document.getElementById("historyTable")
+    const baseTable = '<caption>History</caption>' +
+      '<thead>' +
+      '<th>Date</th>' +
+      '<th>Set 1</th>' +
+      '<th>Set 2</th>' +
+      '<th>Set 3</th>' +
+      '<th></th>' +
+      '</thead>' + '<tbody>' + '<tr>';
+
+      if (tableId == null) {
+      tableContainer.innerHTML = baseTable;
+      } else {
+      tableContainer.innerHTML = tableId;
+      }
+
+      const dateObj = new Date();
+      const month = dateObj.getUTCMonth() + 1; //months from 1-12
+      const day = dateObj.getUTCDate();
+      const year = dateObj.getUTCFullYear();
+      const today = month + "/" + day + "/" + year;
+      const cached = appData.getItem('cachedDate')
+
+      if (today == cached) {
+        document.querySelectorAll("input[type=number]").forEach((item)=>{
+          let id = item.getAttribute("data-id");
+          let inputValue = appData.getItem(id);
+          item.value = inputValue
+        });
+        document.querySelectorAll("input[type=checkbox]").forEach((item)=>{
+          let id = item.getAttribute("id");
+          let status = appData.getItem(id);
+          if (status == "checked") {
+          item.checked = true;
+          item.parentElement.classList.remove("confirm");
+          item.parentElement.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.innerText = "Confirmed"
+        } else {return}
+        });
+        progressUpdate()
+      } else {
+        document.querySelectorAll("input[type=number]").forEach((item)=>{
+          let id = item.getAttribute("data-id");
+          appData.setItem(id, "")
+        })
+        document.querySelectorAll("input[type=checkbox]").forEach((item)=>{
+          let id = item.getAttribute("id");
+          appData.setItem(id, "");
+        });
+        appData.setItem(exerciseId, "")
+        progressUpdate()
+      }
+  }
+
+  function progressUpdate () {
+    var totalChecked = document.querySelectorAll('input[type="checkbox"]:checked').length;
+    var total = document.querySelectorAll('input[type="checkbox"]').length;
+    var percentage = (totalChecked/total)*100;
+    var circumfrence, progress;
+		const circles = document.querySelectorAll('.progress');
+
+		for(var i = 0; i < circles.length; i++) {
+			circumfrence = circles[i].querySelector('circle').getAttribute('stroke-dasharray');
+			progress = circles[i].parentElement.setAttribute('data-percent', Math.round(percentage));
+
+			circles[i].querySelector('.bar').style['stroke-dashoffset'] = circumfrence * percentage / 100;
+
+      if (percentage == 100) {
+        circles[i].querySelector('.bar').style['fill'] = '#57bb63';
+      }
+      else {
+        circles[i].querySelector('.bar').style['fill'] = 'transparent';
+      }
+		}
+    appData.setItem(exerciseId+"Status", Math.round(percentage))
+	}
+
+  function checkRow(row) {
+    tableRow = row.parentElement.parentElement
+    repInput = tableRow.children[1].firstElementChild.value
+    weightInput = tableRow.children[2].firstElementChild.value
+    buttonInput = tableRow.children[3].firstElementChild.firstElementChild; //actual input of checkbox
+    const confirmButton = tableRow.children[3].firstElementChild; // container of checkbox
+    label = buttonInput.nextElementSibling.firstElementChild.nextElementSibling
+
+    if (buttonInput.checked == true) {
+    buttonInput.checked = false;
+    label.innerText = "Confirm"
+    progressUpdate()
+    return
+    } else {
+      if (repInput == false || weightInput == false) {confirmButton.classList.add("confirm")} else {confirmButton.classList.remove("confirm")}
+    }
+  }
+
+  function showModal(window) {
+    window.style.display="block";
+    window.classList.add("modalIn")
+    setTimeout(function() {window.classList.remove("modalIn")}, 200)
+    window.addEventListener('click', function(event) {
+      if (event.currentTarget !== event.target) {
+        return;
+      }
+    window.classList.add("modalOut")
+    setTimeout(function() {window.classList.remove("modalOut");window.style.display="none";}, 200)
+    }, false);
+  }
+
+  function closeWindow(item) {
+    let window = item.parentElement;
+    let windowContainer = window.parentElement;
+    windowContainer.classList.add("modalOut")
+    setTimeout(function() {windowContainer.classList.remove("modalOut");windowContainer.style.display="none";}, 200)
+  }
+
+  function saveSet(data) {
+    // Grab Reps, Weight, and IDs
+
+    tableRow = data.parentElement.parentElement.parentElement
+    setID = tableRow.getAttribute("data-id")
+    repInput = tableRow.children[1].firstElementChild
+    repID = repInput.getAttribute("data-id")
+    reps = repInput.value
+    weightInput = tableRow.children[2].firstElementChild
+    weightID = weightInput.getAttribute("data-id")
+    weight = weightInput.value
+    comboValue = reps + " \xD7 " + weight + " LBS"
+    let checkboxID = data.getAttribute("id")
+
+    // Reset inputs if unchecking box
+    if (data.checked == false) {
+      appData.setItem(checkboxID, "")
+      return
+    } else {
+
+    // Save Checkbox Status
+    appData.setItem(checkboxID, "checked")
+    let label = data.parentElement.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling
+    label.innerText = "Confirmed"
+
+    // Get/Set History Array
+    let savedDay = appData.getItem(exerciseId)
+    let dayArray = (savedDay !== "") ? JSON.parse(savedDay) : {};
+
+
+    // Get Date to Cache
+    const dateObj = new Date();
+    const month = dateObj.getUTCMonth() + 1; //months from 1-12
+    const day = dateObj.getUTCDate();
+    const year = dateObj.getUTCFullYear();
+    const today = month + "/" + day + "/" + year;
+
+    // Update dayArray
+    dayArray.date = today
+    dayArray[setID] = comboValue
+
+    // Animate
+    repInput.classList.add("flash");
+    weightInput.classList.add("flash");
+
+    setTimeout(function () {
+      repInput.classList.remove("flash");
+      weightInput.classList.remove("flash");
+    }, 200)
+
+    // Save Individual Inputs & Combo Value to localStorage
+    appData.setItem(repID, reps)
+    appData.setItem(weightID, weight)
+    appData.setItem("cachedDate", today)
+    appData.setItem(exerciseId, JSON.stringify(dayArray))
+
+    // Table Prep
+    let hTable = document.getElementById("historyTable");
+
+    // Check if Row For Today Already Exists
+    rowTotal = hTable.rows.length
+    lastRow = hTable.rows[rowTotal - 1]
+
+    if (lastRow.cells.length !== 0) {
+      rowDate = lastRow.cells[0].innerText;
+    } else {rowDate = "oh"; }
+
+    if (rowDate == today) {
+      lastRow.remove();
+      newRow = hTable.insertRow(-1);  // Insert a row at the end of the table
+    } else {
+     newRow = hTable.insertRow(-1);
+    }
+
+    // Object Looping using For-in loop
+    for (property in dayArray) {
+      let newCell = newRow.insertCell()
+      newCell.innerText = dayArray[property]
+    }
+
+    // Save Table to localStorage
+    const currentTable = document.getElementById("historyTable")
+    appData.setItem("tableId", currentTable.innerHTML)
+  }
+}
+</script>
+<script src="installer.js"></script>
+
+</html>
